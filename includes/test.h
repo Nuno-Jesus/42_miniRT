@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:30:28 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/24 18:32:14 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/06/24 19:09:25 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define HEADER_H
 
 # include <stdio.h>
+# include <stdlib.h>
 
 void hello(void);
 

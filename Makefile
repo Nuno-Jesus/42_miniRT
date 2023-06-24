@@ -46,25 +46,28 @@ _SUBFOLDERS	= .
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
-#_                                        DEPENDENCIES                                       _
-#_                                                                                           _
-#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-
-# The vpath directive is used to tell the Makefile where to look for the files, that
-# are not in the current directory and match a pattern.
-vpath %.c $(addprefix $(SOURCES)/, $(_SUBFOLDERS))
-vpath %.h $(INCLUDES)
-
-#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-#_                                                                                           _
 #_                                           FILES                                           _
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 NAME	= miniRT
 _FILES	= main hello
-TARGET	= $(_FILES:%=%.o)
-OBJS	= $(addprefix $(BINARIES)/, $(TARGET))
+TARGET	= $(patsubst %, %.o, $(_FILES))
+OBJS	= $(foreach object, $(TARGET), $(BINARIES)/$(object))
+
+#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+#_                                                                                           _
+#_                                        DEPENDENCIES                                       _
+#_                                                                                           _
+#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+
+# The vpath directive tells the Makefile to look in these folders for missing
+# files. Because the _FILES only contains the name of the files we use and 
+# not the absolute path of them, the vpath directive helps the make to find
+# the file names on it.
+
+vpath %.c $(foreach subfolder, $(SUBFOLDERS), $(SOURCES)/$(subfolder))
+vpath %.h $(INCLUDES)
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -72,12 +75,15 @@ OBJS	= $(addprefix $(BINARIES)/, $(TARGET))
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-# Usually, we only define this macro in the command line when we want to compile in debug mode.
-# If you want to activate debug mode, you can run the following command:
-# 		make DEBUG=1
-# This appends the flags below to the CFLAGS variable.
-# Final CFLAGS: -Wall -Wextra -Werror -g -fsanitize=address
-ifdef DEBUG
+# To make use of these flags, you must define them in the command line, when
+# running the make command. For instance, if you want the debug flag:
+#	make D=1
+# The value of 1 is a dummy value, as the make command needs an assignment
+# to recognize D as a variable, otherwise it would be considered a target
+# If you need both debug and sanitizer:
+# 	make D=1 SAN=A
+
+ifdef D
 	CFLAGS += -g
 endif
 
