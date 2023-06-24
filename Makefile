@@ -62,7 +62,7 @@ vpath %.h $(INCLUDES)
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 NAME	= miniRT
-_FILES	= 
+_FILES	= main hello
 TARGET	= $(_FILES:%=%.o)
 OBJS	= $(addprefix $(BINARIES)/, $(TARGET))
 
@@ -78,7 +78,17 @@ OBJS	= $(addprefix $(BINARIES)/, $(TARGET))
 # This appends the flags below to the CFLAGS variable.
 # Final CFLAGS: -Wall -Wextra -Werror -g -fsanitize=address
 ifdef DEBUG
-	CFLAGS += -g -fsanitize=address
+	CFLAGS += -g
+endif
+
+ifeq ($(SAN), A)
+	CFLAGS += -fsanitize=address
+else ifeq ($(SAN), L)
+	CFLAGS += -fsanitize=leak
+else ifeq ($(SAN), M)
+	CFLAGS += -fsanitize=memory
+else ifeq ($(SAN), U)
+	CFLAGS += -fsanitize=undefined
 endif
 		
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
@@ -91,7 +101,7 @@ all: $(NAME)
 
 $(NAME): $(BINARIES) $(OBJS)
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)$(NAME)$(RESET)"
-	$(AR) $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I $(INCLUDES)
 	
 	echo "$(GREEN)Done.$(RESET)"
 	
@@ -114,13 +124,12 @@ re: fclean
 	$(MAKE) all
 
 valgrind: all
-	valgrind --leak-check=full --show-leak-kinds=all \
-		--log-file=output.log ./$(NAME) $(SCENE)
+	valgrind --leak-check=full --show-leak-kinds=all --log-file=output.log ./$(NAME) $(SCENE)
 
 norm:
 	echo "\n\t$(BLUE)_/=\\_/=\\_/=\\_ *.h FILES _/=\\_/=\\_/=\\_$(RESET)\n"
-	norminette -R CheckDefine $(find . -type f -name "*.h")
+	norminette -R CheckDefine $(shell find . -type f -name "*.h")
 	echo "\n\t$(BLUE)_/=\\_/=\\_/=\\_ *.c FILES _/=\\_/=\\_/=\\_$(RESET)\n"
-	norminette -R checkForbiddenSourceHeader $(find . -type f -name "*.c")
+	norminette -R checkForbiddenSourceHeader $(shell find . -type f -name "*.c")
 
 .SILENT:
