@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   message.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/29 16:54:14 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/06/29 16:30:28 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/06/29 16:59:09 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "miniRT.h"
 
-# include "vector.h"
-# include "structs.h"
-# include "utils.h"
-# include "libnc.h"
-# include "parser.h"
-
-# endif
+void	message(t_root *root, char *text)
+{
+	destroy_root(&root);
+	printf("Error\n%s\n", text);
+	exit(EXIT_FAILURE);
+}

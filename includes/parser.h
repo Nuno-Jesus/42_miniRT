@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/29 16:54:14 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/06/29 16:19:03 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/06/29 16:41:31 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef PARSER_H
+# define PARSER_H
 
-# include "vector.h"
-# include "structs.h"
-# include "utils.h"
-# include "libnc.h"
-# include "parser.h"
+#include "miniRT.h"
 
-# endif
+t_root	*parse(char *filename);
+#endif

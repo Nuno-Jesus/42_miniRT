@@ -6,19 +6,19 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/29 16:09:40 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:56:20 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "miniRT.h"
 
-int main(void)
+int main(int argc, char **argv)
 {
-	//Print degrees to radians with 30 degrees
-	printf("30 degrees in radians: %.3f\n", RADIANS(45));
-
-	//Print radians to degrees with PI/2 radians
-	printf("PI/2 radians in degrees: %.3f\n", DEGREES(PI/2));
+	t_root	*root;
+	
+	if (argc != 2)
+		message(NULL, "Usage: ./miniRT <scene>.rt");
+	root = parse(argv[1]);
+	destroy_root(&root);
 	return (0);	
 }

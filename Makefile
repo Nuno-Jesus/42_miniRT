@@ -42,7 +42,7 @@ MAKEFLAGS	= --no-print-directory
 INCLUDES	= includes 
 SOURCES		= sources
 OBJECTS		= objects
-_SUBFOLDERS	= vector
+_SUBFOLDERS	= destroy parser utils vector
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -65,8 +65,12 @@ vpath %.h $(INCLUDES)
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 NAME	= miniRT
-_FILES	= main vector_add vector_dot vector_mult vector_norm vector_cross vector_mod vector_new \
+_VECTOR	= vector_add vector_dot vector_mult vector_norm vector_cross vector_mod vector_new \
 	vector_sub vector_debug
+_DESTROY = destroy
+_PARSER = parser
+_UTILS = message
+_FILES	= main $(_VECTOR) $(_DESTROY) $(_PARSER) $(_UTILS)
 TARGET	= $(patsubst %, %.o, $(_FILES))
 OBJS	= $(foreach target, $(TARGET), $(OBJECTS)/$(target))
 
