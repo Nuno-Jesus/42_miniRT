@@ -39,12 +39,12 @@ MK		= --no-print-directory
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-DEPS			= includes 
+DEPS			= ../includes 
 SRCS			= .
 _SUBFOLDERS		= binary_search_tree conversions dictionary is linked_list \
 					matrix memory pair print str vector
 VPATH			= srcs $(addprefix $(SRCS)/nc_, $(_SUBFOLDERS))
-OBJ_DIR			= bin
+OBJ_DIR			= ../objects
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -103,24 +103,18 @@ TARGET			= $(addprefix $(OBJ_DIR)/, $(OBJS))
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(TARGET)
-	echo "[$(CYAN) Linking $(RESET)] $(GREEN)$(NAME)$(RESET)"
 	$(AR) $(NAME) $(TARGET)
 	
-	echo "$(GREEN)Done.$(RESET)"
-	
 $(OBJ_DIR)/%.o : $(SRCS)/%.c 
-	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(DEPS)
 
 $(OBJ_DIR) :
 	mkdir -p $(OBJ_DIR)
 
 clean:	
-	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(OBJ_DIR)$(RESET)"
 	$(RM) $(OBJ_DIR)
 
 fclean: clean
-	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(NAME)$(RESET)"
 	$(RM) $(NAME)
 
 re: fclean all

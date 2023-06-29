@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vector_mod.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/24 18:30:12 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/29 12:38:20 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/06/29 14:53:58 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/06/29 15:01:18 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "miniRT.h"
 
-int main(void)
+float	vector_mod(t_vec3 vec)
 {
-	//Allocate a 10 position pointer
-	int *a = malloc(sizeof(int) * 10);
-	if (a[0])
-		hello();
-	free(a);
-	return (0);
+	float	mod;
+
+	mod = sqrt(pow(vec.x, 2) + pow(vec.y, 2) + pow(vec.z, 2));
+	return (mod);
 }

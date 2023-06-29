@@ -41,19 +41,8 @@ MAKEFLAGS	= --no-print-directory
 
 INCLUDES	= includes 
 SOURCES		= sources
-BINARIES	= binaries
-_SUBFOLDERS	= .
-
-#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-#_                                                                                           _
-#_                                           FILES                                           _
-#_                                                                                           _
-#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-
-NAME	= miniRT
-_FILES	= main hello
-TARGET	= $(patsubst %, %.o, $(_FILES))
-OBJS	= $(foreach object, $(TARGET), $(BINARIES)/$(object))
+OBJECTS		= objects
+_SUBFOLDERS	= vector
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -66,8 +55,20 @@ OBJS	= $(foreach object, $(TARGET), $(BINARIES)/$(object))
 # not the absolute path of them, the vpath directive helps the make to find
 # the file names on it.
 
-vpath %.c $(foreach subfolder, $(SUBFOLDERS), $(SOURCES)/$(subfolder))
+vpath %.c $(foreach subfolder, $(_SUBFOLDERS), $(SOURCES)/$(subfolder))
 vpath %.h $(INCLUDES)
+
+#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+#_                                                                                           _
+#_                                           FILES                                           _
+#_                                                                                           _
+#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+
+NAME	= miniRT
+_FILES	= main vector_add vector_dot vector_mult vector_norm vector_cross vector_mod vector_new \
+	vector_sub vector_debug
+TARGET	= $(patsubst %, %.o, $(_FILES))
+OBJS	= $(foreach target, $(TARGET), $(OBJECTS)/$(target))
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -107,24 +108,24 @@ endif
 
 all: $(NAME)
 
-$(NAME): $(BINARIES) $(OBJS)
+$(NAME): $(OBJECTS) $(OBJS)
 	$(MAKE) -C libnc/
 
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)$(NAME)$(RESET)"
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I $(INCLUDES) -L libnc -lnc
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I $(INCLUDES) -L libnc -lnc -lm
 	
 	echo "$(GREEN)Done.$(RESET)"
 	
-$(BINARIES)/%.o : $(SOURCES)/%.c
+$(OBJECTS)/%.o: %.c
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCLUDES)
 
-$(BINARIES):
-	mkdir -p $(BINARIES)
+$(OBJECTS):
+	mkdir -p $(OBJECTS)
 
 clean:	
-	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(BINARIES)$(RESET)"
-	$(RM) $(BINARIES)
+	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(OBJECTS)$(RESET)"
+	$(RM) $(OBJECTS)
 
 fclean: clean
 	$(MAKE) fclean -C libnc

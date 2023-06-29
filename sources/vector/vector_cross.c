@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   vector_cross.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/24 18:30:28 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/24 19:09:25 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/06/29 15:04:49 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/06/29 15:06:54 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_H
-# define HEADER_H
+#include "miniRT.h"
 
-# include <stdio.h>
-# include <stdlib.h>
+t_vec3	vector_cross(t_vec3 v1, t_vec3 v2)
+{
+	t_vec3	res;
 
-void hello(void);
-
-#endif
+	res.x = v1.y * v2.z - v1.z * v2.y;
+	res.y = v1.z * v2.x - v1.x * v2.z;
+	res.z = v1.x * v2.y - v1.y * v2.x;
+	return (res);
+}

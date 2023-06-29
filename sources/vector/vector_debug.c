@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hello.c                                            :+:      :+:    :+:   */
+/*   vector_debug.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/24 18:30:57 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/24 18:38:05 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/06/29 15:37:59 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/06/29 15:42:00 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "miniRT.h"
 
-void hello(void)
+void	vector_debug(t_vec3 vec)
 {
-	printf("Hello World!\n");
+	printf("Vec: (x, y, z) = (%.3f, %.3f, %.3f)\n", vec.x, vec.y, vec.z);
 }
