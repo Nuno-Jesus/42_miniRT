@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:30:12 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/24 19:09:51 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/06/29 12:38:20 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ int main(void)
 	int *a = malloc(sizeof(int) * 10);
 	if (a[0])
 		hello();
+	free(a);
 	return (0);
 }

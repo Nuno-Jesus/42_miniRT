@@ -93,8 +93,10 @@ else ifeq ($(SAN), L)
 	CFLAGS += -fsanitize=leak
 else ifeq ($(SAN), M)
 	CFLAGS += -fsanitize=memory
-else ifeq ($(SAN), U)
-	CFLAGS += -fsanitize=undefined
+else ifeq ($(SAN), T)
+	CFLAGS += -fsanitize=thread
+# else ifeq ($(SAN), U)
+# 	CFLAGS += -fsanitize=undefined
 endif
 		
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
@@ -106,8 +108,10 @@ endif
 all: $(NAME)
 
 $(NAME): $(BINARIES) $(OBJS)
+	$(MAKE) -C libnc/
+
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)$(NAME)$(RESET)"
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I $(INCLUDES)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I $(INCLUDES) -L libnc -lnc
 	
 	echo "$(GREEN)Done.$(RESET)"
 	
@@ -123,6 +127,7 @@ clean:
 	$(RM) $(BINARIES)
 
 fclean: clean
+	$(MAKE) fclean -C libnc
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(NAME)$(RESET)"
 	$(RM) $(NAME)
 
