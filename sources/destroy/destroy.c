@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:24:35 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/29 16:25:29 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:04:39 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	destroy_root(t_root **root)
 {
+	if (!(*root))
+		return ;
 	free(*root);
 	*root = NULL;
 }

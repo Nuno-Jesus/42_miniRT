@@ -69,7 +69,7 @@ _VECTOR	= vector_add vector_dot vector_mult vector_norm vector_cross vector_mod 
 	vector_sub vector_debug
 _DESTROY = destroy
 _PARSER = parser
-_UTILS = message
+_UTILS = atof message
 _FILES	= main $(_VECTOR) $(_DESTROY) $(_PARSER) $(_UTILS)
 TARGET	= $(patsubst %, %.o, $(_FILES))
 OBJS	= $(foreach target, $(TARGET), $(OBJECTS)/$(target))
