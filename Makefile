@@ -42,6 +42,8 @@ MAKEFLAGS	= --no-print-directory
 INCLUDES	= includes 
 SOURCES		= sources
 OBJECTS		= objects
+LIBNC		= libnc
+GNL			= gnl
 _SUBFOLDERS	= destroy parser utils vector
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
@@ -113,10 +115,11 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(OBJS)
-	$(MAKE) -C libnc/
+	$(MAKE) -C $(LIBNC)/
+	$(MAKE) -C $(GNL)/
 
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)$(NAME)$(RESET)"
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I $(INCLUDES) -L libnc -lnc -lm
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I $(INCLUDES) -lnc -lm -L $(LIBNC) -lnc -L $(GNL) -lgnl
 	
 	echo "$(GREEN)Done.$(RESET)"
 	
@@ -132,14 +135,17 @@ clean:
 	$(RM) $(OBJECTS)
 
 fclean: clean
-	$(MAKE) fclean -C libnc
+	$(MAKE) fclean -C $(LIBNC)
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(NAME)$(RESET)"
 	$(RM) $(NAME)
 
 re: fclean
 	$(MAKE) all
 
-valgrind: all
+run: re
+	./$(NAME) $(SCENE)
+
+leaks: all
 	valgrind --leak-check=full --show-leak-kinds=all --log-file=output.log ./$(NAME) $(SCENE)
 
 norm:
