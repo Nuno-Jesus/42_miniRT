@@ -6,31 +6,11 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/29 17:20:51 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/06/29 20:11:42 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-int nc_intlen(int n)
-{
-	int		size;
-	long	num;
-
-	size = 1;
-	num = n;
-	if (n < 0)
-	{
-		num = -num;
-		size++;
-	}
-	while (num >= 10)
-	{
-		num /= 10;
-		size++;
-	}
-	return (size);
-}
 
 void	get_numbers(char *str, int *n1, int *n2, int *len)
 {
@@ -46,7 +26,7 @@ void	get_numbers(char *str, int *n1, int *n2, int *len)
 	*n2 = nc_atoi(second_part);
 	free(first_part);
 	free(second_part);
-	*len = nc_intlen(*n2);
+	*len = nc_numlen(*n2);
 }
 
 float	ft_atof(char *str)

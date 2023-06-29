@@ -42,7 +42,7 @@ MK		= --no-print-directory
 DEPS			= ../includes 
 SRCS			= .
 _SUBFOLDERS		= binary_search_tree conversions dictionary is linked_list \
-					matrix memory pair print str vector
+					matrix memory pair print str utils vector
 VPATH			= srcs $(addprefix $(SRCS)/nc_, $(_SUBFOLDERS))
 OBJ_DIR			= ../objects
 
@@ -70,7 +70,7 @@ _PAIR 			= pair_new pair_print pair_copy pair_swap pair_delete pair_tostring \
 					pair_clear
 
 _MATRIX			= matrix_new matrix_delete matrix_size matrix_copy matrix_append \
-					matrix_print matrix_merge 
+					matrix_print matrix_merge matrix_add
 
 _VECTOR			= vector_new vector_push vector_pop vector_clear vector_delete \
 					vector_copy vector_at vector_find vector_merge vector_print \
@@ -86,9 +86,10 @@ _LINKED_LISTS	= list_add_back list_add_front list_at list_clear list_delone list
 _BINARY_TREE	= bstree_new bstree_insert bstree_traverse bstree_delete bstree_clear \
 					bstree_print bstree_copy bstree_deepcopy bstree_find bstree_count \
 					bstree_height bstree_to_list
+_UTILS			= numlen	
 
-_FILES			= $(_CONVERSIONS)  $(_IS) $(_LINKED_LISTS) \
-					$(_MATRIX) $(_MEMORY) $(_PRINT) $(_STR) $(_VECTOR)
+_FILES			= $(_CONVERSIONS)  $(_IS) $(_LINKED_LISTS) $(_MATRIX) \
+					$(_MEMORY) $(_PRINT) $(_STR) $(_UTILS) $(_VECTOR)
 
 OBJS			= $(_FILES:%=nc_%.o)
 TARGET			= $(addprefix $(OBJ_DIR)/, $(OBJS))

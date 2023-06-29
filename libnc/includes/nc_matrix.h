@@ -29,7 +29,7 @@
  * @return char** A pointer to the new matrix.
  * @return NULL If the allocation fails.
  */
-void	**nc_matrix_new(size_t lines, size_t columns);
+void	*nc_matrix_new(size_t lines, size_t columns);
 
 /**
  * @brief Creates a duplicate of an existing matrix, using the copy function
@@ -41,6 +41,18 @@ void	**nc_matrix_new(size_t lines, size_t columns);
  * @return NULL If the allocation fails.
  */
 void	*nc_matrix_copy(void *matrix, void *(*copy)());
+
+/**
+ * @brief Appends a new field of data to a new matrix, by creating a new one
+ * with the result.
+ * 
+ * @note It does not free the memory of the original matrix
+ * @param matrix The matrix to append the data to.
+ * @param data The data to append.
+ * @param copy The function containing the logic to copy the inner data.
+ * @return void* A pointer to the new matrix with the appended data.
+ */
+void	*nc_matrix_append(void *matrix, void *data, void *(*copy)());
 
 /**
  * @brief Appends a new field of data to a new matrix, by creating a new one

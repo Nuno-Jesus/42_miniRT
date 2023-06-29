@@ -12,9 +12,9 @@
 
 #include "libnc.h"
 
-void	**nc_matrix_new(size_t lines, size_t columns)
+void	*nc_matrix_new(size_t lines, size_t columns)
 {
-	void	**matrix;
+	void	*matrix;
 	size_t	i;
 
 	i = -1;
@@ -22,6 +22,6 @@ void	**nc_matrix_new(size_t lines, size_t columns)
 	if (!matrix || !columns)
 		return (matrix);
 	while (++i < lines)
-		matrix[i] = nc_calloc(columns + 1, sizeof(char));
+		((char **)matrix)[i] = nc_calloc(columns + 1, sizeof(char));
 	return (matrix);
 }

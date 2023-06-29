@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:50:44 by crypto            #+#    #+#             */
-/*   Updated: 2023/06/29 15:33:09 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/06/29 20:05:10 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "../libnc/includes/nc_binary_search_tree.h"
 # include "../libnc/includes/nc_dictionary.h"
 # include "../libnc/includes/nc_linked_list.h"
+# include "../libnc/includes/nc_utils.h"
 
 //! Useful macros
 
