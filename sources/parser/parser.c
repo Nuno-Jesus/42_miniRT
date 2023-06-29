@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/29 17:57:20 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:01:48 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	get_filesize(t_root *root, char *filename)
 		line = get_next_line(fd);
 		if (!line)
 			break;
-		if (nc_strlen(line) > 0)
+		if (line[0] != '\n')
 			counter++;
 		free(line);
 	}
@@ -78,8 +78,10 @@ t_root	*parse(char *filename)
 		line = get_next_line(fd);
 		if (!line)
 			break;
-		if (nc_strlen(line) > 0)
+		if (line[0] != '\n')
 			contents[i++] = line;
+		else
+			free(line);
 	}
 	close(fd);
 	nc_matrix_print(contents, print);
