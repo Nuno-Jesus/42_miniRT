@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   parse_shapes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/30 15:29:43 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/06/30 15:13:03 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "miniRT.h"
 
-# include "get_next_line.h"
-# include "vector.h"
-# include "structs.h"
-# include "utils.h"
-# include "libnc.h"
-# include "parser.h"
+void	parse_plane(t_root *root, char **tokens)
+{
+	(void) root;
+	(void) tokens;
+}
 
-# endif
+void	parse_sphere(t_root *root, char **tokens)
+{
+	(void) root;
+	(void) tokens;
+}
+
+void	parse_cylinder(t_root *root, char **tokens)
+{
+	(void) root;
+	(void) tokens;
+}

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/29 16:41:59 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/06/30 14:30:26 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct s_root
 	int				num_spheres;
 	int				num_planes;
 	int				num_cylinder;
+	char			**map;
 } t_root;
 
 #endif

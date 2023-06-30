@@ -70,7 +70,7 @@ NAME	= miniRT
 _VECTOR	= vector_add vector_dot vector_mult vector_norm vector_cross vector_mod vector_new \
 	vector_sub vector_debug
 _DESTROY = destroy
-_PARSER = parser
+_PARSER = read_map parser parse_shapes parse_illumination
 _UTILS = atof message
 _FILES	= main $(_VECTOR) $(_DESTROY) $(_PARSER) $(_UTILS)
 TARGET	= $(patsubst %, %.o, $(_FILES))
@@ -144,6 +144,9 @@ re: fclean
 
 run: re
 	./$(NAME) $(SCENE)
+
+fast:
+	$(MAKE) re -j
 
 leaks: all
 	valgrind --leak-check=full --show-leak-kinds=all --log-file=output.log ./$(NAME) $(SCENE)
