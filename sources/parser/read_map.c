@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:09:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/30 15:09:28 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:08:03 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ char	**read_map(t_root *root, char *filename)
 			free(line);
 	}
 	close(fd);
-	nc_matrix_print(map, print);
+	//nc_matrix_print(map, print);
 	return (map);
 }
