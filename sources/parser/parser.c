@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/30 15:56:33 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:37:33 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	parse_float(char **nb)
 		a = 0;
 		if (nb[i][a] == '-')
 			a++;
-		while (nb[i][a] || nb[i][a] != '.')
+		while (nb[i][a] && nb[i][a] != '.' && nb[i][a] != '\n')
 		{
 			if (!nc_isdigit(nb[i][a]))
 				return (false);
@@ -31,7 +31,7 @@ bool	parse_float(char **nb)
 		}
 		if (nb[i][a] == '.')
 			a++;
-		while (nb[i][a])
+		while (nb[i][a] && nb[i][a] != '\n')
 		{
 			if (!nc_isdigit(nb[i][a]))
 				return (false);
@@ -62,6 +62,7 @@ bool	parse_syntax(char **tokens, char *code)
 	char	**numbers;
 	
 	i = -1;
+	ok = true;
 	while (tokens[++i])
 	{
 		numbers = nc_split(tokens[i], ',');
@@ -74,8 +75,10 @@ bool	parse_syntax(char **tokens, char *code)
 		else
 			if (nc_count(tokens[i], ',') > 0)
 				ok = false;
-		if (!parse_float(numbers))
+		printf("Ok: %d\n", ok);
+		if (!parse_float(numbers) && i > 0)
 			ok = false;
+		printf("Ok: %d\n", ok);
 		nc_matrix_delete(numbers, &free);
 		if (!ok)
 			return (false);
