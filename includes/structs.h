@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/30 14:30:26 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:00:32 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ typedef struct s_root
 	t_camera		camera;
 	t_light			ambient;
 	t_lightsource	*source;
-	t_sphere		*spheres;
-	t_plane			*planes;
-	t_cylinder		*cylinder;
+	t_vector		spheres;
+	t_vector		planes;
+	t_vector		cylinder;
 	int				num_sources;
 	int				num_spheres;
 	int				num_planes;
