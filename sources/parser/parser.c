@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 12:30:54 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 13:25:40 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,10 @@ bool	parse_syntax(char **tokens, char *code)
 				ok = false;
 		}
 		else
+		{
 			if (nc_count(tokens[i], ',') > 0)
 				ok = false;
+		}
 		if (!parse_float(numbers) && i > 0)
 			ok = false;
 		nc_matrix_delete(numbers, &free);
@@ -113,7 +115,6 @@ void	parse_map(t_root *root, char **map)
 	while (map[++i])
 	{
 		tokens = nc_split(map[i], ' ');
-		printf("\nTokens %d\n", i);
 		ok = identifying(root, tokens);
 		nc_matrix_delete(tokens, &free);	
 		if (!ok)

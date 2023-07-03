@@ -12,7 +12,7 @@
 
 #include "libnc.h"
 
-void	nc_matrix_print(void *matrix, void (*print)())
+void	nc_matrix_print(void *matrix, void (*print)(void *, size_t))
 {
 	size_t	i;
 

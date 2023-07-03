@@ -35,10 +35,10 @@
 typedef struct s_vector
 {
 	uint32_t	size;
-	int			(*cmp)();
-	void		(*del)();
-	void		*(*cpy)();
-	void		(*print)();
+	int			(*cmp)(void *, void *);
+	void		(*del)(void *);
+	void		*(*cpy)(void *);
+	void		(*print)(void *);
 	void		**array;
 }t_vector;
 
@@ -52,8 +52,8 @@ typedef struct s_vector
  * @return t_vector* The new vector struct
  * @return NULL If allocation fails
  */
-t_vector	*nc_vector_new(void *(*cpy)(), int (*cmp)(), void (*del)(), \
-	void (*print)());
+t_vector	*nc_vector_new(void *(*cpy)(void *), int (*cmp)(void *, void *), void (*del)(void *), \
+	void (*print)(void *));
 
 /**
  * @brief Pushes a new element to the back of the vector
