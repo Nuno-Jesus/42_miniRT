@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/30 16:37:33 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:30:54 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,8 @@ bool	parse_syntax(char **tokens, char *code)
 		else
 			if (nc_count(tokens[i], ',') > 0)
 				ok = false;
-		printf("Ok: %d\n", ok);
 		if (!parse_float(numbers) && i > 0)
 			ok = false;
-		printf("Ok: %d\n", ok);
 		nc_matrix_delete(numbers, &free);
 		if (!ok)
 			return (false);
@@ -123,13 +121,27 @@ void	parse_map(t_root *root, char **map)
 	}
 }
 
+t_root	*root_new(void)
+{
+	t_root	*root;
+
+	root = nc_calloc(1, sizeof(t_root));
+	if (!root)
+		return (NULL);
+	root->source = nc_matrix_new(0, 0);
+	root->spheres = nc_matrix_new(0, 0);
+	root->planes = nc_matrix_new(0, 0);
+	root->cylinders = nc_matrix_new(0, 0);
+	return (root);
+}
+
 t_root	*parse(char *filename)
 {
 	t_root	*root;
 	
 	if (!is_filename_valid(filename))
 		message(NULL, "Invalid filename.");
-	root = nc_calloc(1, sizeof(t_root));
+	root = root_new();
 	if (!root)
 		return (NULL);
 	root->map = read_map(root, filename);

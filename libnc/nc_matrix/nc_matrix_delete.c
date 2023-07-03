@@ -16,8 +16,11 @@ void	nc_matrix_delete(void *matrix, void (*del)())
 {
 	size_t	i;
 
-	i = -1;
-	while (((void **)matrix)[++i])
-		del(((void **)matrix)[i]);
+	if (del)
+	{
+		i = -1;
+		while (((void **)matrix)[++i])
+			del(((void **)matrix)[i]);
+	}
 	free(matrix);
 }
