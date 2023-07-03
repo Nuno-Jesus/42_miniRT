@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 16:24:35 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 17:16:43 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/03 17:21:06 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#ifndef SHAPES_H
+# define SHAPES_H
 
-void	destroy_root(t_root **root)
-{
-	if (!(*root))
-		return ;
-	nc_vector_delete((*root)->planes);
-	nc_vector_delete((*root)->spheres);
-	nc_vector_delete((*root)->cylinders);
-	free(*root);
-	*root = NULL;
-}
+# include "miniRT.h"
+
+t_plane	*plane_new(char **point, char **normal, char **color);
+
+void	plane_debug(t_plane *p);
+// t_sphere	*sphere_new(char **point, char **normal, char **color);
+// t_cylinder	*cylinder_new(char **point, char **normal, char **color);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/30 16:01:05 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:12:20 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 # include "structs.h"
 # include "parser.h"
 # include "utils.h"
+# include "shapes.h"
 
 # endif

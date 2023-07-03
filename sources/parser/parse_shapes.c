@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 13:22:22 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:20:40 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,25 @@ void	parse_plane(t_root *root, char **tokens)
 	char	**point;
 	char	**normal;
 	char	**color;
-	t_plane	plane;
-	t_plane *tmp;
+	t_plane	*plane;
 	
 	parse_syntax(tokens, "0111");
 	point = nc_split(tokens[1], ',');
 	normal = nc_split(tokens[2], ',');
 	color = nc_split(tokens[3], ',');
-	plane = (t_plane)
-	{
-		.point.x = ft_atof(point[0]),
-		.point.y = ft_atof(point[1]),
-		.point.z = ft_atof(point[2]),
-		.normal.x = ft_atof(normal[0]),
-		.normal.y = ft_atof(normal[1]),
-		.normal.z = ft_atof(normal[2]),
-		.color.r = nc_atoi(color[0]),
-		.color.g = nc_atoi(color[1]),
-		.color.b = nc_atoi(color[2]),
-	};
+	plane = plane_new(point, normal, color);
+	nc_vector_push(root->planes, plane);
 	nc_matrix_delete(point, &free);
 	nc_matrix_delete(normal, &free);
 	nc_matrix_delete(color, &free);
+	plane_debug(plane);
 }
 
 void	parse_sphere(t_root *root, char **tokens)
 {
 	parse_syntax(tokens, "0101");
 	(void) root;
+	(void) tokens;
 }
 
 void	parse_cylinder(t_root *root, char **tokens)
