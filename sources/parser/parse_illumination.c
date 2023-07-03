@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/03 12:30:44 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/03 13:21:58 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	parse_ambient_light(t_root *root, char **tokens)
 	root->ambient.color.r = ft_atof(data[0]);
 	root->ambient.color.g =  ft_atof(data[1]);
 	root->ambient.color.b = ft_atof(data[2]);
-	print_data(root, "ambient light");
+	//print_data(root, "ambient light");
 }
 
 void	parse_camera(t_root *root, char **tokens)
@@ -84,7 +84,7 @@ void	parse_camera(t_root *root, char **tokens)
 	root->camera.normal.y = ft_atof(data[1]);
 	root->camera.normal.z = ft_atof(data[2]);
 	root->camera.fov = ft_atof(tokens[3]);
-	print_data(root, "camera");
+	//print_data(root, "camera");
 }
 
 void	parse_light_source(t_root *root, char **tokens)
@@ -111,5 +111,5 @@ void	parse_light_source(t_root *root, char **tokens)
 	root->source[k].color.r = ft_atof(data[0]);
 	root->source[k].color.g = ft_atof(data[1]);
 	root->source[k].color.b = ft_atof(data[2]);
-	print_data(root, "light source");
+	//print_data(root, "light source");
 }
