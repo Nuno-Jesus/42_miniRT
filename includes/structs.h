@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 17:15:14 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:30:58 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
-	t_vec3	origin;
+	t_vec3	center;
 	t_vec3	normal;
 	float radius;
 	float height;
@@ -79,14 +79,10 @@ typedef struct s_root
 {
 	t_camera		camera;
 	t_light			ambient;
-	t_lightsource	*source;
+	t_vector		*source;
 	t_vector		*planes;
 	t_vector		*spheres;
 	t_vector		*cylinders;
-	int				num_sources;
-	int				num_spheres;
-	int				num_planes;
-	int				num_cylinder;
 	char			**map;
 } t_root;
 

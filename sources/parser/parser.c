@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 13:25:40 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:30:01 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,10 +129,10 @@ t_root	*root_new(void)
 	root = nc_calloc(1, sizeof(t_root));
 	if (!root)
 		return (NULL);
-	root->source = nc_matrix_new(0, 0);
-	root->spheres = nc_matrix_new(0, 0);
-	root->planes = nc_matrix_new(0, 0);
-	root->cylinders = nc_matrix_new(0, 0);
+	root->planes = nc_vector_new((void *)&plane_copy, NULL, &free, (void *)&plane_print);
+	root->spheres = nc_vector_new((void *)&sphere_copy, NULL, &free, (void *)&sphere_print);
+	root->cylinders = nc_vector_new((void *)&cylinder_copy, NULL, &free, (void *)&cylinder_print);
+	root->source = nc_vector_new((void *)&source_copy, NULL, &free, (void *)&source_print);
 	return (root);
 }
 

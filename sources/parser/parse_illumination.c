@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/03 17:49:22 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:31:37 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,21 @@ void	print_data(t_root *root, char *type)
 	}
 	else if (!strcmp(type, "light source"))
 	{
-		int i = 0;
-		while (i < root->num_sources)
-		{
-			printf("--> LIGHT SOURCE DATA\n");
-			printf("root->source[%d].origin.x = %f\n", i, root->source[i].origin.x);
-			printf("root->source[%d].origin.y = %f\n", i, root->source[i].origin.y);
-			printf("root->source[%d].origin.z = %f\n", i, root->source[i].origin.z);
-			printf("root->source[%d].brightness = %f\n", i, root->source[i].brightness);
-			printf("root->source[%d].color.r = %d\n", i, root->source[i].color.r);
-			printf("root->source[%d].color.g = %d\n", i, root->source[i].color.g);
-			printf("root->source[%d].color.b = %d\n\n", i, root->source[i].color.b);
-			i++;
-		}
+		// unsigned int i;
+
+		// i = 0;
+		// while (i < root->spheres->size)
+		// {
+		// 	printf("--> LIGHT SOURCE DATA\n");
+		// 	printf("root->source[%d].origin.x = %f\n", i, root->source[i].origin.x);
+		// 	printf("root->source[%d].origin.y = %f\n", i, root->source[i].origin.y);
+		// 	printf("root->source[%d].origin.z = %f\n", i, root->source[i].origin.z);
+		// 	printf("root->source[%d].brightness = %f\n", i, root->source[i].brightness);
+		// 	printf("root->source[%d].color.r = %d\n", i, root->source[i].color.r);
+		// 	printf("root->source[%d].color.g = %d\n", i, root->source[i].color.g);
+		// 	printf("root->source[%d].color.b = %d\n\n", i, root->source[i].color.b);
+		// 	i++;
+		// }
 	}
 }
 
@@ -117,37 +119,41 @@ void	parse_camera(t_root *root, char **tokens)
 	//print_data(root, "camera");
 }
 
-static void print(char **mat, size_t i)
+t_lightsource	*light_new(char **origin, char *brightness, char **color)
 {
-	//Print element i
-	printf("mat[%zu] = %s\n", i, mat[i]);
+	t_lightsource	*light;
+
+	light = nc_calloc(1, sizeof(t_lightsource));
+	if (!light)
+		return (NULL);
+	*light = (t_lightsource)
+	{
+		.origin.x = ft_atof(origin[0]),
+		.origin.y = ft_atof(origin[1]),
+		.origin.z = ft_atof(origin[2]),
+		.brightness = ft_atof(brightness),
+		.color.r = nc_atoi(color[0]),
+		.color.g = nc_atoi(color[1]),
+		.color.b = nc_atoi(color[2])
+	};
+	return (light);
 }
 
 void	parse_light_source(t_root *root, char **tokens)
 {
-	char 	**data;
-	int 	k;
+	char 	**origin;
+	char 	**color;
+	t_lightsource	*light;	
 	
 	if (nc_matrix_size(tokens) != 4)
 		message(root, "Wrong number of arguments for light source");
 	if (!parse_syntax(tokens, "0101"))
 		message(root, "Wrong syntax for light source");
-	root->num_sources++;
-	k = root->num_sources - 1;
-	if (k == 0)
-		root->source = nc_matrix_new(1, sizeof(t_lightsource));
-	else
-		root->source = nc_matrix_append(root->source, NULL, (void *)&nc_strdup);
-	data = nc_split(tokens[1], ',');
-	root->source[k].origin.x = ft_atof(data[0]);
-	root->source[k].origin.y = ft_atof(data[1]);
-	root->source[k].origin.z = ft_atof(data[2]);
-	root->source[k].brightness = ft_atof(tokens[2]);
-	data = nc_split(tokens[3], ',');
-	if (!check_rgb(data))
+	origin = nc_split(tokens[1], ',');
+	color = nc_split(tokens[3], ',');
+	light = light_new(origin, tokens[2], color);
+	nc_vector_push(root->source, light);
+	if (!check_rgb(color))
 		message(root, "Wrong color syntax for light source");
-	root->source[k].color.r = nc_atoi(data[0]);
-	root->source[k].color.g = nc_atoi(data[1]);
-	root->source[k].color.b = nc_atoi(data[2]);
 	//print_data(root, "light source");
 }

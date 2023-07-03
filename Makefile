@@ -44,7 +44,7 @@ SOURCES		= sources
 OBJECTS		= objects
 LIBNC		= libnc
 GNL			= gnl
-_SUBFOLDERS	= destroy parser shapes utils vector
+_SUBFOLDERS	= destroy parser entities utils vector
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -71,9 +71,9 @@ _VECTOR	= vector_add vector_dot vector_mult vector_norm vector_cross vector_mod 
 	vector_sub vector_debug
 _DESTROY = destroy
 _PARSER = read_map parser parse_shapes parse_illumination
-_SHAPES = cylinder plane sphere
+_ENTITIES = cylinder plane sphere source
 _UTILS = atof message
-_FILES	= main $(_VECTOR) $(_DESTROY) $(_PARSER) $(_SHAPES) $(_UTILS)
+_FILES	= main $(_VECTOR) $(_DESTROY) $(_PARSER) $(_ENTITIES) $(_UTILS)
 TARGET	= $(patsubst %, %.o, $(_FILES))
 OBJS	= $(foreach target, $(TARGET), $(OBJECTS)/$(target))
 

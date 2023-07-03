@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 17:15:48 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:08:03 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,18 @@ t_plane		*plane_new(char **point, char **normal, char **color)
 	return (plane);
 }
 
-void	plane_debug(t_plane *p)
+t_plane	*plane_copy(t_plane *plane)
+{
+	t_plane	*copy;
+
+	copy = nc_calloc(1, sizeof(t_plane));
+	if (!copy)
+		return (NULL);
+	*copy = *plane;
+	return (copy);
+}
+
+void	plane_print(t_plane *p)
 {
 	printf("Plane:\n");
 	printf("Point: %f, %f, %f\n", p->point.x, p->point.y, p->point.z);

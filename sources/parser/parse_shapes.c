@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 17:20:40 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:08:03 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	parse_plane(t_root *root, char **tokens)
 	nc_matrix_delete(point, &free);
 	nc_matrix_delete(normal, &free);
 	nc_matrix_delete(color, &free);
-	plane_debug(plane);
+	plane_print(plane);
 }
 
 void	parse_sphere(t_root *root, char **tokens)
