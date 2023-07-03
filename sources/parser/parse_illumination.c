@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_illumination.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/03 15:39:45 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:49:22 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,12 @@ void	parse_camera(t_root *root, char **tokens)
 	root->camera.normal.z = ft_atof(data[2]);
 	root->camera.fov = ft_atof(tokens[3]);
 	//print_data(root, "camera");
+}
+
+static void print(char **mat, size_t i)
+{
+	//Print element i
+	printf("mat[%zu] = %s\n", i, mat[i]);
 }
 
 void	parse_light_source(t_root *root, char **tokens)

@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nc_numlen.c                                        :+:      :+:    :+:   */
+/*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 19:53:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/29 19:57:00 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/03 17:21:06 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libnc.h"
+#ifndef SHAPES_H
+# define SHAPES_H
 
-int	nc_numlen(int n)
-{
-	int		size;
-	long	num;
+# include "miniRT.h"
 
-	size = 1;
-	num = n;
-	if (n < 0)
-	{
-		num = -num;
-		size++;
-	}
-	while (num >= 10)
-	{
-		num /= 10;
-		size++;
-	}
-	return (size);
-}
+t_plane	*plane_new(char **point, char **normal, char **color);
+
+void	plane_debug(t_plane *p);
+// t_sphere	*sphere_new(char **point, char **normal, char **color);
+// t_cylinder	*cylinder_new(char **point, char **normal, char **color);
+
+#endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/30 16:37:58 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/03 13:25:40 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,13 +122,27 @@ void	parse_map(t_root *root, char **map)
 	}
 }
 
+t_root	*root_new(void)
+{
+	t_root	*root;
+
+	root = nc_calloc(1, sizeof(t_root));
+	if (!root)
+		return (NULL);
+	root->source = nc_matrix_new(0, 0);
+	root->spheres = nc_matrix_new(0, 0);
+	root->planes = nc_matrix_new(0, 0);
+	root->cylinders = nc_matrix_new(0, 0);
+	return (root);
+}
+
 t_root	*parse(char *filename)
 {
 	t_root	*root;
 	
 	if (!is_filename_valid(filename))
 		message(NULL, "Invalid filename.");
-	root = nc_calloc(1, sizeof(t_root));
+	root = root_new();
 	if (!root)
 		return (NULL);
 	root->map = read_map(root, filename);
