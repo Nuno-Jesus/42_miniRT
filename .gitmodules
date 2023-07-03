@@ -1,4 +1,0 @@
-[submodule "libnc"]
-	path = libnc/
-	url = https://github.com/Nuno-Jesus/42_libnc
-	branch = master
