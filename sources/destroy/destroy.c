@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:24:35 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 17:16:43 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:59:35 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	destroy_root(t_root **root)
 	nc_vector_delete((*root)->planes);
 	nc_vector_delete((*root)->spheres);
 	nc_vector_delete((*root)->cylinders);
+	nc_vector_delete((*root)->sources);
+	nc_matrix_delete((*root)->map, &free);
 	free(*root);
 	*root = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/03 18:31:37 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:07:47 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,41 +81,46 @@ bool	check_rgb(char **data)
 	return (true);
 }
 
-void	parse_ambient_light(t_root *root, char **tokens)
+bool	parse_ambient_light(t_root *root, char **tokens)
 {
 	char 	**data;
 
 	if (nc_matrix_size(tokens) != 3)
-		message(root, "Wrong number of arguments for ambient light");
+		return (false);
 	if (!parse_syntax(tokens, "001"))
-		message(root, "Wrong syntax for ambient light");
+		return (false);
 	root->ambient.ratio = ft_atof(tokens[1]);
 	data = nc_split(tokens[2], ',');
 	if (!check_rgb(data))
 		message(root, "Wrong color syntax for ambient lightning");
 	root->ambient.color.r = nc_atoi(data[0]);
-	root->ambient.color.g =  nc_atoi(data[1]);
+	root->ambient.color.g = nc_atoi(data[1]);
 	root->ambient.color.b = nc_atoi(data[2]);
+	nc_matrix_delete(data, &free);
+	return (true);
 	//print_data(root, "ambient light");
 }
 
-void	parse_camera(t_root *root, char **tokens)
+bool	parse_camera(t_root *root, char **tokens)
 {
 	char	 **data;
 
 	if (nc_matrix_size(tokens) != 4)
-		message(root, "Wrong number of arguments for camera");
+		return (false);
 	if (!parse_syntax(tokens, "0110"))
-		message(root, "Wrong syntax for camera");
+		return (false);
 	data = nc_split(tokens[1], ',');
 	root->camera.origin.x = ft_atof(data[0]);
 	root->camera.origin.y = ft_atof(data[1]);
 	root->camera.origin.z = ft_atof(data[2]);
+	nc_matrix_delete(data, &free);
 	data = nc_split(tokens[2], ',');
 	root->camera.normal.x = ft_atof(data[0]);
 	root->camera.normal.y = ft_atof(data[1]);
 	root->camera.normal.z = ft_atof(data[2]);
 	root->camera.fov = ft_atof(tokens[3]);
+	nc_matrix_delete(data, &free);
+	return (true);
 	//print_data(root, "camera");
 }
 
@@ -139,21 +144,25 @@ t_lightsource	*light_new(char **origin, char *brightness, char **color)
 	return (light);
 }
 
-void	parse_light_source(t_root *root, char **tokens)
+bool	parse_light_source(t_root *root, char **tokens)
 {
 	char 	**origin;
 	char 	**color;
 	t_lightsource	*light;	
 	
 	if (nc_matrix_size(tokens) != 4)
-		message(root, "Wrong number of arguments for light source");
+		return (false);
 	if (!parse_syntax(tokens, "0101"))
-		message(root, "Wrong syntax for light source");
+		return (false);
 	origin = nc_split(tokens[1], ',');
 	color = nc_split(tokens[3], ',');
 	light = light_new(origin, tokens[2], color);
-	nc_vector_push(root->source, light);
+	nc_vector_push(root->sources, light);
 	if (!check_rgb(color))
 		message(root, "Wrong color syntax for light source");
+	nc_matrix_delete(origin, &free);
+	nc_matrix_delete(color, &free);
+	return (true);
 	//print_data(root, "light source");
 }
+

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 18:21:47 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:53:25 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ t_cylinder	*cylinder_copy(t_cylinder *cylinder)
 void	cylinder_print(t_cylinder *c)
 {
 	printf("Cylinder:\n");
-	printf("  Center: (%f, %f, %f)\n", c->center.x, c->center.y, c->center.z);
-	printf("  Normal: (%f, %f, %f)\n", c->normal.x, c->normal.y, c->normal.z);
-	printf("  Radius: %f\n", c->radius);
-	printf("  Height: %f\n", c->height);
+	printf("  Center: (%.2f, %.2f, %.2f)\n", c->center.x, c->center.y, c->center.z);
+	printf("  Normal: (%.2f, %.2f, %.2f)\n", c->normal.x, c->normal.y, c->normal.z);
+	printf("  Radius: %.2f\n", c->radius);
+	printf("  Height: %.2f\n", c->height);
 	printf("  Color: (%d, %d, %d)\n", c->color.r, c->color.g, c->color.b);
 }

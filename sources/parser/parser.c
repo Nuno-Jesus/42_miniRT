@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 18:30:01 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:08:28 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,17 +89,17 @@ bool	parse_syntax(char **tokens, char *code)
 bool	identifying(t_root *root, char **tokens)
 {
 	if (!nc_strncmp(tokens[0], "A", nc_strlen(tokens[0])))
-		parse_ambient_light(root, tokens);
+		return (parse_ambient_light(root, tokens));
 	else if (!nc_strncmp(tokens[0], "C", nc_strlen(tokens[0])))
-		parse_camera(root, tokens);
+		return (parse_camera(root, tokens));
 	else if (!nc_strncmp(tokens[0], "L", nc_strlen(tokens[0])))
-		parse_light_source(root, tokens);
+		return (parse_light_source(root, tokens));
 	else if (!nc_strncmp(tokens[0], "pl", nc_strlen(tokens[0])))
-		parse_plane(root, tokens);
+		return (parse_plane(root, tokens));
 	else if (!nc_strncmp(tokens[0], "sp", nc_strlen(tokens[0])))
-		parse_sphere(root, tokens);
+		return (parse_sphere(root, tokens));
 	else if (!nc_strncmp(tokens[0], "cy", nc_strlen(tokens[0])))
-		parse_cylinder(root, tokens);
+		return (parse_cylinder(root, tokens));
 	else
 		return (false);
 	return (true);
@@ -132,7 +132,7 @@ t_root	*root_new(void)
 	root->planes = nc_vector_new((void *)&plane_copy, NULL, &free, (void *)&plane_print);
 	root->spheres = nc_vector_new((void *)&sphere_copy, NULL, &free, (void *)&sphere_print);
 	root->cylinders = nc_vector_new((void *)&cylinder_copy, NULL, &free, (void *)&cylinder_print);
-	root->source = nc_vector_new((void *)&source_copy, NULL, &free, (void *)&source_print);
+	root->sources = nc_vector_new((void *)&source_copy, NULL, &free, (void *)&source_print);
 	return (root);
 }
 

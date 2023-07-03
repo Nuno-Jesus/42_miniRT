@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/30 15:47:58 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:03:19 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ bool	parse_syntax(char **tokens, char *code);
 
 bool	is_filename_valid(char *filename);
 
-void	parse_ambient_light(t_root *root, char **tokens);
+bool	parse_ambient_light(t_root *root, char **tokens);
 
-void	parse_camera(t_root *root, char **tokens);
+bool	parse_camera(t_root *root, char **tokens);
 
-void	parse_light_source(t_root *root, char **tokens);
+bool	parse_light_source(t_root *root, char **tokens);
 
-void	parse_plane(t_root *root, char **tokens);
+bool	parse_plane(t_root *root, char **tokens);
 
-void	parse_sphere(t_root *root, char **tokens);
+bool	parse_sphere(t_root *root, char **tokens);
 
-void	parse_cylinder(t_root *root, char **tokens);
+bool	parse_cylinder(t_root *root, char **tokens);
 
 #endif
