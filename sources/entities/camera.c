@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 20:11:02 by maricard         ###   ########.fr       */
+/*   Created: 2023/07/03 19:20:21 by maricard          #+#    #+#             */
+/*   Updated: 2023/07/03 20:14:45 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "miniRT.h"
 
-# include "get_next_line.h"
-# include "libnc.h"
-# include "vector.h"
-# include "structs.h"
-# include "parser.h"
-# include "utils.h"
-# include "shapes.h"
-# include "illumination.h"
-
-# endif
+void	camera_print(t_camera *s)
+{
+	printf("Camera:\n");
+	printf("  Center: (%.2f, %.2f, %.2f)\n", s->origin.x, s->origin.y, s->origin.z);
+	printf("  Normal: %.2f, %.2f, %.2f\n", s->normal.x, s->normal.y, s->normal.z);
+	printf("  Fov: %2.f\n", s->fov);
+}

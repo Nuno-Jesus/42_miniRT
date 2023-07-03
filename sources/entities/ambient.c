@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   ambient.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 20:11:02 by maricard         ###   ########.fr       */
+/*   Created: 2023/07/03 19:20:25 by maricard          #+#    #+#             */
+/*   Updated: 2023/07/03 20:14:28 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "miniRT.h"
 
-# include "get_next_line.h"
-# include "libnc.h"
-# include "vector.h"
-# include "structs.h"
-# include "parser.h"
-# include "utils.h"
-# include "shapes.h"
-# include "illumination.h"
-
-# endif
+void	ambient_print(t_light *s)
+{
+	printf("Ambient:\n");
+	printf("  Ratio: (%02.f)\n", s->ratio);
+	printf("  Color: (%d, %d, %d)\n", s->color.r, s->color.g, s->color.b);
+}

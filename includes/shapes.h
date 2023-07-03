@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 18:28:01 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 20:09:51 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,5 @@ t_cylinder	*cylinder_new(char **center, char **normal, char *radius, char *heigh
 t_cylinder	*cylinder_copy(t_cylinder *cylinder);
 
 void		cylinder_print(t_cylinder *c);
-
-t_lightsource *source_new(char **point, char *ratio, char **color);
-
-t_lightsource *source_copy(t_lightsource *lightsource);
-
-void		source_print(t_lightsource *l);
 
 #endif

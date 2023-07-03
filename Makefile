@@ -70,9 +70,9 @@ NAME	= miniRT
 _VECTOR	= vector_add vector_dot vector_mult vector_norm vector_cross vector_mod vector_new \
 	vector_sub vector_debug
 _DESTROY = destroy
-_PARSER = read_map parser parse_shapes parse_illumination
-_ENTITIES = cylinder plane sphere source
-_UTILS = atof message
+_PARSER = read_map parser parse_shapes parse_illumination 
+_ENTITIES = cylinder plane sphere source ambient camera
+_UTILS = atof message parse_utils
 _FILES	= main $(_VECTOR) $(_DESTROY) $(_PARSER) $(_ENTITIES) $(_UTILS)
 TARGET	= $(patsubst %, %.o, $(_FILES))
 OBJS	= $(foreach target, $(TARGET), $(OBJECTS)/$(target))

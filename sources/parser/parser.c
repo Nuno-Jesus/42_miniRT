@@ -3,56 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 19:08:28 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/03 20:08:37 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-bool	parse_float(char **nb)
-{
-	int i;
-	int a;
-
-	i = -1;
-	while (nb[++i])
-	{
-		a = 0;
-		if (nb[i][a] == '-')
-			a++;
-		while (nb[i][a] && nb[i][a] != '.' && nb[i][a] != '\n')
-		{
-			if (!nc_isdigit(nb[i][a]))
-				return (false);
-			a++;
-		}
-		if (nb[i][a] == '.')
-			a++;
-		while (nb[i][a] && nb[i][a] != '\n')
-		{
-			if (!nc_isdigit(nb[i][a]))
-				return (false);
-			a++;
-		}
-	}
-	return (true);
-}
-
-int	nc_count(char *str, char c)
-{
-	int	i;
-	int	counter;
-
-	i = -1;
-	counter = 0;
-	while (str[++i])
-		if (str[i] == c)
-			counter++;
-	return (counter);
-}
 
 bool	parse_syntax(char **tokens, char *code)
 {
