@@ -12,7 +12,7 @@
 
 #include "libnc.h"
 
-void	nc_matrix_delete(void *matrix, void (*del)())
+void	nc_matrix_delete(void *matrix, void (*del)(void *))
 {
 	size_t	i;
 

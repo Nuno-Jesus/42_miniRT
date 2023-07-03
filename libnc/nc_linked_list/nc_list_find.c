@@ -12,7 +12,7 @@
 
 #include "libnc.h"
 
-t_list	*nc_list_find(t_list *begin_list, void *data_ref, int (*cmp)())
+t_list	*nc_list_find(t_list *begin_list, void *data_ref, int (*cmp)(void *, void *))
 {
 	if (!cmp)
 		return (NULL);

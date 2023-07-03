@@ -12,7 +12,7 @@
 
 #include "libnc.h"
 
-void	**nc_matrix_merge(void **m1, void **m2, void *(*copy)())
+void	**nc_matrix_merge(void **m1, void **m2, void *(*copy)(void *))
 {
 	void		**matrix;
 	uint32_t	first;

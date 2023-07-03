@@ -12,7 +12,7 @@
 
 #include "libnc.h"
 
-void	*nc_matrix_copy(void *matrix, void *(*copy)())
+void	*nc_matrix_copy(void *matrix, void *(*copy)(void *))
 {
 	void	**res;
 	size_t	i;
