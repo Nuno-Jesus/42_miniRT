@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/03 11:09:18 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:30:44 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,19 @@ void	print_data(t_root *root, char *type)
 	}
 	else if (!strcmp(type, "light source"))
 	{
-		printf("--> LIGHT SOURCE DATA\n");
-		printf("root->source[0].origin.x = %f\n", root->source[0].origin.x);
-		printf("root->source[0].origin.y = %f\n", root->source[0].origin.y);
-		printf("root->source[0].origin.z = %f\n", root->source[0].origin.z);
-		printf("root->source[0].brightness = %f\n", root->source[0].brightness);
-		printf("root->source[0].color.r = %d\n", root->source[0].color.r);
-		printf("root->source[0].color.g = %d\n", root->source[0].color.g);
-		printf("root->source[0].color.b = %d\n\n", root->source[0].color.b);
+		int i = 0;
+		while (i < root->num_sources)
+		{
+			printf("--> LIGHT SOURCE DATA\n");
+			printf("root->source[%d].origin.x = %f\n", i, root->source[i].origin.x);
+			printf("root->source[%d].origin.y = %f\n", i, root->source[i].origin.y);
+			printf("root->source[%d].origin.z = %f\n", i, root->source[i].origin.z);
+			printf("root->source[%d].brightness = %f\n", i, root->source[i].brightness);
+			printf("root->source[%d].color.r = %d\n", i, root->source[i].color.r);
+			printf("root->source[%d].color.g = %d\n", i, root->source[i].color.g);
+			printf("root->source[%d].color.b = %d\n\n", i, root->source[i].color.b);
+			i++;
+		}
 	}
 }
 
@@ -59,7 +64,7 @@ void	parse_ambient_light(t_root *root, char **tokens)
 	root->ambient.color.r = ft_atof(data[0]);
 	root->ambient.color.g =  ft_atof(data[1]);
 	root->ambient.color.b = ft_atof(data[2]);
-	//print_data(root, "ambient light");
+	print_data(root, "ambient light");
 }
 
 void	parse_camera(t_root *root, char **tokens)
@@ -79,7 +84,7 @@ void	parse_camera(t_root *root, char **tokens)
 	root->camera.normal.y = ft_atof(data[1]);
 	root->camera.normal.z = ft_atof(data[2]);
 	root->camera.fov = ft_atof(tokens[3]);
-	//print_data(root, "camera");
+	print_data(root, "camera");
 }
 
 void	parse_light_source(t_root *root, char **tokens)
@@ -96,7 +101,7 @@ void	parse_light_source(t_root *root, char **tokens)
 	if (k == 0)
 		root->source = nc_matrix_new(1, sizeof(t_lightsource));
 	else
-		root->source = nc_matrix_append(root->source, NULL, (void *(*)())&nc_strdup);
+		root->source = nc_matrix_append(root->source, NULL, (void *)&nc_strdup);
 	data = nc_split(tokens[1], ',');
 	root->source[k].origin.x = ft_atof(data[0]);
 	root->source[k].origin.y = ft_atof(data[1]);
@@ -106,5 +111,5 @@ void	parse_light_source(t_root *root, char **tokens)
 	root->source[k].color.r = ft_atof(data[0]);
 	root->source[k].color.g = ft_atof(data[1]);
 	root->source[k].color.b = ft_atof(data[2]);
-	//print_data(root, "light source");
+	print_data(root, "light source");
 }
