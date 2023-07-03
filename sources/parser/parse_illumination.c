@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/03 13:21:58 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:39:45 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,34 @@ void	print_data(t_root *root, char *type)
 	}
 }
 
+bool	check_rgb(char **data)
+{
+	int i;
+	int a;
+
+	i = 0;
+	while (data[i])
+	{
+		a = 0;
+		while (data[i][a] && data[i][a] != '\n')
+		{
+			if (!nc_isdigit(data[i][a]))
+			{
+				nc_matrix_delete(data, &free);
+				return (false);
+			}
+			a++;
+		}
+		if (nc_atoi(data[i]) < 0 || nc_atoi(data[i]) > 255)
+		{
+			nc_matrix_delete(data, &free);
+			return (false);
+		}
+		i++;
+	}
+	return (true);
+}
+
 void	parse_ambient_light(t_root *root, char **tokens)
 {
 	char 	**data;
@@ -61,9 +89,11 @@ void	parse_ambient_light(t_root *root, char **tokens)
 		message(root, "Wrong syntax for ambient light");
 	root->ambient.ratio = ft_atof(tokens[1]);
 	data = nc_split(tokens[2], ',');
-	root->ambient.color.r = ft_atof(data[0]);
-	root->ambient.color.g =  ft_atof(data[1]);
-	root->ambient.color.b = ft_atof(data[2]);
+	if (!check_rgb(data))
+		message(root, "Wrong color syntax for ambient lightning");
+	root->ambient.color.r = nc_atoi(data[0]);
+	root->ambient.color.g =  nc_atoi(data[1]);
+	root->ambient.color.b = nc_atoi(data[2]);
 	//print_data(root, "ambient light");
 }
 
@@ -108,8 +138,10 @@ void	parse_light_source(t_root *root, char **tokens)
 	root->source[k].origin.z = ft_atof(data[2]);
 	root->source[k].brightness = ft_atof(tokens[2]);
 	data = nc_split(tokens[3], ',');
-	root->source[k].color.r = ft_atof(data[0]);
-	root->source[k].color.g = ft_atof(data[1]);
-	root->source[k].color.b = ft_atof(data[2]);
+	if (!check_rgb(data))
+		message(root, "Wrong color syntax for light source");
+	root->source[k].color.r = nc_atoi(data[0]);
+	root->source[k].color.g = nc_atoi(data[1]);
+	root->source[k].color.b = nc_atoi(data[2]);
 	//print_data(root, "light source");
 }
