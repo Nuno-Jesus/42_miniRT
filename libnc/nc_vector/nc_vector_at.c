@@ -14,7 +14,7 @@
 
 void	*nc_vector_at(t_vector *vector, uint32_t i)
 {
-	if (i < vector->size)
+	if (vector && i < vector->size)
 		return (vector->array[i]);
 	return (NULL);
 }

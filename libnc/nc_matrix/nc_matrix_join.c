@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nc_list_map.c                                      :+:      :+:    :+:   */
+/*   nc_matrix_join.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/13 16:35:53 by marvin            #+#    #+#             */
-/*   Updated: 2023/07/03 15:40:17 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/07/03 15:44:59 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/03 16:01:48 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libnc.h"
 
-t_list	*nc_list_map(t_list *list, void *(*f)(void *), void (*del)(void *))
+void	*nc_matrix_join(void *matrix, void *data, void *(*copy)(void *), \
+	void (*del)(void *))
 {
-	t_list	*list2;
-	t_list	*node;
+	void	*appended;
 
-	list2 = NULL;
-	if (!list || !f)
-		return (NULL);
-	while (list != NULL)
-	{
-		node = nc_list_new(f(list->content));
-		if (!node)
-		{
-			nc_list_clear(&list, del);
-			return (NULL);
-		}
-		nc_list_add_back(&list2, node);
-		list = list->next;
-	}
-	return (list2);
+	appended = nc_matrix_append(matrix, data, copy);
+	nc_matrix_delete(matrix, del);
+	return (appended);
 }

@@ -22,6 +22,11 @@ void	*nc_matrix_copy(void *matrix, void *(*copy)(void *))
 		return (NULL);
 	i = -1;
 	while (((void **)matrix)[++i])
-		res[i] = copy(((void **)matrix)[i]);
+	{
+		if (copy)
+			res[i] = (*copy)(((void **)matrix)[i]);
+		else
+			res[i] = ((void **)matrix)[i];
+	}
 	return (res);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_delone.c                                   :+:      :+:    :+:   */
+/*   nc_list_delone.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 16:35:36 by marvin            #+#    #+#             */
-/*   Updated: 2023/05/18 15:03:13 by marvin           ###   ########.fr       */
+/*   Updated: 2023/07/03 15:39:56 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	nc_list_delone(t_list *list, void (*del)(void *))
 {
-	if (!list || !del)
+	if (!list)
 		return ;
-	del(list->content);
+	if (del)
+		(*del)(list->content);
 	free(list);
 }

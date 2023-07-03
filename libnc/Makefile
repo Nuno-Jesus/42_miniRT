@@ -30,7 +30,7 @@ AR = ar -rcs
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-CFLAGS	= -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address
 MK		= --no-print-directory
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
@@ -39,19 +39,18 @@ MK		= --no-print-directory
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-DEPS			= ../includes 
+DEPS			= includes 
 SRCS			= .
 _SUBFOLDERS		= binary_search_tree conversions dictionary is linked_list \
 					matrix memory pair print str utils vector
 VPATH			= srcs $(addprefix $(SRCS)/nc_, $(_SUBFOLDERS))
-OBJ_DIR			= ../objects
+OBJ_DIR			= bin
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
 #_                                           FILES                                           _
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-
 
 NAME			= libnc.a
 
@@ -66,30 +65,20 @@ _MEMORY			= bzero calloc memchr memcmp memcpy memmove memset
 
 _CONVERSIONS 	= atoi itoa tochar tolower tonum toupper
 
-_PAIR 			= pair_new pair_print pair_copy pair_swap pair_delete pair_tostring \
-					pair_clear
-
 _MATRIX			= matrix_new matrix_delete matrix_size matrix_copy matrix_append \
-					matrix_print matrix_merge matrix_add
+					matrix_print matrix_merge matrix_add matrix_join
 
 _VECTOR			= vector_new vector_push vector_pop vector_clear vector_delete \
 					vector_copy vector_at vector_find vector_merge vector_print \
 					vector_first vector_last 
 
-_DICTIONARY 	= dict_new dict_insert dict_copy dict_get dict_exists dict_remove \
-					dict_values_setup dict_clear dict_delete dict_to_list dict_keys \
-					dict_values dict_print
-
 _LINKED_LISTS	= list_add_back list_add_front list_at list_clear list_delone list_find \
 					list_iter list_last list_map list_new list_reverse list_size
 
-_BINARY_TREE	= bstree_new bstree_insert bstree_traverse bstree_delete bstree_clear \
-					bstree_print bstree_copy bstree_deepcopy bstree_find bstree_count \
-					bstree_height bstree_to_list
 _UTILS			= numlen	
 
-_FILES			= $(_CONVERSIONS)  $(_IS) $(_LINKED_LISTS) $(_MATRIX) \
-					$(_MEMORY) $(_PRINT) $(_STR) $(_UTILS) $(_VECTOR)
+_FILES			= $(_CONVERSIONS) $(_IS) $(_LINKED_LISTS) $(_MATRIX) \
+					$(_MEMORY) $(_PRINT) $(_STR) $(_VECTOR) $(_UTILS)
 
 OBJS			= $(_FILES:%=nc_%.o)
 TARGET			= $(addprefix $(OBJ_DIR)/, $(OBJS))
@@ -118,7 +107,8 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re: fclean all
+re: fclean
+	$(MAKE) all
 
 norm:
 	echo "\n\t$(BLUE)_/=\\_/=\\_/=\\_ *.h FILES _/=\\_/=\\_/=\\_$(RESET)\n"

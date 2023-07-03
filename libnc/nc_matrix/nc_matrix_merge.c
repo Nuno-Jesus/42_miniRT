@@ -25,10 +25,18 @@ void	**nc_matrix_merge(void **m1, void **m2, void *(*copy)(void *))
 	if (!matrix)
 		return (NULL);
 	i = -1;
-	while (++i < first)
-		matrix[i] = (*copy)(m1[i]);
+	if (copy)
+		while (++i < first)
+			matrix[i] = (*copy)(m1[i]);
+	else
+		while (++i < first)
+			matrix[i] = m1[i];
 	i = -1;
-	while (++i < second)
-		matrix[i + first] = (*copy)(m2[i]);
+	if (copy)
+		while (++i < second)
+			matrix[i + first] = (*copy)(m2[i]);
+	else
+		while (++i < second)
+			matrix[i + first] = m2[i];
 	return (matrix);
 }

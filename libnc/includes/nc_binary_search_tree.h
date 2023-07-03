@@ -65,7 +65,7 @@ t_bstree	*nc_bstree_new(void *content, uint32_t depth);
  * @return t_bstree* The new node
  * @return NULL If the allocation fails
  */
-t_bstree	*nc_bstree_copy(t_bstree *node, void *(*copy)());
+t_bstree	*nc_bstree_copy(t_bstree *node, void *(*copy)(void *));
 
 /**
  * @brief Duplicates all the nodes of a binary search tree
@@ -75,7 +75,7 @@ t_bstree	*nc_bstree_copy(t_bstree *node, void *(*copy)());
  * @return t_bstree* The new tree
  * @return NULL If the allocation fails
  */
-t_bstree	*nc_bstree_deepcopy(t_bstree *tree, void *(*copy)());
+t_bstree	*nc_bstree_deepcopy(t_bstree *tree, void *(*copy)(void *));
 
 /**
  * @brief Inserts a new node in a binary search tree
@@ -87,7 +87,7 @@ t_bstree	*nc_bstree_deepcopy(t_bstree *tree, void *(*copy)());
  * @return t_bstree* The new tree
  * @return NULL If the allocation fails
  */
-t_bstree	*nc_bstree_insert(t_bstree *tree, void *data, int (*cmp)(), \
+t_bstree	*nc_bstree_insert(t_bstree *tree, void *data, int (*cmp)(void *, void *), \
 	uint32_t depth);
 
 /**
@@ -100,7 +100,7 @@ t_bstree	*nc_bstree_insert(t_bstree *tree, void *data, int (*cmp)(), \
  * @return t_bstree* The node if it exists
  * @return NULL If the node doesn't exist
  */
-t_bstree	*nc_bstree_find(t_bstree *tree, void *data, int (*cmp)());
+t_bstree	*nc_bstree_find(t_bstree *tree, void *data, int (*cmp)(void *, void *));
 
 /**
  * @brief Deletes a node from a binary search tree
@@ -111,7 +111,7 @@ t_bstree	*nc_bstree_find(t_bstree *tree, void *data, int (*cmp)());
  * @param node The node to delete
  * @param del The function used to delete the content of the node
  */
-void		nc_bstree_delete(t_bstree *node, void (*del)());
+void		nc_bstree_delete(t_bstree *node, void (*del)(void *));
 
 /**
  * @brief Deletes all the nodes of a binary search tree
@@ -119,7 +119,7 @@ void		nc_bstree_delete(t_bstree *node, void (*del)());
  * @param tree The tree to delete
  * @param del The function used to delete the content of each node
  */
-void		nc_bstree_clear(t_bstree *tree, void (*del)());
+void		nc_bstree_clear(t_bstree *tree, void (*del)(void *));
 
 /**
  * @brief Prints a binary search tree using postorder traversal
@@ -127,7 +127,7 @@ void		nc_bstree_clear(t_bstree *tree, void (*del)());
  * @param tree The tree to print
  * @param print The function used to print the content of each node
  */
-void		nc_bstree_print(t_bstree *tree, void (*print)());
+void		nc_bstree_print(t_bstree *tree, void (*print)(void *));
 
 /**
  * @brief Traverses a binary search tree using the specified traversal
@@ -168,6 +168,6 @@ uint32_t	nc_bstree_height(t_bstree *tree);
  * @return t_list* The new sorted list
  * @return NULL If the allocation fails
  */
-t_list		*nc_bstree_to_list(t_bstree *tree, void *(*copy)());
+t_list		*nc_bstree_to_list(t_bstree *tree, void *(*copy)(void *));
 
 #endif

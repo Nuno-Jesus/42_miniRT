@@ -20,7 +20,12 @@ void	*nc_matrix_append(void *matrix, void *data, void *(*copy)(void *))
 	i = -1;
 	res = nc_calloc(nc_matrix_size(matrix) + 2, sizeof(void *));
 	while (((void **)matrix)[++i])
-		res[i] = copy(((void **)matrix)[i]);
+	{
+		if (copy)
+			res[i] = (*copy)(((void **)matrix)[i]);
+		else
+			res[i] = ((void **)matrix)[i];
+	}
 	res[i] = data;
 	return (res);
 }

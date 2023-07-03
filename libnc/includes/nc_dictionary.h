@@ -46,13 +46,13 @@
  */
 typedef struct s_dict
 {
-	int			(*keycmp)();
-	void		(*keydel)();
-	char		*(*keystr)();
-	void		*(*keycpy)();
-	void		(*valdel)();
-	char		*(*valstr)();
-	void		*(*valcpy)();
+	int			(*keycmp)(void *, void *);
+	void		(*keydel)(void *);
+	char		*(*keystr)(void *);
+	void		*(*keycpy)(void *);
+	void		(*valdel)(void *);
+	char		*(*valstr)(void *);
+	void		*(*valcpy)(void *);
 	uint32_t	size;
 	t_bstree	*pairs;
 }t_dict;

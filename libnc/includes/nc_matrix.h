@@ -26,11 +26,10 @@
  * 
  * @param lines The number of lines.
  * @param columns The number of columns
- * @return char** A pointer to the new matrix.
+ * @return void* A pointer to the new matrix.
  * @return NULL If the allocation fails.
  */
 void	*nc_matrix_new(size_t lines, size_t columns);
-
 /**
  * @brief Creates a duplicate of an existing matrix, using the copy function
  * to help on duplicating inner data.
@@ -40,7 +39,7 @@ void	*nc_matrix_new(size_t lines, size_t columns);
  * @return void* The pointer to the new matrix.
  * @return NULL If the allocation fails.
  */
-void	*nc_matrix_copy(void *matrix, void *(*copy)());
+void	*nc_matrix_copy(void *matrix, void *(*copy)(void *));
 
 /**
  * @brief Appends a new field of data to a new matrix, by creating a new one
@@ -52,20 +51,29 @@ void	*nc_matrix_copy(void *matrix, void *(*copy)());
  * @param copy The function containing the logic to copy the inner data.
  * @return void* A pointer to the new matrix with the appended data.
  */
-void	*nc_matrix_append(void *matrix, void *data, void *(*copy)());
+void	*nc_matrix_append(void *matrix, void *data, void *(*copy)(void *));
 
 /**
- * @brief Appends a new field of data to a new matrix, by creating a new one
- * with the result.
+ * @brief Adds a new field of data to an existing matrix, by checking
+ * what the last position is and adding the data to the next one.
  * 
- * @note It does not free the memory of the original matrix
- * @param matrix The matrix to append the data to.
- * @param data The data to append.
- * @param copy The function containing the logic to copy the inner data.
- * @return void* A pointer to the new matrix with the appended data.
+ * @param matrix The matrix to add data to.
+ * @param data The data to add.
+ * @return void* The pointer to the matrix passed as argument.
  */
-void	*nc_matrix_append(void *matrix, void *data, void *(*copy)());
+void	*nc_matrix_add(void *matrix, void *data);
 
+/**
+ * @brief Just like nc_matrix_append, but after using the old matrix
+ * variable, it frees its memory.
+ * 
+ * @param matrix The matrix to add data to.
+ * @param data The data to add.
+ * @param del The delete function to delete the old matrix.
+ * @return void* The pointer to the matrix passed as argument.
+ */
+void	*nc_matrix_join(void *matrix, void *data, void *(*copy)(void *), \
+	void (*del)(void *));
 /**
  * @brief Returns the size of a matrix.
  * 
@@ -81,7 +89,7 @@ size_t	nc_matrix_size(void *matrix);
  * @param matrix The matrix to free.
  * @param del The function containing the logic to free the inner data.
  */
-void	nc_matrix_delete(void *matrix, void (*del)());
+void	nc_matrix_delete(void *matrix, void (*del)(void *));
 
 /**
  * @brief Prints a matrix, using print as a function to print the inner data.
@@ -89,7 +97,7 @@ void	nc_matrix_delete(void *matrix, void (*del)());
  * @param matrix The matrix to print.
  * @param print The function containing the logic to print the inner data.
  */
-void	nc_matrix_print(void *matrix, void (*print)());
+void	nc_matrix_print(void *matrix, void (*print)(void *, size_t));
 
 /**
  * @brief Merges two matrices using the copy function to copy the inner 
@@ -102,6 +110,6 @@ void	nc_matrix_print(void *matrix, void (*print)());
  * @return A new allocated matrix with the elements of both
  * 
  */
-void	**nc_matrix_merge(void **m1, void **m2, void *(*copy)());
+void	**nc_matrix_merge(void **m1, void **m2, void *(*copy)(void *));
 
 #endif

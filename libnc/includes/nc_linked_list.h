@@ -141,7 +141,7 @@ void	nc_list_reverse(t_list **begin_list);
  * @return t_list* The node that matches the reference data
  * @return NULL If no node matches the reference data
  */
-t_list	*nc_list_find(t_list *begin_list, void *data_ref, int (*cmp)());
+t_list	*nc_list_find(t_list *begin_list, void *data_ref, int (*cmp)(void *, void *));
 
 // char **nc_list_to_matrix(t_list *list);
 #endif

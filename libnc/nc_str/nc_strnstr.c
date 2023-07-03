@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   nc_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 18:58:13 by crypto            #+#    #+#             */
-/*   Updated: 2023/05/18 15:03:13 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/29 19:50:33 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*nc_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;
-	size_t	little_len;	
+	size_t	little_len;
 
 	if ((!big || !little) && len == 0)
 		return (NULL);
@@ -29,6 +29,6 @@ char	*nc_strnstr(const char *big, const char *little, size_t len)
 			if (!nc_memcmp(big + i, little, little_len))
 				return ((char *)big + i);
 		i++;
-	}	
+	}
 	return (NULL);
 }

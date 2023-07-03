@@ -16,6 +16,8 @@ void	nc_vector_clear(t_vector *vector)
 {
 	uint32_t	size;
 
+	if (!vector)
+		return ;
 	size = vector->size + 1;
 	while (--size)
 		nc_vector_pop(vector);

@@ -14,9 +14,10 @@
 
 void	nc_vector_pop(t_vector *vector)
 {
-	if (!vector)
+	if (!vector || !vector->size)
 		return ;
-	(*vector->del)(vector->array[vector->size - 1]);
+	if (vector->del)
+		(*vector->del)(vector->array[vector->size - 1]);
 	vector->array[vector->size - 1] = NULL;
 	--vector->size;
 }

@@ -12,7 +12,7 @@
 
 #include "libnc.h"
 
-t_vector	*nc_vector_new(void *(*cpy)(void *), int (*cmp)(void *, void *), void (*del)(void *),
+t_vector	*nc_vector_new(void *(*cpy)(), int (*cmp)(void *, void *), void (*del)(void *),
 	void (*print)(void *))
 {
 	t_vector	*vector;
