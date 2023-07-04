@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 15:43:55 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:37:38 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@
 # define RADIANS(deg) deg * PI / 180.0
 # define DEGREES(rad) rad * 180.0 / PI
 
-# define ERROR_COLOR_A "Wrong color syntax for ambient lightning"
-# define ERROR_COLOR_L "Wrong color syntax for light source"
+# define ERROR_COLOR_A		"Wrong color syntax for ambient lightning"
+# define ERROR_COLOR_L		"Wrong color syntax for light source"
+# define ERROR_SYNTAX		"Syntax: file format misconfiguration."
+# define ERROR_FILENAME		"Invalid filename."
+# define ERROR_EMPTY_MAP	"Empty map."
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 20:08:37 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:37:54 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	parse_map(t_root *root, char **map)
 		ok = identifying(root, tokens);
 		nc_matrix_delete(tokens, &free);	
 		if (!ok)
-			message(root, "Syntax: file format misconfiguration.");
+			message(root, ERROR_SYNTAX);
 	}
 }
 
@@ -99,7 +99,7 @@ t_root	*parse(char *filename)
 	t_root	*root;
 	
 	if (!is_filename_valid(filename))
-		message(NULL, "Invalid filename.");
+		message(NULL, ERROR_FILENAME);
 	root = root_new();
 	if (!root)
 		return (NULL);
@@ -107,7 +107,7 @@ t_root	*parse(char *filename)
 	if (nc_matrix_size(root->map) == 0)
 	{
 		nc_matrix_delete(root->map, &free);
-		message(root, "Empty map.");
+		message(root, ERROR_EMPTY_MAP);
 	}
 	parse_map(root, root->map);
 	return (root);
