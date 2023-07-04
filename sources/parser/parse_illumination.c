@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_illumination.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/03 20:12:05 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:42:55 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	parse_ambient_light(t_root *root, char **tokens)
 	root->ambient.ratio = ft_atof(tokens[1]);
 	data = nc_split(tokens[2], ',');
 	if (!parse_rgb(data))
-		message(root, "Wrong color syntax for ambient lightning");
+		message(root, ERROR_COLOR_A);
 	root->ambient.color.r = nc_atoi(data[0]);
 	root->ambient.color.g = nc_atoi(data[1]);
 	root->ambient.color.b = nc_atoi(data[2]);
@@ -90,7 +90,7 @@ bool	parse_light_source(t_root *root, char **tokens)
 	light = light_new(origin, tokens[2], color);
 	nc_vector_push(root->sources, light);
 	if (!parse_rgb(color))
-		message(root, "Wrong color syntax for light source");
+		message(root, ERROR_COLOR_L);
 	nc_matrix_delete(origin, &free);
 	nc_matrix_delete(color, &free);
 	nc_vector_print(root->sources);

@@ -6,24 +6,12 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 18:58:58 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:43:51 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MACROS_H
-# define MACROS_H
-
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <math.h>
-
-# define PI 3.1415926535
-# define RADIANS(deg) deg * PI / 180.0
-# define DEGREES(rad) rad * 180.0 / PI
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 typedef struct s_color
 {
