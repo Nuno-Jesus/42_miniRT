@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_new.c                                       :+:      :+:    :+:   */
+/*   vec3_add.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 14:45:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 17:21:47 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/06/29 14:49:21 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/04 17:19:24 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_vec3	vector_new(float x, float y, float z)
+t_vec3	vec3_add(t_vec3 v1, t_vec3 v2)
 {
-	return ((t_vec3)
-		{
-			.x = x,
-			.y = y,
-			.z = z
-		}
-	);
+	t_vec3	res;
+
+	res = vec3_new(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
+	return (res);
 }

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_mod.c                                       :+:      :+:    :+:   */
+/*   vec3_sub.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 14:53:58 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 17:19:37 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/06/29 14:53:02 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/04 17:20:58 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-float	vector_mod(t_vec3 vec)
+t_vec3	vec3_sub(t_vec3 v1, t_vec3 v2)
 {
-	float	mod;
+	t_vec3	res;
 
-	mod = sqrt(pow(vec.x, 2) + pow(vec.y, 2) + pow(vec.z, 2));
-	return (mod);
+	res = vec3_new(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
+	return (res);
 }

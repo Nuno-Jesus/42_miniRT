@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_cross.c                                     :+:      :+:    :+:   */
+/*   vec3_cross.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "miniRT.h"
 
-t_vec3	vector_cross(t_vec3 v1, t_vec3 v2)
+t_vec3	vec3_cross(t_vec3 v1, t_vec3 v2)
 {
 	t_vec3	res;
 

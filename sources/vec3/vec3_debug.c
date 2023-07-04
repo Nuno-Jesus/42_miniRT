@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_norm.c                                      :+:      :+:    :+:   */
+/*   vec3_debug.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 15:06:56 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 17:21:19 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/06/29 15:37:59 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/04 17:21:15 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_vec3	vector_norm(t_vec3 vec)
+void	vec3_debug(t_vec3 vec)
 {
-	t_vec3	res;
-
-	res.x = vec.x / vector_mod(vec);
-	res.y = vec.y / vector_mod(vec);
-	res.z = vec.z / vector_mod(vec);
-	return (res);
+	printf("Vec: (x, y, z) = (%.3f, %.3f, %.3f)\n", vec.x, vec.y, vec.z);
 }

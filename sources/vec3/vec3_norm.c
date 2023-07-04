@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_mult.c                                      :+:      :+:    :+:   */
+/*   vec3_norm.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 17:24:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 17:27:10 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/06/29 15:06:56 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/04 17:21:19 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_vec3	vector_mult(t_vec3 v1, float scalar)
+t_vec3	vec3_norm(t_vec3 vec)
 {
 	t_vec3	res;
 
-	res = vector_new(v1.x * scalar, v1.y * scalar, v1.z * scalar);
+	res.x = vec.x / vec3_mod(vec);
+	res.y = vec.y / vec3_mod(vec);
+	res.z = vec.z / vec3_mod(vec);
 	return (res);
 }

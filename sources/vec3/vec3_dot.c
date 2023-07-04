@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_dot.c                                       :+:      :+:    :+:   */
+/*   vec3_dot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "miniRT.h"
 
-float	vector_dot(t_vec3 v1, t_vec3 v2)
+float	vec3_dot(t_vec3 v1, t_vec3 v2)
 {
 	float	dot;
 

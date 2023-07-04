@@ -44,7 +44,7 @@ SOURCES		= sources
 OBJECTS		= objects
 LIBNC		= libnc
 GNL			= gnl
-_SUBFOLDERS	= . destroy parser entities utils vector
+_SUBFOLDERS	= . destroy parser entities utils vec3
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -67,13 +67,13 @@ vpath %.h $(INCLUDES)
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 NAME	= miniRT
-_VECTOR	= vector_add vector_dot vector_mult vector_norm vector_cross vector_mod vector_new \
-	vector_sub vector_debug
+_VEC3	= vec3_add vec3_dot vec3_mult vec3_norm vec3_cross vec3_mod vec3_new \
+	vec3_sub vec3_debug
 _DESTROY = destroy
 _PARSER = read_map parser parse_shapes parse_illumination 
 _ENTITIES = cylinder plane sphere source ambient camera
 _UTILS = message parse_utils
-_FILES	= main $(_VECTOR) $(_DESTROY) $(_PARSER) $(_ENTITIES) $(_UTILS)
+_FILES	= main $(_VEC3) $(_DESTROY) $(_PARSER) $(_ENTITIES) $(_UTILS)
 TARGET	= $(patsubst %, %.o, $(_FILES))
 OBJS	= $(foreach target, $(TARGET), $(OBJECTS)/$(target))
 
