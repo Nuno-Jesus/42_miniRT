@@ -44,7 +44,7 @@ SOURCES		= sources
 OBJECTS		= objects
 LIBNC		= libnc
 GNL			= gnl
-_SUBFOLDERS	= destroy parser entities utils vector
+_SUBFOLDERS	= . destroy parser entities utils vector
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -116,7 +116,10 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(OBJS)
+	echo "[$(CYAN)Compiling$(RESET)] $(GREEN)$(LIBNC)$(RESET)"
 	$(MAKE) -C $(LIBNC)/
+
+	echo "[$(CYAN)Compiling$(RESET)] $(GREEN)$(GNL)$(RESET)"
 	$(MAKE) -C $(GNL)/
 
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)$(NAME)$(RESET)"
@@ -130,6 +133,8 @@ $(OBJECTS)/%.o: %.c
 
 $(OBJECTS):
 	mkdir -p $(OBJECTS)
+
+
 
 clean:	
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(OBJECTS)$(RESET)"
