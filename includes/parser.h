@@ -6,14 +6,14 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 19:03:19 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:03:05 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-#include "miniRT.h"
+# include "miniRT.h"
 
 t_root	*parse(char *filename);
 

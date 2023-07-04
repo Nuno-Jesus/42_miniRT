@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 20:09:51 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:03:13 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ t_sphere	*sphere_copy(t_sphere *sphere);
 
 void		sphere_print(t_sphere *s);
 
-t_cylinder	*cylinder_new(char **center, char **normal, char *radius, char *height, char **color);
+t_cylinder	*cylinder_new(char **center, char **normal, char *radius, \
+	char *height, char **color);
 
 t_cylinder	*cylinder_copy(t_cylinder *cylinder);
 
