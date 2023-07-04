@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 18:52:43 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:31:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ t_sphere	*sphere_new(char **center, char *radius, char **color)
 		return (NULL);
 	*sp = (t_sphere)
 	{
-		.origin.x = ft_atof(center[0]),
-		.origin.y = ft_atof(center[1]),
-		.origin.z = ft_atof(center[2]),
-		.radius = ft_atof(radius),
+		.origin.x = nc_atof(center[0]),
+		.origin.y = nc_atof(center[1]),
+		.origin.z = nc_atof(center[2]),
+		.radius = nc_atof(radius),
 		.color.r = nc_atoi(color[0]),
 		.color.g = nc_atoi(color[1]),
 		.color.b = nc_atoi(color[2])

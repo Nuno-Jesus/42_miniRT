@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/04 15:42:55 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:31:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	parse_ambient_light(t_root *root, char **tokens)
 		return (false);
 	if (!parse_syntax(tokens, "001"))
 		return (false);
-	root->ambient.ratio = ft_atof(tokens[1]);
+	root->ambient.ratio = nc_atof(tokens[1]);
 	data = nc_split(tokens[2], ',');
 	if (!parse_rgb(data))
 		message(root, ERROR_COLOR_A);
@@ -41,15 +41,15 @@ bool	parse_camera(t_root *root, char **tokens)
 	if (!parse_syntax(tokens, "0110"))
 		return (false);
 	data = nc_split(tokens[1], ',');
-	root->camera.origin.x = ft_atof(data[0]);
-	root->camera.origin.y = ft_atof(data[1]);
-	root->camera.origin.z = ft_atof(data[2]);
+	root->camera.origin.x = nc_atof(data[0]);
+	root->camera.origin.y = nc_atof(data[1]);
+	root->camera.origin.z = nc_atof(data[2]);
 	nc_matrix_delete(data, &free);
 	data = nc_split(tokens[2], ',');
-	root->camera.normal.x = ft_atof(data[0]);
-	root->camera.normal.y = ft_atof(data[1]);
-	root->camera.normal.z = ft_atof(data[2]);
-	root->camera.fov = ft_atof(tokens[3]);
+	root->camera.normal.x = nc_atof(data[0]);
+	root->camera.normal.y = nc_atof(data[1]);
+	root->camera.normal.z = nc_atof(data[2]);
+	root->camera.fov = nc_atof(tokens[3]);
 	nc_matrix_delete(data, &free);
 	camera_print(&root->camera);
 	return (true);
@@ -64,10 +64,10 @@ t_lightsource	*light_new(char **origin, char *brightness, char **color)
 		return (NULL);
 	*light = (t_lightsource)
 	{
-		.origin.x = ft_atof(origin[0]),
-		.origin.y = ft_atof(origin[1]),
-		.origin.z = ft_atof(origin[2]),
-		.brightness = ft_atof(brightness),
+		.origin.x = nc_atof(origin[0]),
+		.origin.y = nc_atof(origin[1]),
+		.origin.z = nc_atof(origin[2]),
+		.brightness = nc_atof(brightness),
 		.color.r = nc_atoi(color[0]),
 		.color.g = nc_atoi(color[1]),
 		.color.b = nc_atoi(color[2])

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 18:53:25 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:31:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ t_cylinder	*cylinder_new(char **center, char **normal, char *radius, char *heigh
 		return (NULL);
 	*cy = (t_cylinder)
 	{
-		.center.x = ft_atof(center[0]),
-		.center.y = ft_atof(center[1]),
-		.center.z = ft_atof(center[2]),
-		.normal.x = ft_atof(normal[0]),
-		.normal.y = ft_atof(normal[1]),
-		.normal.z = ft_atof(normal[2]),
-		.radius = ft_atof(radius),
-		.height = ft_atof(height),
+		.center.x = nc_atof(center[0]),
+		.center.y = nc_atof(center[1]),
+		.center.z = nc_atof(center[2]),
+		.normal.x = nc_atof(normal[0]),
+		.normal.y = nc_atof(normal[1]),
+		.normal.z = nc_atof(normal[2]),
+		.radius = nc_atof(radius),
+		.height = nc_atof(height),
 		.color.r = nc_atoi(color[0]),
 		.color.g = nc_atoi(color[1]),
 		.color.b = nc_atoi(color[2]),

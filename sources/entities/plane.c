@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 18:53:51 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:31:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ t_plane		*plane_new(char **point, char **normal, char **color)
 		return (NULL);
 	*plane = (t_plane)
 	{
-		.point.x = ft_atof(point[0]),
-		.point.y = ft_atof(point[1]),
-		.point.z = ft_atof(point[2]),
-		.normal.x = ft_atof(normal[0]),
-		.normal.y = ft_atof(normal[1]),
-		.normal.z = ft_atof(normal[2]),
+		.point.x = nc_atof(point[0]),
+		.point.y = nc_atof(point[1]),
+		.point.z = nc_atof(point[2]),
+		.normal.x = nc_atof(normal[0]),
+		.normal.y = nc_atof(normal[1]),
+		.normal.z = nc_atof(normal[2]),
 		.color.r = nc_atoi(color[0]),
 		.color.g = nc_atoi(color[1]),
 		.color.b = nc_atoi(color[2]),

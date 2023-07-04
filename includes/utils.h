@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:32:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 20:12:05 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:31:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "miniRT.h"
 
-float	ft_atof(char *str);
+float	nc_atof(char *str);
 
 void	message(t_root *root, char *text);
 

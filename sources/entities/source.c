@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 18:25:05 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 18:52:55 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:31:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ t_lightsource *source_new(char **point, char *brightness, char **color)
 		return (NULL);
 	*lightsource = (t_lightsource)
 	{
-		.origin.x = ft_atof(point[0]),
-		.origin.y = ft_atof(point[1]),
-		.origin.z = ft_atof(point[2]),
-		.brightness = ft_atof(brightness),
+		.origin.x = nc_atof(point[0]),
+		.origin.y = nc_atof(point[1]),
+		.origin.z = nc_atof(point[2]),
+		.brightness = nc_atof(brightness),
 		.color.r = nc_atoi(color[0]),
 		.color.g = nc_atoi(color[1]),
 		.color.b = nc_atoi(color[2])
