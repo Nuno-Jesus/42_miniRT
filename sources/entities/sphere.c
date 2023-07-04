@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 16:31:11 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:08:47 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ t_sphere	*sphere_copy(t_sphere *sphere)
 void	sphere_print(t_sphere *s)
 {
 	printf("Sphere:\n");
-	printf("  Center: (%.2f, %.2f, %.2f)\n", s->origin.x, s->origin.y, s->origin.z);
+	printf("  Center: (%.2f, %.2f, %.2f)\n", \
+		s->origin.x, s->origin.y, s->origin.z);
 	printf("  Radius: %.2f\n", s->radius);
 	printf("  Color: (%d, %d, %d)\n", s->color.r, s->color.g, s->color.b);
 }

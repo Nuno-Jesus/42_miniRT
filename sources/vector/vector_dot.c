@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:03:28 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/29 15:04:35 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:21:09 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ float	vector_dot(t_vec3 v1, t_vec3 v2)
 {
 	float	dot;
 
-	dot = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z; 
-	return (dot);	
+	dot = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+	return (dot);
 }

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:45:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/29 14:50:06 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:21:47 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 t_vec3	vector_new(float x, float y, float z)
 {
 	return ((t_vec3)
-	{
-		.x = x, 
-		.y = y, 
-		.z = z
-	});
+		{
+			.x = x,
+			.y = y,
+			.z = z
+		}
+	);
 }

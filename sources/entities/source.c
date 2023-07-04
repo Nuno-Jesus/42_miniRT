@@ -6,13 +6,13 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 18:25:05 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 16:31:11 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:07:45 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_lightsource *source_new(char **point, char *brightness, char **color)
+t_lightsource	*source_new(char **point, char *brightness, char **color)
 {
 	t_lightsource	*lightsource;
 
@@ -32,7 +32,7 @@ t_lightsource *source_new(char **point, char *brightness, char **color)
 	return (lightsource);
 }
 
-t_lightsource *source_copy(t_lightsource *lightsource)
+t_lightsource	*source_copy(t_lightsource *lightsource)
 {
 	t_lightsource	*copy;
 
@@ -46,7 +46,8 @@ t_lightsource *source_copy(t_lightsource *lightsource)
 void	source_print(t_lightsource *l)
 {
 	printf("Lightsource:\n");
-	printf("  Point: (%.2f, %.2f, %.2f)\n", l->origin.x, l->origin.y, l->origin.z);
+	printf("  Point: (%.2f, %.2f, %.2f)\n", \
+		l->origin.x, l->origin.y, l->origin.z);
 	printf("  Ratio: %.2f\n", l->brightness);
 	printf("  Color: (%d, %d, %d)\n", l->color.r, l->color.g, l->color.b);
 }

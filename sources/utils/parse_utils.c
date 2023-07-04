@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 19:39:48 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/04 15:22:56 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:18:47 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 bool	parse_float(char **nb)
 {
-	int i;
-	int a;
+	int	i;
+	int	a;
 
 	i = -1;
 	while (nb[++i])
@@ -43,8 +43,8 @@ bool	parse_float(char **nb)
 
 bool	parse_rgb(char **data)
 {
-	int i;
-	int a;
+	int	i;
+	int	a;
 
 	i = -1;
 	while (data[++i])

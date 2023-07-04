@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/04 16:31:11 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:18:25 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	parse_ambient_light(t_root *root, char **tokens)
 {
-	char 	**data;
+	char	**data;
 
 	if (nc_matrix_size(tokens) != 3)
 		return (false);
@@ -34,7 +34,7 @@ bool	parse_ambient_light(t_root *root, char **tokens)
 
 bool	parse_camera(t_root *root, char **tokens)
 {
-	char	 **data;
+	char	**data;
 
 	if (nc_matrix_size(tokens) != 4)
 		return (false);
@@ -77,10 +77,10 @@ t_lightsource	*light_new(char **origin, char *brightness, char **color)
 
 bool	parse_light_source(t_root *root, char **tokens)
 {
-	char 	**origin;
-	char 	**color;
-	t_lightsource	*light;	
-	
+	char			**origin;
+	char			**color;
+	t_lightsource	*light;
+
 	if (nc_matrix_size(tokens) != 4)
 		return (false);
 	if (!parse_syntax(tokens, "0101"))
@@ -96,4 +96,3 @@ bool	parse_light_source(t_root *root, char **tokens)
 	nc_vector_print(root->sources);
 	return (true);
 }
-

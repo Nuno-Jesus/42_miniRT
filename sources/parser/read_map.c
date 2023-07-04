@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:09:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/06/30 16:08:03 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:10:53 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ bool	is_filename_valid(char *filename)
 
 int	get_filesize(t_root *root, char *filename)
 {
-	int	fd;
-	int counter;
-	char *line;
+	int		fd;
+	int		counter;
+	char	*line;
 
 	counter = 0;
 	fd = open(filename, O_RDONLY);
@@ -36,7 +36,7 @@ int	get_filesize(t_root *root, char *filename)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		if (line[0] != '\n')
 			counter++;
 		free(line);
@@ -68,13 +68,13 @@ char	**read_map(t_root *root, char *filename)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		if (line[0] != '\n')
 			map[i++] = line;
 		else
 			free(line);
 	}
 	close(fd);
-	//nc_matrix_print(map, print);
 	return (map);
 }
+//nc_matrix_print(map, print);

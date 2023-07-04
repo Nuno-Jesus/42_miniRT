@@ -6,19 +6,20 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 16:37:54 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:17:53 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
+//! What if we have A# or A! or A? (whatever)
 bool	parse_syntax(char **tokens, char *code)
 {
 	int		i;
 	bool	ok;
 	int		numbers_size;
 	char	**numbers;
-	
+
 	i = -1;
 	ok = true;
 	while (tokens[++i])
@@ -26,15 +27,9 @@ bool	parse_syntax(char **tokens, char *code)
 		numbers = nc_split(tokens[i], ',');
 		numbers_size = nc_matrix_size(numbers);
 		if (code[i] == '1')
-		{
-			if (nc_count(tokens[i], ',') != 2 || numbers_size != 3)
-				ok = false;
-		}
+			ok = (nc_count(tokens[i], ',') == 2 && numbers_size == 3);
 		else
-		{
-			if (nc_count(tokens[i], ',') > 0)
-				ok = false;
-		}
+			ok = (nc_count(tokens[i], ',') == 0);
 		if (!parse_float(numbers) && i > 0)
 			ok = false;
 		nc_matrix_delete(numbers, &free);
@@ -68,13 +63,13 @@ void	parse_map(t_root *root, char **map)
 	int		i;
 	bool	ok;
 	char	**tokens;
-	
+
 	i = -1;
 	while (map[++i])
 	{
 		tokens = nc_split(map[i], ' ');
 		ok = identifying(root, tokens);
-		nc_matrix_delete(tokens, &free);	
+		nc_matrix_delete(tokens, &free);
 		if (!ok)
 			message(root, ERROR_SYNTAX);
 	}
@@ -87,17 +82,21 @@ t_root	*root_new(void)
 	root = nc_calloc(1, sizeof(t_root));
 	if (!root)
 		return (NULL);
-	root->planes = nc_vector_new((void *)&plane_copy, NULL, &free, (void *)&plane_print);
-	root->spheres = nc_vector_new((void *)&sphere_copy, NULL, &free, (void *)&sphere_print);
-	root->cylinders = nc_vector_new((void *)&cylinder_copy, NULL, &free, (void *)&cylinder_print);
-	root->sources = nc_vector_new((void *)&source_copy, NULL, &free, (void *)&source_print);
+	root->planes = nc_vector_new((void *)&plane_copy, NULL, \
+		&free, (void *)&plane_print);
+	root->spheres = nc_vector_new((void *)&sphere_copy, NULL, \
+		&free, (void *)&sphere_print);
+	root->cylinders = nc_vector_new((void *)&cylinder_copy, NULL, \
+		&free, (void *)&cylinder_print);
+	root->sources = nc_vector_new((void *)&source_copy, NULL, \
+		&free, (void *)&source_print);
 	return (root);
 }
 
 t_root	*parse(char *filename)
 {
 	t_root	*root;
-	
+
 	if (!is_filename_valid(filename))
 		message(NULL, ERROR_FILENAME);
 	root = root_new();
