@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 19:39:48 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/03 20:31:05 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:22:56 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-int	nc_count(char *str, char c)
-{
-	int	i;
-	int	counter;
-
-	i = -1;
-	counter = 0;
-	while (str[++i])
-		if (str[i] == c)
-			counter++;
-	return (counter);
-}
 
 bool	parse_float(char **nb)
 {
