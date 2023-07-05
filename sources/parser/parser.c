@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/05 12:26:01 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/05 12:33:06 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,7 @@ t_root	*parse(char *filename)
 	if (nc_matrix_size(root->map) == 0)
 		message(root, ERROR_EMPTY_MAP);
 	parse_map(root, root->map);
+	if (vec3_mod(root->camera.normal) == 0)
+		message(root, ERROR_NO_CAMERA);	
 	return (root);
 }

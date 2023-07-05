@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/05 11:18:11 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/05 12:33:20 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@
 # define ERROR_SYNTAX		"Syntax: file format misconfiguration."
 # define ERROR_FILENAME		"Invalid filename."
 # define ERROR_EMPTY_MAP	"Empty map."
+# define ERROR_EMPTY_MAP	"No camera in the map."
 
 #endif
