@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_shapes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/03 20:29:26 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:09:38 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ bool	parse_plane(t_root *root, char **tokens)
 	if (nc_matrix_size(tokens) != 4)
 		return (false);
 	if (!parse_syntax(tokens, "0111"))
+		return (false);
+	if (!parse_rgb(tokens[3]))
 		return (false);
 	point = nc_split(tokens[1], ',');
 	normal = nc_split(tokens[2], ',');
@@ -45,6 +47,8 @@ bool	parse_sphere(t_root *root, char **tokens)
 		return (false);
 	if (!parse_syntax(tokens, "0101"))
 		return (false);
+	if (!parse_rgb(tokens[3]))
+		return (false);
 	center = nc_split(tokens[1], ',');
 	color = nc_split(tokens[3], ',');
 	sphere = sphere_new(center, tokens[2], color);
@@ -57,23 +61,16 @@ bool	parse_sphere(t_root *root, char **tokens)
 
 bool	parse_cylinder(t_root *root, char **tokens)
 {
-	char		**center;
-	char		**normal;
-	char		**color;
 	t_cylinder	*cylinder;
 
 	if (nc_matrix_size(tokens) != 6)
 		return (false);
 	if (!parse_syntax(tokens, "011001"))
 		return (false);
-	center = nc_split(tokens[1], ',');
-	normal = nc_split(tokens[2], ',');
-	color = nc_split(tokens[5], ',');
-	cylinder = cylinder_new(center, normal, tokens[3], tokens[4], color);
+	if (!parse_rgb(tokens[5]))
+		return (false);
+	cylinder = cylinder_new(tokens);
 	nc_vector_push(root->cylinders, cylinder);
-	nc_matrix_delete(center, &free);
-	nc_matrix_delete(normal, &free);
-	nc_matrix_delete(color, &free);
 	cylinder_print(cylinder);
 	return (true);
 }

@@ -6,13 +6,13 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 17:08:37 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:28:54 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_plane	*plane_new(char **point, char **normal, char **color)
+t_plane	*plane_new(char **c, char **n, char **cl)
 {
 	t_plane	*plane;
 
@@ -21,15 +21,9 @@ t_plane	*plane_new(char **point, char **normal, char **color)
 		return (NULL);
 	*plane = (t_plane)
 	{
-		.point.x = nc_atof(point[0]),
-		.point.y = nc_atof(point[1]),
-		.point.z = nc_atof(point[2]),
-		.normal.x = nc_atof(normal[0]),
-		.normal.y = nc_atof(normal[1]),
-		.normal.z = nc_atof(normal[2]),
-		.color.r = nc_atoi(color[0]),
-		.color.g = nc_atoi(color[1]),
-		.color.b = nc_atoi(color[2]),
+		.point = vec3_new(nc_atof(c[X]), nc_atof(c[Y]), nc_atof(c[Z])), 
+		.normal = vec3_new(nc_atof(n[X]), nc_atof(n[Y]), nc_atof(n[Z])), 
+		.color = color_new(nc_atof(cl[R]), nc_atof(cl[G]), nc_atof(cl[B])),
 	};
 	return (plane);
 }

@@ -6,13 +6,13 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 18:25:05 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 17:07:45 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:29:06 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_lightsource	*source_new(char **point, char *brightness, char **color)
+t_lightsource	*source_new(char **c, char *brightness, char **cl)
 {
 	t_lightsource	*lightsource;
 
@@ -21,13 +21,9 @@ t_lightsource	*source_new(char **point, char *brightness, char **color)
 		return (NULL);
 	*lightsource = (t_lightsource)
 	{
-		.origin.x = nc_atof(point[0]),
-		.origin.y = nc_atof(point[1]),
-		.origin.z = nc_atof(point[2]),
+		.origin = vec3_new(nc_atof(c[X]), nc_atof(c[Y]), nc_atof(c[Z])), 
 		.brightness = nc_atof(brightness),
-		.color.r = nc_atoi(color[0]),
-		.color.g = nc_atoi(color[1]),
-		.color.b = nc_atoi(color[2])
+		.color = color_new(nc_atof(cl[R]), nc_atof(cl[G]), nc_atof(cl[B])), 
 	};
 	return (lightsource);
 }

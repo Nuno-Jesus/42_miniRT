@@ -6,34 +6,36 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 17:06:30 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:24:00 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_cylinder	*cylinder_new(char **center, char **normal, char *radius, \
-	char *height, char **color)
+t_cylinder	*cylinder_new(char **tokens)
 {
+	char		**c;
+	char		**n;
+	char		**cl;
 	t_cylinder	*cy;
 
 	cy = nc_calloc(1, sizeof(t_cylinder));
 	if (!cy)
 		return (NULL);
+	c = nc_split(tokens[1], ',');
+	n = nc_split(tokens[2], ',');
+	cl = nc_split(tokens[5], ',');
 	*cy = (t_cylinder)
 	{
-		.center.x = nc_atof(center[0]),
-		.center.y = nc_atof(center[1]),
-		.center.z = nc_atof(center[2]),
-		.normal.x = nc_atof(normal[0]),
-		.normal.y = nc_atof(normal[1]),
-		.normal.z = nc_atof(normal[2]),
-		.radius = nc_atof(radius),
-		.height = nc_atof(height),
-		.color.r = nc_atoi(color[0]),
-		.color.g = nc_atoi(color[1]),
-		.color.b = nc_atoi(color[2]),
+		.radius = nc_atof(tokens[3]) / 2,
+		.height = nc_atof(tokens[4]),
+		.center = vec3_new(nc_atof(c[X]), nc_atof(c[Y]), nc_atof(c[Z])),
+		.normal = vec3_new(nc_atof(n[X]), nc_atof(n[Y]), nc_atof(n[Z])),
+		.color = color_new(nc_atof(cl[R]), nc_atof(cl[G]), nc_atof(cl[B])),
 	};
+	nc_matrix_delete(c, &free);
+	nc_matrix_delete(n, &free);
+	nc_matrix_delete(cl, &free);
 	return (cy);
 }
 

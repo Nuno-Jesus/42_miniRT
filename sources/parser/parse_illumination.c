@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/04 17:18:25 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:07:05 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ bool	parse_ambient_light(t_root *root, char **tokens)
 		return (false);
 	if (!parse_syntax(tokens, "001"))
 		return (false);
+	if (!parse_rgb(tokens[2]))
+		return (false);
 	root->ambient.ratio = nc_atof(tokens[1]);
 	data = nc_split(tokens[2], ',');
-	if (!parse_rgb(data))
-		message(root, ERROR_COLOR_A);
 	root->ambient.color.r = nc_atoi(data[0]);
 	root->ambient.color.g = nc_atoi(data[1]);
 	root->ambient.color.b = nc_atoi(data[2]);
@@ -85,12 +85,12 @@ bool	parse_light_source(t_root *root, char **tokens)
 		return (false);
 	if (!parse_syntax(tokens, "0101"))
 		return (false);
+	if (!parse_rgb(tokens[3]))
+		return (false);
 	origin = nc_split(tokens[1], ',');
 	color = nc_split(tokens[3], ',');
 	light = light_new(origin, tokens[2], color);
 	nc_vector_push(root->sources, light);
-	if (!parse_rgb(color))
-		message(root, ERROR_COLOR_L);
 	nc_matrix_delete(origin, &free);
 	nc_matrix_delete(color, &free);
 	nc_vector_print(root->sources);

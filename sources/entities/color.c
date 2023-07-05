@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 16:32:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/05 11:08:31 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/07/05 11:22:56 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/05 11:23:40 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "miniRT.h"
 
-# include "miniRT.h"
-
-void	message(t_root *root, char *text);
-
-void	destroy_root(t_root **root);
-
-#endif
+t_color	color_new(int r, int g, int b)
+{
+	return ((t_color)
+		{
+			.r = r,
+			.g = g,
+			.b = b		
+		}
+	);
+}

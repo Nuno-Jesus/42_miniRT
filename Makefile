@@ -71,7 +71,7 @@ _VEC3	= vec3_add vec3_dot vec3_mult vec3_norm vec3_cross vec3_mod vec3_new \
 	vec3_sub vec3_debug
 _DESTROY = destroy
 _PARSER = read_map parser parse_shapes parse_illumination 
-_ENTITIES = cylinder plane sphere source ambient camera
+_ENTITIES = cylinder plane sphere source ambient camera color
 _UTILS = message parse_utils
 _FILES	= main $(_VEC3) $(_DESTROY) $(_PARSER) $(_ENTITIES) $(_UTILS)
 TARGET	= $(patsubst %, %.o, $(_FILES))
@@ -133,8 +133,6 @@ $(OBJECTS)/%.o: %.c
 
 $(OBJECTS):
 	mkdir -p $(OBJECTS)
-
-
 
 clean:	
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(OBJECTS)$(RESET)"

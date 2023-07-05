@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 19:39:48 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/04 17:18:47 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:03:03 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,26 @@ bool	parse_float(char **nb)
 	return (true);
 }
 
-bool	parse_rgb(char **data)
+bool	parse_rgb(char *color)
 {
-	int	i;
-	int	a;
-
+	int		i;
+	bool	ok;
+	char	**tokens;
+	
 	i = -1;
-	while (data[++i])
+	ok = true;
+	tokens = nc_split(color, ',');
+	if (!tokens)
+		return (false);
+	while (tokens[++i])	
 	{
-		a = -1;
-		while (data[i][++a] && data[i][a] != '\n')
-		{
-			if (!nc_isdigit(data[i][a]))
-			{
-				nc_matrix_delete(data, &free);
-				return (false);
-			}
-		}
-		if (nc_atoi(data[i]) < 0 || nc_atoi(data[i]) > 255)
-		{
-			nc_matrix_delete(data, &free);
-			return (false);
-		}
+		if (!nc_isnum(tokens[i], "\n"))
+			ok = false;
+		if (nc_atoi(tokens[i]) < 0 || nc_atoi(tokens[i]) > 255)
+			ok = false;
+		if (!ok)
+			break;
 	}
-	return (true);
+	nc_matrix_delete(tokens, &free);
+	return (ok);
 }

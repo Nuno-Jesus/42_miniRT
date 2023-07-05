@@ -6,13 +6,13 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 17:08:47 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:29:00 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_sphere	*sphere_new(char **center, char *radius, char **color)
+t_sphere	*sphere_new(char **c, char *radius, char **cl)
 {
 	t_sphere	*sp;
 
@@ -21,13 +21,9 @@ t_sphere	*sphere_new(char **center, char *radius, char **color)
 		return (NULL);
 	*sp = (t_sphere)
 	{
-		.origin.x = nc_atof(center[0]),
-		.origin.y = nc_atof(center[1]),
-		.origin.z = nc_atof(center[2]),
-		.radius = nc_atof(radius),
-		.color.r = nc_atoi(color[0]),
-		.color.g = nc_atoi(color[1]),
-		.color.b = nc_atoi(color[2])
+		.origin = vec3_new(nc_atof(c[X]), nc_atof(c[Y]), nc_atof(c[Z])), 
+		.radius = nc_atof(radius) / 2,
+		.color = color_new(nc_atof(cl[R]), nc_atof(cl[G]), nc_atof(cl[B])), 
 	};
 	return (sp);
 }

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 16:37:38 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:18:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@
 # define PI 3.1415926535
 # define RADIANS(deg) deg * PI / 180.0
 # define DEGREES(rad) rad * 180.0 / PI
+
+# define HAS_COMMAS '1'
+
+# define X 0
+# define Y 1
+# define Z 2
+
+# define R 0
+# define G 1
+# define B 2
 
 # define ERROR_COLOR_A		"Wrong color syntax for ambient lightning"
 # define ERROR_COLOR_L		"Wrong color syntax for light source"

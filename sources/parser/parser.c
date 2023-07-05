@@ -6,13 +6,12 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 17:17:53 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/05 10:58:00 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-//! What if we have A# or A! or A? (whatever)
 bool	parse_syntax(char **tokens, char *code)
 {
 	int		i;
@@ -26,7 +25,7 @@ bool	parse_syntax(char **tokens, char *code)
 	{
 		numbers = nc_split(tokens[i], ',');
 		numbers_size = nc_matrix_size(numbers);
-		if (code[i] == '1')
+		if (code[i] == HAS_COMMAS)
 			ok = (nc_count(tokens[i], ',') == 2 && numbers_size == 3);
 		else
 			ok = (nc_count(tokens[i], ',') == 0);
