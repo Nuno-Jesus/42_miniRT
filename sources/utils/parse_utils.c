@@ -6,38 +6,60 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 19:39:48 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/05 11:03:03 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/05 12:17:42 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
+static size_t nc_strclen(char *str, char *delim)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] && !nc_strchr(delim, str[i]))
+		i++;
+	return (i);
+}
+
 bool	parse_float(char **nb)
 {
-	int	i;
-	int	a;
+	int		i;
+	char	*tmp;
+	// int	a;
 
 	i = -1;
 	while (nb[++i])
 	{
-		a = 0;
-		if (nb[i][a] == '-')
-			a++;
-		while (nb[i][a] && nb[i][a] != '.' && nb[i][a] != '\n')
-		{
-			if (!nc_isdigit(nb[i][a]))
-				return (false);
-			a++;
-		}
-		if (nb[i][a] == '.')
-			a++;
-		while (nb[i][a] && nb[i][a] != '\n')
-		{
-			if (!nc_isdigit(nb[i][a]))
-				return (false);
-			a++;
-		}
+		if (!nc_isnum(nb[i], ".\n") || nc_strclen(nb[i], ".") == 0)		
+			return (false);
+		tmp = nc_strchr(nb[i], '.');
+		if (tmp && (*(tmp + 1) == '\0' || !nc_isnum(tmp + 1, "\n")))
+			return (false);
 	}
+	return (true);
+	
+	// i = -1;
+	// while (nb[++i])
+	// {
+	// 	a = 0;
+	// 	if (nb[i][a] == '-')
+	// 		a++;
+	// 	while (nb[i][a] && nb[i][a] != '.' && nb[i][a] != '\n')
+	// 	{
+	// 		if (!nc_isdigit(nb[i][a]))
+	// 			return (false);
+	// 		a++;
+	// 	}
+	// 	if (nb[i][a] == '.')
+	// 		a++;
+	// 	while (nb[i][a] && nb[i][a] != '\n')
+	// 	{
+	// 		if (!nc_isdigit(nb[i][a]))
+	// 			return (false);
+	// 		a++;
+	// 	}
+	// }
 	return (true);
 }
 
