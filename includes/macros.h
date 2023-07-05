@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/05 12:33:20 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:07:42 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@
 # define ERROR_SYNTAX		"Syntax: file format misconfiguration."
 # define ERROR_FILENAME		"Invalid filename."
 # define ERROR_EMPTY_MAP	"Empty map."
-# define ERROR_EMPTY_MAP	"No camera in the map."
+# define ERROR_NO_CAMERA	"No camera in the map."
 
 #endif
