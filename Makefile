@@ -44,7 +44,7 @@ SOURCES		= sources
 OBJECTS		= objects
 LIBNC		= libnc
 GNL			= gnl
-_SUBFOLDERS	= . destroy parser entities utils vec3
+_SUBFOLDERS	= . destroy debug parser entities utils vec3
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -70,10 +70,11 @@ NAME	= miniRT
 _VEC3	= vec3_add vec3_dot vec3_mult vec3_norm vec3_cross vec3_mod vec3_new \
 	vec3_sub vec3_debug
 _DESTROY = destroy
+_DEBUG = debug_1 debug_2
 _PARSER = read_map parser parse_shapes parse_illumination 
-_ENTITIES = cylinder plane sphere source ambient camera color
+_ENTITIES = cylinder plane sphere source color
 _UTILS = message parse_utils
-_FILES	= main $(_VEC3) $(_DESTROY) $(_PARSER) $(_ENTITIES) $(_UTILS)
+_FILES	= main $(_VEC3) $(_DESTROY) $(_DEBUG) $(_PARSER) $(_ENTITIES) $(_UTILS)
 TARGET	= $(patsubst %, %.o, $(_FILES))
 OBJS	= $(foreach target, $(TARGET), $(OBJECTS)/$(target))
 

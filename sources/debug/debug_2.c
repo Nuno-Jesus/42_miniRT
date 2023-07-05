@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ambient.c                                          :+:      :+:    :+:   */
+/*   debug_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 19:20:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/03 20:14:28 by maricard         ###   ########.fr       */
+/*   Created: 2023/07/05 11:34:42 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/05 11:34:53 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	ambient_print(t_light *s)
+void	sphere_print(t_sphere *s)
 {
-	printf("Ambient:\n");
-	printf("  Ratio: (%02.f)\n", s->ratio);
+	printf("Sphere:\n");
+	printf("  Center: (%.2f, %.2f, %.2f)\n", \
+		s->origin.x, s->origin.y, s->origin.z);
+	printf("  Radius: %.2f\n", s->radius);
 	printf("  Color: (%d, %d, %d)\n", s->color.r, s->color.g, s->color.b);
 }

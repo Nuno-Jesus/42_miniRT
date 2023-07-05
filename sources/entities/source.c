@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 18:25:05 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/05 11:29:06 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:34:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,4 @@ t_lightsource	*source_copy(t_lightsource *lightsource)
 		return (NULL);
 	*copy = *lightsource;
 	return (copy);
-}
-
-void	source_print(t_lightsource *l)
-{
-	printf("Lightsource:\n");
-	printf("  Point: (%.2f, %.2f, %.2f)\n", \
-		l->origin.x, l->origin.y, l->origin.z);
-	printf("  Ratio: %.2f\n", l->brightness);
-	printf("  Color: (%d, %d, %d)\n", l->color.r, l->color.g, l->color.b);
 }
