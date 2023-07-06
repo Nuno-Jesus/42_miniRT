@@ -1,3 +1,5 @@
+OS = $(shell uname)
+
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
 #_                                           COLORS                                          _
@@ -46,10 +48,9 @@ _SUBFOLDERS	= . destroy debug parser entities utils vec3
 
 CFLAGS		= -Wall -Wextra -Werror
 MAKEFLAGS	= --no-print-directory
-MLXFLAGS	= -L ./mlx -lmlx -Ilmlx -lXext -lX11 -lm 
+MLXFLAGS	= -L ./mlx -lmlx -lXext -lX11 -lm 
 LIBNCFLAGS	= -L ./libnc -lnc
 GNLFLAGS	= -L ./gnl -lgnl
-
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -112,7 +113,11 @@ else ifeq ($(SAN), T)
 # else ifeq ($(SAN), U)
 # 	CFLAGS += -fsanitize=undefined
 endif
-		
+
+ifeq ($(OS), Darwin)
+	MLXFLAGS = -L ./mlx -lmlx -framework OpenGL -framework AppKit -lm
+endif
+
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
 #_                                           RULES                                           _
@@ -122,6 +127,7 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(OBJS)
+	echo Using $(MLXFLAGS)
 	echo "[$(CYAN)Compiling$(RESET)] $(GREEN)$(LIBNC)$(RESET)"
 	$(MAKE) -C $(LIBNC)/
 
