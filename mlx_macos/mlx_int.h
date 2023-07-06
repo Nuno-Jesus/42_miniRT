@@ -85,7 +85,9 @@ typedef struct		mlx_ptr_s
   mlx_img_list_t	*img_list;
   void			(*loop_hook)(void *);
   void			*loop_hook_data;
+  void			*loop_timer;
   mlx_img_list_t	*font;
+  int			main_loop_active;
 } mlx_ptr_t;
 
 // proto

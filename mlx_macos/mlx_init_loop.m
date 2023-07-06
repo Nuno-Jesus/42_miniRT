@@ -11,26 +11,18 @@
 #include "font.c"
 
 
-@interface MlxLoopHookObj:NSObject
+void	do_loop_hook2(CFRunLoopTimerRef observer, void * info)
+{
+  ((mlx_ptr_t *)info)->loop_hook(((mlx_ptr_t *)info)->loop_hook_data);
+}
+
+
+void do_loop_flush(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void * info)
 {
   mlx_ptr_t	*mlx_ptr;
-}
-- (id) initWithPtr:(void *)mlxptr;
-- (void) do_loop_hook;
-@end
-@implementation MlxLoopHookObj
-- (id) initWithPtr:(void *)mlxptr
-{
-  if (self = [super init])
-    mlx_ptr = mlxptr;
-  return (self);
-}
-- (void) do_loop_hook
-{
   mlx_win_list_t *win;
 
-  if (mlx_ptr->loop_hook != NULL)
-    mlx_ptr->loop_hook(mlx_ptr->loop_hook_data);
+  mlx_ptr = (mlx_ptr_t *)info;
   win = mlx_ptr->win_list;
   while (win)
     {
@@ -43,9 +35,9 @@
 	}
       win = win->next;
     }
-  [self performSelector:@selector(do_loop_hook) withObject:nil afterDelay:0.0];
 }
-@end
+
+
 
 
 void *mlx_init()
@@ -60,6 +52,7 @@ void *mlx_init()
   new_mlx->img_list = NULL;
   new_mlx->loop_hook = NULL;
   new_mlx->loop_hook_data = NULL;
+  new_mlx->main_loop_active = 0;
 
   new_mlx->appid = [NSApplication sharedApplication];
 
@@ -87,10 +80,18 @@ void *mlx_init()
       i += 4;
     }
 
+
+#ifdef	STRINGPUTX11
+  new_mlx->font->vertexes[2] = FONT_WIDTH/1.4;
+  new_mlx->font->vertexes[4] = FONT_WIDTH/1.4;
+  new_mlx->font->vertexes[5] = (-FONT_HEIGHT-1)/1.4;
+  new_mlx->font->vertexes[7] = (-FONT_HEIGHT-1)/1.4;
+#else
   new_mlx->font->vertexes[2] = FONT_WIDTH;
   new_mlx->font->vertexes[4] = FONT_WIDTH;
   new_mlx->font->vertexes[5] = -FONT_HEIGHT-1;
   new_mlx->font->vertexes[7] = -FONT_HEIGHT-1;
+#endif
 
   return ((void *)new_mlx);
 }
@@ -98,7 +99,16 @@ void *mlx_init()
 
 void mlx_loop(mlx_ptr_t *mlx_ptr)
 {
-  [[[MlxLoopHookObj alloc] initWithPtr:mlx_ptr] performSelector:@selector(do_loop_hook) withObject:nil afterDelay:0.0];
+  CFRunLoopObserverRef observer;
+  CFRunLoopObserverContext ocontext = {.version = 0, .info = mlx_ptr, .retain = NULL, .release = NULL, .copyDescription = NULL};
+
+  mlx_ptr->main_loop_active = 1;
+
+  observer = CFRunLoopObserverCreate(NULL, kCFRunLoopBeforeTimers, true, 0, do_loop_flush, &ocontext);
+  CFRunLoopAddObserver(CFRunLoopGetMain(), observer, kCFRunLoopCommonModes);
+
+  //  [[[MlxLoopHookObj alloc] initWithPtr:mlx_ptr] performSelector:@selector(do_loop_hook) withObject:nil afterDelay:0.0];
+
   [NSApp run];
 }
 
@@ -110,6 +120,29 @@ void mlx_pixel_put(mlx_ptr_t *mlx_ptr, mlx_win_list_t *win_ptr, int x, int y, in
   [(id)(win_ptr->winid) selectGLContext];
   [(id)(win_ptr->winid) pixelPutColor:color X:x Y:y];
   win_ptr->nb_flush ++;
+}
+
+
+void	mlx_int_loop_once()
+{
+  NSEvent *event;
+  NSDate  *thedate;
+
+  thedate = [NSDate dateWithTimeIntervalSinceNow:0.1];
+  while (42)
+    {
+      event = [NSApp nextEventMatchingMask:NSEventMaskAny
+		     untilDate:thedate
+		     inMode:NSDefaultRunLoopMode
+		     dequeue:YES];
+      if (event == nil)
+	{
+	  [thedate release];
+	  return ;
+	}
+      [NSApp sendEvent:event];
+      [NSApp updateWindows];
+    }
 }
 
 
@@ -125,6 +158,8 @@ int     mlx_do_sync(mlx_ptr_t *mlx_ptr)
 	  [(id)(win->winid) selectGLContext];
 	  [(id)(win->winid) mlx_gl_draw];
 	  glFlush();
+	  if (!mlx_ptr->main_loop_active)
+	    mlx_int_loop_once();
 	}
       win = win->next;
     }
@@ -134,7 +169,24 @@ int     mlx_do_sync(mlx_ptr_t *mlx_ptr)
 
 int mlx_loop_hook(mlx_ptr_t *mlx_ptr, void (*fct)(void *), void *param)
 {
+  CFRunLoopTimerContext	tcontext = {0, mlx_ptr, NULL, NULL, NULL};
+  CFRunLoopTimerRef	timer;
+
+  if (mlx_ptr->loop_hook != NULL)
+    {
+      CFRunLoopTimerInvalidate(mlx_ptr->loop_timer);
+      [(id)(mlx_ptr->loop_timer) release];
+    }
+
   mlx_ptr->loop_hook = fct;
   mlx_ptr->loop_hook_data = param;
+
+  if (fct)
+    {
+      timer = CFRunLoopTimerCreate(kCFAllocatorDefault, 0.0, 0.0001, 0, 0, &do_loop_hook2, &tcontext);
+      mlx_ptr->loop_timer = timer;
+      CFRunLoopAddTimer(CFRunLoopGetMain(), timer, kCFRunLoopCommonModes);
+    }
+
   return (0);
 }
