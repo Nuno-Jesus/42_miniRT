@@ -26,15 +26,6 @@ AR = ar -rcs
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
-#_                                           FLAGS                                           _
-#_                                                                                           _
-#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-
-CFLAGS		= -Wall -Wextra -Werror
-MAKEFLAGS	= --no-print-directory
-
-#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-#_                                                                                           _
 #_                                          FOLDERS                                          _
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
@@ -44,7 +35,21 @@ SOURCES		= sources
 OBJECTS		= objects
 LIBNC		= libnc
 GNL			= gnl
+MLX			= mlx
 _SUBFOLDERS	= . destroy debug parser entities utils vec3
+
+#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+#_                                                                                           _
+#_                                           FLAGS                                           _
+#_                                                                                           _
+#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+
+CFLAGS		= -Wall -Wextra -Werror
+MAKEFLAGS	= --no-print-directory
+MLXFLAGS	= -L ./mlx -lmlx -Ilmlx -lXext -lX11 -lm 
+LIBNCFLAGS	= -L ./libnc -lnc
+GNLFLAGS	= -L ./gnl -lgnl
+
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -123,8 +128,11 @@ $(NAME): $(OBJECTS) $(OBJS)
 	echo "[$(CYAN)Compiling$(RESET)] $(GREEN)$(GNL)$(RESET)"
 	$(MAKE) -C $(GNL)/
 
+	echo "[$(CYAN)Compiling$(RESET)] $(GREEN)$(MLX)$(RESET)"
+	$(MAKE) -C $(MLX)/
+
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)$(NAME)$(RESET)"
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I $(INCLUDES) -lnc -lm -L $(LIBNC) -lnc -L $(GNL) -lgnl
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I $(INCLUDES) -lm $(LIBNCFLAGS) $(GNLFLAGS) $(MLXFLAGS)
 	
 	echo "$(GREEN)Done.$(RESET)"
 	
@@ -141,6 +149,8 @@ clean:
 
 fclean: clean
 	$(MAKE) fclean -C $(LIBNC)
+	$(MAKE) fclean -C $(GNL)
+	$(MAKE) clean -C $(MLX)
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(NAME)$(RESET)"
 	$(RM) $(NAME)
 
