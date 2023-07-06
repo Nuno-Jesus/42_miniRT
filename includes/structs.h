@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 17:01:11 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:47:09 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,18 @@ typedef struct s_cylinder
 	t_color	color;
 }	t_cylinder;
 
+typedef struct s_graphics {
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		height;
+	int		width;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}				t_graphics;
+
 typedef struct s_root
 {
 	t_camera		camera;
@@ -71,6 +83,7 @@ typedef struct s_root
 	t_vector		*planes;
 	t_vector		*spheres;
 	t_vector		*cylinders;
+	t_graphics		disp;
 	char			**map;
 }	t_root;
 

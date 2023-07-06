@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/05 14:07:42 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:54:17 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@
 # define R 0
 # define G 1
 # define B 2
+
+# define WIDTH 1920
+# define HEIGHT 1080
+
+# define ON_KEYPRESS 2
+# define ON_CLOSE 17
+# define KEYPRESS_MASK  (1L << 0)
+# define CLOSE_MASK  (1L << 17)
+
+# define ESC 65307
+# define W 119
+# define A 97
+# define S 115
+# define D 10
 
 # define ERROR_COLOR_A		"Wrong color syntax for ambient lightning"
 # define ERROR_COLOR_L		"Wrong color syntax for light source"

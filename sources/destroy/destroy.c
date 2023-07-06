@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:24:35 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 17:04:12 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:05:30 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ void	destroy_root(t_root **root)
 	nc_vector_delete((*root)->cylinders);
 	nc_vector_delete((*root)->sources);
 	nc_matrix_delete((*root)->map, &free);
+	if ((*root)->disp.win)
+		mlx_destroy_window((*root)->disp.mlx, (*root)->disp.win);
+	if ((*root)->disp.mlx)
+		mlx_destroy_display((*root)->disp.mlx);
+	nc_free((*root)->disp.mlx);
 	free(*root);
 	*root = NULL;
 }
