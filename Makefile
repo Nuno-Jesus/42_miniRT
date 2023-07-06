@@ -128,7 +128,6 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(OBJS)
-	echo Using $(MLXFLAGS)
 	echo "[$(CYAN)Compiling$(RESET)] $(GREEN)$(LIBNC)$(RESET)"
 	$(MAKE) -C $(LIBNC)/
 
