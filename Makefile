@@ -37,7 +37,7 @@ SOURCES		= sources
 OBJECTS		= objects
 LIBNC		= libnc
 GNL			= gnl
-MLX			= mlx
+MLX			= mlx_linux
 _SUBFOLDERS	= . destroy debug parser entities utils vec3
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
@@ -48,9 +48,9 @@ _SUBFOLDERS	= . destroy debug parser entities utils vec3
 
 CFLAGS		= -Wall -Wextra -Werror
 MAKEFLAGS	= --no-print-directory
-MLXFLAGS	= -L ./mlx -lmlx -lXext -lX11 -lm 
-LIBNCFLAGS	= -L ./libnc -lnc
-GNLFLAGS	= -L ./gnl -lgnl
+MLXFLAGS	= -L ./$(MLX) -lmlx -lXext -lX11 -lm 
+LIBNCFLAGS	= -L ./$(LIBNC) -lnc
+GNLFLAGS	= -L ./$(GNL) -lgnl
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -115,7 +115,7 @@ else ifeq ($(SAN), T)
 endif
 
 ifeq ($(OS), Darwin)
-	MLXFLAGS = -L ./mlx -lmlx -framework OpenGL -framework AppKit -lm
+	MLXFLAGS = -L ./mlx_macos -lmlx -framework OpenGL -framework AppKit -lm
 endif
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
