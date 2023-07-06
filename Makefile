@@ -115,7 +115,8 @@ else ifeq ($(SAN), T)
 endif
 
 ifeq ($(OS), Darwin)
-	MLXFLAGS = -L ./mlx_macos -lmlx -framework OpenGL -framework AppKit -lm
+	MLX = mlx_macos
+	MLXFLAGS = -L ./$(MLX) -lmlx -framework OpenGL -framework AppKit -lm
 endif
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
