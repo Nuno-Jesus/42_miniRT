@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/06 17:39:32 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/07 22:31:36 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ t_root	*parse(char *filename)
 		message(NULL, ERROR_FILENAME);
 	root = root_new();
 	if (!root)
-		return (NULL);
+		return (NULL); // Change this to message
 	root->map = read_map(root, filename);
 	if (nc_matrix_size(root->map) == 0)
 		message(root, ERROR_EMPTY_MAP);

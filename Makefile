@@ -46,7 +46,7 @@ _SUBFOLDERS	= . destroy debug parser renderer entities utils vec3
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -O3 -march=native
 MAKEFLAGS	= --no-print-directory
 MLXFLAGS	= -L ./$(MLX) -lmlx -lXext -lX11 -lm 
 LIBNCFLAGS	= -L ./$(LIBNC) -lnc
@@ -78,7 +78,7 @@ _VEC3	= vec3_add vec3_dot vec3_mult vec3_norm vec3_cross vec3_mod vec3_new \
 _DESTROY = destroy
 _DEBUG = debug_1 debug_2
 _PARSER = read_map parser parse_shapes parse_illumination
-_RENDERER = pixel
+_RENDERER = pixel render
 _ENTITIES = cylinder plane sphere source color
 _UTILS = message parse_utils
 _FILES	= main $(_VEC3) $(_DESTROY) $(_DEBUG) $(_PARSER) $(_RENDERER) $(_ENTITIES) $(_UTILS)

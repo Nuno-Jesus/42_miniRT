@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/06 18:20:08 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/07 22:24:20 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ typedef struct s_root
 	t_vector		*cylinders;
 	t_graphics		disp;
 	char			**map;
+	float			hview; //! Height of the viewport
+	float			wview; //! Width of the viewport
 }	t_root;
 
 #endif

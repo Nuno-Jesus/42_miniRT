@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/06 17:54:17 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/07 22:41:02 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+# define RATIO WIDTH/(float)HEIGHT
 
 # define ON_KEYPRESS 2
 # define ON_CLOSE 17
