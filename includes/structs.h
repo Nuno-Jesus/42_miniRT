@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/06 17:47:09 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:20:08 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 typedef struct s_color
 {
+	int	t;
 	int	r;
 	int	g;
 	int	b;
@@ -73,7 +74,13 @@ typedef struct s_graphics {
 	int		bpp;
 	int		line_length;
 	int		endian;
-}				t_graphics;
+}	t_graphics;
+
+typedef struct s_ray
+{
+	t_vec3	origin;
+	t_vec3	direction;
+}	t_ray;
 
 typedef struct s_root
 {

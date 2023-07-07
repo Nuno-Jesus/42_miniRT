@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   renderer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/06 18:23:53 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/06 18:23:39 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef RENDERER_H
+# define RENDERER_H
 
-// # ifdef OS_LINUX
-# include "../mlx_linux/mlx.h"
-// # else
-// #  include "../mlx_macos/mlx.h"
-// # endif
+# include "miniRT.h"
 
-# include "macros.h"
-# include "get_next_line.h"
-# include "libnc.h"
-# include "vector.h"
-# include "structs.h"
-# include "parser.h"
-# include "utils.h"
-# include "shapes.h"
-# include "illumination.h"
-# include "renderer.h"
-
-t_color	color_new(int r, int g, int b);
+void	put_pixel(t_root *r, t_color c, int x, int y);
 
 #endif
