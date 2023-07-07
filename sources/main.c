@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/06 17:54:51 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/07 19:35:17 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,37 @@ int	render_frame(t_root *r)
 	return (0);
 }
 
-int	main(int argc, char **argv)
-{
-	t_root	*root;
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
-	if (argc != 2)
-		message(NULL, "Usage: ./miniRT <scene>.rt");
-	root = parse(argv[1]);
-	init_graphics(root);
-	mlx_hook(root->disp.win, ON_KEYPRESS, KEYPRESS_MASK, on_keypress, root);
-	mlx_hook(root->disp.win, ON_CLOSE, CLOSE_MASK, quit, root);
-	mlx_loop_hook(root->disp.mlx, render_frame, root);
-	mlx_loop(root->disp.mlx);
-	destroy_root(&root);
-	return (0);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * WIDTH + x) * (data->bits_per_pixel / 8);
+	*(unsigned int*)dst = color;
+}
+
+int	main(void)
+{
+	void	*mlx;
+	void	*mlx_win;
+	t_data	img;
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	img.img = mlx_new_image(mlx, 1920, 1080);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+								&img.endian);
+	for (int x = 0; x < WIDTH; x += 1)
+		for (int y = 0; y < HEIGHT; y += 1)
+			my_mlx_pixel_put(&img, x, y, (sin(RADIANS(x)) + cos(RADIANS(y))) * 255);
+			
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_loop(mlx);
 }
