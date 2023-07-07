@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/07 22:57:34 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/07 23:18:13 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define PI 3.1415926535
 # define RADIANS(deg) deg * PI / 180.0
 # define DEGREES(rad) rad * 180.0 / PI
+
+# define UPGUIDE (t_vec3){0.0, 1.0, 0.0}
 
 # define HAS_COMMAS '1'
 

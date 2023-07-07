@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/07 22:49:11 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/07 23:20:49 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ void	init_viewport(t_root *r)
 	ratio = RATIO;
 	r->wview = tan(RADIANS(r->camera.fov));
 	r->hview = r->wview / ratio;
+	r->right = vec3_normalize(vec3_cross(r->camera.normal, UPGUIDE));
+	vec3_print(r->right);
+	r->up = vec3_normalize(vec3_cross(r->camera.normal, r->right));
+	vec3_print(r->up);
+	r->right = vec3_normalize(vec3_cross(r->camera.normal, r->up));
+	vec3_print(r->right);
 }
 
 int	main(int argc, char **argv)
