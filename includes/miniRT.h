@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/06 18:23:53 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/07 23:06:13 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "macros.h"
 # include "get_next_line.h"
 # include "libnc.h"
-# include "vector.h"
+# include "vec3.h"
 # include "structs.h"
 # include "parser.h"
 # include "utils.h"

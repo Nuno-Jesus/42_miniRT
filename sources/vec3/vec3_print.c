@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_mult.c                                      :+:      :+:    :+:   */
+/*   vec3_print.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 17:24:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 17:27:10 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/07/07 23:09:05 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/07 23:09:06 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_vec3	vec3_mult(t_vec3 v1, float scalar)
+void	vec3_print(t_vec3 vec)
 {
-	t_vec3	res;
-
-	res = vec3_new(v1.x * scalar, v1.y * scalar, v1.z * scalar);
-	return (res);
+	printf("Vec: (x, y, z) = (%.3f, %.3f, %.3f)\n", vec.x, vec.y, vec.z);
 }

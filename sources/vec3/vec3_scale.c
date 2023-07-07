@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_debug.c                                     :+:      :+:    :+:   */
+/*   vec3_scale.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 15:37:59 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 17:21:15 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/07/07 23:09:10 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/07 23:09:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	vec3_debug(t_vec3 vec)
+t_vec3	vec3_scale(t_vec3 v1, float scalar)
 {
-	printf("Vec: (x, y, z) = (%.3f, %.3f, %.3f)\n", vec.x, vec.y, vec.z);
+	t_vec3	res;
+
+	res = vec3_new(v1.x * scalar, v1.y * scalar, v1.z * scalar);
+	return (res);
 }

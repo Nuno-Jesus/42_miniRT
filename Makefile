@@ -46,7 +46,7 @@ _SUBFOLDERS	= . destroy debug parser renderer entities utils vec3
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-CFLAGS		= -Wall -Wextra -Werror -O3 -march=native
+CFLAGS		= -Wall -Wextra -Werror -O3
 MAKEFLAGS	= --no-print-directory
 MLXFLAGS	= -L ./$(MLX) -lmlx -lXext -lX11 -lm 
 LIBNCFLAGS	= -L ./$(LIBNC) -lnc
@@ -73,8 +73,8 @@ vpath %.h $(INCLUDES)
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 NAME	= miniRT
-_VEC3	= vec3_add vec3_dot vec3_mult vec3_norm vec3_cross vec3_mod vec3_new \
-	vec3_sub vec3_debug
+_VEC3	= vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_module vec3_new \
+	vec3_sub vec3_print
 _DESTROY = destroy
 _DEBUG = debug_1 debug_2
 _PARSER = read_map parser parse_shapes parse_illumination
