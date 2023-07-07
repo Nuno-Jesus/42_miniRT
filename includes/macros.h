@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/07 22:41:02 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/07 22:57:34 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <math.h>
+
+// # define DEBUG
 
 # define PI 3.1415926535
 # define RADIANS(deg) deg * PI / 180.0

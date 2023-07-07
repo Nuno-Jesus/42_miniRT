@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/07 22:44:19 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/07 22:49:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	init_viewport(t_root *r)
 	r->hview = r->wview / ratio;
 }
 
-
 int	main(int argc, char **argv)
 {
 	t_root	*root;
@@ -55,10 +54,11 @@ int	main(int argc, char **argv)
 	root = parse(argv[1]);
 	init_viewport(root);
 	init_graphics(root);
-	mlx_hook(root->disp.win, ON_KEYPRESS, KEYPRESS_MASK, on_keypress, root);
-	mlx_hook(root->disp.win, ON_CLOSE, CLOSE_MASK, quit, root);
-	mlx_loop_hook(root->disp.mlx, render, root);
-	mlx_loop(root->disp.mlx);
+	render(root);
+	// mlx_hook(root->disp.win, ON_KEYPRESS, KEYPRESS_MASK, on_keypress, root);
+	// mlx_hook(root->disp.win, ON_CLOSE, CLOSE_MASK, quit, root);
+	// mlx_loop_hook(root->disp.mlx, render, root);
+	// mlx_loop(root->disp.mlx);
 	destroy_root(&root);
 	return (0);
 }
