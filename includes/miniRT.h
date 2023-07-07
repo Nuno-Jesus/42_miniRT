@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/06 18:23:53 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:58:49 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # include "utils.h"
 # include "shapes.h"
 # include "illumination.h"
-# include "renderer.h"
 
 t_color	color_new(int r, int g, int b);
 
