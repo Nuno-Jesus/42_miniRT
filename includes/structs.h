@@ -6,12 +6,19 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/07 23:13:52 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/08 00:32:56 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+typedef enum s_shape
+{
+	PLANE,
+	SPHERE,
+	CYLINDER,
+}	t_shape;
 
 typedef struct s_color
 {
