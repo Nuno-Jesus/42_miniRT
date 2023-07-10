@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 18:03:20 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/10 18:50:50 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:42:00 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ float	determinant(float a, float b, float c)
 	//Print the power of b and b
 	// printf("b^2 = %f\n", pow(b, 2));
 	// printf("a = %f\n", a);
+	// printf("b = %f\n", b);
 	// printf("c = %f\n", c);
 	// printf("4*a*c = %f\n", 4 * a * c);
 	// printf("delta = %f\n", delta);
