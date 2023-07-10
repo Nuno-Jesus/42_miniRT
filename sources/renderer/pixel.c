@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:12:59 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/06 18:23:10 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:23:04 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	put_pixel(t_root *r, t_color c, int x, int y)
 	char	*dst;
 
 	dst = r->disp.addr + (y * WIDTH + x) * (r->disp.bpp / 8);
-	*dst = (c.t << 24 | c.r << 16 | c.g << 8 | c.b);
+	//Print the color
+	// printf("X = %d Y = %d / R = %d G = %d B = %d\n", x, y, c.r, c.g, c.b);
+	*(unsigned int *)dst = (c.t << 24 | c.r << 16 | c.g << 8 | c.b);
 }
 
 // t_color	get_pixel(t_root *r, int x, int y)

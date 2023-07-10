@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/08 00:10:24 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:05:02 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,14 @@
 # define RADIANS(deg) deg * PI / 180.0
 # define DEGREES(rad) rad * 180.0 / PI
 
-# define UPGUIDE (t_vec3){0.0, 1.0, 0.0}
+# define BLUE		(t_color){0, 255, 0, 255}
+# define WHITE		(t_color){0, 0, 255, 255}
+# define UPGUIDE	(t_vec3){0.0, 1.0, 0.0}
 
 # define HAS_COMMAS '1'
+# define HERE printf("HERE\n");
+
+# define EPSILON 0.00001
 
 # define X 0
 # define Y 1

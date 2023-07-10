@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/07 23:20:49 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:16:12 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,8 @@ void	init_viewport(t_root *r)
 	r->wview = tan(RADIANS(r->camera.fov));
 	r->hview = r->wview / ratio;
 	r->right = vec3_normalize(vec3_cross(r->camera.normal, UPGUIDE));
-	vec3_print(r->right);
 	r->up = vec3_normalize(vec3_cross(r->camera.normal, r->right));
-	vec3_print(r->up);
 	r->right = vec3_normalize(vec3_cross(r->camera.normal, r->up));
-	vec3_print(r->right);
 }
 
 int	main(int argc, char **argv)
@@ -60,11 +57,14 @@ int	main(int argc, char **argv)
 	root = parse(argv[1]);
 	init_viewport(root);
 	init_graphics(root);
-	render(root);
-	// mlx_hook(root->disp.win, ON_KEYPRESS, KEYPRESS_MASK, on_keypress, root);
-	// mlx_hook(root->disp.win, ON_CLOSE, CLOSE_MASK, quit, root);
-	// mlx_loop_hook(root->disp.mlx, render, root);
-	// mlx_loop(root->disp.mlx);
+	root->disp.img = mlx_new_image(root->disp.mlx, WIDTH, HEIGHT);
+	root->disp.addr = mlx_get_data_addr(root->disp.img, &root->disp.bpp, \
+		&root->disp.line_length, &root->disp.endian);
+	mlx_hook(root->disp.win, ON_KEYPRESS, KEYPRESS_MASK, on_keypress, root);
+	mlx_hook(root->disp.win, ON_CLOSE, CLOSE_MASK, quit, root);
+	// render(root);
+	mlx_loop_hook(root->disp.mlx, render, root);
+	mlx_loop(root->disp.mlx);
 	destroy_root(&root);
 	return (0);
 }
