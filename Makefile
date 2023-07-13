@@ -79,7 +79,7 @@ _DESTROY = destroy
 _DEBUG = debug_1 debug_2
 _PARSER = read_map parser parse_shapes parse_illumination
 _RENDERER = intersect pixel render
-_ENTITIES = cylinder plane sphere source color
+_ENTITIES = cylinder plane shape sphere source color
 _UTILS = math message parse_utils
 _FILES	= main $(_VEC3) $(_DESTROY) $(_DEBUG) $(_PARSER) $(_RENDERER) $(_ENTITIES) $(_UTILS)
 TARGET	= $(patsubst %, %.o, $(_FILES))
@@ -164,11 +164,11 @@ fclean: clean
 re: fclean
 	$(MAKE) all
 
-run: fast
-	./$(NAME) $(SCENE)
-
 fast:
 	$(MAKE) re -j
+
+run: fast
+	./$(NAME) $(SCENE)
 
 leaks: all
 	valgrind --leak-check=full --show-leak-kinds=all --log-file=output.log ./$(NAME) $(SCENE)

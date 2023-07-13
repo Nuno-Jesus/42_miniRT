@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/05 11:09:38 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:26:50 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ bool	parse_plane(t_root *root, char **tokens)
 	char	**point;
 	char	**normal;
 	char	**color;
-	t_plane	*plane;
+	t_plane	plane;
+	t_shape	*shape;
 
 	if (nc_matrix_size(tokens) != 4)
 		return (false);
@@ -29,11 +30,12 @@ bool	parse_plane(t_root *root, char **tokens)
 	normal = nc_split(tokens[2], ',');
 	color = nc_split(tokens[3], ',');
 	plane = plane_new(point, normal, color);
-	nc_vector_push(root->planes, plane);
+	shape = shape_new(&plane, PLANE);
+	nc_vector_push(root->shapes, shape);
 	nc_matrix_delete(point, &free);
 	nc_matrix_delete(normal, &free);
 	nc_matrix_delete(color, &free);
-	plane_print(plane);
+	plane_print(&plane);
 	return (true);
 }
 
@@ -41,7 +43,8 @@ bool	parse_sphere(t_root *root, char **tokens)
 {
 	char		**center;
 	char		**color;
-	t_sphere	*sphere;
+	t_sphere	sphere;
+	t_shape		*shape;
 
 	if (nc_matrix_size(tokens) != 4)
 		return (false);
@@ -52,16 +55,18 @@ bool	parse_sphere(t_root *root, char **tokens)
 	center = nc_split(tokens[1], ',');
 	color = nc_split(tokens[3], ',');
 	sphere = sphere_new(center, tokens[2], color);
-	nc_vector_push(root->spheres, sphere);
+	shape = shape_new(&sphere, SPHERE);
+	nc_vector_push(root->shapes, shape);
 	nc_matrix_delete(center, &free);
 	nc_matrix_delete(color, &free);
-	sphere_print(sphere);
+	sphere_print(&sphere);
 	return (true);
 }
 
 bool	parse_cylinder(t_root *root, char **tokens)
 {
-	t_cylinder	*cylinder;
+	t_cylinder	cylinder;
+	t_shape		*shape;
 
 	if (nc_matrix_size(tokens) != 6)
 		return (false);
@@ -70,7 +75,8 @@ bool	parse_cylinder(t_root *root, char **tokens)
 	if (!parse_rgb(tokens[5]))
 		return (false);
 	cylinder = cylinder_new(tokens);
-	nc_vector_push(root->cylinders, cylinder);
-	cylinder_print(cylinder);
+	shape = shape_new(&cylinder, CYLINDER);
+	nc_vector_push(root->shapes, shape);
+	cylinder_print(&cylinder);
 	return (true);
 }

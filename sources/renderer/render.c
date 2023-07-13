@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 19:42:14 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/10 20:24:14 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:34:09 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,19 @@ t_ray	make_ray(t_root *r, t_vec3 factors)
 // 	helper(r->cylinders, ray, CYLINDER, depth);
 // }
 
+bool	intersects(t_shape *shape, t_ray *ray)
+{
+	if (shape->type == SPHERE)
+		return (sphere_intersect(&shape->data.sp, ray));
+	// else if (shape->type == PLANE)
+	// 	return (plane_intersect(&shape->data.pl, ray));
+	// else if (shape->type == CYLINDER)
+	// 	return (plane_intersect(&shape->data.cy, ray));
+	return (false);
+}
+
 int	render(t_root *r)
 {	
-	(void)r;
 	int	x;
 	int	y;
 	t_vec3	factors;
@@ -97,29 +107,13 @@ int	render(t_root *r)
 		{
 			factors = world_to_viewport(x, y);
 			ray = make_ray(r, factors);
-			// if (!x && !y)
-			// {
-			// 	printf("ray direction: %f %f %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
-			// 	printf("ray: %f %f %f\n", ray.origin.x, ray.origin.y, ray.origin.z);
-			// }
-			// trace(r, ray);
-			//* Trace the ray
-			//? For each shape check for intersection
-			for (uint32_t i = 0; i < r->spheres->size; i++)
+			for (uint32_t i = 0; i < r->shapes->size; i++)
 			{
-				t_color color;
-				bool hit;
 
-				color = ((t_sphere *)nc_vector_at(r->spheres, i))->color;
-				hit = sphere_intersect(nc_vector_at(r->spheres, i), &ray);
+				hit = intersects(nc_vector_at(r->shapes, i), &ray);
 				if (hit)
-				{
-					// printf("HIT (%d): %d %d\n",i , x, y);
-					put_pixel(r, color, x, y);
-				}
-				
+					put_pixel(r, WHITE, x, y);				
 			}
-			/// Paint the pixel with the color from the trace
 		}
 	}
 	mlx_put_image_to_window(r->disp.mlx, r->disp.win, r->disp.img, 0, 0);

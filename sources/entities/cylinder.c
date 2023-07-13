@@ -6,26 +6,23 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/05 11:35:06 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/13 15:42:09 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_cylinder	*cylinder_new(char **tokens)
+t_cylinder	cylinder_new(char **tokens)
 {
 	char		**c;
 	char		**n;
 	char		**cl;
-	t_cylinder	*cy;
+	t_cylinder	cy;
 
-	cy = nc_calloc(1, sizeof(t_cylinder));
-	if (!cy)
-		return (NULL);
 	c = nc_split(tokens[1], ',');
 	n = nc_split(tokens[2], ',');
 	cl = nc_split(tokens[5], ',');
-	*cy = (t_cylinder)
+	cy = (t_cylinder)
 	{
 		.radius = nc_atof(tokens[3]) / 2,
 		.height = nc_atof(tokens[4]),
@@ -37,15 +34,4 @@ t_cylinder	*cylinder_new(char **tokens)
 	nc_matrix_delete(n, &free);
 	nc_matrix_delete(cl, &free);
 	return (cy);
-}
-
-t_cylinder	*cylinder_copy(t_cylinder *cylinder)
-{
-	t_cylinder	*copy;
-
-	copy = nc_calloc(1, sizeof(t_cylinder));
-	if (!copy)
-		return (NULL);
-	*copy = *cylinder;
-	return (copy);
 }

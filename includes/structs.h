@@ -6,19 +6,19 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/08 00:32:56 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:20:05 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef enum s_shape
+typedef enum s_shape_type
 {
 	PLANE,
 	SPHERE,
 	CYLINDER,
-}	t_shape;
+}	t_shape_type;
 
 typedef struct s_color
 {
@@ -71,7 +71,21 @@ typedef struct s_cylinder
 	t_color	color;
 }	t_cylinder;
 
-typedef struct s_graphics {
+typedef union u_data
+{
+	t_sphere	sp;
+	t_plane		pl;
+	t_cylinder	cy;
+} t_data;
+
+typedef struct s_shape
+{
+	t_data			data;
+	t_shape_type	type;
+}t_shape;
+
+typedef struct s_graphics
+{
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -97,6 +111,7 @@ typedef struct s_root
 	t_vector		*planes;
 	t_vector		*spheres;
 	t_vector		*cylinders;
+	t_vector		*shapes;
 	t_graphics		disp;
 	char			**map;
 	float			hview; //! Height of the viewport
