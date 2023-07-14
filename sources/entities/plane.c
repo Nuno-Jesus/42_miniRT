@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/13 15:41:43 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/14 13:20:17 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,11 @@ t_plane	plane_new(char **c, char **n, char **cl)
 		.color = color_new(nc_atof(cl[R]), nc_atof(cl[G]), nc_atof(cl[B])),
 	};
 	return (plane);
+}
+
+bool	plane_intersect(t_plane *pl, t_ray *ray)
+{
+	(void) pl;
+	(void) ray;
+	return (false);
 }

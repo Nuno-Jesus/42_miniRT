@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/13 15:42:09 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/14 13:20:24 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,11 @@ t_cylinder	cylinder_new(char **tokens)
 	nc_matrix_delete(cl, &free);
 	return (cy);
 }
+
+bool	cylinder_intersect(t_cylinder *cy, t_ray *ray)
+{
+	(void) cy;
+	(void) ray;
+	return (false);
+}
+

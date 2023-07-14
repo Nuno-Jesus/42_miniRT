@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/13 16:20:05 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/14 13:08:10 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,6 @@ typedef struct s_root
 	t_camera		camera;
 	t_light			ambient;
 	t_vector		*sources;
-	t_vector		*planes;
-	t_vector		*spheres;
-	t_vector		*cylinders;
 	t_vector		*shapes;
 	t_graphics		disp;
 	char			**map;
