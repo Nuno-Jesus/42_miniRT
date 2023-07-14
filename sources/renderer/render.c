@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 19:42:14 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 17:43:37 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:02:47 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	render(t_root *r)
 	t_ray	ray;
 
 	y = -1;
+	vec3_print(r->camera.origin);
 	while (++y < HEIGHT)
 	{
 		x = -1;
