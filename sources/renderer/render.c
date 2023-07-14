@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 19:42:14 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 13:20:57 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/14 17:43:37 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_ray	make_ray(t_root *r, t_vec3 factors)
 	res = vec3_add(res, r->camera.normal);
 	ray.origin = r->camera.origin;
 	ray.direction = vec3_sub(res, ray.origin);
+	ray.distance = INFINITY;
 	return (ray);
 }
 //_ R=2(N⋅L)N-L
@@ -47,8 +48,8 @@ bool	intersects(t_shape *shape, t_ray *ray)
 {
 	if (shape->type == SPHERE)
 		return (sphere_intersect(&shape->data.sp, ray));
-	// else if (shape->type == PLANE)
-	// 	return (plane_intersect(&shape->data.pl, ray));
+	else if (shape->type == PLANE)
+		return (plane_intersect(&shape->data.pl, ray));
 	// else if (shape->type == CYLINDER)
 	// 	return (cylinder_intersect(&shape->data.cy, ray));
 	return (false);
@@ -83,8 +84,8 @@ int	render(t_root *r)
 				else if (shape->type == PLANE)
 					color = shape->data.pl.color;
 				else
-					color = shape->data.cy.color;
-				put_pixel(r, color, x, y);				
+					color = shape->data.cy.color;		
+				put_pixel(r, color, x, y);
 			}
 		}
 	}

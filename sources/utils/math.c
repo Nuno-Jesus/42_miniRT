@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 18:03:20 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/10 19:42:00 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/14 17:43:20 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,17 @@ int	quadformula(float a, float b, float c)
 	x1 = (-b + sqrt(delta)) / (2 * a);
 	x2 = (-b - sqrt(delta)) / (2 * a);
 	return (delta);
+}
+
+void	closest_point(float t, t_ray *ray)
+{
+	t_vec3	point;
+	t_vec3	vec;
+	float 	distance;
+
+	point = vec3_add(ray->origin, vec3_scale(ray->direction, t));
+	vec = vec3_sub(point, ray->origin);
+	distance = vec3_module(vec);
+	if (distance < ray->distance)
+		ray->distance = distance;	
 }

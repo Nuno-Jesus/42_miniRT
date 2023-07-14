@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:32:00 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/10 18:19:31 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/14 17:42:48 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ void	destroy_root(t_root **root);
 float	determinant(float a, float b, float c);
 
 int		quadformula(float a, float b, float c);
+
+void	closest_point(float t, t_ray *ray);
 
 #endif

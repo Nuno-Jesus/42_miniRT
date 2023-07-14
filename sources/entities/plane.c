@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 13:20:17 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/14 17:42:20 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,20 @@ t_plane	plane_new(char **c, char **n, char **cl)
 
 bool	plane_intersect(t_plane *pl, t_ray *ray)
 {
-	(void) pl;
-	(void) ray;
-	return (false);
+	t_vec3	co;
+	float 	numerator;
+	float 	denominator;
+	float 	result;
+
+	if (vec3_dot(ray->direction, pl->normal) != 0)
+	{
+		co = vec3_sub(ray->origin, pl->point);
+		numerator = vec3_dot(co, pl->normal);
+		denominator = vec3_dot(ray->direction, pl->normal);
+		result = numerator / denominator;
+		closest_point(result, ray);
+		return (true);
+	}
+	else
+		return (false);
 }
