@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 19:42:14 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 13:20:57 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/14 15:32:30 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ bool	intersects(t_shape *shape, t_ray *ray)
 		return (sphere_intersect(&shape->data.sp, ray));
 	// else if (shape->type == PLANE)
 	// 	return (plane_intersect(&shape->data.pl, ray));
-	// else if (shape->type == CYLINDER)
-	// 	return (cylinder_intersect(&shape->data.cy, ray));
+	else if (shape->type == CYLINDER)
+		return (cylinder_intersect(&shape->data.cy, ray));
 	return (false);
 }
 
@@ -72,7 +72,7 @@ int	render(t_root *r)
 			for (uint32_t i = 0; i < r->shapes->size; i++)
 			{
 				bool hit;
-				t_color	color;
+				t_color	color = WHITE;
 				t_shape	*shape = nc_vector_at(r->shapes, i);
 				
 				hit = intersects(shape, &ray);

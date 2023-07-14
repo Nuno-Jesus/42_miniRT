@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 10:52:51 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/14 15:47:12 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ void	init_viewport(t_root *r)
 	r->right = vec3_normalize(vec3_cross(r->camera.normal, r->up));
 	vec3_print(vec3_cross(r->camera.normal, UPGUIDE));
 	vec3_print(r->camera.normal);
+	printf("Right ");
 	vec3_print(r->right);
+	printf("Up ");
 	vec3_print(r->up);
 	printf("wview: %f\n", r->wview);
 	printf("hview: %f\n", r->hview);
