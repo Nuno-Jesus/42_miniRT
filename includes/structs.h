@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 13:08:10 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/07/15 18:04:10 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/15 18:04:34 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ typedef struct s_graphics
 
 typedef struct s_ray
 {
+	float   distance;
+	t_color	color;
 	t_vec3	origin;
 	t_vec3	direction;
 }	t_ray;

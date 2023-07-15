@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 18:03:20 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 16:27:19 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/15 18:06:38 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,26 @@ int	quadformula(float a, float b, float c, float *roots)
 		roots[1] = x1;
 	}
 	return (delta);
+}
+
+void	closest_point(float t, t_ray *ray, t_color *color)
+{
+	t_vec3	point;
+	t_vec3	vec;
+	float 	distance;
+
+	point = vec3_add(ray->origin, vec3_scale(ray->direction, t));
+	vec = vec3_sub(point, ray->origin);
+	distance = vec3_module(vec);
+	// Print the distance vs the ray closest distance
+	if (distance < ray->distance + EPSILON)
+	{
+		// HERE;
+		// printf("distance = %f\n", distance);
+		// printf("ray->distance = %f\n", ray->distance);
+		// printf("Painting: ");
+		// color_print(color);
+		ray->distance = distance;	
+		ray->color = *color;
+	}
 }

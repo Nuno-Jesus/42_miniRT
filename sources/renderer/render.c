@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 19:42:14 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 15:32:30 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/15 18:09:26 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ t_ray	make_ray(t_root *r, t_vec3 factors)
 	horizontal = vec3_scale(r->right, factors.x * r->wview);
 	res = vec3_add(vertical, horizontal);
 	res = vec3_add(res, r->camera.normal);
+	res = vec3_add(res, r->camera.origin);
 	ray.origin = r->camera.origin;
 	ray.direction = vec3_sub(res, ray.origin);
+	ray.distance = INFINITY;
+	ray.color = BLACK;
 	return (ray);
 }
 //_ R=2(N⋅L)N-L
@@ -47,8 +50,8 @@ bool	intersects(t_shape *shape, t_ray *ray)
 {
 	if (shape->type == SPHERE)
 		return (sphere_intersect(&shape->data.sp, ray));
-	// else if (shape->type == PLANE)
-	// 	return (plane_intersect(&shape->data.pl, ray));
+	else if (shape->type == PLANE)
+		return (plane_intersect(&shape->data.pl, ray));
 	else if (shape->type == CYLINDER)
 		return (cylinder_intersect(&shape->data.cy, ray));
 	return (false);
@@ -56,36 +59,34 @@ bool	intersects(t_shape *shape, t_ray *ray)
 
 int	render(t_root *r)
 {	
-	int	x;
-	int	y;
+	t_vec3	coords;
 	t_vec3	factors;
 	t_ray	ray;
-
-	y = -1;
-	while (++y < HEIGHT)
+	t_shape	*shape;
+	bool hit;
+	
+	coords.y = -1;
+	while (++coords.y < HEIGHT)
 	{
-		x = -1;
-		while (++x < WIDTH)
+		coords.x = -1;
+		while (++coords.x < WIDTH)
 		{
-			factors = world_to_viewport(x, y);
+			factors = world_to_viewport(coords.x, coords.y);
 			ray = make_ray(r, factors);
 			for (uint32_t i = 0; i < r->shapes->size; i++)
 			{
-				bool hit;
-				t_color	color = WHITE;
-				t_shape	*shape = nc_vector_at(r->shapes, i);
-				
+				shape = nc_vector_at(r->shapes, i);
 				hit = intersects(shape, &ray);
 				if (!hit)
 					continue;
 				if (shape->type == SPHERE)
-					color = shape->data.sp.color;
+					ray.color = shape->data.sp.color;
 				else if (shape->type == PLANE)
-					color = shape->data.pl.color;
+					ray.color = shape->data.pl.color;
 				else
-					color = shape->data.cy.color;
-				put_pixel(r, color, x, y);				
+					ray.color = shape->data.cy.color;		
 			}
+			put_pixel(r, ray.color, coords.x, coords.y);
 		}
 	}
 	mlx_put_image_to_window(r->disp.mlx, r->disp.win, r->disp.img, 0, 0);

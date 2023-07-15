@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 17:09:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 13:20:17 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/07/15 18:05:09 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/07/15 18:05:17 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,21 @@ t_plane	plane_new(char **c, char **n, char **cl)
 
 bool	plane_intersect(t_plane *pl, t_ray *ray)
 {
-	(void) pl;
-	(void) ray;
+	t_vec3	co;
+	float 	numerator;
+	float 	denominator;
+	float 	result;
+
+	//Print the dot product of the ray direction and the plane normal
+	// printf("Dot product = %f\n", vec3_dot(ray->direction, pl->normal));
+	if (vec3_dot(ray->direction, pl->normal) > EPSILON)
+	{
+		co = vec3_sub(ray->origin, pl->point);
+		numerator = vec3_dot(co, pl->normal);
+		denominator = vec3_dot(ray->direction, pl->normal);
+		result = numerator / denominator;
+		closest_point(result, ray, &pl->color);
+		return (true);		
+	}
 	return (false);
 }

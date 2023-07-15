@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/07 23:06:13 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:12:49 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@
 # include "renderer.h"
 
 t_color	color_new(int r, int g, int b);
+
+void	color_print(t_color *color);
 
 #endif
