@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 19:42:14 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 19:02:47 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/15 17:59:33 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_ray	make_ray(t_root *r, t_vec3 factors)
 	horizontal = vec3_scale(r->right, factors.x * r->wview);
 	res = vec3_add(vertical, horizontal);
 	res = vec3_add(res, r->camera.normal);
+	res = vec3_add(res, r->camera.origin);
 	ray.origin = r->camera.origin;
 	ray.direction = vec3_sub(res, ray.origin);
 	ray.distance = INFINITY;
@@ -63,7 +64,6 @@ int	render(t_root *r)
 	t_ray	ray;
 
 	y = -1;
-	vec3_print(r->camera.origin);
 	while (++y < HEIGHT)
 	{
 		x = -1;
@@ -85,7 +85,7 @@ int	render(t_root *r)
 				else if (shape->type == PLANE)
 					color = shape->data.pl.color;
 				else
-					color = shape->data.cy.color;		
+					color = shape->data.cy.color;
 				put_pixel(r, color, x, y);
 			}
 		}

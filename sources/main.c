@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 19:14:04 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/15 17:59:10 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,18 @@ int	on_keypress(int keycode, t_root *r)
 {
 	if (keycode == ESC)
 		quit(r);
-	if (keycode == D)
-		r->camera.origin.x = r->camera.origin.x + 0.05;
-	if (keycode == A)
-		r->camera.origin.x = r->camera.origin.x - 0.05;
-	if (keycode == W)
-		r->camera.origin.y = r->camera.origin.y + 0.05;
-	if (keycode == S)
-		r->camera.origin.y = r->camera.origin.y - 0.05;
-	if (keycode == UP)
-		r->camera.origin.z = r->camera.origin.z + 0.05;
-	if (keycode == DOWN)
-		r->camera.origin.z = r->camera.origin.z - 0.05;
+	else if (keycode == W)
+		r->camera.origin.y = r->camera.origin.y + 1;
+	else if (keycode == A)
+		r->camera.origin.x = r->camera.origin.x + 1;
+	else if (keycode == S)
+		r->camera.origin.y = r->camera.origin.y - 1;
+	else if (keycode == D)
+		r->camera.origin.x = r->camera.origin.x - 1;
+	else if (keycode == UP)
+		r->camera.origin.z = r->camera.origin.z + 1;
+	else if (keycode == DOWN)
+		r->camera.origin.z = r->camera.origin.z - 1;
 	nc_bzero(r->disp.addr, WIDTH * HEIGHT * (r->disp.bpp / 8));
 	render(r);
 	return (keycode);
