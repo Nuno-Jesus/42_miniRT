@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/15 18:06:38 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:12:00 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,15 @@ void	closest_point(float t, t_ray *ray, t_color *color)
 	point = vec3_add(ray->origin, vec3_scale(ray->direction, t));
 	vec = vec3_sub(point, ray->origin);
 	distance = vec3_module(vec);
-	// Print the distance vs the ray closest distance
 	if (distance < ray->distance + EPSILON)
 	{
-		// HERE;
-		// printf("distance = %f\n", distance);
-		// printf("ray->distance = %f\n", ray->distance);
-		// printf("Painting: ");
-		// color_print(color);
+		printf("Old color: ");
+		color_print(&ray->color);
+		printf("distance = %f\n", distance);
+		printf("ray->distance = %f\n", ray->distance);
 		ray->distance = distance;	
 		ray->color = *color;
+		printf("New color: ");
+		color_print(&ray->color);
 	}
 }
