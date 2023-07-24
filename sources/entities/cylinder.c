@@ -43,10 +43,11 @@ bool	cylinder_intersect(t_cylinder *cy, t_ray *ray)
 	float 	c;
 	float	roots[2];
 	t_vec3	co;
-	t_vec3	cap;
+	// t_vec3	cap;
+
 	
-	cap = vec3_add(cy->center, vec3_scale(cy->normal, cy->height / 2.0));
-	co = vec3_sub(ray->origin, cap);
+	// cap = vec3_sub(cy->center, vec3_scale(cy->normal, cy->height / 2.0));
+	co = vec3_sub(ray->origin, cy->center);
 	a = vec3_dot(ray->direction, ray->direction) - pow(vec3_dot(ray->direction, cy->normal), 2);
 	b = 2 * (vec3_dot(ray->direction, co) - vec3_dot(ray->direction, cy->normal) * vec3_dot(co, cy->normal));
 	c = vec3_dot(co, co) - pow(vec3_dot(co, cy->normal), 2) - pow(cy->radius, 2);
@@ -58,8 +59,29 @@ bool	cylinder_intersect(t_cylinder *cy, t_ray *ray)
 	// printf("Determinant = %f\n", determinant(a, b, c));
 	if (quadformula(a, b, c, roots) == 0)
 		return (false);
-	if (roots[0] < 0 || roots[0] > cy->height)
-		return (false);
-	return (true);
+	float m1;
+	float m2;
+
+	m1 = vec3_dot(ray->direction, cy->normal) * roots[0] + vec3_dot(co, cy->normal);
+	m2 = vec3_dot(ray->direction, cy->normal) * roots[1] + vec3_dot(co, cy->normal);
+	// t_vec3 inter, inter2;
+
+	// inter = vec3_add(ray->origin, vec3_scale(ray->direction, roots[0]));
+	// inter2 = vec3_add(ray->origin, vec3_scale(ray->direction, roots[1]));
+	if (m1 >= -cy->height / 2 && m1 <= cy->height / 2)
+	{
+		// printf("========= ============\n");
+		// printf("x1 = %3.f m1 = %3.f inter 1:", roots[0], m1);
+		// vec3_print(inter);
+		return (true);
+	}
+	if (m2 >= -cy->height / 2 && m2 <= cy->height / 2)
+	{
+		// printf("========= ============\n");
+		// printf("x2 = %3.f m2 = %3.f inter 2:", roots[1], m2);
+		// vec3_print(inter2);
+		return (true);
+	}
+	return (false);
 }
 
