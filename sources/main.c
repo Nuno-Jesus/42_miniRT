@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 15:47:12 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:19:03 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,18 @@ int	on_keypress(int keycode, t_root *r)
 {
 	if (keycode == ESC)
 		quit(r);
-	printf("Pressed key %d\n", keycode);
+	else if (keycode == W)
+		r->camera.origin.y += 1;
+	else if (keycode == A)
+		r->camera.origin.x -= 1;
+	else if (keycode == S)
+		r->camera.origin.y -= 1;
+	else if (keycode == D)
+		r->camera.origin.x += 1;
+	else if (keycode == C)
+		r->camera.origin.z -= 1;
+	else if (keycode == V)
+		r->camera.origin.z += 1;
 	return (keycode);
 }
 

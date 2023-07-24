@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/15 18:03:50 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:17:16 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@
 # define W 119
 # define A 97
 # define S 115
-# define D 10
+# define D 100
+# define C 99
+# define V 118
 
 # define ERROR_COLOR_A		"Wrong color syntax for ambient lightning"
 # define ERROR_COLOR_L		"Wrong color syntax for light source"
