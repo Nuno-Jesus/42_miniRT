@@ -47,8 +47,8 @@
 # define G 1
 # define B 2
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 640
+# define HEIGHT 360
 # define RATIO WIDTH/(float)HEIGHT
 
 # define MAX_REFLECTIONS 2
