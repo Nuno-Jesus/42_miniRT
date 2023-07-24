@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/24 12:57:02 by crypto           ###   ########.fr       */
+/*   Updated: 2023/07/24 16:17:22 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	closest_point(float t, t_ray *ray, t_color *color)
 		// printf("ray->distance = %f\n", ray->distance);
 		// printf("New color: ");
 		// color_print(&ray->color);
-		ray->distance = distance;	
+		ray->distance = distance;
 		ray->color = *color;
 	}
 }

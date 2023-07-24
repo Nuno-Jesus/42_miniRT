@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/15 18:09:26 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:32:51 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,7 @@ int	render(t_root *r)
 				shape = nc_vector_at(r->shapes, i);
 				hit = intersects(shape, &ray);
 				if (!hit)
-					continue;
-				if (shape->type == SPHERE)
-					ray.color = shape->data.sp.color;
-				else if (shape->type == PLANE)
-					ray.color = shape->data.pl.color;
-				else
-					ray.color = shape->data.cy.color;		
+					continue;	
 			}
 			put_pixel(r, ray.color, coords.x, coords.y);
 		}

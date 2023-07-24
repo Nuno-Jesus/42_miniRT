@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/24 15:27:23 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:01:21 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	plane_intersect(t_plane *pl, t_ray *ray)
 		co = vec3_sub(ray->origin, pl->point);
 		numerator = vec3_dot(co, pl->normal);
 		denominator = vec3_dot(ray->direction, pl->normal);
-		t = numerator / denominator;
+		t = -(numerator / denominator);
 		closest_point(t, ray, &pl->color);
 		return (true);		
 	}
