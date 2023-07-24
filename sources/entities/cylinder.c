@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 13:20:24 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:03:49 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,28 @@ t_cylinder	cylinder_new(char **tokens)
 
 bool	cylinder_intersect(t_cylinder *cy, t_ray *ray)
 {
-	(void) cy;
-	(void) ray;
-	return (false);
+	float	a;
+	float 	b;
+	float 	c;
+	float	roots[2];
+	t_vec3	co;
+	t_vec3	cap;
+	
+	cap = vec3_add(cy->center, vec3_scale(cy->normal, cy->height / 2.0));
+	co = vec3_sub(ray->origin, cap);
+	a = vec3_dot(ray->direction, ray->direction) - pow(vec3_dot(ray->direction, cy->normal), 2);
+	b = 2 * (vec3_dot(ray->direction, co) - vec3_dot(ray->direction, cy->normal) * vec3_dot(co, cy->normal));
+	c = vec3_dot(co, co) - pow(vec3_dot(co, cy->normal), 2) - pow(cy->radius, 2);
+	// printf("a = %f\n", a);
+	// printf("b = %f\n", b);
+	// printf("c = %f\n", c);
+
+	//Print the result of the determinant
+	// printf("Determinant = %f\n", determinant(a, b, c));
+	if (quadformula(a, b, c, roots) == 0)
+		return (false);
+	if (roots[0] < 0 || roots[0] > cy->height)
+		return (false);
+	return (true);
 }
 

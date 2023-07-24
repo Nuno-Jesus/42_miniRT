@@ -100,6 +100,7 @@ typedef struct s_graphics
 typedef struct s_ray
 {
 	float   distance;
+	t_color	color;
 	t_vec3	origin;
 	t_vec3	direction;
 }	t_ray;

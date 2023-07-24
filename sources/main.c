@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 10:52:51 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:19:03 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,18 @@ int	on_keypress(int keycode, t_root *r)
 {
 	if (keycode == ESC)
 		quit(r);
-	printf("Pressed key %d\n", keycode);
+	else if (keycode == W)
+		r->camera.origin.y += 1;
+	else if (keycode == A)
+		r->camera.origin.x -= 1;
+	else if (keycode == S)
+		r->camera.origin.y -= 1;
+	else if (keycode == D)
+		r->camera.origin.x += 1;
+	else if (keycode == C)
+		r->camera.origin.z -= 1;
+	else if (keycode == V)
+		r->camera.origin.z += 1;
 	return (keycode);
 }
 
@@ -48,7 +59,9 @@ void	init_viewport(t_root *r)
 	r->right = vec3_normalize(vec3_cross(r->camera.normal, r->up));
 	vec3_print(vec3_cross(r->camera.normal, UPGUIDE));
 	vec3_print(r->camera.normal);
+	printf("Right ");
 	vec3_print(r->right);
+	printf("Up ");
 	vec3_print(r->up);
 	printf("wview: %f\n", r->wview);
 	printf("hview: %f\n", r->hview);

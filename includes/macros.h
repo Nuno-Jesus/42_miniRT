@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 17:44:28 by maricard         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:17:16 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@
 # define BLACK		(t_color){0, 0, 0, 0}
 # define WHITE		(t_color){0, 255, 255, 255}
 # define RED		(t_color){0, 255, 0, 0}
-# define UPGUIDE (t_vec3){0.0, 1.0, 0.0}
+# define UPGUIDE	(t_vec3){0.0, 1.0, 0.0}
 
 # define HAS_COMMAS '1'
 # define HERE printf("HERE\n");
 
-# define EPSILON 0.00001
+# define EPSILON 0.0001
 
 # define X 0
 # define Y 1
@@ -62,7 +62,9 @@
 # define W 119
 # define A 97
 # define S 115
-# define D 10
+# define D 100
+# define C 99
+# define V 118
 
 # define ERROR_COLOR_A		"Wrong color syntax for ambient lightning"
 # define ERROR_COLOR_L		"Wrong color syntax for light source"
