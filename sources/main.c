@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/15 17:59:10 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:19:03 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,26 @@ int	quit(t_root *root)
 	exit(EXIT_SUCCESS);
 }
 
+int	on_keypress(int keycode, t_root *r)
+{
+	if (keycode == ESC)
+		quit(r);
+	else if (keycode == W)
+		r->camera.origin.y += 1;
+	else if (keycode == A)
+		r->camera.origin.x -= 1;
+	else if (keycode == S)
+		r->camera.origin.y -= 1;
+	else if (keycode == D)
+		r->camera.origin.x += 1;
+	else if (keycode == C)
+		r->camera.origin.z -= 1;
+	else if (keycode == V)
+		r->camera.origin.z += 1;
+	render(r);
+	return (keycode);
+}
+
 void	init_viewport(t_root *r)
 {
 	float	ratio;
@@ -38,27 +58,14 @@ void	init_viewport(t_root *r)
 	r->right = vec3_normalize(vec3_cross(r->camera.normal, UPGUIDE));
 	r->up = vec3_normalize(vec3_cross(r->camera.normal, r->right));
 	r->right = vec3_normalize(vec3_cross(r->camera.normal, r->up));
-}
-
-int	on_keypress(int keycode, t_root *r)
-{
-	if (keycode == ESC)
-		quit(r);
-	else if (keycode == W)
-		r->camera.origin.y = r->camera.origin.y + 1;
-	else if (keycode == A)
-		r->camera.origin.x = r->camera.origin.x + 1;
-	else if (keycode == S)
-		r->camera.origin.y = r->camera.origin.y - 1;
-	else if (keycode == D)
-		r->camera.origin.x = r->camera.origin.x - 1;
-	else if (keycode == UP)
-		r->camera.origin.z = r->camera.origin.z + 1;
-	else if (keycode == DOWN)
-		r->camera.origin.z = r->camera.origin.z - 1;
-	nc_bzero(r->disp.addr, WIDTH * HEIGHT * (r->disp.bpp / 8));
-	render(r);
-	return (keycode);
+	vec3_print(vec3_cross(r->camera.normal, UPGUIDE));
+	vec3_print(r->camera.normal);
+	printf("Right ");
+	vec3_print(r->right);
+	printf("Up ");
+	vec3_print(r->up);
+	printf("wview: %f\n", r->wview);
+	printf("hview: %f\n", r->hview);
 }
 
 int	main(int argc, char **argv)
