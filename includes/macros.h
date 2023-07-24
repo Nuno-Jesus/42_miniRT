@@ -47,13 +47,13 @@
 # define G 1
 # define B 2
 
-#ifdef __APPLE__
-# define WIDTH 800
-# define HEIGHT 500
-#else
-# define WIDTH 1920
-# define HEIGHT 1080
-#endif
+# ifdef __APPLE__
+#  define WIDTH 800
+#  define HEIGHT 500
+# else
+#  define WIDTH 640
+#  define HEIGHT 360
+# endif
 
 # define RATIO WIDTH/(float)HEIGHT
 
@@ -64,28 +64,27 @@
 # define KEYPRESS_MASK  (1L << 0)
 # define CLOSE_MASK  (1L << 17)
 
-#ifdef __APPLE__
-# define ESC 53
-# define W 13
-# define A 0
-# define S 1
-# define D 2
-# define UP 126
-# define DOWN 125
-# define C 8
-# define V 9
-
-#else
-# define ESC 65307
-# define W 119
-# define A 97
-# define S 115
-# define D 100
-# define UP 65362
-# define DOWN 65364
-# define C 99
-# define V 118
-#endif
+# ifdef __APPLE__
+#  define ESC 53
+#  define W 13
+#  define A 0
+#  define S 1
+#  define D 2
+#  define UP 126
+#  define DOWN 125
+#  define C 8
+#  define V 9
+# else
+#  define ESC 65307
+#  define W 119
+#  define A 97
+#  define S 115
+#  define D 100
+#  define UP 65362
+#  define DOWN 65364
+#  define C 99
+#  define V 118
+# endif
 
 # define ERROR_COLOR_A		"Wrong color syntax for ambient lightning"
 # define ERROR_COLOR_L		"Wrong color syntax for light source"
