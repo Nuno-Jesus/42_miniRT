@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 18:12:49 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:20:13 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-// # ifdef OS_LINUX
+#ifdef __APPLE__
+# include "../mlx_macos/mlx.h"
+
+#else
 # include "../mlx_linux/mlx.h"
-// # else
-// #  include "../mlx_macos/mlx.h"
-// # endif
+# endif
 
 # include "macros.h"
 # include "get_next_line.h"

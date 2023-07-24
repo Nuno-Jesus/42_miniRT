@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/15 18:05:17 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:27:23 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,15 @@ bool	plane_intersect(t_plane *pl, t_ray *ray)
 	t_vec3	co;
 	float 	numerator;
 	float 	denominator;
-	float 	result;
+	float 	t;
 
-	//Print the dot product of the ray direction and the plane normal
-	// printf("Dot product = %f\n", vec3_dot(ray->direction, pl->normal));
 	if (vec3_dot(ray->direction, pl->normal) > EPSILON)
 	{
 		co = vec3_sub(ray->origin, pl->point);
 		numerator = vec3_dot(co, pl->normal);
 		denominator = vec3_dot(ray->direction, pl->normal);
-		result = numerator / denominator;
-		closest_point(result, ray, &pl->color);
+		t = numerator / denominator;
+		closest_point(t, ray, &pl->color);
 		return (true);		
 	}
 	return (false);
