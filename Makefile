@@ -153,6 +153,7 @@ $(OBJECTS):
 clean:	
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(OBJECTS)$(RESET)"
 	$(RM) $(OBJECTS)
+	$(RM) output.log
 
 fclean: clean
 	$(MAKE) fclean -C $(LIBNC)
@@ -170,7 +171,7 @@ fast:
 run: fast
 	./$(NAME) $(SCENE)
 
-leaks: all
+leaks: fast
 	valgrind --leak-check=full --show-leak-kinds=all --log-file=output.log ./$(NAME) $(SCENE)
 
 norm:
