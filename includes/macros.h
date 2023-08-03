@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 13:23:06 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/03 15:13:08 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@
 # define HAS_COMMAS '1'
 # define HERE printf("HERE\n");
 
-# define EPSILON 0.0000001
+# define EPSILON 0.0001
+# define KDIFFUSE 0.8
 
 # define X 0
 # define Y 1

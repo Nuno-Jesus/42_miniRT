@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   vec3_cos.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 11:22:56 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 18:11:54 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/08/03 15:21:44 by crypto            #+#    #+#             */
+/*   Updated: 2023/08/03 15:22:12 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_color	color_new(int r, int g, int b)
+double	vec3_cos(t_vec3 v1, t_vec3 v2)
 {
-	return ((t_color)
-		{
-			.r = r,
-			.g = g,
-			.b = b
-		}
-	);
-}
+	double	dot;
+	double	lengths;
 
-void	color_print(t_color *color)
-{
-	printf("#%02X%02X%02X\n", color->r, color->g, color->b);
+	dot = vec3_dot(v1, v2);
+	lengths = vec3_module(v1) * vec3_module(v2);
+	return (dot / lengths);
 }
-

@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 18:04:41 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 15:41:28 by crypto           ###   ########.fr       */
+/*   Created: 2023/07/05 11:22:56 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/08/03 15:37:39 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "miniRT.h"
 
-# include "miniRT.h"
+t_color	color_new(int r, int g, int b)
+{
+	return ((t_color)
+		{
+			.r = r,
+			.g = g,
+			.b = b
+		}
+	);
+}
 
-void	message(t_root *root, char *text);
+t_color	color_mult(t_color color, double k)
+{
+	return ((t_color)
+		{
+			.r = color.r * k,
+			.g = color.g * k,
+			.b = color.b * k
+		}
+	);
+}
 
-void	destroy_root(t_root **root);
+void	color_print(t_color *color)
+{
+	printf("#%02X%02X%02X\n", color->r, color->g, color->b);
+}
 
-double	determinant(double a, double b, double c);
-
-int		formula(double a, double b, double c, double *root);
-
-void	closest_point(double t, t_ray *ray, t_color *color);
-
-#endif
