@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/24 16:17:22 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/03 11:42:02 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,14 @@ float	determinant(float a, float b, float c)
 		return (2);
 }
 
-int	quadformula(float a, float b, float c, float *roots)
+int	formula(float a, float b, float c, float *root)
 {
-	float	x1;
-	float	x2;
 	float	delta;
 
 	delta = determinant(a, b, c);
-	if (delta == 0)
-		return (0);
-	x1 = (-b + sqrt(delta)) / (2 * a);
-	x2 = (-b - sqrt(delta)) / (2 * a);
-	if (x1 < x2)
-	{
-		roots[0] = x1;
-		roots[1] = x2;
-	}
-	else
-	{
-		roots[0] = x2;
-		roots[1] = x1;
-	}
+	if (delta < 0)
+		return (-1);
+	*root = (-b - sqrt(delta)) / (2 * a);	
 	return (delta);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 13:07:47 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/03 11:43:15 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,15 @@ bool	sphere_intersect(t_sphere *sp, t_ray *ray)
 	float	a;
 	float 	b;
 	float 	c;
+	float 	t;
 	t_vec3	co;
 	
 	co = vec3_sub(ray->origin, sp->origin);
 	a = vec3_dot(ray->direction, ray->direction);
 	b = 2.0f * vec3_dot(co, ray->direction);
 	c = vec3_dot(co, co) - pow(sp->radius, 2);
+	if (formula(a, b, c, &t) > 0)
+		closest_point(t, ray, &sp->color);
 	// printf("a = %f\n", a);
 	// printf("b = %f\n", b);
 	// printf("c = %f\n", c);
