@@ -6,15 +6,15 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 11:42:02 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/03 13:06:29 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-float	determinant(float a, float b, float c)
+double	determinant(double a, double b, double c)
 {
-	float	delta;
+	double	delta;
 
 	delta = pow(b, 2) - (4 * a * c);
 	if (delta < 0)
@@ -25,9 +25,9 @@ float	determinant(float a, float b, float c)
 		return (2);
 }
 
-int	formula(float a, float b, float c, float *root)
+int	formula(double a, double b, double c, double *root)
 {
-	float	delta;
+	double	delta;
 
 	delta = determinant(a, b, c);
 	if (delta < 0)
@@ -36,11 +36,11 @@ int	formula(float a, float b, float c, float *root)
 	return (delta);
 }
 
-void	closest_point(float t, t_ray *ray, t_color *color)
+void	closest_point(double t, t_ray *ray, t_color *color)
 {
 	t_vec3	point;
 	t_vec3	vec;
-	float 	distance;
+	double 	distance;
 
 	point = vec3_add(ray->origin, vec3_scale(ray->direction, t));
 	vec = vec3_sub(point, ray->origin);

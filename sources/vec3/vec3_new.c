@@ -12,7 +12,7 @@
 
 #include "miniRT.h"
 
-t_vec3	vec3_new(float x, float y, float z)
+t_vec3	vec3_new(double x, double y, double z)
 {
 	return ((t_vec3)
 		{

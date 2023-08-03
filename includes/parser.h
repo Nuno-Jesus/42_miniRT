@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/05 11:08:36 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:06:29 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	parse_sphere(t_root *root, char **tokens);
 
 bool	parse_cylinder(t_root *root, char **tokens);
 
-bool	parse_float(char **nb);
+bool	parse_double(char **nb);
 
 bool	parse_rgb(char *color);
 

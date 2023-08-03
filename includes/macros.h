@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/24 15:37:57 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:23:06 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define HAS_COMMAS '1'
 # define HERE printf("HERE\n");
 
-# define EPSILON 0.0001
+# define EPSILON 0.0000001
 
 # define X 0
 # define Y 1
@@ -51,11 +51,11 @@
 #  define WIDTH 800
 #  define HEIGHT 500
 # else
-#  define WIDTH 640
-#  define HEIGHT 360
+#  define WIDTH 1920
+#  define HEIGHT 1080
 # endif
 
-# define RATIO WIDTH/(float)HEIGHT
+# define RATIO WIDTH/(double)HEIGHT
 
 # define MAX_REFLECTIONS 2
 

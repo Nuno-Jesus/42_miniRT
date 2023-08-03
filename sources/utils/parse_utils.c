@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 19:39:48 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/05 12:23:52 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:06:29 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static size_t	nc_strclen(char *str, char *delim)
 	return (i);
 }
 
-bool	parse_float(char **nb)
+bool	parse_double(char **nb)
 {
 	int		i;
 	char	*tmp;

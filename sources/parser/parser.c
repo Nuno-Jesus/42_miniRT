@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/13 15:50:11 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:06:29 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	parse_syntax(char **tokens, char *code)
 			ok = (nc_count(tokens[i], ',') == 2 && numbers_size == 3);
 		else
 			ok = (nc_count(tokens[i], ',') == 0);
-		if (!parse_float(numbers) && i > 0)
+		if (!parse_double(numbers) && i > 0)
 			ok = false;
 		nc_matrix_delete(numbers, &free);
 		if (!ok)
