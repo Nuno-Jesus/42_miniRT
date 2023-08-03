@@ -32,6 +32,7 @@ AR = ar -rcs
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
+#! Add DEPENDENCIES folder and use the -I flag which specifies the path to find them
 INCLUDES	= includes 
 SOURCES		= sources
 OBJECTS		= objects
@@ -82,6 +83,8 @@ _RENDERER = pixel render
 _ENTITIES = cylinder plane shape sphere source color
 _UTILS = math message parse_utils
 _FILES	= main $(_VEC3) $(_DESTROY) $(_DEBUG) $(_PARSER) $(_RENDERER) $(_ENTITIES) $(_UTILS)
+
+#! Change the names of these variables, too confusing 
 TARGET	= $(patsubst %, %.o, $(_FILES))
 OBJS	= $(foreach target, $(TARGET), $(OBJECTS)/$(target))
 
@@ -99,6 +102,8 @@ OBJS	= $(foreach target, $(TARGET), $(OBJECTS)/$(target))
 # If you need both debug and sanitizer:
 # 	make D=1 SAN=A
 
+
+#! Change this to use MAKEFLAGS and declare a flag to activate -g
 ifdef D
 	CFLAGS += -g
 endif
@@ -128,6 +133,7 @@ endif
 
 all: $(NAME)
 
+#! Remove the echos and replace everything with a loading bar
 $(NAME): $(OBJECTS) $(OBJS)
 	echo "[$(CYAN)Compiling$(RESET)] $(GREEN)$(LIBNC)$(RESET)"
 	$(MAKE) -C $(LIBNC)/
