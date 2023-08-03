@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/24 16:32:51 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/03 11:40:25 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	render(t_root *r)
 		{
 			factors = world_to_viewport(coords.x, coords.y);
 			ray = make_ray(r, factors);
+			// vec3_print(ray.direction);
 			for (uint32_t i = 0; i < r->shapes->size; i++)
 			{
 				shape = nc_vector_at(r->shapes, i);
@@ -81,6 +82,7 @@ int	render(t_root *r)
 					continue;	
 			}
 			put_pixel(r, ray.color, coords.x, coords.y);
+			// color_print(&ray.color);
 		}
 	}
 	mlx_put_image_to_window(r->disp.mlx, r->disp.win, r->disp.img, 0, 0);

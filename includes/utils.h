@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:04:41 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/15 18:08:17 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/03 11:36:49 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	destroy_root(t_root **root);
 
 float	determinant(float a, float b, float c);
 
-int		quadformula(float a, float b, float c, float *roots);
+int	formula(float a, float b, float c, float *root);
 
 void	closest_point(float t, t_ray *ray, t_color *color);
 

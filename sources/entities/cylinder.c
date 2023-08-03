@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/24 13:03:49 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/03 11:34:06 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ bool	cylinder_intersect(t_cylinder *cy, t_ray *ray)
 
 	//Print the result of the determinant
 	// printf("Determinant = %f\n", determinant(a, b, c));
-	if (quadformula(a, b, c, roots) == 0)
+	if (formula(a, b, c, roots) == 0)
 		return (false);
 	float m1;
 	float m2;
