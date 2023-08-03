@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 17:39:43 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:09:10 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ typedef struct s_color
 typedef struct s_lightsource
 {
 	t_vec3	origin;
-	float	brightness;
+	double	brightness;
 	t_color	color;
 }	t_lightsource;
 
 typedef struct s_light
 {
-	float	ratio;
+	double	ratio;
 	t_color	color;
 }	t_light;
 
@@ -45,13 +45,13 @@ typedef struct s_camera
 {
 	t_vec3	origin;
 	t_vec3	normal;
-	float	fov;
+	double	fov;
 }	t_camera;
 
 typedef struct s_sphere
 {
 	t_vec3	origin;
-	float	radius;
+	double	radius;
 	t_color	color;
 }	t_sphere;
 
@@ -66,8 +66,8 @@ typedef struct s_cylinder
 {
 	t_vec3	center;
 	t_vec3	normal;
-	float	radius;
-	float	height;
+	double	radius;
+	double	height;
 	t_color	color;
 }	t_cylinder;
 
@@ -99,7 +99,7 @@ typedef struct s_graphics
 
 typedef struct s_ray
 {
-	float   distance;
+	double   distance;
 	t_color	color;
 	t_vec3	origin;
 	t_vec3	direction;
@@ -113,8 +113,8 @@ typedef struct s_root
 	t_vector		*shapes;
 	t_graphics		disp;
 	char			**map;
-	float			hview; //! Height of the viewport
-	float			wview; //! Width of the viewport
+	double			hview; //! Height of the viewport
+	double			wview; //! Width of the viewport
 	t_vec3			up;
 	t_vec3			right;	
 }	t_root;

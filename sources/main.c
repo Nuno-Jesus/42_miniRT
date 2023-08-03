@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/24 15:18:57 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:22:23 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,26 @@ int	on_keypress(int keycode, t_root *r)
 	if (keycode == ESC)
 		quit(r);
 	else if (keycode == W)
-		r->camera.origin.y += 1;
+		r->camera.origin.y += 50;
 	else if (keycode == A)
-		r->camera.origin.x -= 1;
+		r->camera.origin.x -= 50;
 	else if (keycode == S)
-		r->camera.origin.y -= 1;
+		r->camera.origin.y -= 50;
 	else if (keycode == D)
-		r->camera.origin.x += 1;
+		r->camera.origin.x += 50;
 	else if (keycode == C)
-		r->camera.origin.z -= 1;
+		r->camera.origin.z -= 50;
 	else if (keycode == V)
-		r->camera.origin.z += 1;
+		r->camera.origin.z += 50;
 	render(r);
+	// printf("Camera position: ");
+	// vec3_print(r->camera.origin);
 	return (keycode);
 }
 
 void	init_viewport(t_root *r)
 {
-	float	ratio;
+	double	ratio;
 
 	ratio = RATIO;
 	r->wview = tan(RADIANS(r->camera.fov / 2));

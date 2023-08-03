@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 11:40:25 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/03 13:20:42 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_vec3	world_to_viewport(int x, int y)
 {
 	t_vec3	converted;
-	float	width;
-	float	height;
+	double	width;
+	double	height;
 
 	width = WIDTH;
 	height = HEIGHT;
@@ -73,7 +73,13 @@ int	render(t_root *r)
 		{
 			factors = world_to_viewport(coords.x, coords.y);
 			ray = make_ray(r, factors);
-			// vec3_print(ray.direction);
+			if (coords.x == WIDTH/2 && coords.y == HEIGHT/2)
+			{
+				// printf("Ray direction: ");
+				// vec3_print(ray.direction);
+				// printf("Ray Origin: ");
+				// vec3_print(ray.origin);
+			}
 			for (uint32_t i = 0; i < r->shapes->size; i++)
 			{
 				shape = nc_vector_at(r->shapes, i);

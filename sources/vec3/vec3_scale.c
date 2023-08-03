@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   vec3_scale.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:09:10 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/07 23:09:11 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:06:29 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_vec3	vec3_scale(t_vec3 v1, float scalar)
+t_vec3	vec3_scale(t_vec3 v1, double scalar)
 {
 	t_vec3	res;
 

@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 11:34:06 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/03 13:06:29 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ t_cylinder	cylinder_new(char **tokens)
 
 bool	cylinder_intersect(t_cylinder *cy, t_ray *ray)
 {
-	float	a;
-	float 	b;
-	float 	c;
-	float	roots[2];
+	double	a;
+	double 	b;
+	double 	c;
+	double	roots[2];
 	t_vec3	co;
 	// t_vec3	cap;
 
@@ -59,8 +59,8 @@ bool	cylinder_intersect(t_cylinder *cy, t_ray *ray)
 	// printf("Determinant = %f\n", determinant(a, b, c));
 	if (formula(a, b, c, roots) == 0)
 		return (false);
-	float m1;
-	float m2;
+	double m1;
+	double m2;
 
 	m1 = vec3_dot(ray->direction, cy->normal) * roots[0] + vec3_dot(co, cy->normal);
 	m2 = vec3_dot(ray->direction, cy->normal) * roots[1] + vec3_dot(co, cy->normal);
