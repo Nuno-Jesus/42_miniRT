@@ -560,7 +560,7 @@ int get_mouse_button(NSEventType eventtype)
   glUniform2f(glsl.loc_image_size, img->width, -img->height);
 
   glBindBuffer(GL_ARRAY_BUFFER, imgctx->vbuffer);
-  glVertexAttribPointer(0, 2, GL_double, GL_FALSE, 2*sizeof(GLdouble), (void*)0);
+  glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2*sizeof(GLdouble), (void*)0);
   glEnableVertexAttribArray(0);
 
   glEnable(GL_BLEND);
@@ -597,7 +597,7 @@ int get_mouse_button(NSEventType eventtype)
   glUniform2f(glsl.loc_font_atlassize, img->width, img->height);
 
   glBindBuffer(GL_ARRAY_BUFFER, imgctx->vbuffer);
-  glVertexAttribPointer(0, 2, GL_double, GL_FALSE, 2*sizeof(GLdouble), (void*)0);
+  glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2*sizeof(GLdouble), (void*)0);
   glEnableVertexAttribArray(0);
 
   glEnable(GL_BLEND);
@@ -622,7 +622,7 @@ int get_mouse_button(NSEventType eventtype)
   glUniform1i(glsl.loc_pixel_texture, 0);
   
   glBindBuffer(GL_ARRAY_BUFFER, pixel_vbuffer);
-  glVertexAttribPointer(0, 2, GL_double, GL_FALSE, 2*sizeof(GLdouble), (void*)0);
+  glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2*sizeof(GLdouble), (void*)0);
   glEnableVertexAttribArray(0);
 
   glEnable(GL_BLEND);
