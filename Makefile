@@ -175,6 +175,7 @@ fast:
 	$(MAKE) re -j
 
 run: fast
+	clear
 	./$(NAME) $(SCENE)
 
 leaks: fast

@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 16:00:06 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/05 16:45:57 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-double	determinant(double a, double b, double c)
+double	determinant(t_equation *eq)
 {
 	double	delta;
 
-	delta = pow(b, 2) - (4 * a * c);
+	delta = pow(eq->b, 2) - (4 * eq->a * eq->c);
 	if (delta < 0)
 		return (0);
 	else if (delta < EPSILON)
@@ -25,14 +25,15 @@ double	determinant(double a, double b, double c)
 		return (2);
 }
 
-int	formula(double a, double b, double c, double *root)
+int	quadformula(t_equation *eq)
 {
 	double	delta;
 
-	delta = determinant(a, b, c);
+	delta = determinant(eq);
 	if (delta < 0)
 		return (-1);
-	*root = (-b - sqrt(delta)) / (2 * a);	
+	eq->t1 = (-eq->b - sqrt(delta)) / (2 * eq->a);	
+	eq->t2 = (-eq->b + sqrt(delta)) / (2 * eq->a);	
 	return (delta);
 }
 

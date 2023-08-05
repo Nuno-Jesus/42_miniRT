@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:04:41 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 15:41:28 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/05 16:46:06 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	message(t_root *root, char *text);
 
 void	destroy_root(t_root **root);
 
-double	determinant(double a, double b, double c);
+double	determinant(t_equation *eq);
 
-int		formula(double a, double b, double c, double *root);
+int		quadformula(t_equation *eq);
 
 void	closest_point(double t, t_ray *ray, t_color *color);
 

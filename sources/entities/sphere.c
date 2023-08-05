@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 13:06:29 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/05 16:46:42 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,21 @@ t_sphere	sphere_new(char **c, char *radius, char **cl)
 
 bool	sphere_intersect(t_sphere *sp, t_ray *ray)
 {
-	double	a;
-	double 	b;
-	double 	c;
-	double 	t;
 	t_vec3	co;
+	t_equation	equation;
 	
-	t = -1.0f;
+	equation.t1 = -1.0f;
 	co = vec3_sub(ray->origin, sp->origin);
-	a = vec3_dot(ray->direction, ray->direction);
-	b = 2.0f * vec3_dot(co, ray->direction);
-	c = vec3_dot(co, co) - pow(sp->radius, 2);
-	if (formula(a, b, c, &t) > 0 && t > EPSILON)
-		closest_point(t, ray, &sp->color);
+	equation.a = vec3_dot(ray->direction, ray->direction);
+	equation.b = 2.0f * vec3_dot(co, ray->direction);
+	equation.c = vec3_dot(co, co) - pow(sp->radius, 2);
+	if (quadformula(&equation) > 0 && equation.t1 > EPSILON)
+		closest_point(equation.t1, ray, &sp->color);
 	// printf("a = %f\n", a);
 	// printf("b = %f\n", b);
 	// printf("c = %f\n", c);
 
 	//Print the result of the determinant
 	// printf("Determinant = %f\n", determinant(a, b, c));
-	return (determinant(a, b, c) > 0);
+	return (determinant(&equation) > 0);
 }

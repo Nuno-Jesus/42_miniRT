@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 13:09:10 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/05 16:40:18 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ typedef struct s_color
 	int	g;
 	int	b;
 }	t_color;
+
+typedef struct s_equation
+{
+	double	a;
+	double	b;
+	double	c;
+	double	t1;
+	double	t2;
+}	t_equation;
 
 typedef struct s_lightsource
 {

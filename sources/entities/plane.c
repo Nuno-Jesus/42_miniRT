@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 13:17:17 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/05 16:32:29 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ bool	plane_intersect(t_plane *pl, t_ray *ray)
 	double 	t;
 
 	// vec3_print(pl->normal);
-	if (fabs(vec3_dot(ray->direction, pl->normal)) >= EPSILON)
+	if (vec3_dot(ray->direction, vec3_add(pl->normal, vec3_new(EPSILON, EPSILON, EPSILON))) != 0.0)
 	{
 		co = vec3_sub(ray->origin, pl->point);
-		numerator = vec3_dot(co, pl->normal);
-		denominator = vec3_dot(ray->direction, pl->normal);
+		numerator = vec3_dot(co, vec3_add(pl->normal, vec3_new(EPSILON, EPSILON, EPSILON)));
+		denominator = vec3_dot(ray->direction, vec3_add(pl->normal, vec3_new(EPSILON, EPSILON, EPSILON)));
 		t = -(numerator / denominator);
-		if (t > EPSILON)
+		if (t > 0)
 			closest_point(t, ray, &pl->color);
-		return (true);		
+		return (true);
 	}
 	return (false);
 }
