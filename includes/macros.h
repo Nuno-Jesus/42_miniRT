@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 15:13:08 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/05 12:30:52 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@
 #  define WIDTH 800
 #  define HEIGHT 500
 # else
-#  define WIDTH 1920
-#  define HEIGHT 1080
+#  define WIDTH 640
+#  define HEIGHT 360
 # endif
 
 # define RATIO WIDTH/(double)HEIGHT

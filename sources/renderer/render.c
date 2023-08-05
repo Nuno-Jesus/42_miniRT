@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 13:20:42 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/05 12:57:39 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	render(t_root *r)
 	t_vec3	factors;
 	t_ray	ray;
 	t_shape	*shape;
-	bool hit;
+	bool	hit;
 	
 	coords.y = -1;
 	while (++coords.y < HEIGHT)
@@ -73,19 +73,14 @@ int	render(t_root *r)
 		{
 			factors = world_to_viewport(coords.x, coords.y);
 			ray = make_ray(r, factors);
-			if (coords.x == WIDTH/2 && coords.y == HEIGHT/2)
-			{
-				// printf("Ray direction: ");
-				// vec3_print(ray.direction);
-				// printf("Ray Origin: ");
-				// vec3_print(ray.origin);
-			}
 			for (uint32_t i = 0; i < r->shapes->size; i++)
 			{
 				shape = nc_vector_at(r->shapes, i);
 				hit = intersects(shape, &ray);
 				if (!hit)
-					continue;	
+					continue;
+				ray.color = color_add(ambient(ray.color, r->ambient.ratio), \
+					diffuse(&ray, ray.color, UPGUIDE, KDIFFUSE));
 			}
 			put_pixel(r, ray.color, coords.x, coords.y);
 			// color_print(&ray.color);

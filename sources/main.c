@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 13:22:23 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/05 12:55:22 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ int	on_keypress(int keycode, t_root *r)
 	if (keycode == ESC)
 		quit(r);
 	else if (keycode == W)
-		r->camera.origin.y += 50;
+		r->camera.origin.y += 10;
 	else if (keycode == A)
-		r->camera.origin.x -= 50;
+		r->camera.origin.x -= 10;
 	else if (keycode == S)
-		r->camera.origin.y -= 50;
+		r->camera.origin.y -= 10;
 	else if (keycode == D)
-		r->camera.origin.x += 50;
+		r->camera.origin.x += 10;
 	else if (keycode == C)
-		r->camera.origin.z -= 50;
+		r->camera.origin.z -= 10;
 	else if (keycode == V)
-		r->camera.origin.z += 50;
+		r->camera.origin.z += 10;
 	render(r);
 	// printf("Camera position: ");
 	// vec3_print(r->camera.origin);
