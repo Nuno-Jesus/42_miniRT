@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/05 12:57:39 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/05 13:18:13 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,21 @@ bool	intersects(t_shape *shape, t_ray *ray)
 		return (cylinder_intersect(&shape->data.cy, ray));
 	return (false);
 }
-
+/*
+typedef struct s_inter
+{
+	t_shape	*shape;
+	t_vec3	point;
+	t_vec3	normal;
+}t_inter;
+*/
 int	render(t_root *r)
 {	
 	t_vec3	coords;
 	t_vec3	factors;
 	t_ray	ray;
 	t_shape	*shape;
+	// t_inter	inter;
 	bool	hit;
 	
 	coords.y = -1;
@@ -71,8 +79,12 @@ int	render(t_root *r)
 		coords.x = -1;
 		while (++coords.x < WIDTH)
 		{
+			// Convert pixels to viewport coords (V point)
 			factors = world_to_viewport(coords.x, coords.y);
+			// Make a ray from camera to V
 			ray = make_ray(r, factors);
+			// World hit function
+			// {
 			for (uint32_t i = 0; i < r->shapes->size; i++)
 			{
 				shape = nc_vector_at(r->shapes, i);
@@ -82,6 +94,13 @@ int	render(t_root *r)
 				ray.color = color_add(ambient(ray.color, r->ambient.ratio), \
 					diffuse(&ray, ray.color, UPGUIDE, KDIFFUSE));
 			}
+			// }
+			// if (!world_hit(r->shapes, ray, inter));
+			// 	ray.color = BLACK;
+			// else
+			// {
+			//	ray.color = ambient + diffuse + reflect(inter.shape, ray, )
+			// }
 			put_pixel(r, ray.color, coords.x, coords.y);
 			// color_print(&ray.color);
 		}
