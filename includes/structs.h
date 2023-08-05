@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/05 16:40:18 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/05 18:10:30 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ typedef struct s_plane
 typedef struct s_cylinder
 {
 	t_vec3	center;
+	t_vec3	cap1;
+	t_vec3	cap2;
 	t_vec3	normal;
 	double	radius;
 	double	height;

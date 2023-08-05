@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/05 15:42:48 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/05 18:10:41 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	render(t_root *r)
 				if (!hit)
 					continue;
 				ray.color = color_add(ambient(ray.color, r->ambient.ratio), \
-					diffuse(&ray, ray.color, vec3_normalize((t_vec3){0, 1, 1}), KDIFFUSE));
+					diffuse(&ray, ray.color, (t_vec3){0, 1, 1}, KDIFFUSE));
 				
 			}
 			// }
