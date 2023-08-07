@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/24 15:20:13 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:39:58 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include "shapes.h"
 # include "illumination.h"
 # include "renderer.h"
+# include "normal.h"
 
 t_color	color_new(int r, int g, int b);
 
