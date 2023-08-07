@@ -55,7 +55,7 @@ typedef struct	mlx_img_list_s
   int			width;
   int			height;
   char			*buffer;
-  GLdouble		vertexes[8];
+  GLfloat		vertexes[8];
   struct mlx_img_list_s	*next;
 } mlx_img_list_t;
 
