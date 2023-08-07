@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   normal.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 18:04:41 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/07 15:38:59 by maricard         ###   ########.fr       */
+/*   Created: 2023/08/07 15:39:15 by maricard          #+#    #+#             */
+/*   Updated: 2023/08/07 16:03:07 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef NORMAL_H
+# define NORMAL_H
 
 # include "miniRT.h"
 
-void	message(t_root *root, char *text);
+void	normal(t_inter *inter, t_ray *ray);
 
-void	destroy_root(t_root **root);
+void	plane_normal(t_inter *inter, t_plane *pl, t_ray *ray);
 
-double	determinant(double a, double b, double c);
-
-int	formula(double a, double b, double c, double *root);
-
-void	closest_point(double t, t_ray *ray, t_color *color);
+void	sphere_normal(t_inter *inter, *ray);
 
 #endif
