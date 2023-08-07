@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/05 16:32:29 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:23:04 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ t_plane	plane_new(char **c, char **n, char **cl)
 	return (plane);
 }
 
-bool	plane_intersect(t_plane *pl, t_ray *ray)
+bool	plane_intersect(t_plane *pl, t_ray *ray, t_inter *inter)
 {
+	(void) inter;
 	t_vec3	co;
 	double 	numerator;
 	double 	denominator;
@@ -39,9 +40,11 @@ bool	plane_intersect(t_plane *pl, t_ray *ray)
 		numerator = vec3_dot(co, vec3_add(pl->normal, vec3_new(EPSILON, EPSILON, EPSILON)));
 		denominator = vec3_dot(ray->direction, vec3_add(pl->normal, vec3_new(EPSILON, EPSILON, EPSILON)));
 		t = -(numerator / denominator);
-		if (t > 0)
-			closest_point(t, ray, &pl->color);
-		return (true);
+		if (t > EPSILON)
+		{
+			inter->t = t;
+			return (true);			
+		}
 	}
 	return (false);
 }

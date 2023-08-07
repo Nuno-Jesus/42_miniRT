@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/05 17:21:25 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:30:59 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ t_cylinder	cylinder_new(char **tokens)
 	return (cy);
 }
 
-bool	cylinder_intersect(t_cylinder *cy, t_ray *ray)
+bool	cylinder_intersect(t_cylinder *cy, t_ray *ray, t_inter *inter)
 {
+	(void) inter;
 	t_vec3		co;
 	t_equation	equation;
 	double m1;
-	double m2;
 
 	co = vec3_sub(ray->origin, cy->cap1);
 	equation.a = vec3_dot(ray->direction, ray->direction) - pow(vec3_dot(ray->direction, cy->normal), 2);
@@ -52,15 +52,9 @@ bool	cylinder_intersect(t_cylinder *cy, t_ray *ray)
 	if (quadformula(&equation) <= 0)
 		return (false);
 	m1 = vec3_dot(ray->direction, cy->normal) * equation.t1 + vec3_dot(co, cy->normal);
-	m2 = vec3_dot(ray->direction, cy->normal) * equation.t2 + vec3_dot(co, cy->normal);
 	if (m1 >= EPSILON && m1 <= cy->height)
 	{
-		closest_point(equation.t1, ray, &cy->color);
-		return (true);
-	}
-	if (m2 >= EPSILON && m2 <= cy->height)
-	{
-		closest_point(equation.t2, ray, &cy->color);
+		inter->t = equation.t1;
 		return (true);
 	}
 	return (false);

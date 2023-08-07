@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/05 18:10:30 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:55:55 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,15 @@ typedef struct s_shape
 	t_data			data;
 	t_shape_type	type;
 }t_shape;
+
+typedef struct s_inter
+{
+	t_shape	*shape;
+	t_vec3	point;
+	t_vec3	normal;
+	t_color	color;
+	double	t;
+}t_inter;
 
 typedef struct s_graphics
 {

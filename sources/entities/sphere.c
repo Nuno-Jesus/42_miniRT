@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/05 16:46:42 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:19:04 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,9 @@ t_sphere	sphere_new(char **c, char *radius, char **cl)
 	return (sp);
 }
 
-//! C = center of the sphere
-//! O = origin of the ray
-//! D = direction of the ray
-//! a = D . D
-//! b = 2 * (CO . D)
-//! C = CO. CO - r^2
-
-bool	sphere_intersect(t_sphere *sp, t_ray *ray)
+bool	sphere_intersect(t_sphere *sp, t_ray *ray, t_inter *inter)
 {
+	(void) inter;
 	t_vec3	co;
 	t_equation	equation;
 	
@@ -43,12 +37,6 @@ bool	sphere_intersect(t_sphere *sp, t_ray *ray)
 	equation.b = 2.0f * vec3_dot(co, ray->direction);
 	equation.c = vec3_dot(co, co) - pow(sp->radius, 2);
 	if (quadformula(&equation) > 0 && equation.t1 > EPSILON)
-		closest_point(equation.t1, ray, &sp->color);
-	// printf("a = %f\n", a);
-	// printf("b = %f\n", b);
-	// printf("c = %f\n", c);
-
-	//Print the result of the determinant
-	// printf("Determinant = %f\n", determinant(a, b, c));
+		inter->t = equation.t1;		
 	return (determinant(&equation) > 0);
 }

@@ -6,4 +6,5 @@
 
 ![Full Ray Tracing Tutorial](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
 
-https://digitalcommons.unf.edu/cgi/viewcontent.cgi?article=1100&context=ojii_volumes
+![Global Illumination](https://digitalcommons.unf.edu/cgi/viewcontent.cgi?article=1100&context=ojii_volumes)
+
