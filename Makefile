@@ -81,7 +81,7 @@ _DEBUG = debug_1 debug_2
 _PARSER = read_map parser parse_shapes parse_illumination
 _RENDERER = pixel render color light
 _ENTITIES = cylinder plane shape sphere source
-_UTILS = math message parse_utils
+_UTILS = math message parse_utils normal
 _FILES	= main $(_VEC3) $(_DESTROY) $(_DEBUG) $(_PARSER) $(_RENDERER) $(_ENTITIES) $(_UTILS)
 
 #! Change the names of these variables, too confusing 

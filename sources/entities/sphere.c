@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/07 16:47:53 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/07 18:04:11 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ bool	sphere_intersect(t_sphere *sp, t_ray *ray, t_inter *inter)
 	equation.b = 2.0f * vec3_dot(co, ray->direction);
 	equation.c = vec3_dot(co, co) - pow(sp->radius, 2);
 	if (quadformula(&equation) > 0 && equation.t1 > EPSILON)
-		inter->t = equation.t1;		
-	return (determinant(&equation) > 0);
+	{
+		inter->t = equation.t1;
+		inter->color = sp->color;
+		return (true);
+	}
+	return (false);
 }

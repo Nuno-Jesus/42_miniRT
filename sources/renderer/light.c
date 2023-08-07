@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/05 18:01:05 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/07 20:51:13 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,17 @@
 	cos(A) - cossine of the angle between N and L
 	
 */
-t_color	diffuse(t_ray *ray, t_color color, t_vec3 normal, double k)
+t_color	diffuse(t_vec3 bulb, t_inter *inter, double k)
 {
 	double	cos_angle;
 	t_color	diff_color;
-
-	cos_angle = vec3_cos(ray->direction, normal);
-	diff_color = color_mult(color, k * cos_angle);
+	
+	cos_angle = vec3_cos(vec3_sub(bulb, inter->point), inter->normal);
+	// printf("cos_angle: %f\n", cos_angle);
+	// if (cos_angle < 0.0f)
+	// 	cos_angle = 0.0f;
+	diff_color = color_mult(inter->color, k * fabs(cos_angle));
+	// color_print(&diff_color);
 	return (diff_color);
 }
 

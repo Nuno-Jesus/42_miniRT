@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/07 16:47:45 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/07 17:40:43 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ bool	plane_intersect(t_plane *pl, t_ray *ray, t_inter *inter)
 		if (t > EPSILON)
 		{
 			inter->t = t;
+			inter->color = pl->color;
 			return (true);			
 		}
 	}

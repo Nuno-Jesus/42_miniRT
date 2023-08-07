@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:44:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/07 16:46:00 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/07 17:44:01 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ t_vec3	vec3_normalize(t_vec3 vec);
 void	vec3_print(t_vec3 vec);
 
 t_vec3	vec3_scale(t_vec3 v1, double scalar);
+
+double	vec3_cos(t_vec3 v1, t_vec3 v2);
 
 #endif

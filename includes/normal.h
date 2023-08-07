@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normal.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:39:15 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/07 16:03:07 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/07 17:35:09 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 
 # include "miniRT.h"
 
-void	normal(t_inter *inter, t_ray *ray);
+t_vec3	normal(t_inter *inter, t_ray *ray);
 
-void	plane_normal(t_inter *inter, t_plane *pl, t_ray *ray);
-
-void	sphere_normal(t_inter *inter, *ray);
+t_vec3	sphere_normal(t_inter *inter, t_ray *ray);
 
 #endif

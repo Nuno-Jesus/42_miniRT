@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/07 16:45:38 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/07 18:46:10 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ typedef struct s_equation
 	double	t1;
 	double	t2;
 }	t_equation;
+
+typedef struct s_ray
+{
+	double   distance;
+	t_color	color;
+	t_vec3	origin;
+	t_vec3	direction;
+}	t_ray;
 
 typedef struct s_lightsource
 {
@@ -95,15 +103,6 @@ typedef struct s_shape
 	t_shape_type	type;
 }t_shape;
 
-typedef struct s_inter
-{
-	t_shape	*shape;
-	t_vec3	point;
-	t_vec3	normal;
-	t_color	color;
-	double	t;
-}t_inter;
-
 typedef struct s_graphics
 {
 	void	*mlx;
@@ -117,13 +116,15 @@ typedef struct s_graphics
 	int		endian;
 }	t_graphics;
 
-typedef struct s_ray
+typedef struct s_inter
 {
-	double   distance;
+	t_shape	*shape;
+	t_ray	ray;
+	t_vec3	point;
+	t_vec3	normal;
 	t_color	color;
-	t_vec3	origin;
-	t_vec3	direction;
-}	t_ray;
+	double	t;
+}t_inter;
 
 typedef struct s_root
 {
