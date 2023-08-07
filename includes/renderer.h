@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/10 18:19:14 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/05 18:10:31 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ int		render(t_root *r);
 
 void	put_pixel(t_root *r, t_color c, int x, int y);
 
-bool	sphere_intersect(t_sphere *sp, t_ray *ray);
+t_color	color_mult(t_color color, double k);
+
+t_color	color_add(t_color c1, t_color c2);
+
+t_color	diffuse(t_ray *ray, t_color color, t_vec3 normal, double k);
+
+t_color	ambient(t_color	color, double ratio);
 
 #endif

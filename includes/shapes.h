@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/14 13:20:42 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:45:03 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ t_shape		*shape_copy(t_shape *shape);
 
 void		shape_print(t_shape *shape);
 
-bool		plane_intersect(t_plane *pl, t_ray *ray);
+bool		plane_intersect(t_plane *pl, t_ray *ray, t_inter *inter);
 
-bool		sphere_intersect(t_sphere *sp, t_ray *ray);
+bool		sphere_intersect(t_sphere *sp, t_ray *ray, t_inter *inter);
 
-bool		cylinder_intersect(t_cylinder *cy, t_ray *ray);
+bool		cylinder_intersect(t_cylinder *cy, t_ray *ray, t_inter *inter);
 
 
 #endif

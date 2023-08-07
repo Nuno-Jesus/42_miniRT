@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 13:17:17 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/07 16:47:45 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,26 @@ t_plane	plane_new(char **c, char **n, char **cl)
 	return (plane);
 }
 
-bool	plane_intersect(t_plane *pl, t_ray *ray)
+bool	plane_intersect(t_plane *pl, t_ray *ray, t_inter *inter)
 {
+	(void) inter;
 	t_vec3	co;
 	double 	numerator;
 	double 	denominator;
 	double 	t;
 
 	// vec3_print(pl->normal);
-	if (fabs(vec3_dot(ray->direction, pl->normal)) >= EPSILON)
+	if (vec3_dot(ray->direction, vec3_add(pl->normal, vec3_new(EPSILON, EPSILON, EPSILON))) != 0.0)
 	{
 		co = vec3_sub(ray->origin, pl->point);
-		numerator = vec3_dot(co, pl->normal);
-		denominator = vec3_dot(ray->direction, pl->normal);
+		numerator = vec3_dot(co, vec3_add(pl->normal, vec3_new(EPSILON, EPSILON, EPSILON)));
+		denominator = vec3_dot(ray->direction, vec3_add(pl->normal, vec3_new(EPSILON, EPSILON, EPSILON)));
 		t = -(numerator / denominator);
 		if (t > EPSILON)
-			closest_point(t, ray, &pl->color);
-		return (true);		
+		{
+			inter->t = t;
+			return (true);			
+		}
 	}
 	return (false);
 }
