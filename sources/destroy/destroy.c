@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:24:35 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/07 20:26:09 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/07 21:10:25 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	destroy_root(t_root **root)
 		mlx_destroy_image((*root)->disp.mlx, (*root)->disp.img);
 	if ((*root)->disp.win)
 		mlx_destroy_window((*root)->disp.mlx, (*root)->disp.win);
+	#ifndef __APPLE__
 	if ((*root)->disp.mlx)
 		mlx_destroy_display((*root)->disp.mlx);
+	#endif
 	nc_free((*root)->disp.mlx);
 	free(*root);
 	*root = NULL;
