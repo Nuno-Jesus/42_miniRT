@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/08 18:33:30 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/08 20:36:00 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,12 @@ bool	reflected(t_lightsource *light, t_inter *closest)
 
 t_color	calculate_global_illumination(t_lightsource *bulb, t_inter *closest, t_light *amb_light)
 {
-	t_color	color;	
-	
+	t_color	color;
+
+	(void)bulb;
 	color = ambient(closest->color, amb_light->ratio);
 	//if (reflected(bulb, closest))
-	color = color_add(color, diffuse(bulb, closest, KDIFFUSE));
+	//color = color_add(color, diffuse(bulb, closest, KDIFFUSE));
 	return (color);
 }
 
