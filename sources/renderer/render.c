@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/08 16:37:06 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/08 18:33:30 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,8 @@ t_color	calculate_global_illumination(t_lightsource *bulb, t_inter *closest, t_l
 	t_color	color;	
 	
 	color = ambient(closest->color, amb_light->ratio);
-	if (reflected(bulb, closest))
-		color = color_add(color, diffuse(bulb, closest, KDIFFUSE));
+	//if (reflected(bulb, closest))
+	color = color_add(color, diffuse(bulb, closest, KDIFFUSE));
 	return (color);
 }
 

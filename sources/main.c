@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/08 16:33:54 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/08 17:30:28 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ int	quit(t_root *root)
 
 int	on_keypress(int keycode, t_root *r)
 {
-	t_lightsource	*light;
-
-	light = nc_vector_at(r->sources, 0);
 	if (keycode == ESC)
 		quit(r);
 	else if (keycode == W)
@@ -48,8 +45,6 @@ int	on_keypress(int keycode, t_root *r)
 	else if (keycode == V)
 		r->camera.origin.z += 5;
 	render(r);
-	printf("Lightsource position: ");
-	vec3_print(light->origin);
 	return (keycode);
 }
 
@@ -71,6 +66,7 @@ void	init_viewport(t_root *r)
 	vec3_print(r->up);
 	printf("wview: %f\n", r->wview);
 	printf("hview: %f\n", r->hview);
+	printf("------------------------------\n");
 }
 
 int	main(int argc, char **argv)
