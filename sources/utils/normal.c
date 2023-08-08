@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:38:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/07 20:21:19 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/08 15:32:34 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ t_vec3	sphere_normal(t_inter *inter, t_ray *ray)
 	t_vec3	point;
 	t_vec3	normal;
 	
-	point = vec3_add(ray->origin, vec3_scale(ray->direction, inter->t));
+	point = ray_at(ray, inter->t);
+	// printf("point: ");
+	// vec3_print(point);
 	normal = vec3_sub(point, inter->shape->data.sp.origin);
 	return (normal);
-	
 }
 
 //t_vec3	cylinder_normal(t_inter *inter, t_cylinder *cy, *ray)

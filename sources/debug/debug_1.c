@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:34:30 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/05 11:34:35 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/08 07:50:45 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ambient_print(t_light *s)
 {
 	printf("Ambient:\n");
-	printf("  Ratio: (%02.f)\n", s->ratio);
+	printf("  Ratio: (%.02f)\n", s->ratio);
 	printf("  Color: (%d, %d, %d)\n", s->color.r, s->color.g, s->color.b);
 }
 

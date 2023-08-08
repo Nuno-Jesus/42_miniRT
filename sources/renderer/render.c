@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/07 20:50:23 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/08 16:37:06 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_ray	make_ray(t_root *r, t_vec3 factors)
 	res = vec3_add(res, r->camera.normal);
 	res = vec3_add(res, r->camera.origin);
 	ray.origin = r->camera.origin;
-	ray.direction = vec3_sub(res, ray.origin);
+	ray.direction = vec3_normalize(vec3_sub(res, ray.origin));
 	ray.distance = INFINITY;
 	ray.color = BLACK;
 	return (ray);
@@ -123,10 +123,9 @@ t_color	calculate_global_illumination(t_lightsource *bulb, t_inter *closest, t_l
 {
 	t_color	color;	
 	
-	// vec3_print(closest->point);
 	color = ambient(closest->color, amb_light->ratio);
 	if (reflected(bulb, closest))
-		color = color_add(color, diffuse(bulb->origin, closest, bulb->brightness));
+		color = color_add(color, diffuse(bulb, closest, KDIFFUSE));
 	return (color);
 }
 

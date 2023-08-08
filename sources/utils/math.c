@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/07 16:48:23 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/08 15:42:01 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,8 @@ double	determinant(t_equation *eq)
 
 	delta = pow(eq->b, 2) - (4 * eq->a * eq->c);
 	if (delta < 0)
-		return (0);
-	else if (delta < EPSILON)
-		return (1);
-	else
-		return (2);
+		return (-1);
+	return (delta);
 }
 
 int	quadformula(t_equation *eq)

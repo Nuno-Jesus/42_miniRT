@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/07 20:27:22 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/08 16:33:54 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,26 @@ int	quit(t_root *root)
 
 int	on_keypress(int keycode, t_root *r)
 {
+	t_lightsource	*light;
+
+	light = nc_vector_at(r->sources, 0);
 	if (keycode == ESC)
 		quit(r);
 	else if (keycode == W)
-		r->camera.origin.y += 10;
+		r->camera.origin.y += 5;
 	else if (keycode == A)
-		r->camera.origin.x -= 10;
+		r->camera.origin.x -= 5;
 	else if (keycode == S)
-		r->camera.origin.y -= 10;
+		r->camera.origin.y -= 5;
 	else if (keycode == D)
-		r->camera.origin.x += 10;
+		r->camera.origin.x += 5;
 	else if (keycode == C)
-		r->camera.origin.z -= 10;
+		r->camera.origin.z -= 5;
 	else if (keycode == V)
-		r->camera.origin.z += 10;
+		r->camera.origin.z += 5;
 	render(r);
-	// printf("Camera position: ");
-	// vec3_print(r->camera.origin);
+	printf("Lightsource position: ");
+	vec3_print(light->origin);
 	return (keycode);
 }
 

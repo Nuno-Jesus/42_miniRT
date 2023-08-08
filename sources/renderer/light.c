@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/07 20:51:13 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/08 15:14:01 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,27 @@
 	cos(A) - cossine of the angle between N and L
 	
 */
-t_color	diffuse(t_vec3 bulb, t_inter *inter, double k)
+t_color	diffuse(t_lightsource* bulb, t_inter *inter, double k)
 {
-	double	cos_angle;
+	t_vec3	light_dir;
 	t_color	diff_color;
+	double	cos_angle;
+	// double	light_dist;
+	double	diffuse_ratio;
 	
-	cos_angle = vec3_cos(vec3_sub(bulb, inter->point), inter->normal);
-	// printf("cos_angle: %f\n", cos_angle);
-	// if (cos_angle < 0.0f)
-	// 	cos_angle = 0.0f;
-	diff_color = color_mult(inter->color, k * fabs(cos_angle));
+	light_dir = vec3_sub(bulb->origin, inter->point);
+	cos_angle = vec3_dot(inter->normal, vec3_normalize(light_dir));
+	// light_dist = vec3_module(light_dir);
+	diffuse_ratio = k * cos_angle;
+	// printf("diffuse_ratio: %lf\n", diffuse_ratio);
+	// printf("cossine: %lf -> ", cos_angle);
+	// vec3_print(inter->point);
+	
+	// if (cos_angle <= 0.0)
+	// {
+	// 	diffuse_ratio = 0.0;
+	// }
+	diff_color = color_mult(inter->color, diffuse_ratio);
 	// color_print(&diff_color);
 	return (diff_color);
 }
