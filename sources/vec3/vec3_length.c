@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_cos.c                                         :+:      :+:    :+:   */
+/*   vec3_length.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/03 15:21:44 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/09 20:14:05 by crypto           ###   ########.fr       */
+/*   Created: 2023/07/07 23:08:51 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/08/09 21:00:22 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-double	vec3_cossine(t_vec3 v1, t_vec3 v2)
+double	vec3_length(t_vec3 vec)
 {
-	double	dot;
-	double	lengths;
-
-	dot = vec3_dot(v1, v2);
-	lengths = vec3_length(v1) * vec3_length(v2);
-	return (dot / lengths);
+	return (sqrt(pow(vec.x, 2) + pow(vec.y, 2) + pow(vec.z, 2)));
 }

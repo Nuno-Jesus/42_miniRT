@@ -14,8 +14,5 @@
 
 t_vec3	vec3_add(t_vec3 v1, t_vec3 v2)
 {
-	t_vec3	res;
-
-	res = vec3_new(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
-	return (res);
+	return (vec3_new(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z));
 }

@@ -14,11 +14,5 @@
 
 t_vec3	vec3_new(double x, double y, double z)
 {
-	return ((t_vec3)
-		{
-			.x = x,
-			.y = y,
-			.z = z
-		}
-	);
+	return ((t_vec3){x, y, z});
 }

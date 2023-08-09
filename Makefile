@@ -73,16 +73,16 @@ vpath %.h $(INCLUDES)
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-NAME	= miniRT
-_VEC3	= vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_module vec3_new \
-	vec3_sub vec3_print vec3_cos vec3_compare
-_DESTROY = destroy
-_DEBUG = debug_1 debug_2
-_PARSER = read_map parser parse_shapes parse_illumination
-_RENDERER = pixel render color light
-_ENTITIES = cylinder plane shape sphere source
-_UTILS = math message parse_utils normal
-_FILES	= main $(_VEC3) $(_DESTROY) $(_DEBUG) $(_PARSER) $(_RENDERER) $(_ENTITIES) $(_UTILS)
+NAME    = miniRT
+_FILES += vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_length vec3_new \
+	vec3_sub vec3_print vec3_cossine vec3_compare
+_FILES += destroy
+_FILES += debug_1 debug_2
+_FILES += read_map parser parse_shapes parse_illumination
+_FILES += pixel render color light
+_FILES += cylinder plane shape sphere source
+_FILES += math message parse_utils normal
+_FILES += main
 
 #! Change the names of these variables, too confusing 
 TARGET	= $(patsubst %, %.o, $(_FILES))
