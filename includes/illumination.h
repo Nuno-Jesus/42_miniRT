@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   illumination.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 19:43:46 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/04 17:02:45 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:10:03 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void			ambient_print(t_light *s);
 
 void			camera_print(t_camera *s);
 
-t_lightsource	*source_new(char **point, char *ratio, char **color);
+t_light	*source_new(char **point, char *ratio, char **color);
 
-t_lightsource	*source_copy(t_lightsource *lightsource);
+t_light	*source_copy(t_light *lightsource);
 
-void			source_print(t_lightsource *l);
+void			source_print(t_light *l);
 
 #endif

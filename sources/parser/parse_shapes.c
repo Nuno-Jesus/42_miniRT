@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_shapes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/13 16:26:50 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-bool	parse_plane(t_root *root, char **tokens)
+bool	parse_plane(t_world *root, char **tokens)
 {
 	char	**point;
 	char	**normal;
@@ -39,7 +39,7 @@ bool	parse_plane(t_root *root, char **tokens)
 	return (true);
 }
 
-bool	parse_sphere(t_root *root, char **tokens)
+bool	parse_sphere(t_world *root, char **tokens)
 {
 	char		**center;
 	char		**color;
@@ -63,7 +63,7 @@ bool	parse_sphere(t_root *root, char **tokens)
 	return (true);
 }
 
-bool	parse_cylinder(t_root *root, char **tokens)
+bool	parse_cylinder(t_world *root, char **tokens)
 {
 	t_cylinder	cylinder;
 	t_shape		*shape;

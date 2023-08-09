@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 11:43:59 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:20:04 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,3 @@ int	quadformula(t_equation *eq)
 	return (delta);
 }
 
-void	closest_point(double t, t_ray *ray, t_color *color)
-{
-	t_vec3	point;
-	t_vec3	vec;
-	double 	distance;
-
-	point = vec3_add(ray->origin, vec3_scale(ray->direction, t));
-	vec = vec3_sub(point, ray->origin);
-	distance = vec3_module(vec);
-	if (distance < ray->distance + EPSILON)
-	{
-		ray->distance = distance;
-		ray->color = *color;
-	}
-}

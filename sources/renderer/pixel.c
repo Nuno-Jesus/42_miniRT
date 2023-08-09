@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pixel.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:12:59 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/10 19:25:45 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	put_pixel(t_root *r, t_color c, int x, int y)
+void	put_pixel(t_world *r, t_color c, int x, int y)
 {
 	char	*dst;
 

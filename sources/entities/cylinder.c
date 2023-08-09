@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 17:52:28 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:21:45 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_cylinder	cylinder_new(char **tokens)
 	return (cy);
 }
 
-bool	check_caps(t_cylinder *cy, t_vec3 cap, t_inter *inter, double t)
+bool	check_caps(t_cylinder *cy, t_vec3 cap, t_intersection *inter, double t)
 {
 	double	len;
 	t_vec3	point;
@@ -56,7 +56,7 @@ bool	check_caps(t_cylinder *cy, t_vec3 cap, t_inter *inter, double t)
 		return (false);
 }
 
-bool	check_walls(t_cylinder *cy, t_inter *inter, double t)
+bool	check_walls(t_cylinder *cy, t_intersection *inter, double t)
 {
 	t_vec3	point;
 	t_vec3	co;
@@ -104,7 +104,7 @@ double	cap_intersection(t_cylinder *cy, t_ray *ray, t_vec3 cap)
 	return (t);
 }
 
-double	verify_intersections(t_cylinder *cy, t_ray *ray, t_equation *equation, t_inter *inter)
+double	verify_intersections(t_cylinder *cy, t_ray *ray, t_equation *equation, t_intersection *inter)
 {
 	double t1;
 	double t2;
@@ -126,7 +126,7 @@ double	verify_intersections(t_cylinder *cy, t_ray *ray, t_equation *equation, t_
 	return (inter->t);
 }
 
-bool	cylinder_intersect(t_cylinder *cy, t_ray *ray, t_inter *inter)
+bool	cylinder_intersect(t_cylinder *cy, t_ray *ray, t_intersection *inter)
 {
 	t_vec3		co;
 	t_equation	equation;

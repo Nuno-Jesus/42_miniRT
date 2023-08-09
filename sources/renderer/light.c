@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/09 15:14:08 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:21:45 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 	cos(A) - cossine of the angle between N and L
 	
 */
-t_color	diffuse(t_lightsource* bulb, t_inter *inter, double k)
+t_color	diffuse(t_light* bulb, t_intersection *inter, double k)
 {
 	t_vec3	light_dir;
 	t_color	diff_color;
@@ -30,7 +30,7 @@ t_color	diffuse(t_lightsource* bulb, t_inter *inter, double k)
 	// double	light_dist;
 	double	diffuse_ratio;
 	
-	light_dir = vec3_sub(bulb->origin, inter->point);
+	light_dir = vec3_sub(bulb->center, inter->point);
 	cos_angle = vec3_dot(inter->normal, vec3_normalize(light_dir));
 	// light_dist = vec3_module(light_dir);
 	diffuse_ratio = k * cos_angle;

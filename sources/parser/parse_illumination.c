@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_illumination.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/07/05 11:07:05 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-bool	parse_ambient_light(t_root *root, char **tokens)
+bool	parse_ambient_light(t_world *root, char **tokens)
 {
 	char	**data;
 
@@ -32,7 +32,7 @@ bool	parse_ambient_light(t_root *root, char **tokens)
 	return (true);
 }
 
-bool	parse_camera(t_root *root, char **tokens)
+bool	parse_camera(t_world *root, char **tokens)
 {
 	char	**data;
 
@@ -41,9 +41,9 @@ bool	parse_camera(t_root *root, char **tokens)
 	if (!parse_syntax(tokens, "0110"))
 		return (false);
 	data = nc_split(tokens[1], ',');
-	root->camera.origin.x = nc_atof(data[0]);
-	root->camera.origin.y = nc_atof(data[1]);
-	root->camera.origin.z = nc_atof(data[2]);
+	root->camera.center.x = nc_atof(data[0]);
+	root->camera.center.y = nc_atof(data[1]);
+	root->camera.center.z = nc_atof(data[2]);
 	nc_matrix_delete(data, &free);
 	data = nc_split(tokens[2], ',');
 	root->camera.normal.x = nc_atof(data[0]);
@@ -55,19 +55,19 @@ bool	parse_camera(t_root *root, char **tokens)
 	return (true);
 }
 
-t_lightsource	*light_new(char **origin, char *brightness, char **color)
+t_light	*light_new(char **origin, char *ratio, char **color)
 {
-	t_lightsource	*light;
+	t_light	*light;
 
-	light = nc_calloc(1, sizeof(t_lightsource));
+	light = nc_calloc(1, sizeof(t_light));
 	if (!light)
 		return (NULL);
-	*light = (t_lightsource)
+	*light = (t_light)
 	{
-		.origin.x = nc_atof(origin[0]),
-		.origin.y = nc_atof(origin[1]),
-		.origin.z = nc_atof(origin[2]),
-		.brightness = nc_atof(brightness),
+		.center.x = nc_atof(origin[0]),
+		.center.y = nc_atof(origin[1]),
+		.center.z = nc_atof(origin[2]),
+		.ratio = nc_atof(ratio),
 		.color.r = nc_atoi(color[0]),
 		.color.g = nc_atoi(color[1]),
 		.color.b = nc_atoi(color[2])
@@ -75,11 +75,11 @@ t_lightsource	*light_new(char **origin, char *brightness, char **color)
 	return (light);
 }
 
-bool	parse_light_source(t_root *root, char **tokens)
+bool	parse_light_source(t_world *root, char **tokens)
 {
 	char			**origin;
 	char			**color;
-	t_lightsource	*light;
+	t_light	*light;
 
 	if (nc_matrix_size(tokens) != 4)
 		return (false);

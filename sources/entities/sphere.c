@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/07 18:04:11 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 19:21:45 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ t_sphere	sphere_new(char **c, char *radius, char **cl)
 
 	sp = (t_sphere)
 	{
-		.origin = vec3_new(nc_atof(c[X]), nc_atof(c[Y]), nc_atof(c[Z])), 
+		.center = vec3_new(nc_atof(c[X]), nc_atof(c[Y]), nc_atof(c[Z])), 
 		.radius = nc_atof(radius) / 2,
 		.color = color_new(nc_atof(cl[R]), nc_atof(cl[G]), nc_atof(cl[B])), 
 	};
 	return (sp);
 }
 
-bool	sphere_intersect(t_sphere *sp, t_ray *ray, t_inter *inter)
+bool	sphere_intersect(t_sphere *sp, t_ray *ray, t_intersection *inter)
 {
 	(void) inter;
 	t_vec3	co;
 	t_equation	equation;
 	
 	equation.t1 = -1.0f;
-	co = vec3_sub(ray->origin, sp->origin);
+	co = vec3_sub(ray->origin, sp->center);
 	equation.a = vec3_dot(ray->direction, ray->direction);
 	equation.b = 2.0f * vec3_dot(co, ray->direction);
 	equation.c = vec3_dot(co, co) - pow(sp->radius, 2);

@@ -3,38 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   source.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 18:25:05 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/05 11:34:11 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:17:26 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_lightsource	*source_new(char **c, char *brightness, char **cl)
+t_light	*source_new(char **c, char *ratio, char **cl)
 {
-	t_lightsource	*lightsource;
+	t_light	*bulb;
 
-	lightsource = nc_calloc(1, sizeof(t_lightsource));
-	if (!lightsource)
+	bulb = nc_calloc(1, sizeof(t_light));
+	if (!bulb)
 		return (NULL);
-	*lightsource = (t_lightsource)
+	*bulb = (t_light)
 	{
-		.origin = vec3_new(nc_atof(c[X]), nc_atof(c[Y]), nc_atof(c[Z])), 
-		.brightness = nc_atof(brightness),
+		.center = vec3_new(nc_atof(c[X]), nc_atof(c[Y]), nc_atof(c[Z])), 
+		.ratio = nc_atof(ratio),
 		.color = color_new(nc_atof(cl[R]), nc_atof(cl[G]), nc_atof(cl[B])), 
 	};
-	return (lightsource);
+	return (bulb);
 }
 
-t_lightsource	*source_copy(t_lightsource *lightsource)
+t_light	*source_copy(t_light *bulb)
 {
-	t_lightsource	*copy;
+	t_light	*copy;
 
-	copy = nc_calloc(1, sizeof(t_lightsource));
+	copy = nc_calloc(1, sizeof(t_light));
 	if (!copy)
 		return (NULL);
-	*copy = *lightsource;
+	*copy = *bulb;
 	return (copy);
 }

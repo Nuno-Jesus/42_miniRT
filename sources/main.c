@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 17:58:07 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	init_graphics(t_root *r)
+void	init_graphics(t_world *r)
 {
 	r->disp.mlx = mlx_init();
 	if (!r->disp.mlx)
@@ -22,36 +22,36 @@ void	init_graphics(t_root *r)
 		message(r, "Failed allocation on window pointer\n");
 }
 
-int	quit(t_root *root)
+int	quit(t_world *root)
 {
 	destroy_root(&root);
 	exit(EXIT_SUCCESS);
 }
 
-int	on_keypress(int keycode, t_root *r)
+int	on_keypress(int keycode, t_world *r)
 {
-	t_lightsource *l;
+	t_light *l;
 	
 	l = nc_vector_at(r->sources, 0);
 	if (keycode == ESC)
 		quit(r);
 	else if (keycode == W)
-		l->origin.y += 5;
+		l->center.y += 5;
 	else if (keycode == A)
-		l->origin.x -= 5;
+		l->center.x -= 5;
 	else if (keycode == S)
-		l->origin.y -= 5;
+		l->center.y -= 5;
 	else if (keycode == D)
-		l->origin.x += 5;
+		l->center.x += 5;
 	else if (keycode == C)
-		l->origin.z -= 5;
+		l->center.z -= 5;
 	else if (keycode == V)
-		l->origin.z += 5;
+		l->center.z += 5;
 	render(r);
 	return (keycode);
 }
 
-void	init_viewport(t_root *r)
+void	init_viewport(t_world *r)
 {
 	double	ratio;
 
@@ -74,7 +74,7 @@ void	init_viewport(t_root *r)
 
 int	main(int argc, char **argv)
 {
-	t_root	*root;
+	t_world	*root;
 
 	if (argc != 2)
 		message(NULL, "Usage: ./miniRT <scene>.rt");

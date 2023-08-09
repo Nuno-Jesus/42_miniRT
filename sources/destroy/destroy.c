@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:24:35 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/07 21:10:25 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	destroy_root(t_root **root)
+void	destroy_root(t_world **root)
 {
 	if (!(*root))
 		return ;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:09:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 17:10:53 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	is_filename_valid(char *filename)
 	return (nc_strnstr(filename + (len - 3), ".rt", len) != NULL);
 }
 
-int	get_filesize(t_root *root, char *filename)
+int	get_filesize(t_world *root, char *filename)
 {
 	int		fd;
 	int		counter;
@@ -50,7 +50,7 @@ void	print(char *line)
 	printf("%s\n", line);
 }
 
-char	**read_map(t_root *root, char *filename)
+char	**read_map(t_world *root, char *filename)
 {
 	int		fd;
 	int		i;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 15:01:26 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,42 +39,34 @@ typedef struct s_equation
 
 typedef struct s_ray
 {
-	double   distance;
-	t_color	color;
 	t_vec3	origin;
 	t_vec3	direction;
 }	t_ray;
 
-typedef struct s_lightsource
-{
-	t_vec3	origin;
-	double	brightness;
-	t_color	color;
-}	t_lightsource;
-
 typedef struct s_light
 {
+	t_vec3	center;
 	double	ratio;
 	t_color	color;
 }	t_light;
 
 typedef struct s_camera
 {
-	t_vec3	origin;
+	t_vec3	center;
 	t_vec3	normal;
 	double	fov;
 }	t_camera;
 
 typedef struct s_sphere
 {
-	t_vec3	origin;
+	t_vec3	center;
 	double	radius;
 	t_color	color;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	t_vec3	point;
+	t_vec3	center;
 	t_vec3	normal;
 	t_color	color;
 }	t_plane;
@@ -116,7 +108,7 @@ typedef struct s_graphics
 	int		endian;
 }	t_graphics;
 
-typedef struct s_inter
+typedef struct s_intersection
 {
 	t_shape	*shape;
 	t_ray	ray;
@@ -125,9 +117,9 @@ typedef struct s_inter
 	t_color	color;
 	double	t;
 	t_vec3  a;
-}t_inter;
+}	t_intersection;
 
-typedef struct s_root
+typedef struct s_world
 {
 	t_camera		camera;
 	t_light			ambient;
@@ -139,6 +131,6 @@ typedef struct s_root
 	double			wview; //! Width of the viewport
 	t_vec3			up;
 	t_vec3			right;	
-}	t_root;
+}	t_world;
 
 #endif

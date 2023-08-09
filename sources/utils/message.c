@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   message.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:30:28 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/04 17:18:35 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	message(t_root *root, char *text)
+void	message(t_world *root, char *text)
 {
 	destroy_root(&root);
 	printf("Error\n%s\n", text);

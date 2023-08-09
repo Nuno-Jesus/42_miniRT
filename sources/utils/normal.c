@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   normal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:38:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/09 17:55:16 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:21:45 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_vec3	sphere_normal(t_inter *inter, t_ray *ray)
+t_vec3	sphere_normal(t_intersection *inter, t_ray *ray)
 {
 	t_vec3	point;
 	t_vec3	normal;
 	
 	point = ray_at(ray, inter->t);
-	normal = vec3_sub(point, inter->shape->data.sp.origin);
+	normal = vec3_sub(point, inter->shape->data.sp.center);
 	return (normal);
 }
 
-t_vec3	cylinder_normal(t_inter *inter, t_ray *ray)
+t_vec3	cylinder_normal(t_intersection *inter, t_ray *ray)
 {
 	t_vec3	point;
 	t_vec3	normal;
@@ -42,7 +42,7 @@ t_vec3	cylinder_normal(t_inter *inter, t_ray *ray)
 	return (normal);
 }
 
-t_vec3	normal(t_inter *inter, t_ray *ray)
+t_vec3	normal(t_intersection *inter, t_ray *ray)
 {
 	if (inter->shape->type == PLANE)
 		return (inter->shape->data.pl.normal);

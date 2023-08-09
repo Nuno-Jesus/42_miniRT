@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 15:05:44 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_vec3	world_to_viewport(int x, int y)
 	return (converted);
 }
 
-t_ray	make_ray(t_root *r, t_vec3 factors)
+t_ray	make_ray(t_world *r, t_vec3 factors)
 {
 	t_ray	ray;
 	t_vec3	vertical;
@@ -37,11 +37,9 @@ t_ray	make_ray(t_root *r, t_vec3 factors)
 	horizontal = vec3_scale(r->right, factors.x * r->wview);
 	res = vec3_add(vertical, horizontal);
 	res = vec3_add(res, r->camera.normal);
-	res = vec3_add(res, r->camera.origin);
-	ray.origin = r->camera.origin;
+	res = vec3_add(res, r->camera.center);
+	ray.origin = r->camera.center;
 	ray.direction = vec3_normalize(vec3_sub(res, ray.origin));
-	ray.distance = INFINITY;
-	ray.color = BLACK;
 	return (ray);
 }
 //_ R=2(N⋅L)N-L
@@ -54,7 +52,7 @@ t_vec3	ray_at(t_ray *ray, double t)
 	return (res);
 }
 
-bool	intersects(t_shape *shape, t_ray *ray, t_inter *inter)
+bool	intersects(t_shape *shape, t_ray *ray, t_intersection *inter)
 {
 	bool	hit;
 
@@ -75,14 +73,14 @@ bool	intersects(t_shape *shape, t_ray *ray, t_inter *inter)
 	return (hit);
 }
 
-bool	world_hit(t_vector *shapes, t_ray *ray, t_inter *closest)
+bool	world_hit(t_vector *shapes, t_ray *ray, t_intersection *closest)
 {
 	t_shape		*shape;
-	t_inter		tmp;
+	t_intersection		tmp;
 	uint32_t	i;
 
 	i = -1;
-	nc_bzero(&tmp, sizeof(t_inter));
+	nc_bzero(&tmp, sizeof(t_intersection));
 	while(++i < shapes->size)
 	{
 		shape = nc_vector_at(shapes, i);
@@ -96,14 +94,14 @@ bool	world_hit(t_vector *shapes, t_ray *ray, t_inter *closest)
 	return (false);
 }
 
-bool	reflected(t_lightsource *light, t_inter *closest)
+bool	reflected(t_light *light, t_intersection *closest)
 {
 	t_vec3 reflection;
 	t_vec3 light_dir;
 	double cossine;
 
 	//2 * (N ⋅ L) * N - L
-	light_dir = vec3_sub(light->origin, closest->point);
+	light_dir = vec3_sub(light->center, closest->point);
 	reflection = vec3_scale(closest->normal, 2 * vec3_dot(closest->normal, light_dir));
 	reflection = vec3_sub(reflection, light_dir);
 	reflection = vec3_normalize(reflection);
@@ -119,7 +117,7 @@ bool	reflected(t_lightsource *light, t_inter *closest)
 	return (false);
 }
 
-t_color	calculate_global_illumination(t_lightsource *bulb, t_inter *closest, t_light *amb_light)
+t_color	calculate_global_illumination(t_light *bulb, t_intersection *closest, t_light *amb_light)
 {
 	t_color	color;
 
@@ -130,12 +128,12 @@ t_color	calculate_global_illumination(t_lightsource *bulb, t_inter *closest, t_l
 	return (color);
 }
 
-int	render(t_root *r)
+int	render(t_world *r)
 {	
 	t_vec3	coords;
 	t_vec3	factors;
 	t_ray	ray;
-	t_inter	closest;
+	t_intersection	closest;
 	t_color color;
 	
 	coords.y = -1;
@@ -145,7 +143,7 @@ int	render(t_root *r)
 		while (++coords.x < WIDTH)
 		{
 			color = BLACK;
-			nc_bzero(&closest, sizeof(t_inter));
+			nc_bzero(&closest, sizeof(t_intersection));
 			factors = world_to_viewport(coords.x, coords.y); 	// Convert pixels to viewport coords (V point)
 			ray = make_ray(r, factors);					// Make a ray from camera to V
 			if (world_hit(r->shapes, &ray, &closest))

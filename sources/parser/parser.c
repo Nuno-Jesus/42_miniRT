@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 13:06:29 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	parse_syntax(char **tokens, char *code)
 	return (true);
 }
 
-bool	identifying(t_root *root, char **tokens)
+bool	identifying(t_world *root, char **tokens)
 {
 	if (!nc_strncmp(tokens[0], "A", nc_strlen(tokens[0])))
 		return (parse_ambient_light(root, tokens));
@@ -57,7 +57,7 @@ bool	identifying(t_root *root, char **tokens)
 	return (true);
 }
 
-void	parse_map(t_root *root, char **map)
+void	parse_map(t_world *root, char **map)
 {
 	int		i;
 	bool	ok;
@@ -74,11 +74,11 @@ void	parse_map(t_root *root, char **map)
 	}
 }
 
-t_root	*root_new(void)
+t_world	*root_new(void)
 {
-	t_root	*root;
+	t_world	*root;
 
-	root = nc_calloc(1, sizeof(t_root));
+	root = nc_calloc(1, sizeof(t_world));
 	if (!root)
 		return (NULL);
 	root->shapes = nc_vector_new((void *)&shape_copy, NULL, \
@@ -88,9 +88,9 @@ t_root	*root_new(void)
 	return (root);
 }
 
-t_root	*parse(char *filename)
+t_world	*parse(char *filename)
 {
-	t_root	*root;
+	t_world	*root;
 
 	if (!is_filename_valid(filename))
 		message(NULL, ERROR_FILENAME);
