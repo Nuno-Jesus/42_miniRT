@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normal.h                                           :+:      :+:    :+:   */
+/*   vec3_compare.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 15:39:15 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/09 15:03:17 by maricard         ###   ########.fr       */
+/*   Created: 2023/08/09 15:22:06 by maricard          #+#    #+#             */
+/*   Updated: 2023/08/09 15:22:52 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NORMAL_H
-# define NORMAL_H
+#include "miniRT.h"
 
-# include "miniRT.h"
-
-t_vec3	normal(t_inter *inter, t_ray *ray);
-
-t_vec3	sphere_normal(t_inter *inter, t_ray *ray);
-
-t_vec3	cylinder_normal(t_inter *inter, t_ray *ray);
-
-#endif
+bool	vec3_compare(t_vec3 v1, t_vec3 v2)
+{
+	if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z)
+		return (true);
+	else 
+		return (false);
+}

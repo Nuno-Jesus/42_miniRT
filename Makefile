@@ -75,7 +75,7 @@ vpath %.h $(INCLUDES)
 
 NAME	= miniRT
 _VEC3	= vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_module vec3_new \
-	vec3_sub vec3_print vec3_cos
+	vec3_sub vec3_print vec3_cos vec3_compare
 _DESTROY = destroy
 _DEBUG = debug_1 debug_2
 _PARSER = read_map parser parse_shapes parse_illumination

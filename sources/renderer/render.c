@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/08 20:36:00 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:05:44 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ t_color	calculate_global_illumination(t_lightsource *bulb, t_inter *closest, t_l
 	(void)bulb;
 	color = ambient(closest->color, amb_light->ratio);
 	//if (reflected(bulb, closest))
-	//color = color_add(color, diffuse(bulb, closest, KDIFFUSE));
+	color = color_add(color, diffuse(bulb, closest, KDIFFUSE));
 	return (color);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/08 15:14:01 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 15:14:08 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_color	diffuse(t_lightsource* bulb, t_inter *inter, double k)
 	// light_dist = vec3_module(light_dir);
 	diffuse_ratio = k * cos_angle;
 	// printf("diffuse_ratio: %lf\n", diffuse_ratio);
-	// printf("cossine: %lf -> ", cos_angle);
+	//printf("cossine: %lf -> ", cos_angle);
 	// vec3_print(inter->point);
 	
 	// if (cos_angle <= 0.0)
@@ -43,7 +43,7 @@ t_color	diffuse(t_lightsource* bulb, t_inter *inter, double k)
 	// 	diffuse_ratio = 0.0;
 	// }
 	diff_color = color_mult(inter->color, diffuse_ratio);
-	// color_print(&diff_color);
+	//color_print(&diff_color);
 	return (diff_color);
 }
 

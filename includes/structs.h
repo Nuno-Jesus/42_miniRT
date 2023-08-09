@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/08 18:33:38 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:01:26 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct s_inter
 	t_vec3	normal;
 	t_color	color;
 	double	t;
+	t_vec3  a;
 }t_inter;
 
 typedef struct s_root

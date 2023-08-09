@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 13:11:17 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:52:28 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_cylinder	cylinder_new(char **tokens)
 		.radius = nc_atof(tokens[3]) / 2,
 		.height = nc_atof(tokens[4]),
 		.center = vec3_new(nc_atof(c[X]), nc_atof(c[Y]), nc_atof(c[Z])),
-		.normal = vec3_new(nc_atof(n[X]), nc_atof(n[Y]), nc_atof(n[Z])),
+		.normal = vec3_normalize(vec3_new(nc_atof(n[X]), nc_atof(n[Y]), nc_atof(n[Z]))),
 		.color = color_new(nc_atof(cl[R]), nc_atof(cl[G]), nc_atof(cl[B])),
 	};
 	cy.cap1 = vec3_add(cy.center, vec3_scale(cy.normal, -cy.height / 2.0));
@@ -38,24 +38,25 @@ t_cylinder	cylinder_new(char **tokens)
 	return (cy);
 }
 
-bool	check_caps(t_cylinder *cy, t_ray *ray, double t)
+bool	check_caps(t_cylinder *cy, t_vec3 cap, t_inter *inter, double t)
 {
 	double	len;
 	t_vec3	point;
 
-	point = ray_at(ray, t);
-	len = vec3_module(vec3_sub(point, cy->cap1));
-	if (len <= cy->radius)
+	point = ray_at(&inter->ray, t);
+	len = vec3_module(vec3_sub(point, cap));
+	len += EPSILON;
+	if (len <= cy->radius && t < inter->t)
 	{
-		//printf("point in cap = ");
-		//vec3_print(point);
+		inter->a = cap;
+		inter->t = t;
 		return (true);
 	}
 	else 
 		return (false);
 }
 
-bool	check_walls(t_cylinder *cy, t_ray *ray, double t)
+bool	check_walls(t_cylinder *cy, t_inter *inter, double t)
 {
 	t_vec3	point;
 	t_vec3	co;
@@ -63,17 +64,17 @@ bool	check_walls(t_cylinder *cy, t_ray *ray, double t)
 	double 	m;
 	double 	len;
 
-	point = ray_at(ray, t);
-	co = vec3_sub(ray->origin, cy->cap1);
-	m = vec3_dot(ray->direction, cy->normal) * t + vec3_dot(co, cy->normal);
+	point = ray_at(&inter->ray, t);
+	co = vec3_sub(inter->ray.origin, cy->cap1);
+	m = vec3_dot(inter->ray.direction, cy->normal) * t + vec3_dot(co, cy->normal);
 	a = vec3_add(cy->cap1, vec3_scale(cy->normal, m));
 	len = vec3_module(vec3_sub(point, a));
 	m -= EPSILON;
 	len -= EPSILON;
-	if (m >= 0 && m <= cy->height && len <= cy->radius)
+	if (m >= 0 && m <= cy->height && len <= cy->radius && t < inter->t)
 	{
-		//printf("point in walls = ");
-		//vec3_print(point);
+		inter->a = a;
+		inter->t = t;
 		return (true);		
 	}
 	else
@@ -103,9 +104,8 @@ double	cap_intersection(t_cylinder *cy, t_ray *ray, t_vec3 cap)
 	return (t);
 }
 
-double	verify_intersections(t_cylinder *cy, t_ray *ray, t_equation *equation)
+double	verify_intersections(t_cylinder *cy, t_ray *ray, t_equation *equation, t_inter *inter)
 {
-	double t;
 	double t1;
 	double t2;
 	double t3;
@@ -115,18 +115,15 @@ double	verify_intersections(t_cylinder *cy, t_ray *ray, t_equation *equation)
 	t2 = equation->t2;
 	t3 = cap_intersection(cy, ray, cy->cap1);
 	t4 = cap_intersection(cy, ray, cy->cap2);
-	t = INFINITY;
-	if (check_walls(cy, ray, t1) == true && t1 < t)
-		t = t1;
-	if (check_walls(cy, ray, t2) == true && t2 < t)
-		t = t2;
-	if (check_caps(cy, ray, t3) == true && t3 < t)
-		t = t3;
-	if (check_caps(cy, ray, t4) == true && t4 < t)
-		t = t4;
-	if (t == INFINITY)
+	inter->t = INFINITY;
+	inter->ray = *ray;
+	check_walls(cy, inter, t1);
+	check_walls(cy, inter, t2);
+	check_caps(cy, cy->cap1, inter, t3);
+	check_caps(cy, cy->cap2, inter, t4);
+	if (inter->t == INFINITY)
 		return (0);
-	return (t);
+	return (inter->t);
 }
 
 bool	cylinder_intersect(t_cylinder *cy, t_ray *ray, t_inter *inter)
@@ -143,9 +140,9 @@ bool	cylinder_intersect(t_cylinder *cy, t_ray *ray, t_inter *inter)
 	equation.c = vec3_dot(co, co) - pow(vec3_dot(co, cy->normal), 2) - \
 					pow(cy->radius, 2);
 	quadformula(&equation);
-	if (equation.t1 <= 0.0f && equation.t2 <= 0.0f)
+	if (equation.t1 <= 0 && equation.t2 <= 0)
 		return (false);
-	t = verify_intersections(cy, ray, &equation);
+	t = verify_intersections(cy, ray, &equation, inter);
 	if (t > 0.0f)
 	{
 		inter->t = t;

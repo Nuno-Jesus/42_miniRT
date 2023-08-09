@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/08 17:30:28 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:58:07 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,23 @@ int	quit(t_root *root)
 
 int	on_keypress(int keycode, t_root *r)
 {
+	t_lightsource *l;
+	
+	l = nc_vector_at(r->sources, 0);
 	if (keycode == ESC)
 		quit(r);
 	else if (keycode == W)
-		r->camera.origin.y += 5;
+		l->origin.y += 5;
 	else if (keycode == A)
-		r->camera.origin.x -= 5;
+		l->origin.x -= 5;
 	else if (keycode == S)
-		r->camera.origin.y -= 5;
+		l->origin.y -= 5;
 	else if (keycode == D)
-		r->camera.origin.x += 5;
+		l->origin.x += 5;
 	else if (keycode == C)
-		r->camera.origin.z -= 5;
+		l->origin.z -= 5;
 	else if (keycode == V)
-		r->camera.origin.z += 5;
+		l->origin.z += 5;
 	render(r);
 	return (keycode);
 }
