@@ -6,51 +6,11 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 20:13:53 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 21:27:24 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-t_vec3	world_to_viewport(int x, int y)
-{
-	t_vec3	converted;
-	double	width;
-	double	height;
-
-	width = WIDTH;
-	height = HEIGHT;
-	converted.x = (2.0f*x)/width - 1;
-	converted.y = (2.0f*y)/height - 1;
-	converted.z = 0;
-	return (converted);
-}
-
-t_ray	make_ray(t_world *r, t_vec3 factors)
-{
-	t_ray	ray;
-	t_vec3	vertical;
-	t_vec3	horizontal;
-	t_vec3	res;
-
-	vertical = vec3_scale(r->up, factors.y * r->hview);
-	horizontal = vec3_scale(r->right, factors.x * r->wview);
-	res = vec3_add(vertical, horizontal);
-	res = vec3_add(res, r->camera.normal);
-	res = vec3_add(res, r->camera.center);
-	ray.origin = r->camera.center;
-	ray.direction = vec3_normalize(vec3_sub(res, ray.origin));
-	return (ray);
-}
-//_ R=2(N⋅L)N-L
-
-t_vec3	ray_at(t_ray *ray, double t)
-{
-	t_vec3	res;
-
-	res = vec3_add(ray->origin, vec3_scale(ray->direction, t));
-	return (res);
-}
 
 bool	intersects(t_shape *shape, t_ray *ray, t_intersection *inter)
 {
@@ -115,17 +75,6 @@ bool	reflected(t_light *light, t_intersection *closest)
 		return (true);
 	}
 	return (false);
-}
-
-t_color	calculate_global_illumination(t_light *bulb, t_intersection *closest, t_light *amb_light)
-{
-	t_color	color;
-
-	(void)bulb;
-	color = ambient(closest->color, amb_light->ratio);
-	//if (reflected(bulb, closest))
-	color = color_add(color, diffuse(bulb, closest, bulb->ratio));
-	return (color);
 }
 
 int	render(t_world *r)

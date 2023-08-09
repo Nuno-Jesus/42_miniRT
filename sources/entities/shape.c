@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:32:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/07/13 16:27:31 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/09 21:20:21 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,3 @@ t_shape	*shape_copy(t_shape *shape)
 	return (copy);
 }
 
-void	shape_print(t_shape *shape)
-{
-	if (shape->type == PLANE)
-		plane_print(&shape->data.pl);
-	else if (shape->type == SPHERE)
-		sphere_print(&shape->data.sp);
-	else if (shape->type == CYLINDER)
-		cylinder_print(&shape->data.cy);
-}

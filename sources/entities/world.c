@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 16:24:35 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 20:09:27 by crypto           ###   ########.fr       */
+/*   Created: 2023/08/09 21:32:20 by crypto            #+#    #+#             */
+/*   Updated: 2023/08/09 21:33:27 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+t_world	*world_new(void)
+{
+	t_world	*world;
+
+	world = nc_calloc(1, sizeof(t_world));
+	if (!world)
+		return (NULL);
+	world->shapes = nc_vector_new((void *)&shape_copy, NULL, \
+		&free, (void *)&shape_print);
+	world->lights = nc_vector_new((void *)&light_copy, NULL, \
+		&free, (void *)&light_print);
+	return (world);
+}
 
 void	destroy_world(t_world **world)
 {

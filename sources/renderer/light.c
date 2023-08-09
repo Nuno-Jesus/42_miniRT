@@ -6,11 +6,36 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/09 19:21:45 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 21:26:53 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+t_color	calculate_global_illumination(t_light *bulb, t_intersection *closest, t_light *amb_light)
+{
+	t_color	color;
+
+	(void)bulb;
+	color = ambient(closest->color, amb_light->ratio);
+	//if (reflected(bulb, closest))
+	color = color_add(color, diffuse(bulb, closest, bulb->ratio));
+	return (color);
+}
+
+/* 
+	Ambient illumination (IA) is given by:
+
+	IA = k * shape_color
+
+	k - ambient illumination coefficient
+	shape_color - color of the shape
+	
+*/
+t_color	ambient(t_color	color, double ratio)
+{
+	return (color_mult(color, ratio));
+}
 
 /*
 	Given a ray L that has an angle A with the normal of a shape,
@@ -45,18 +70,4 @@ t_color	diffuse(t_light* bulb, t_intersection *inter, double k)
 	diff_color = color_mult(inter->color, diffuse_ratio);
 	//color_print(&diff_color);
 	return (diff_color);
-}
-
-/* 
-	Ambient illumination (IA) is given by:
-
-	IA = k * shape_color
-
-	k - ambient illumination coefficient
-	shape_color - color of the shape
-	
-*/
-t_color	ambient(t_color	color, double ratio)
-{
-	return (color_mult(color, ratio));
 }

@@ -6,20 +6,20 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:21:45 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 21:35:41 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_sphere	sphere_new(char **c, char *radius, char **cl)
+t_sphere	sphere_new(char **c, char *diameter, char **cl)
 {
 	t_sphere	sp;
 
 	sp = (t_sphere)
 	{
 		.center = vec3_new(nc_atof(c[X]), nc_atof(c[Y]), nc_atof(c[Z])), 
-		.radius = nc_atof(radius) / 2,
+		.radius = nc_atof(diameter) / 2,
 		.color = color_new(nc_atof(cl[R]), nc_atof(cl[G]), nc_atof(cl[B])), 
 	};
 	return (sp);

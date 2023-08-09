@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:09:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 20:09:27 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 21:30:51 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ int	get_filesize(t_world *world, char *filename)
 	}
 	close(fd);
 	return (counter);
-}
-
-void	print(char *line)
-{
-	printf("%s\n", line);
 }
 
 char	**read_map(t_world *world, char *filename)
