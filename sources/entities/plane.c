@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/08 19:26:47 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:44:14 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ bool	plane_intersect(t_plane *pl, t_ray *ray, t_inter *inter)
 		double 	denominator;
 		double 	t;
 
-		// vec3_print(pl->normal);
 		if (vec3_dot(ray->direction, vec3_add(pl->normal, vec3_new(EPSILON, EPSILON, EPSILON))) != 0.0)
 		{
 			co = vec3_sub(ray->origin, pl->point);

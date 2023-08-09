@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/08 21:46:01 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 13:11:17 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,48 @@ t_cylinder	cylinder_new(char **tokens)
 	return (cy);
 }
 
+bool	check_caps(t_cylinder *cy, t_ray *ray, double t)
+{
+	double	len;
+	t_vec3	point;
+
+	point = ray_at(ray, t);
+	len = vec3_module(vec3_sub(point, cy->cap1));
+	if (len <= cy->radius)
+	{
+		//printf("point in cap = ");
+		//vec3_print(point);
+		return (true);
+	}
+	else 
+		return (false);
+}
+
+bool	check_walls(t_cylinder *cy, t_ray *ray, double t)
+{
+	t_vec3	point;
+	t_vec3	co;
+	t_vec3	a;
+	double 	m;
+	double 	len;
+
+	point = ray_at(ray, t);
+	co = vec3_sub(ray->origin, cy->cap1);
+	m = vec3_dot(ray->direction, cy->normal) * t + vec3_dot(co, cy->normal);
+	a = vec3_add(cy->cap1, vec3_scale(cy->normal, m));
+	len = vec3_module(vec3_sub(point, a));
+	m -= EPSILON;
+	len -= EPSILON;
+	if (m >= 0 && m <= cy->height && len <= cy->radius)
+	{
+		//printf("point in walls = ");
+		//vec3_print(point);
+		return (true);		
+	}
+	else
+		return (false);
+}
+
 double	cap_intersection(t_cylinder *cy, t_ray *ray, t_vec3 cap)
 {
 	t_vec3	co;
@@ -51,51 +93,17 @@ double	cap_intersection(t_cylinder *cy, t_ray *ray, t_vec3 cap)
 	if (vec3_dot(ray->direction, vec) != 0.0)
 	{
 		co = vec3_sub(ray->origin, cap);
-		numerator = vec3_dot(co, vec3_add(cy->normal, vec3_new(EPSILON, EPSILON, EPSILON)));
-		denominator = vec3_dot(ray->direction, vec3_add(cy->normal, vec3_new(EPSILON, EPSILON, EPSILON)));
+		numerator = vec3_dot(co, vec3_add(cy->normal, \
+						vec3_new(EPSILON, EPSILON, EPSILON)));
+		denominator = vec3_dot(ray->direction, vec3_add(cy->normal, \
+						vec3_new(EPSILON, EPSILON, EPSILON)));
 		t = -(numerator / denominator);
 		return (t);
 	}
 	return (t);
 }
 
-bool	check_caps(t_cylinder *cy, t_ray *ray, double t)
-{
-	double	len;
-	t_vec3	p;
-
-	p = ray_at(ray, t);
-	len = vec3_module(vec3_sub(p, cy->cap1));
-	if (len <= cy->radius)
-	{
-		printf("point in cap = ");
-		vec3_print(p);
-		return (true);
-	}
-	else 
-		return (false);
-}
-
-bool	check_walls(t_cylinder *cy, t_ray *ray, double t1)
-{
-	t_vec3	p;
-	t_vec3	co;
-	double 	m;
-
-	p = ray_at(ray, t1);
-	co = vec3_sub(ray->origin, cy->cap1);
-	m = vec3_dot(ray->direction, cy->normal) * t1 + vec3_dot(co, cy->normal);
-	if (m > EPSILON && m <= cy->height)
-	{
-		printf("point in walls = ");
-		vec3_print(p);
-		return (true);		
-	}
-	else
-		return (false);
-}
-
-double	check_points(t_cylinder *cy, t_ray *ray, t_equation *equation)
+double	verify_intersections(t_cylinder *cy, t_ray *ray, t_equation *equation)
 {
 	double t;
 	double t1;
@@ -125,16 +133,19 @@ bool	cylinder_intersect(t_cylinder *cy, t_ray *ray, t_inter *inter)
 {
 	t_vec3		co;
 	t_equation	equation;
-	double t;
+	double 		t;
 
 	co = vec3_sub(ray->origin, cy->cap1);
-	equation.a = vec3_dot(ray->direction, ray->direction) - pow(vec3_dot(ray->direction, cy->normal), 2);
-	equation.b = 2 * (vec3_dot(ray->direction, co) - (vec3_dot(ray->direction, cy->normal) * vec3_dot(co, cy->normal)));
-	equation.c = vec3_dot(co, co) - pow(vec3_dot(co, cy->normal), 2) - pow(cy->radius, 2);
+	equation.a = vec3_dot(ray->direction, ray->direction) - \
+					pow(vec3_dot(ray->direction, cy->normal), 2);
+	equation.b = 2 * (vec3_dot(ray->direction, co) - \
+		(vec3_dot(ray->direction, cy->normal) * vec3_dot(co, cy->normal)));
+	equation.c = vec3_dot(co, co) - pow(vec3_dot(co, cy->normal), 2) - \
+					pow(cy->radius, 2);
 	quadformula(&equation);
 	if (equation.t1 <= 0.0f && equation.t2 <= 0.0f)
 		return (false);
-	t = check_points(cy, ray, &equation);
+	t = verify_intersections(cy, ray, &equation);
 	if (t > 0.0f)
 	{
 		inter->t = t;
@@ -143,30 +154,3 @@ bool	cylinder_intersect(t_cylinder *cy, t_ray *ray, t_inter *inter)
 	}
 	return (false);
 }
-
-
-
-
-
-//bool	cylinder_intersect(t_cylinder *cy, t_ray *ray, t_inter *inter)
-//{
-//	(void) inter;
-//	t_vec3		co;
-//	t_equation	equation;
-//	double m1;
-
-//	co = vec3_sub(ray->origin, cy->cap1);
-//	equation.a = vec3_dot(ray->direction, ray->direction) - pow(vec3_dot(ray->direction, cy->normal), 2);
-//	equation.b = 2 * (vec3_dot(ray->direction, co) - vec3_dot(ray->direction, cy->normal) * vec3_dot(co, cy->normal));
-//	equation.c = vec3_dot(co, co) - pow(vec3_dot(co, cy->normal), 2) - pow(cy->radius, 2);
-//	if (quadformula(&equation) <= 0)
-//		return (false);
-//	m1 = vec3_dot(ray->direction, cy->normal) * equation.t1 + vec3_dot(co, cy->normal);
-//	if (m1 >= EPSILON && m1 <= cy->height)
-//	{
-//		inter->t = equation.t1;
-//		inter->color = cy->color;	
-//		return (true);
-//	}
-//	return (false);
-//}

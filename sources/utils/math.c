@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/08 15:42:01 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 11:43:59 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,6 @@ void	closest_point(double t, t_ray *ray, t_color *color)
 	distance = vec3_module(vec);
 	if (distance < ray->distance + EPSILON)
 	{
-		// printf("Old color: ");
-		// color_print(&ray->color);
-		// printf("distance = %f\n", distance);
-		// printf("ray->distance = %f\n", ray->distance);
-		// printf("New color: ");
-		// color_print(&ray->color);
 		ray->distance = distance;
 		ray->color = *color;
 	}
