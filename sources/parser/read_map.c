@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:09:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 20:09:27 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	is_filename_valid(char *filename)
 	return (nc_strnstr(filename + (len - 3), ".rt", len) != NULL);
 }
 
-int	get_filesize(t_world *root, char *filename)
+int	get_filesize(t_world *world, char *filename)
 {
 	int		fd;
 	int		counter;
@@ -31,7 +31,7 @@ int	get_filesize(t_world *root, char *filename)
 	counter = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		message(root, "Error opening file.");
+		message(world, "Error opening file.");
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -50,7 +50,7 @@ void	print(char *line)
 	printf("%s\n", line);
 }
 
-char	**read_map(t_world *root, char *filename)
+char	**read_map(t_world *world, char *filename)
 {
 	int		fd;
 	int		i;
@@ -58,12 +58,12 @@ char	**read_map(t_world *root, char *filename)
 	char	**map;
 
 	i = 0;
-	map = (char **)nc_matrix_new(get_filesize(root, filename), 0);
+	map = (char **)nc_matrix_new(get_filesize(world, filename), 0);
 	if (!map)
-		message(root, "Failed allocation on read_map.");
+		message(world, "Failed allocation on read_map.");
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		message(root, "Error opening file.");
+		message(world, "Error opening file.");
 	while (1)
 	{
 		line = get_next_line(fd);

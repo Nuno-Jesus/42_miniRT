@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 20:15:37 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ typedef enum s_shape_type
 	SPHERE,
 	CYLINDER,
 }	t_shape_type;
+
+typedef struct s_vec3
+{
+	double	x;
+	double	y;
+	double	z;
+}	t_vec3;
 
 typedef struct s_color
 {
@@ -115,22 +122,22 @@ typedef struct s_intersection
 	t_vec3	point;
 	t_vec3	normal;
 	t_color	color;
-	double	t;
 	t_vec3  a;
+	double	t;
 }	t_intersection;
 
 typedef struct s_world
 {
 	t_camera		camera;
 	t_light			ambient;
-	t_vector		*sources;
+	t_vector		*lights;
 	t_vector		*shapes;
 	t_graphics		disp;
+	t_vec3			up;
+	t_vec3			right;	
 	char			**map;
 	double			hview; //! Height of the viewport
 	double			wview; //! Width of the viewport
-	t_vec3			up;
-	t_vec3			right;	
 }	t_world;
 
 #endif

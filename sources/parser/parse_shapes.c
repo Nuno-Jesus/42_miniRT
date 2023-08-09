@@ -6,13 +6,13 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 20:09:27 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-bool	parse_plane(t_world *root, char **tokens)
+bool	parse_plane(t_world *world, char **tokens)
 {
 	char	**point;
 	char	**normal;
@@ -31,7 +31,7 @@ bool	parse_plane(t_world *root, char **tokens)
 	color = nc_split(tokens[3], ',');
 	plane = plane_new(point, normal, color);
 	shape = shape_new(&plane, PLANE);
-	nc_vector_push(root->shapes, shape);
+	nc_vector_push(world->shapes, shape);
 	nc_matrix_delete(point, &free);
 	nc_matrix_delete(normal, &free);
 	nc_matrix_delete(color, &free);
@@ -39,7 +39,7 @@ bool	parse_plane(t_world *root, char **tokens)
 	return (true);
 }
 
-bool	parse_sphere(t_world *root, char **tokens)
+bool	parse_sphere(t_world *world, char **tokens)
 {
 	char		**center;
 	char		**color;
@@ -56,14 +56,14 @@ bool	parse_sphere(t_world *root, char **tokens)
 	color = nc_split(tokens[3], ',');
 	sphere = sphere_new(center, tokens[2], color);
 	shape = shape_new(&sphere, SPHERE);
-	nc_vector_push(root->shapes, shape);
+	nc_vector_push(world->shapes, shape);
 	nc_matrix_delete(center, &free);
 	nc_matrix_delete(color, &free);
 	sphere_print(&sphere);
 	return (true);
 }
 
-bool	parse_cylinder(t_world *root, char **tokens)
+bool	parse_cylinder(t_world *world, char **tokens)
 {
 	t_cylinder	cylinder;
 	t_shape		*shape;
@@ -76,7 +76,7 @@ bool	parse_cylinder(t_world *root, char **tokens)
 		return (false);
 	cylinder = cylinder_new(tokens);
 	shape = shape_new(&cylinder, CYLINDER);
-	nc_vector_push(root->shapes, shape);
+	nc_vector_push(world->shapes, shape);
 	cylinder_print(&cylinder);
 	return (true);
 }

@@ -1,43 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shapes.h                                           :+:      :+:    :+:   */
+/*   entities.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:21:45 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 20:11:31 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHAPES_H
-# define SHAPES_H
+#ifndef ENTITIES_H
+# define ENTITIES_H
 
 # include "miniRT.h"
 
+//! Planes
+
 t_plane		plane_new(char **point, char **normal, char **color);
+
+bool		plane_intersect(t_plane *pl, t_ray *ray, t_intersection *inter);
+
+//! Spheres
 
 t_sphere	sphere_new(char **center, char *radius, char **color);
 
+bool		sphere_intersect(t_sphere *sp, t_ray *ray, t_intersection *inter);
+
+t_vec3		sphere_normal(t_intersection *inter, t_ray *ray);
+
+//! Cylinders
+
 t_cylinder	cylinder_new(char **tokens);
 
-void		plane_print(t_plane *p);
+bool		cylinder_intersect(t_cylinder *cy, t_ray *ray, t_intersection *inter);
 
-void		sphere_print(t_sphere *s);
+t_vec3		cylinder_normal(t_intersection *inter, t_ray *ray);
 
-void		cylinder_print(t_cylinder *c);
+//! Shapes
 
 t_shape		*shape_new(void	*data, t_shape_type type);
 
 t_shape		*shape_copy(t_shape *shape);
 
-void		shape_print(t_shape *shape);
+t_vec3		shape_normal(t_intersection *inter, t_ray *ray);
 
-bool		plane_intersect(t_plane *pl, t_ray *ray, t_intersection *inter);
+//! Lights
 
-bool		sphere_intersect(t_sphere *sp, t_ray *ray, t_intersection *inter);
+t_light		*light_new(char **point, char *ratio, char **color);
 
-bool		cylinder_intersect(t_cylinder *cy, t_ray *ray, t_intersection *inter);
-
+t_light		*light_copy(t_light *lightsource);
 
 #endif

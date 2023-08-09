@@ -6,13 +6,13 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 23:08:51 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/03 13:06:29 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 20:14:05 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-double	vec3_module(t_vec3 vec)
+double	vec3_length(t_vec3 vec)
 {
 	double	mod;
 

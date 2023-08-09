@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 20:13:53 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ bool	intersects(t_shape *shape, t_ray *ray, t_intersection *inter)
 		inter->ray = *ray;
 		inter->shape = shape;
 		inter->point = ray_at(ray, inter->t);
-		inter->normal = vec3_normalize(normal(inter, ray));
+		inter->normal = vec3_normalize(shape_normal(inter, ray));
 	}
 	return (hit);
 }
@@ -105,7 +105,7 @@ bool	reflected(t_light *light, t_intersection *closest)
 	reflection = vec3_scale(closest->normal, 2 * vec3_dot(closest->normal, light_dir));
 	reflection = vec3_sub(reflection, light_dir);
 	reflection = vec3_normalize(reflection);
-	cossine = vec3_cos(light_dir, reflection);
+	cossine = vec3_cossine(light_dir, reflection);
 	double angle;
 
 	angle = DEGREES(acos(cossine));
@@ -124,7 +124,7 @@ t_color	calculate_global_illumination(t_light *bulb, t_intersection *closest, t_
 	(void)bulb;
 	color = ambient(closest->color, amb_light->ratio);
 	//if (reflected(bulb, closest))
-	color = color_add(color, diffuse(bulb, closest, KDIFFUSE));
+	color = color_add(color, diffuse(bulb, closest, bulb->ratio));
 	return (color);
 }
 
@@ -147,7 +147,7 @@ int	render(t_world *r)
 			factors = world_to_viewport(coords.x, coords.y); 	// Convert pixels to viewport coords (V point)
 			ray = make_ray(r, factors);					// Make a ray from camera to V
 			if (world_hit(r->shapes, &ray, &closest))
-				color = calculate_global_illumination(nc_vector_at(r->sources, 0), &closest, &r->ambient);	
+				color = calculate_global_illumination(nc_vector_at(r->lights, 0), &closest, &r->ambient);	
 			put_pixel(r, color, coords.x, coords.y);
 		}
 	}

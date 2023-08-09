@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:34:30 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:17:41 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 19:59:04 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	plane_print(t_plane *p)
 	printf("  Color: (%d, %d, %d)\n", p->color.r, p->color.g, p->color.b);
 }
 
-void	source_print(t_light *l)
+void	light_print(t_light *l)
 {
 	printf("Lightsource:\n");
 	printf("  Point: (%.2f, %.2f, %.2f)\n", \

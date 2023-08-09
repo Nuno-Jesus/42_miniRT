@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 20:09:27 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	init_graphics(t_world *r)
 		message(r, "Failed allocation on window pointer\n");
 }
 
-int	quit(t_world *root)
+int	quit(t_world *world)
 {
-	destroy_root(&root);
+	destroy_world(&world);
 	exit(EXIT_SUCCESS);
 }
 
@@ -32,7 +32,7 @@ int	on_keypress(int keycode, t_world *r)
 {
 	t_light *l;
 	
-	l = nc_vector_at(r->sources, 0);
+	l = nc_vector_at(r->lights, 0);
 	if (keycode == ESC)
 		quit(r);
 	else if (keycode == W)
@@ -74,21 +74,21 @@ void	init_viewport(t_world *r)
 
 int	main(int argc, char **argv)
 {
-	t_world	*root;
+	t_world	*world;
 
 	if (argc != 2)
 		message(NULL, "Usage: ./miniRT <scene>.rt");
-	root = parse(argv[1]);
-	init_viewport(root);
-	init_graphics(root);
-	root->disp.img = mlx_new_image(root->disp.mlx, WIDTH, HEIGHT);
-	root->disp.addr = mlx_get_data_addr(root->disp.img, &root->disp.bpp, \
-		&root->disp.line_length, &root->disp.endian);
-	render(root);
-	mlx_hook(root->disp.win, ON_KEYPRESS, KEYPRESS_MASK, on_keypress, root);
-	mlx_hook(root->disp.win, ON_CLOSE, CLOSE_MASK, quit, root);
-	//mlx_loop_hook(root->disp.mlx, render, root);
-	mlx_loop(root->disp.mlx);
-	destroy_root(&root);
+	world = parse(argv[1]);
+	init_viewport(world);
+	init_graphics(world);
+	world->disp.img = mlx_new_image(world->disp.mlx, WIDTH, HEIGHT);
+	world->disp.addr = mlx_get_data_addr(world->disp.img, &world->disp.bpp, \
+		&world->disp.line_length, &world->disp.endian);
+	render(world);
+	mlx_hook(world->disp.win, ON_KEYPRESS, KEYPRESS_MASK, on_keypress, world);
+	mlx_hook(world->disp.win, ON_CLOSE, CLOSE_MASK, quit, world);
+	//mlx_loop_hook(world->disp.mlx, render, world);
+	mlx_loop(world->disp.mlx);
+	destroy_world(&world);
 	return (0);
 }

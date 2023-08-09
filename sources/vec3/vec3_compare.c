@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec3_compare.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:22:06 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/09 15:22:52 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 20:13:27 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,5 @@
 
 bool	vec3_compare(t_vec3 v1, t_vec3 v2)
 {
-	if (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z)
-		return (true);
-	else 
-		return (false);
+	return (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z);
 }

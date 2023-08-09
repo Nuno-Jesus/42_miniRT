@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normal.h                                           :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 15:39:15 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/09 19:21:45 by crypto           ###   ########.fr       */
+/*   Created: 2023/08/09 20:06:25 by crypto            #+#    #+#             */
+/*   Updated: 2023/08/09 20:10:58 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NORMAL_H
-# define NORMAL_H
+#ifndef COLOR_H
+# define COLOR_H
 
 # include "miniRT.h"
 
-t_vec3	normal(t_intersection *inter, t_ray *ray);
+t_color	color_new(int r, int g, int b);
 
-t_vec3	sphere_normal(t_intersection *inter, t_ray *ray);
+t_color	color_add(t_color c1, t_color c2);
 
-t_vec3	cylinder_normal(t_intersection *inter, t_ray *ray);
+t_color	color_mult(t_color color, double k);
 
 #endif

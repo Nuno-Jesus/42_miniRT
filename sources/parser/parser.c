@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 20:14:05 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,26 @@ bool	parse_syntax(char **tokens, char *code)
 	return (true);
 }
 
-bool	identifying(t_world *root, char **tokens)
+bool	identifying(t_world *world, char **tokens)
 {
 	if (!nc_strncmp(tokens[0], "A", nc_strlen(tokens[0])))
-		return (parse_ambient_light(root, tokens));
+		return (parse_ambient_light(world, tokens));
 	else if (!nc_strncmp(tokens[0], "C", nc_strlen(tokens[0])))
-		return (parse_camera(root, tokens));
+		return (parse_camera(world, tokens));
 	else if (!nc_strncmp(tokens[0], "L", nc_strlen(tokens[0])))
-		return (parse_light_source(root, tokens));
+		return (parse_light_source(world, tokens));
 	else if (!nc_strncmp(tokens[0], "pl", nc_strlen(tokens[0])))
-		return (parse_plane(root, tokens));
+		return (parse_plane(world, tokens));
 	else if (!nc_strncmp(tokens[0], "sp", nc_strlen(tokens[0])))
-		return (parse_sphere(root, tokens));
+		return (parse_sphere(world, tokens));
 	else if (!nc_strncmp(tokens[0], "cy", nc_strlen(tokens[0])))
-		return (parse_cylinder(root, tokens));
+		return (parse_cylinder(world, tokens));
 	else
 		return (false);
 	return (true);
 }
 
-void	parse_map(t_world *root, char **map)
+void	parse_map(t_world *world, char **map)
 {
 	int		i;
 	bool	ok;
@@ -67,41 +67,41 @@ void	parse_map(t_world *root, char **map)
 	while (map[++i])
 	{
 		tokens = nc_split(map[i], ' ');
-		ok = identifying(root, tokens);
+		ok = identifying(world, tokens);
 		nc_matrix_delete(tokens, &free);
 		if (!ok)
-			message(root, ERROR_SYNTAX);
+			message(world, ERROR_SYNTAX);
 	}
 }
 
-t_world	*root_new(void)
+t_world	*world_new(void)
 {
-	t_world	*root;
+	t_world	*world;
 
-	root = nc_calloc(1, sizeof(t_world));
-	if (!root)
+	world = nc_calloc(1, sizeof(t_world));
+	if (!world)
 		return (NULL);
-	root->shapes = nc_vector_new((void *)&shape_copy, NULL, \
+	world->shapes = nc_vector_new((void *)&shape_copy, NULL, \
 		&free, (void *)&shape_print);
-	root->sources = nc_vector_new((void *)&source_copy, NULL, \
-		&free, (void *)&source_print);
-	return (root);
+	world->lights = nc_vector_new((void *)&light_copy, NULL, \
+		&free, (void *)&light_print);
+	return (world);
 }
 
 t_world	*parse(char *filename)
 {
-	t_world	*root;
+	t_world	*world;
 
 	if (!is_filename_valid(filename))
 		message(NULL, ERROR_FILENAME);
-	root = root_new();
-	if (!root)
+	world = world_new();
+	if (!world)
 		return (NULL); // Change this to message
-	root->map = read_map(root, filename);
-	if (nc_matrix_size(root->map) == 0)
-		message(root, ERROR_EMPTY_MAP);
-	parse_map(root, root->map);
-	if (vec3_module(root->camera.normal) == 0)
-		message(root, ERROR_NO_CAMERA);	
-	return (root);
+	world->map = read_map(world, filename);
+	if (nc_matrix_size(world->map) == 0)
+		message(world, ERROR_EMPTY_MAP);
+	parse_map(world, world->map);
+	if (vec3_length(world->camera.normal) == 0)
+		message(world, ERROR_NO_CAMERA);	
+	return (world);
 }

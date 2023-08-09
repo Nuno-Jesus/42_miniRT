@@ -6,13 +6,13 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 18:25:05 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:17:26 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 19:59:01 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_light	*source_new(char **c, char *ratio, char **cl)
+t_light	*light_new(char **c, char *ratio, char **cl)
 {
 	t_light	*bulb;
 
@@ -28,7 +28,7 @@ t_light	*source_new(char **c, char *ratio, char **cl)
 	return (bulb);
 }
 
-t_light	*source_copy(t_light *bulb)
+t_light	*light_copy(t_light *bulb)
 {
 	t_light	*copy;
 

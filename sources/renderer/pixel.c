@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:12:59 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:22:16 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 20:09:27 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	put_pixel(t_world *r, t_color c, int x, int y)
 	*(unsigned int *)dst = (c.t << 24 | c.r << 16 | c.g << 8 | c.b);
 }
 
-// t_color	get_pixel(t_root *r, int x, int y)
+// t_color	get_pixel(t_world *r, int x, int y)
 // {
 // 	char	*pixel;
 

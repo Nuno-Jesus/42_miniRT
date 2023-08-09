@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:21:45 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/09 20:14:05 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool	check_caps(t_cylinder *cy, t_vec3 cap, t_intersection *inter, double t)
 	t_vec3	point;
 
 	point = ray_at(&inter->ray, t);
-	len = vec3_module(vec3_sub(point, cap));
+	len = vec3_length(vec3_sub(point, cap));
 	len += EPSILON;
 	if (len <= cy->radius && t < inter->t)
 	{
@@ -68,7 +68,7 @@ bool	check_walls(t_cylinder *cy, t_intersection *inter, double t)
 	co = vec3_sub(inter->ray.origin, cy->cap1);
 	m = vec3_dot(inter->ray.direction, cy->normal) * t + vec3_dot(co, cy->normal);
 	a = vec3_add(cy->cap1, vec3_scale(cy->normal, m));
-	len = vec3_module(vec3_sub(point, a));
+	len = vec3_length(vec3_sub(point, a));
 	m -= EPSILON;
 	len -= EPSILON;
 	if (m >= 0 && m <= cy->height && len <= cy->radius && t < inter->t)

@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   illumination.h                                     :+:      :+:    :+:   */
+/*   debug.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 19:43:46 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/09 19:10:03 by crypto           ###   ########.fr       */
+/*   Created: 2023/08/09 20:01:30 by crypto            #+#    #+#             */
+/*   Updated: 2023/08/09 20:14:40 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ILLUMINATION_H
-# define ILLUMINATION_H
+#ifndef DEBUG_H
+# define DEBUG_H
 
 # include "miniRT.h"
 
-void			ambient_print(t_light *s);
+void	ambient_print(t_light *s);
 
-void			camera_print(t_camera *s);
+void	camera_print(t_camera *s);
 
-t_light	*source_new(char **point, char *ratio, char **color);
+void	light_print(t_light *l);
 
-t_light	*source_copy(t_light *lightsource);
+void	plane_print(t_plane *p);
 
-void			source_print(t_light *l);
+void	sphere_print(t_sphere *s);
+
+void	cylinder_print(t_cylinder *c);
+
+void	shape_print(t_shape *shape);
+
+void	color_print(t_color *color);
+
+void	vec3_print(t_vec3 vec);
 
 #endif

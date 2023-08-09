@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/08 21:36:51 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:58:11 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,12 @@
 # include <sys/stat.h>
 # include <math.h>
 
-// # define DEBUG
+//! Debug related macros
 
-# define PI 3.1415926535f
-# define RADIANS(deg) ((deg * PI) / 180.0f)
-# define DEGREES(rad) ((rad * 180.0f) / PI)
-
-# define BLUE		(t_color){0, 0, 0, 255}
-# define BLACK		(t_color){0, 0, 0, 0}
-# define WHITE		(t_color){0, 255, 255, 255}
-# define RED		(t_color){0, 255, 0, 0}
-# define UPGUIDE	(t_vec3){0.0, 1.0, 0.0}
-
-# define HAS_COMMAS '1'
+# define DEBUG
 # define HERE printf("HERE\n");
 
-# define EPSILON 0.0001
-# define KDIFFUSE 0.8
+//! Parsing macros
 
 # define X 0
 # define Y 1
@@ -48,17 +37,45 @@
 # define G 1
 # define B 2
 
+# define HAS_COMMAS '1'
+
+# define ERROR_COLOR_A		"Wrong color syntax for ambient lightning"
+# define ERROR_COLOR_L		"Wrong color syntax for light source"
+# define ERROR_SYNTAX		"Syntax: file format misconfiguration."
+# define ERROR_FILENAME		"Invalid filename."
+# define ERROR_EMPTY_MAP	"Empty map."
+# define ERROR_NO_CAMERA	"No camera in the map."
+
+//! Math macros 
+
+# define PI 3.1415926535f
+# define RADIANS(deg) ((deg * PI) / 180.0f)
+# define DEGREES(rad) ((rad * 180.0f) / PI)
+# define EPSILON 0.0001
+
+//! Fixed t_color structs
+
+# define BLUE		(t_color){0, 0, 0, 255}
+# define BLACK		(t_color){0, 0, 0, 0}
+# define WHITE		(t_color){0, 255, 255, 255}
+# define RED		(t_color){0, 255, 0, 0}
+
+//! Fixed t_vec3 structs
+
+# define UPGUIDE	(t_vec3){0.0, 1.0, 0.0}
+
+//! Viewport and window macros
+
 # ifdef __APPLE__
 #  define WIDTH 800
-#  define HEIGHT 500
 # else
 #  define WIDTH 640
-#  define HEIGHT 360
 # endif
 
-# define RATIO WIDTH/(double)HEIGHT
+# define RATIO 	(16.0/9.0)
+# define HEIGHT (WIDTH/RATIO)
 
-# define MAX_REFLECTIONS 2
+//! Minilibx events
 
 # define ON_KEYPRESS 2
 # define ON_CLOSE 17
@@ -71,8 +88,6 @@
 #  define A 0
 #  define S 1
 #  define D 2
-#  define UP 126
-#  define DOWN 125
 #  define C 8
 #  define V 9
 # else
@@ -81,17 +96,8 @@
 #  define A 97
 #  define S 115
 #  define D 100
-#  define UP 65362
-#  define DOWN 65364
 #  define C 99
 #  define V 118
 # endif
-
-# define ERROR_COLOR_A		"Wrong color syntax for ambient lightning"
-# define ERROR_COLOR_L		"Wrong color syntax for light source"
-# define ERROR_SYNTAX		"Syntax: file format misconfiguration."
-# define ERROR_FILENAME		"Invalid filename."
-# define ERROR_EMPTY_MAP	"Empty map."
-# define ERROR_NO_CAMERA	"No camera in the map."
 
 #endif
