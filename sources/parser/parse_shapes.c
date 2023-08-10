@@ -6,17 +6,14 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 20:09:27 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 16:45:29 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-bool	parse_plane(t_world *world, char **tokens)
+bool	parse_plane(t_vector *shapes, char **tokens)
 {
-	char	**point;
-	char	**normal;
-	char	**color;
 	t_plane	plane;
 	t_shape	*shape;
 
@@ -26,23 +23,14 @@ bool	parse_plane(t_world *world, char **tokens)
 		return (false);
 	if (!parse_rgb(tokens[3]))
 		return (false);
-	point = nc_split(tokens[1], ',');
-	normal = nc_split(tokens[2], ',');
-	color = nc_split(tokens[3], ',');
-	plane = plane_new(point, normal, color);
+	plane = plane_from_strings(tokens);
 	shape = shape_new(&plane, PLANE);
-	nc_vector_push(world->shapes, shape);
-	nc_matrix_delete(point, &free);
-	nc_matrix_delete(normal, &free);
-	nc_matrix_delete(color, &free);
-	plane_print(&plane);
+	nc_vector_push(shapes, shape);
 	return (true);
 }
 
-bool	parse_sphere(t_world *world, char **tokens)
+bool	parse_sphere(t_vector *shapes, char **tokens)
 {
-	char		**center;
-	char		**color;
 	t_sphere	sphere;
 	t_shape		*shape;
 
@@ -52,18 +40,13 @@ bool	parse_sphere(t_world *world, char **tokens)
 		return (false);
 	if (!parse_rgb(tokens[3]))
 		return (false);
-	center = nc_split(tokens[1], ',');
-	color = nc_split(tokens[3], ',');
-	sphere = sphere_new(center, tokens[2], color);
+	sphere = sphere_from_strings(tokens);
 	shape = shape_new(&sphere, SPHERE);
-	nc_vector_push(world->shapes, shape);
-	nc_matrix_delete(center, &free);
-	nc_matrix_delete(color, &free);
-	sphere_print(&sphere);
+	nc_vector_push(shapes, shape);
 	return (true);
 }
 
-bool	parse_cylinder(t_world *world, char **tokens)
+bool	parse_cylinder(t_vector *shapes, char **tokens)
 {
 	t_cylinder	cylinder;
 	t_shape		*shape;
@@ -74,9 +57,8 @@ bool	parse_cylinder(t_world *world, char **tokens)
 		return (false);
 	if (!parse_rgb(tokens[5]))
 		return (false);
-	cylinder = cylinder_new(tokens);
+	cylinder = cylinder_from_strings(tokens);
 	shape = shape_new(&cylinder, CYLINDER);
-	nc_vector_push(world->shapes, shape);
-	cylinder_print(&cylinder);
+	nc_vector_push(shapes, shape);
 	return (true);
 }

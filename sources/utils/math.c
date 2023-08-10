@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:20:04 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 16:14:23 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,23 @@ double	determinant(t_equation *eq)
 	return (delta);
 }
 
-int	quadformula(t_equation *eq)
+double	solve(t_equation *eq)
 {
 	double	delta;
 
-	delta = determinant(eq);
-	if (delta < 0)
-		return (-1);
-	eq->t1 = (-eq->b - sqrt(delta)) / (2 * eq->a);	
-	eq->t2 = (-eq->b + sqrt(delta)) / (2 * eq->a);	
-	return (delta);
+	if (eq->a == 0.0 && eq->b != 0.0)
+	{
+		eq->t1 = -eq->c/eq->b;
+		return (0);
+	}
+	else
+	{
+		delta = determinant(eq);
+		if (delta < 0)
+			return (-1);
+		eq->t1 = (-eq->b - sqrt(delta)) / (2 * eq->a);	
+		eq->t2 = (-eq->b + sqrt(delta)) / (2 * eq->a);	
+		return (delta);
+	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 21:35:53 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 16:44:06 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 
 //! Planes
 
-t_plane		plane_new(char **point, char **normal, char **color);
+t_plane		plane_from_strings(char **tokens);
+
+t_plane		plane_from_numbers(t_vec3 point, t_vec3 normal, t_color color);
 
 bool		plane_intersect(t_plane *pl, t_ray *ray, t_intersection *inter);
 
 //! Spheres
 
-t_sphere	sphere_new(char **center, char *diameter, char **color);
+t_sphere	sphere_from_strings(char **tokens);
 
 bool		sphere_intersect(t_sphere *sp, t_ray *ray, t_intersection *inter);
 
@@ -31,7 +33,7 @@ t_vec3		sphere_normal(t_intersection *inter, t_ray *ray);
 
 //! Cylinders
 
-t_cylinder	cylinder_new(char **tokens);
+t_cylinder	cylinder_from_strings(char **tokens);
 
 bool		cylinder_intersect(t_cylinder *cy, t_ray *ray, t_intersection *inter);
 

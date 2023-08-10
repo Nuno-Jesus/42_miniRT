@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:09:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 21:30:51 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 15:38:08 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	get_filesize(t_world *world, char *filename)
 	counter = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		message(world, "Error opening file.");
+		message(world, ERROR_OPEN_FILE);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -53,12 +53,12 @@ char	**read_map(t_world *world, char *filename)
 	char	**map;
 
 	i = 0;
-	map = (char **)nc_matrix_new(get_filesize(world, filename), 0);
+	map = nc_matrix_new(get_filesize(world, filename), 0);
 	if (!map)
-		message(world, "Failed allocation on read_map.");
+		message(world, ERROR_MALLOC("read_map"));
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		message(world, "Error opening file.");
+		message(world, ERROR_OPEN_FILE);
 	while (1)
 	{
 		line = get_next_line(fd);

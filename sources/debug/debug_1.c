@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:34:30 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 21:21:23 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 16:06:44 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	ambient_print(t_light *s)
 void	camera_print(t_camera *c)
 {
 	printf("Camera:\n");
-	printf("  Center: (%.2f, %.2f, %.2f)\n", \
+	printf("  Center: (%.4lf, %.4lf, %.4lf)\n", \
 		c->center.x, c->center.y, c->center.z);
-	printf("  Normal: %.2f, %.2f, %.2f\n", \
+	printf("  Normal: %.4lf, %.4lf, %.4lf\n", \
 		c->normal.x, c->normal.y, c->normal.z);
 	printf("  Fov: %2.f\n", c->fov);
 }
@@ -32,9 +32,9 @@ void	camera_print(t_camera *c)
 void	light_print(t_light *l)
 {
 	printf("Lightsource:\n");
-	printf("  Point: (%.2f, %.2f, %.2f)\n", \
+	printf("  Point: (%.4lf, %.4lf, %.4lf)\n", \
 		l->center.x, l->center.y, l->center.z);
-	printf("  Ratio: %.2f\n", l->ratio);
+	printf("  Ratio: %.4lf\n", l->ratio);
 	printf("  Color: (%d, %d, %d)\n", l->color.r, l->color.g, l->color.b);
 }
 
@@ -45,5 +45,5 @@ void	color_print(t_color *color)
 
 void	vec3_print(t_vec3 vec)
 {
-	printf("Vec: (x, y, z) = (%.3f, %.3f, %.3f)\n", vec.x, vec.y, vec.z);
+	printf("Vec: (x, y, z) = (%.20lf, %.20lf, %.20lf)\n", vec.x, vec.y, vec.z);
 }

@@ -6,13 +6,13 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 20:14:05 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 16:32:08 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_cylinder	cylinder_new(char **tokens)
+t_cylinder	cylinder_from_strings(char **tokens)
 {
 	char		**c;
 	char		**n;
@@ -24,14 +24,14 @@ t_cylinder	cylinder_new(char **tokens)
 	cl = nc_split(tokens[5], ',');
 	cy = (t_cylinder)
 	{
-		.radius = nc_atof(tokens[3]) / 2,
+		.radius = nc_atof(tokens[3]) / 2.0,
 		.height = nc_atof(tokens[4]),
 		.center = vec3_new(nc_atof(c[X]), nc_atof(c[Y]), nc_atof(c[Z])),
 		.normal = vec3_normalize(vec3_new(nc_atof(n[X]), nc_atof(n[Y]), nc_atof(n[Z]))),
 		.color = color_new(nc_atof(cl[R]), nc_atof(cl[G]), nc_atof(cl[B])),
 	};
-	cy.cap1 = vec3_add(cy.center, vec3_scale(cy.normal, -cy.height / 2.0));
-	cy.cap2 = vec3_add(cy.center, vec3_scale(cy.normal, cy.height / 2.0));
+	cy.cap1 = vec3_add(cy.center, vec3_scale(cy.normal, -cy.height / 2.0)),
+	cy.cap2 = vec3_add(cy.center, vec3_scale(cy.normal, cy.height / 2.0)),
 	nc_matrix_delete(c, &free);
 	nc_matrix_delete(n, &free);
 	nc_matrix_delete(cl, &free);
@@ -83,25 +83,29 @@ bool	check_walls(t_cylinder *cy, t_intersection *inter, double t)
 
 double	cap_intersection(t_cylinder *cy, t_ray *ray, t_vec3 cap)
 {
-	t_vec3	co;
-	t_vec3	vec;
-	double 	numerator;
-	double 	denominator;
-	double 	t;
+	// t_vec3	co;
+	// t_vec3	vec;
+	// double 	numerator;
+	// double 	denominator;
+	// double 	t;
+	t_plane plane;
+	t_intersection inter;
 
-	t = -1;
-	vec = vec3_sub(cy->normal, cap);
-	if (vec3_dot(ray->direction, vec) != 0.0)
-	{
-		co = vec3_sub(ray->origin, cap);
-		numerator = vec3_dot(co, vec3_add(cy->normal, \
-						vec3_new(EPSILON, EPSILON, EPSILON)));
-		denominator = vec3_dot(ray->direction, vec3_add(cy->normal, \
-						vec3_new(EPSILON, EPSILON, EPSILON)));
-		t = -(numerator / denominator);
-		return (t);
-	}
-	return (t);
+	plane = plane_from_numbers(cap, cy->normal, BLACK);
+	if (plane_intersect(&plane, ray, &inter))
+		return (inter.t);
+	return (-1);
+	
+	// vec = vec3_sub(cy->normal, cap);
+	// if (vec3_dot(ray->direction, vec) != 0.0)
+	// {
+	// 	co = vec3_sub(ray->origin, cap);
+	// 	numerator = vec3_dot(co, cy->normal);
+	// 	denominator = vec3_dot(ray->direction, cy->normal);
+	// 	t = -(numerator / denominator);
+	// 	return (t);
+	// }
+	// return (t);
 }
 
 double	verify_intersections(t_cylinder *cy, t_ray *ray, t_equation *equation, t_intersection *inter)
@@ -139,7 +143,7 @@ bool	cylinder_intersect(t_cylinder *cy, t_ray *ray, t_intersection *inter)
 		(vec3_dot(ray->direction, cy->normal) * vec3_dot(co, cy->normal)));
 	equation.c = vec3_dot(co, co) - pow(vec3_dot(co, cy->normal), 2) - \
 					pow(cy->radius, 2);
-	quadformula(&equation);
+	solve(&equation);
 	if (equation.t1 <= 0 && equation.t2 <= 0)
 		return (false);
 	t = verify_intersections(cy, ray, &equation, inter);

@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 20:09:37 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 15:28:36 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ bool	parse_syntax(char **tokens, char *code);
 
 bool	is_filename_valid(char *filename);
 
-bool	parse_ambient_light(t_world *world, char **tokens);
+bool	parse_ambient_light(t_light *ambient, char **tokens);
 
-bool	parse_camera(t_world *world, char **tokens);
+bool	parse_camera(t_camera *cam, char **tokens);
 
-bool	parse_light_source(t_world *world, char **tokens);
+bool	parse_light_source(t_vector *lights, char **tokens);
 
-bool	parse_plane(t_world *world, char **tokens);
+bool	parse_plane(t_vector *shapes, char **tokens);
 
-bool	parse_sphere(t_world *world, char **tokens);
+bool	parse_sphere(t_vector *shapes, char **tokens);
 
-bool	parse_cylinder(t_world *world, char **tokens);
+bool	parse_cylinder(t_vector *shapes, char **tokens);
 
 bool	parse_double(char **nb);
 

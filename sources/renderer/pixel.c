@@ -6,21 +6,21 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:12:59 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 20:09:27 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 13:20:55 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	put_pixel(t_world *r, t_color c, int x, int y)
+void	put_pixel(t_world *w, t_color c, int x, int y)
 {
 	char	*dst;
 
-	dst = r->disp.addr + (y * WIDTH + x) * (r->disp.bpp / 8);
+	dst = w->disp.addr + (y * WIDTH + x) * (w->disp.bpp / 8);
 	*(unsigned int *)dst = (c.t << 24 | c.r << 16 | c.g << 8 | c.b);
 }
 
-// t_color	get_pixel(t_world *r, int x, int y)
+// t_color	get_pixel(t_world *w, int x, int y)
 // {
 // 	char	*pixel;
 

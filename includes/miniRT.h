@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 20:16:14 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 12:28:30 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@
 # include "utils.h"
 # include "entities.h"
 # include "renderer.h"
+
+# include <X11/X.h>
 
 #endif

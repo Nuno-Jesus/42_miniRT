@@ -6,13 +6,13 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/09 21:26:53 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 16:39:01 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_color	calculate_global_illumination(t_light *bulb, t_intersection *closest, t_light *amb_light)
+t_color	calculate_local_illumination(t_light *bulb, t_intersection *closest, t_light *amb_light)
 {
 	t_color	color;
 

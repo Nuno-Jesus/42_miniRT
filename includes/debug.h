@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:01:30 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/09 20:14:40 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 13:35:12 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ void	shape_print(t_shape *shape);
 void	color_print(t_color *color);
 
 void	vec3_print(t_vec3 vec);
+
+void	world_print(t_world *world);
 
 #endif

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera.c                                           :+:      :+:    :+:   */
+/*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 21:27:09 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/09 21:27:47 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 16:38:08 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_vec3	world_to_viewport(int x, int y)
+t_vec3	pixels_to_viewport(int x, int y)
 {
 	t_vec3	converted;
 	double	width;
@@ -26,19 +26,19 @@ t_vec3	world_to_viewport(int x, int y)
 	return (converted);
 }
 
-t_ray	make_ray(t_world *r, t_vec3 factors)
+t_ray	make_ray(t_world *w, t_vec3 factors)
 {
 	t_ray	ray;
 	t_vec3	vertical;
 	t_vec3	horizontal;
 	t_vec3	res;
 
-	vertical = vec3_scale(r->up, factors.y * r->hview);
-	horizontal = vec3_scale(r->right, factors.x * r->wview);
+	vertical = vec3_scale(w->up, factors.y * w->hview);
+	horizontal = vec3_scale(w->right, factors.x * w->wview);
 	res = vec3_add(vertical, horizontal);
-	res = vec3_add(res, r->camera.normal);
-	res = vec3_add(res, r->camera.center);
-	ray.origin = r->camera.center;
+	res = vec3_add(res, w->camera.normal);
+	res = vec3_add(res, w->camera.center);
+	ray.origin = w->camera.center;
 	ray.direction = vec3_normalize(vec3_sub(res, ray.origin));
 	return (ray);
 }

@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:58:11 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 15:39:50 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,15 @@
 
 # define HAS_COMMAS '1'
 
-# define ERROR_COLOR_A		"Wrong color syntax for ambient lightning"
-# define ERROR_COLOR_L		"Wrong color syntax for light source"
+# define ERROR_COLOR_A		"Wrong color syntax for ambient lightning."
+# define ERROR_COLOR_L		"Wrong color syntax for light source."
 # define ERROR_SYNTAX		"Syntax: file format misconfiguration."
-# define ERROR_FILENAME		"Invalid filename."
+# define ERROR_NOT_BER		"File extension is not '.ber'."
+# define ERROR_OPEN_FILE	"Couldn't open requested file"
 # define ERROR_EMPTY_MAP	"Empty map."
 # define ERROR_NO_CAMERA	"No camera in the map."
+# define ERROR_MALLOC(str)  "Failed allocation on "str"."
+# define ERROR_USAGE 		"Usage: ./miniRT <scene>.rt"
 
 //! Math macros 
 
@@ -62,7 +65,8 @@
 
 //! Fixed t_vec3 structs
 
-# define UPGUIDE	(t_vec3){0.0, 1.0, 0.0}
+# define UPGUIDE		(t_vec3){0.0, 1.0, 0.0}
+# define VEC_EPSILON	(t_vec3){EPSILON, EPSILON, EPSILON}
 
 //! Viewport and window macros
 
@@ -76,11 +80,6 @@
 # define HEIGHT (WIDTH/RATIO)
 
 //! Minilibx events
-
-# define ON_KEYPRESS 2
-# define ON_CLOSE 17
-# define KEYPRESS_MASK  (1L << 0)
-# define CLOSE_MASK  (1L << 17)
 
 # ifdef __APPLE__
 #  define ESC 53

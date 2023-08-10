@@ -6,20 +6,20 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 20:09:27 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 16:33:40 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	init_graphics(t_world *r)
+void	init_graphics(t_world *w)
 {
-	r->disp.mlx = mlx_init();
-	if (!r->disp.mlx)
-		message(r, "Failed allocation on mlx pointer\n");
-	r->disp.win = mlx_new_window(r->disp.mlx, WIDTH, HEIGHT, "miniRT");
-	if (!r->disp.win)
-		message(r, "Failed allocation on window pointer\n");
+	w->disp.mlx = mlx_init();
+	if (!w->disp.mlx)
+		message(w, ERROR_MALLOC("init_graphics (mlx)"));
+	w->disp.win = mlx_new_window(w->disp.mlx, WIDTH, HEIGHT, "miniRT");
+	if (!w->disp.win)
+		message(w, ERROR_MALLOC("init_graphics (mlx window)"));
 }
 
 int	quit(t_world *world)
@@ -28,48 +28,39 @@ int	quit(t_world *world)
 	exit(EXIT_SUCCESS);
 }
 
-int	on_keypress(int keycode, t_world *r)
+int	on_keypress(int keycode, t_world *w)
 {
-	t_light *l;
+	// t_light *l;
 	
-	l = nc_vector_at(r->lights, 0);
+	// l = nc_vector_at(w->lights, 0);
 	if (keycode == ESC)
-		quit(r);
+		quit(w);
 	else if (keycode == W)
-		l->center.y += 5;
+		w->camera.center.y += 5;
 	else if (keycode == A)
-		l->center.x -= 5;
+		w->camera.center.x -= 5;
 	else if (keycode == S)
-		l->center.y -= 5;
+		w->camera.center.y -= 5;
 	else if (keycode == D)
-		l->center.x += 5;
+		w->camera.center.x += 5;
 	else if (keycode == C)
-		l->center.z -= 5;
+		w->camera.center.z -= 5;
 	else if (keycode == V)
-		l->center.z += 5;
-	render(r);
+		w->camera.center.z += 5;
+	render(w);
 	return (keycode);
 }
 
-void	init_viewport(t_world *r)
+void	init_viewport(t_world *w)
 {
 	double	ratio;
 
 	ratio = RATIO;
-	r->wview = tan(RADIANS(r->camera.fov / 2));
-	r->hview = r->wview / ratio;
-	r->right = vec3_normalize(vec3_cross(r->camera.normal, UPGUIDE));
-	r->up = vec3_normalize(vec3_cross(r->camera.normal, r->right));
-	r->right = vec3_normalize(vec3_cross(r->camera.normal, r->up));
-	vec3_print(vec3_cross(r->camera.normal, UPGUIDE));
-	vec3_print(r->camera.normal);
-	printf("Right ");
-	vec3_print(r->right);
-	printf("Up ");
-	vec3_print(r->up);
-	printf("wview: %f\n", r->wview);
-	printf("hview: %f\n", r->hview);
-	printf("------------------------------\n");
+	w->wview = tan(RADIANS(w->camera.fov / 2.0));
+	w->hview = w->wview / ratio;
+	w->right = vec3_normalize(vec3_cross(w->camera.normal, UPGUIDE));
+	w->up = vec3_normalize(vec3_cross(w->camera.normal, w->right));
+	w->right = vec3_normalize(vec3_cross(w->camera.normal, w->up));
 }
 
 int	main(int argc, char **argv)
@@ -77,17 +68,17 @@ int	main(int argc, char **argv)
 	t_world	*world;
 
 	if (argc != 2)
-		message(NULL, "Usage: ./miniRT <scene>.rt");
+		message(NULL, ERROR_USAGE);
 	world = parse(argv[1]);
 	init_viewport(world);
 	init_graphics(world);
 	world->disp.img = mlx_new_image(world->disp.mlx, WIDTH, HEIGHT);
 	world->disp.addr = mlx_get_data_addr(world->disp.img, &world->disp.bpp, \
 		&world->disp.line_length, &world->disp.endian);
+	world_print(world);
 	render(world);
-	mlx_hook(world->disp.win, ON_KEYPRESS, KEYPRESS_MASK, on_keypress, world);
-	mlx_hook(world->disp.win, ON_CLOSE, CLOSE_MASK, quit, world);
-	//mlx_loop_hook(world->disp.mlx, render, world);
+	mlx_hook(world->disp.win, KeyPress, KeyPressMask, on_keypress, world);
+	mlx_hook(world->disp.win, DestroyNotify, StructureNotifyMask, quit, world);
 	mlx_loop(world->disp.mlx);
 	destroy_world(&world);
 	return (0);

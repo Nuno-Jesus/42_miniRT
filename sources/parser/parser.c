@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 21:32:44 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 15:33:11 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ bool	parse_syntax(char **tokens, char *code)
 bool	identifying(t_world *world, char **tokens)
 {
 	if (!nc_strncmp(tokens[0], "A", nc_strlen(tokens[0])))
-		return (parse_ambient_light(world, tokens));
+		return (parse_ambient_light(&world->ambient, tokens));
 	else if (!nc_strncmp(tokens[0], "C", nc_strlen(tokens[0])))
-		return (parse_camera(world, tokens));
+		return (parse_camera(&world->camera, tokens));
 	else if (!nc_strncmp(tokens[0], "L", nc_strlen(tokens[0])))
-		return (parse_light_source(world, tokens));
+		return (parse_light_source(world->lights, tokens));
 	else if (!nc_strncmp(tokens[0], "pl", nc_strlen(tokens[0])))
-		return (parse_plane(world, tokens));
+		return (parse_plane(world->shapes, tokens));
 	else if (!nc_strncmp(tokens[0], "sp", nc_strlen(tokens[0])))
-		return (parse_sphere(world, tokens));
+		return (parse_sphere(world->shapes, tokens));
 	else if (!nc_strncmp(tokens[0], "cy", nc_strlen(tokens[0])))
-		return (parse_cylinder(world, tokens));
+		return (parse_cylinder(world->shapes, tokens));
 	else
 		return (false);
 	return (true);
@@ -79,10 +79,10 @@ t_world	*parse(char *filename)
 	t_world	*world;
 
 	if (!is_filename_valid(filename))
-		message(NULL, ERROR_FILENAME);
+		message(NULL, ERROR_NOT_BER);
 	world = world_new();
 	if (!world)
-		return (NULL); // Change this to message
+		message(NULL, ERROR_MALLOC("t_world struct"));
 	world->map = read_map(world, filename);
 	if (nc_matrix_size(world->map) == 0)
 		message(world, ERROR_EMPTY_MAP);
