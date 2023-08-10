@@ -6,13 +6,13 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 16:39:01 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 17:37:42 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-bool	intersects(t_shape *shape, t_ray *ray, t_intersection *inter)
+bool	intersects(t_shape *shape, t_ray *ray, t_hit *inter)
 {
 	if (shape->type == SPHERE)
 		return (sphere_intersect(&shape->data.sp, ray, inter));
@@ -23,11 +23,11 @@ bool	intersects(t_shape *shape, t_ray *ray, t_intersection *inter)
 	return (false);
 }
 
-bool	world_hit(t_vector *shapes, t_ray *ray, t_intersection *closest)
+bool	world_hit(t_vector *shapes, t_ray *ray, t_hit *closest)
 {
 	uint32_t		i;
 	t_shape			*shape;
-	t_intersection	tmp;
+	t_hit	tmp;
 
 	i = -1;
 	tmp.t = INFINITY;
@@ -46,7 +46,7 @@ bool	world_hit(t_vector *shapes, t_ray *ray, t_intersection *closest)
 	return (closest->shape != NULL);
 }
 
-bool	reflected(t_light *light, t_intersection *closest)
+bool	reflected(t_light *light, t_hit *closest)
 {
 	t_vec3 reflection;
 	t_vec3 light_dir;
@@ -74,7 +74,7 @@ int	render(t_world *w)
 	t_vec3	coords;
 	t_vec3	factors;
 	t_ray	ray;
-	t_intersection	closest;
+	t_hit	closest;
 		
 	coords.y = -1;
 	while (++coords.y < HEIGHT)

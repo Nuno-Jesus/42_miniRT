@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 17:04:42 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 17:37:42 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef struct s_graphics
 	int		endian;
 }	t_graphics;
 
-typedef struct s_intersection
+typedef struct s_hit
 {
 	t_shape	*shape;
 	t_ray	ray;
@@ -124,7 +124,7 @@ typedef struct s_intersection
 	t_color	color;
 	t_vec3	a;
 	double	t;
-}	t_intersection;
+}	t_hit;
 
 typedef struct s_world
 {

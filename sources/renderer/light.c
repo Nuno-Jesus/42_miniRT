@@ -6,13 +6,13 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/10 16:39:01 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 17:37:42 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_color	calculate_local_illumination(t_light *bulb, t_intersection *closest, t_light *amb_light)
+t_color	calculate_local_illumination(t_light *bulb, t_hit *closest, t_light *amb_light)
 {
 	t_color	color;
 
@@ -47,7 +47,7 @@ t_color	ambient(t_color	color, double ratio)
 	cos(A) - cossine of the angle between N and L
 	
 */
-t_color	diffuse(t_light* bulb, t_intersection *inter, double k)
+t_color	diffuse(t_light* bulb, t_hit *inter, double k)
 {
 	t_vec3	light_dir;
 	t_color	diff_color;

@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 17:05:44 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 17:37:42 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,24 @@ t_plane		plane_from_strings(char **tokens);
 
 t_plane		plane_from_numbers(t_vec3 point, t_vec3 normal, t_color color);
 
-bool		plane_intersect(t_plane *pl, t_ray *ray, t_intersection *inter);
+bool		plane_intersect(t_plane *pl, t_ray *ray, t_hit *inter);
 
 //! Spheres
 
 t_sphere	sphere_from_strings(char **tokens);
 
-bool		sphere_intersect(t_sphere *sp, t_ray *ray, t_intersection *inter);
+bool		sphere_intersect(t_sphere *sp, t_ray *ray, t_hit *inter);
 
-t_vec3		sphere_normal(t_intersection *inter, t_ray *ray);
+t_vec3		sphere_normal(t_hit *inter, t_ray *ray);
 
 //! Cylinders
 
 t_cylinder	cylinder_from_strings(char **tokens);
 
 bool		cylinder_intersect(t_cylinder *cy, t_ray *ray, \
-	t_intersection *inter);
+	t_hit *inter);
 
-t_vec3		cylinder_normal(t_intersection *inter, t_ray *ray);
+t_vec3		cylinder_normal(t_hit *inter, t_ray *ray);
 
 //! Shapes
 
@@ -46,7 +46,7 @@ t_shape		*shape_new(void	*data, t_shape_type type);
 
 t_shape		*shape_copy(t_shape *shape);
 
-t_vec3		shape_normal(t_intersection *inter, t_ray *ray);
+t_vec3		shape_normal(t_hit *inter, t_ray *ray);
 
 //! Lights
 

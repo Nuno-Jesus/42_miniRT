@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:32:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 21:20:21 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 17:40:07 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,3 @@ t_shape	*shape_copy(t_shape *shape)
 		copy->data.cy = shape->data.cy;
 	return (copy);
 }
-

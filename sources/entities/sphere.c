@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 16:43:57 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 17:40:27 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ t_sphere	sphere_from_strings(char **tokens)
 	return (sp);
 }
 
-bool	sphere_intersect(t_sphere *sp, t_ray *ray, t_intersection *inter)
+bool	sphere_intersect(t_sphere *sp, t_ray *ray, t_hit *inter)
 {
-	t_vec3	co;
+	t_vec3		co;
 	t_equation	equation;
-	
+
 	equation.t1 = -1.0f;
 	co = vec3_sub(ray->origin, sp->center);
 	equation.a = vec3_dot(ray->direction, ray->direction);

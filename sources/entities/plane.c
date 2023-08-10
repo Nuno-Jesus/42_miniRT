@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 16:41:20 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 17:39:35 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,9 @@ t_plane	plane_from_numbers(t_vec3 center, t_vec3 normal, t_color color)
 	return (plane);
 }
 
-
-bool	plane_intersect(t_plane *pl, t_ray *ray, t_intersection *inter)
+bool	plane_intersect(t_plane *pl, t_ray *ray, t_hit *inter)
 {
-	t_vec3	co;
+	t_vec3		co;
 	t_equation	equation;
 
 	if (vec3_dot(ray->direction, pl->normal) != 0.0)
@@ -66,7 +65,7 @@ bool	plane_intersect(t_plane *pl, t_ray *ray, t_intersection *inter)
 		{
 			inter->t = equation.t1;
 			inter->color = pl->color;
-			return (true);			
+			return (true);
 		}
 	}
 	return (false);
