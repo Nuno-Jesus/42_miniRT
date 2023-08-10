@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 16:14:23 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 17:58:11 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ double	solve(t_equation *eq)
 
 	if (eq->a == 0.0 && eq->b != 0.0)
 	{
-		eq->t1 = -eq->c/eq->b;
+		eq->t1 = -eq->c / eq->b;
 		return (0);
 	}
 	else
@@ -36,9 +36,8 @@ double	solve(t_equation *eq)
 		delta = determinant(eq);
 		if (delta < 0)
 			return (-1);
-		eq->t1 = (-eq->b - sqrt(delta)) / (2 * eq->a);	
-		eq->t2 = (-eq->b + sqrt(delta)) / (2 * eq->a);	
+		eq->t1 = (-eq->b - sqrt(delta)) / (2 * eq->a);
+		eq->t2 = (-eq->b + sqrt(delta)) / (2 * eq->a);
 		return (delta);
 	}
 }
-
