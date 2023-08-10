@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:38:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/09 20:07:51 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 17:45:36 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_vec3	sphere_normal(t_intersection *inter, t_ray *ray)
 {
 	t_vec3	point;
 	t_vec3	normal;
-	
+
 	point = ray_at(ray, inter->t);
 	normal = vec3_sub(point, inter->shape->data.sp.center);
 	return (normal);
@@ -26,19 +26,13 @@ t_vec3	cylinder_normal(t_intersection *inter, t_ray *ray)
 {
 	t_vec3	point;
 	t_vec3	normal;
-	
+
 	point = ray_at(ray, inter->t);
 	normal = vec3_sub(point, inter->a);
 	if (vec3_compare(inter->a, inter->shape->data.cy.cap1))
-	{
-		//printf("cap1\n");
 		normal = vec3_scale(inter->shape->data.cy.normal, -1);
-	}
 	else if (vec3_compare(inter->a, inter->shape->data.cy.cap2))
-	{
-		//printf("cap2\n");
 		normal = inter->shape->data.cy.normal;
-	}
 	return (normal);
 }
 

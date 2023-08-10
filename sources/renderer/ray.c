@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 21:27:09 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/10 16:38:08 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 17:46:44 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_vec3	pixels_to_viewport(int x, int y)
 
 	width = WIDTH;
 	height = HEIGHT;
-	converted.x = (2.0f*x)/width - 1;
-	converted.y = (2.0f*y)/height - 1;
+	converted.x = ((2.0f * x) / width) - 1;
+	converted.y = ((2.0f * y) / height) - 1;
 	converted.z = 0;
 	return (converted);
 }
@@ -45,8 +45,5 @@ t_ray	make_ray(t_world *w, t_vec3 factors)
 
 t_vec3	ray_at(t_ray *ray, double t)
 {
-	t_vec3	res;
-
-	res = vec3_add(ray->origin, vec3_scale(ray->direction, t));
-	return (res);
+	return (vec3_add(ray->origin, vec3_scale(ray->direction, t)));
 }
