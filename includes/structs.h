@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 20:15:37 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 17:04:42 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,13 @@ typedef union u_data
 	t_sphere	sp;
 	t_plane		pl;
 	t_cylinder	cy;
-} t_data;
+}	t_data;
 
 typedef struct s_shape
 {
 	t_data			data;
 	t_shape_type	type;
-}t_shape;
+}	t_shape;
 
 typedef struct s_graphics
 {
@@ -122,22 +122,22 @@ typedef struct s_intersection
 	t_vec3	point;
 	t_vec3	normal;
 	t_color	color;
-	t_vec3  a;
+	t_vec3	a;
 	double	t;
 }	t_intersection;
 
 typedef struct s_world
 {
-	t_camera		camera;
-	t_light			ambient;
-	t_vector		*lights;
-	t_vector		*shapes;
-	t_graphics		disp;
-	t_vec3			up;
-	t_vec3			right;	
-	char			**map;
-	double			hview; //! Height of the viewport
-	double			wview; //! Width of the viewport
+	t_camera	camera;
+	t_light		ambient;
+	t_vector	*lights;
+	t_vector	*shapes;
+	t_graphics	disp;
+	t_vec3		up;
+	t_vec3		right;
+	char		**map;
+	double		hview;
+	double		wview;
 }	t_world;
 
 #endif

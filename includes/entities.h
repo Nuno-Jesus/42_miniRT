@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 16:44:06 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 17:05:44 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ t_vec3		sphere_normal(t_intersection *inter, t_ray *ray);
 
 t_cylinder	cylinder_from_strings(char **tokens);
 
-bool		cylinder_intersect(t_cylinder *cy, t_ray *ray, t_intersection *inter);
+bool		cylinder_intersect(t_cylinder *cy, t_ray *ray, \
+	t_intersection *inter);
 
 t_vec3		cylinder_normal(t_intersection *inter, t_ray *ray);
 
