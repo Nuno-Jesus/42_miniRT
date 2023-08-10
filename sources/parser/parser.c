@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 15:33:11 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 17:41:59 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,6 @@ t_world	*parse(char *filename)
 		message(world, ERROR_EMPTY_MAP);
 	parse_map(world, world->map);
 	if (vec3_length(world->camera.normal) == 0)
-		message(world, ERROR_NO_CAMERA);	
+		message(world, ERROR_NO_CAMERA);
 	return (world);
 }

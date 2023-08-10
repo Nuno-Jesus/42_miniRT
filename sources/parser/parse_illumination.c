@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/10 15:26:45 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/10 17:42:25 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ bool	parse_camera(t_camera *cam, char **tokens)
 
 bool	parse_light_source(t_vector *lights, char **tokens)
 {
-	char			**origin;
-	char			**color;
+	char	**origin;
+	char	**color;
 	t_light	*light;
 
 	if (nc_matrix_size(tokens) != 4)
