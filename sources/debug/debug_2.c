@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:34:42 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 14:30:56 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/11 17:04:32 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	shape_print(t_shape *shape)
 		sphere_print(&shape->data.sp);
 	else if (shape->type == CYLINDER)
 		cylinder_print(&shape->data.cy);
+	printf("  ID: %d\n", shape->id);
 }
 
 void	sphere_print(t_sphere *s)

@@ -6,20 +6,54 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/10 17:55:48 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/11 17:04:52 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	illuminate(t_vector *lights, t_hit *closest, t_light *amb_light)
+static bool	hits(t_vector *shapes, t_shape *own, t_ray *ray)
+{
+	uint32_t	i;
+	t_hit		tmp;
+	t_shape		*shape;
+
+	i = -1;
+	tmp.t = INFINITY;
+	tmp.shape = NULL;
+	while (++i < shapes->size)
+	{
+		shape = nc_vector_at(shapes, i);
+		if (shape->id == own->id)
+			continue ;
+		if (intersects(shape, ray, &tmp))
+			return (true);
+	}
+	return (false);
+}
+
+
+bool	shadowed(t_world *world, t_hit *closest)
+{
+	t_vec3	light_dir;
+	t_light *light;
+	t_ray	ray;
+
+	light = nc_vector_at(world->lights, 0);
+	light_dir = vec3_sub(light->center, closest->point);
+	ray = (t_ray){vec3_add(closest->point,VEC_EPSILON), light_dir};
+	return (hits(world->shapes, closest->shape, &ray));
+}
+
+void	illuminate(t_world *world, t_hit *closest)
 {
 	t_color	final_color;
 	t_light	*bulb;
 
-	bulb = nc_vector_at(lights, 0); 
-	final_color = ambient(closest->color, amb_light->ratio);
-	final_color = color_add(final_color, diffuse(bulb, closest, bulb->ratio));
+	bulb = nc_vector_at(world->lights, 0); 
+	final_color = ambient(closest->color, world->ambient.ratio);
+	if (!shadowed(world, closest))
+		final_color = color_add(final_color, diffuse(bulb, closest, bulb->ratio));
 	closest->color = final_color;
 }
 

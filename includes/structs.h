@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 17:37:42 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/11 17:02:06 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef struct s_shape
 {
 	t_data			data;
 	t_shape_type	type;
+	int				id;
 }	t_shape;
 
 typedef struct s_graphics

@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 16:45:29 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/11 17:03:40 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ bool	parse_plane(t_vector *shapes, char **tokens)
 		return (false);
 	plane = plane_from_strings(tokens);
 	shape = shape_new(&plane, PLANE);
+	shape->id = shapes->size;
 	nc_vector_push(shapes, shape);
 	return (true);
 }
@@ -42,6 +43,7 @@ bool	parse_sphere(t_vector *shapes, char **tokens)
 		return (false);
 	sphere = sphere_from_strings(tokens);
 	shape = shape_new(&sphere, SPHERE);
+	shape->id = shapes->size;
 	nc_vector_push(shapes, shape);
 	return (true);
 }
@@ -59,6 +61,7 @@ bool	parse_cylinder(t_vector *shapes, char **tokens)
 		return (false);
 	cylinder = cylinder_from_strings(tokens);
 	shape = shape_new(&cylinder, CYLINDER);
+	shape->id = shapes->size;
 	nc_vector_push(shapes, shape);
 	return (true);
 }

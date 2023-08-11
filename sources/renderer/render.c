@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 17:52:19 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/11 16:41:51 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,6 @@ bool	world_hit(t_vector *shapes, t_ray *ray, t_hit *closest)
 	return (closest->shape != NULL);
 }
 
-bool	reflected(t_light *light, t_hit *closest)
-{
-	t_vec3	reflection;
-	t_vec3	light_dir;
-	double	cossine;
-	double	angle;
-
-	light_dir = vec3_sub(light->center, closest->point);
-	reflection = vec3_scale(closest->normal, 2 * \
-		vec3_dot(closest->normal, light_dir));
-	reflection = vec3_sub(reflection, light_dir);
-	reflection = vec3_normalize(reflection);
-	cossine = vec3_cossine(light_dir, reflection);
-	angle = DEGREES(acos(cossine));
-	if (angle >= 0.0 - EPSILON && angle <= 180.0 + EPSILON)
-		return (true);
-	return (false);
-}
-
 int	render(t_world *w)
 {
 	t_vec3	coords;
@@ -84,7 +65,7 @@ int	render(t_world *w)
 			factors = pixels_to_viewport(coords.x, coords.y);
 			ray = make_ray(w, factors);
 			if (world_hit(w->shapes, &ray, &closest))
-				illuminate(w->lights, &closest, &w->ambient);
+				illuminate(w, &closest);
 			put_pixel(w, closest.color, coords.x, coords.y);
 		}
 	}

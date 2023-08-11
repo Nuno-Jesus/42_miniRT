@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 17:52:51 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/11 16:14:28 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_ray	make_ray(t_world *w, t_vec3 factors);
 
 t_vec3	ray_at(t_ray *ray, double t);
 
-void	illuminate(t_vector *lights, t_hit *closest, t_light *amb_light);
+void	illuminate(t_world *world, t_hit *closest);
+
+bool	intersects(t_shape *shape, t_ray *ray, t_hit *inter);
 
 #endif

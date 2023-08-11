@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:34:30 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 16:06:44 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/11 16:07:37 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ void	color_print(t_color *color)
 
 void	vec3_print(t_vec3 vec)
 {
-	printf("Vec: (x, y, z) = (%.20lf, %.20lf, %.20lf)\n", vec.x, vec.y, vec.z);
+	printf("Vec: (x, y, z) = (%.4lf, %.4lf, %.4lf)\n", vec.x, vec.y, vec.z);
 }
