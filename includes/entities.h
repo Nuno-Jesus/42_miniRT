@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entities.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 17:37:42 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/12 13:53:07 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_vec3		cylinder_normal(t_hit *inter, t_ray *ray);
 
 //! Shapes
 
-t_shape		*shape_new(void	*data, t_shape_type type);
+t_shape		*shape_new(void	*data, t_shape_type type, int id);
 
 t_shape		*shape_copy(t_shape *shape);
 

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/11 23:03:14 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/12 15:12:57 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static bool	hits(t_vector *shapes, t_shape *own, t_ray *ray)
+static bool	hits(t_vector *shapes, t_shape *own, t_ray *ray, double max_t)
 {
 	uint32_t	i;
 	t_hit		tmp;
@@ -21,12 +21,13 @@ static bool	hits(t_vector *shapes, t_shape *own, t_ray *ray)
 	i = -1;
 	tmp.t = INFINITY;
 	tmp.shape = NULL;
+	(void) own;
 	while (++i < shapes->size)
 	{
 		shape = nc_vector_at(shapes, i);
 		if (shape->id == own->id)
 			continue ;
-		if (intersects(shape, ray, &tmp))
+		if (intersects(shape, ray, &tmp) && tmp.t < max_t)
 			return (true);
 	}
 	return (false);
@@ -41,8 +42,10 @@ bool	shadowed(t_world *world, t_hit *closest)
 
 	light = nc_vector_at(world->lights, 0);
 	light_dir = vec3_sub(light->center, closest->point);
-	ray = (t_ray){vec3_add(closest->point,VEC_EPSILON), light_dir};
-	return (hits(world->shapes, closest->shape, &ray));
+	// vec3_print(light_dir);
+	ray.origin = vec3_add(closest->point,VEC_EPSILON);
+	ray.direction = vec3_normalize(light_dir);
+	return (hits(world->shapes, closest->shape, &ray, vec3_length(light_dir)));
 }
 
 void	illuminate(t_world *world, t_hit *closest)
@@ -89,21 +92,8 @@ t_color	diffuse(t_light *bulb, t_hit *inter, double k)
 	double	diffuse_ratio;
 
 	light_dir = vec3_sub(bulb->center, inter->point);
-	cos_angle = vec3_dot(inter->normal, vec3_normalize(light_dir));
+	cos_angle = vec3_cossine(inter->normal, light_dir);
 	diffuse_ratio = k * cos_angle;
 	diff_color = color_mult(inter->color, diffuse_ratio);
 	return (diff_color);
 }
-
-	// double	light_dist;
-	//
-	// light_dist = vec3_module(light_dir);
-	// printf("diffuse_ratio: %lf\n", diffuse_ratio);
-	//printf("cossine: %lf -> ", cos_angle);
-	// vec3_print(inter->point);
-
-	// if (cos_angle <= 0.0)
-	// {
-	// 	diffuse_ratio = 0.0;
-	// }
-	//color_print(&diff_color);

@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   shape.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:32:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 17:40:07 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/12 15:19:41 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_shape	*shape_new(void	*data, t_shape_type type)
+t_shape	*shape_new(void	*data, t_shape_type type, int id)
 {
 	t_shape	*shape;
 
 	shape = nc_calloc(1, sizeof(t_shape));
 	if (!shape)
 		return (NULL);
+	shape->id = id;
 	shape->type = type;
 	if (type == PLANE)
 		shape->data.pl = *(t_plane *)data;
@@ -36,6 +37,7 @@ t_shape	*shape_copy(t_shape *shape)
 	copy = nc_calloc(1, sizeof(t_shape));
 	if (!copy)
 		return (NULL);
+	copy->id = shape->id;
 	copy->type = shape->type;
 	if (shape->type == PLANE)
 		copy->data.pl = shape->data.pl;
