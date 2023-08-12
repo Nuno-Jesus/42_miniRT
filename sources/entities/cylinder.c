@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/12 17:07:31 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/12 17:52:36 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ bool	cylinder_intersect(t_cylinder *cy, t_ray *ray, t_hit *inter)
 	t_vec3		co;
 	t_equation	equation;
 
+	equation.t1 = -1;
+	equation.t2 = -1;
 	co = vec3_sub(ray->origin, cy->cap1);
 	equation.a = vec3_dot(ray->direction, ray->direction) - \
 		pow(vec3_dot(ray->direction, cy->normal), 2);

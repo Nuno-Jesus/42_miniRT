@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/12 17:28:37 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/12 18:42:03 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,9 @@ t_color	diffuse(t_light *bulb, t_hit *inter, double k)
 	double	attenuation;
 
 	light_dir = vec3_sub(bulb->center, inter->point);
-	attenuation = MIN(90 / vec3_length(light_dir), 1);
+	attenuation = MIN(1.0, 90.0 / vec3_length(light_dir));
 	cos_angle = vec3_cossine(inter->normal, light_dir);
 	diffuse_ratio = k * cos_angle * attenuation;
-	// printf("diffuse_ratio: %f\n", diffuse_ratio);
 	diff_color = color_mult(inter->color, diffuse_ratio);
 	return (diff_color);
 }

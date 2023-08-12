@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/12 17:34:17 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/12 18:42:29 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	render(t_world *w)
 			factors = pixels_to_viewport(coords.x, coords.y);
 			ray = make_ray(w, factors);
 			if (world_hit(w->shapes, &ray, &closest))
-				illuminate(w, &closest);				
+				illuminate(w, &closest);
 			put_pixel(w, closest.color, coords.x, coords.y);
 		}
 	}
