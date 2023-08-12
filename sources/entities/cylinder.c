@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 17:38:57 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/12 16:19:13 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ t_cylinder	cylinder_from_strings(char **tokens)
 	cl = nc_split(tokens[5], ',');
 	cy = (t_cylinder)
 	{
-		.radius = nc_atof(tokens[3]) / 2.0,
-		.height = nc_atof(tokens[4]),
-		.center = vec3_new(nc_atof(c[X]), nc_atof(c[Y]), nc_atof(c[Z])),
+		.radius = nc_atod(tokens[3]) / 2.0,
+		.height = nc_atod(tokens[4]),
+		.center = vec3_new(nc_atod(c[X]), nc_atod(c[Y]), nc_atod(c[Z])),
 		.normal = vec3_normalize(\
-			vec3_new(nc_atof(n[X]), nc_atof(n[Y]), nc_atof(n[Z]))),
-		.color = color_new(nc_atof(cl[R]), nc_atof(cl[G]), nc_atof(cl[B])),
+			vec3_new(nc_atod(n[X]), nc_atod(n[Y]), nc_atod(n[Z]))),
+		.color = color_new(nc_atod(cl[R]), nc_atod(cl[G]), nc_atod(cl[B])),
 	};
 	cy.cap1 = vec3_add(cy.center, vec3_scale(cy.normal, -cy.height / 2.0));
 	cy.cap2 = vec3_add(cy.center, vec3_scale(cy.normal, cy.height / 2.0));

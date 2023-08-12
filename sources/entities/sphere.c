@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 17:40:27 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/12 16:19:13 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_sphere	sphere_from_strings(char **tokens)
 	cl = nc_split(tokens[3], ',');
 	sp = (t_sphere)
 	{
-		.center = vec3_new(nc_atof(c[X]), nc_atof(c[Y]), nc_atof(c[Z])), 
-		.radius = nc_atof(tokens[2]) / 2,
-		.color = color_new(nc_atof(cl[R]), nc_atof(cl[G]), nc_atof(cl[B])), 
+		.center = vec3_new(nc_atod(c[X]), nc_atod(c[Y]), nc_atod(c[Z])), 
+		.radius = nc_atod(tokens[2]) / 2,
+		.color = color_new(nc_atod(cl[R]), nc_atod(cl[G]), nc_atod(cl[B])), 
 	};
 	nc_matrix_delete(c, &free);
 	nc_matrix_delete(cl, &free);

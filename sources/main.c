@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/12 13:56:26 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/12 16:42:20 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	on_keypress(int keycode, t_world *w)
 		light->center.z -= 5;
 	else if (keycode == V)
 		light->center.z += 5;
-	vec3_print(light->center);
+	// vec3_print(light->center);
 	render(w);
 	return (keycode);
 }
@@ -73,12 +73,7 @@ int	main(int argc, char **argv)
 	world->disp.img = mlx_new_image(world->disp.mlx, WIDTH, HEIGHT);
 	world->disp.addr = mlx_get_data_addr(world->disp.img, &world->disp.bpp, \
 		&world->disp.line_length, &world->disp.endian);
-	for (uint32_t i = 0; i < world->shapes->size; i++)
-	{
-		printf("Sizeof shape: %lu\n", sizeof(t_shape));
-		printf("shape %d\n", ((t_shape*)nc_vector_at(world->shapes, i))->id);
-	}
-	// world_print(world);
+	world_print(world);
 	render(world);
 	mlx_hook(world->disp.win, KeyPress, KeyPressMask, on_keypress, world);
 	mlx_hook(world->disp.win, DestroyNotify, StructureNotifyMask, quit, world);

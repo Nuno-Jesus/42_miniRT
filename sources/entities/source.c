@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   source.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 18:25:05 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 19:59:01 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/12 16:19:13 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ t_light	*light_new(char **c, char *ratio, char **cl)
 		return (NULL);
 	*bulb = (t_light)
 	{
-		.center = vec3_new(nc_atof(c[X]), nc_atof(c[Y]), nc_atof(c[Z])), 
-		.ratio = nc_atof(ratio),
-		.color = color_new(nc_atof(cl[R]), nc_atof(cl[G]), nc_atof(cl[B])), 
+		.center = vec3_new(nc_atod(c[X]), nc_atod(c[Y]), nc_atod(c[Z])), 
+		.ratio = nc_atod(ratio),
+		.color = color_new(nc_atod(cl[R]), nc_atod(cl[G]), nc_atod(cl[B])), 
 	};
 	return (bulb);
 }
