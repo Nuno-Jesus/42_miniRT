@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/12 16:19:13 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/12 17:31:45 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_sphere	sphere_from_strings(char **tokens)
 	sp = (t_sphere)
 	{
 		.center = vec3_new(nc_atod(c[X]), nc_atod(c[Y]), nc_atod(c[Z])), 
-		.radius = nc_atod(tokens[2]) / 2,
+		.radius = nc_atod(tokens[2]) / 2.0,
 		.color = color_new(nc_atod(cl[R]), nc_atod(cl[G]), nc_atod(cl[B])), 
 	};
 	nc_matrix_delete(c, &free);

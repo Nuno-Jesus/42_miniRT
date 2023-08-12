@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/12 16:42:20 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/12 17:19:41 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ void	init_graphics(t_world *w)
 	w->disp.win = mlx_new_window(w->disp.mlx, WIDTH, HEIGHT, "miniRT");
 	if (!w->disp.win)
 		message(w, ERROR_MALLOC("init_graphics (mlx window)"));
+	w->disp.img = mlx_new_image(w->disp.mlx, WIDTH, HEIGHT);
+	if (!w->disp.img)
+		message(w, ERROR_MALLOC("init_graphics (mlx image)"));
+	w->disp.addr = mlx_get_data_addr(w->disp.img, &w->disp.bpp, \
+		&w->disp.line_length, &w->disp.endian);
+	if (!w->disp.addr)
+		message(w, ERROR_MALLOC("init_graphics (mlx image address)"));
 }
 
 int	quit(t_world *world)
@@ -47,7 +54,7 @@ int	on_keypress(int keycode, t_world *w)
 		light->center.z -= 5;
 	else if (keycode == V)
 		light->center.z += 5;
-	// vec3_print(light->center);
+	vec3_print(light->center);
 	render(w);
 	return (keycode);
 }
@@ -70,9 +77,6 @@ int	main(int argc, char **argv)
 	world = parse(argv[1]);
 	init_viewport(world);
 	init_graphics(world);
-	world->disp.img = mlx_new_image(world->disp.mlx, WIDTH, HEIGHT);
-	world->disp.addr = mlx_get_data_addr(world->disp.img, &world->disp.bpp, \
-		&world->disp.line_length, &world->disp.endian);
 	world_print(world);
 	render(world);
 	mlx_hook(world->disp.win, KeyPress, KeyPressMask, on_keypress, world);

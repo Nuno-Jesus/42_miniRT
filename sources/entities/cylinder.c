@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/12 16:19:13 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/12 17:07:31 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ t_cylinder	cylinder_from_strings(char **tokens)
 		.radius = nc_atod(tokens[3]) / 2.0,
 		.height = nc_atod(tokens[4]),
 		.center = vec3_new(nc_atod(c[X]), nc_atod(c[Y]), nc_atod(c[Z])),
-		.normal = vec3_normalize(\
-			vec3_new(nc_atod(n[X]), nc_atod(n[Y]), nc_atod(n[Z]))),
+		.normal = vec3_new(nc_atod(n[X]), nc_atod(n[Y]), nc_atod(n[Z])),
 		.color = color_new(nc_atod(cl[R]), nc_atod(cl[G]), nc_atod(cl[B])),
 	};
+	cy.normal = vec3_normalize(cy.normal);
 	cy.cap1 = vec3_add(cy.center, vec3_scale(cy.normal, -cy.height / 2.0));
 	cy.cap2 = vec3_add(cy.center, vec3_scale(cy.normal, cy.height / 2.0));
 	nc_matrix_delete(c, &free);
@@ -80,22 +80,7 @@ bool	check_walls(t_cylinder *cy, t_hit *inter, double t)
 	}
 	return (false);
 }
-// t_vec3	co;
-	// t_vec3	vec;
-	// double 	numerator;
-	// double 	denominator;
-	// double 	t;
 
-	// vec = vec3_sub(cy->normal, cap);
-	// if (vec3_dot(ray->direction, vec) != 0.0)
-	// {
-	// 	co = vec3_sub(ray->origin, cap);
-	// 	numerator = vec3_dot(co, cy->normal);
-	// 	denominator = vec3_dot(ray->direction, cy->normal);
-	// 	t = -(numerator / denominator);
-	// 	return (t);
-	// }
-	// return (t);
 double	cap_intersection(t_cylinder *cy, t_ray *ray, t_vec3 cap)
 {
 	t_plane	plane;
@@ -110,19 +95,15 @@ double	cap_intersection(t_cylinder *cy, t_ray *ray, t_vec3 cap)
 double	verify_intersections(t_cylinder *cy, t_ray *ray, \
 	t_equation *equation, t_hit *inter)
 {
-	double	t1;
-	double	t2;
 	double	t3;
 	double	t4;
 
-	t1 = equation->t1;
-	t2 = equation->t2;
 	t3 = cap_intersection(cy, ray, cy->cap1);
 	t4 = cap_intersection(cy, ray, cy->cap2);
 	inter->t = INFINITY;
 	inter->ray = *ray;
-	check_walls(cy, inter, t1);
-	check_walls(cy, inter, t2);
+	check_walls(cy, inter, equation->t1);
+	check_walls(cy, inter, equation->t2);
 	check_caps(cy, cy->cap1, inter, t3);
 	check_caps(cy, cy->cap2, inter, t4);
 	if (inter->t == INFINITY)

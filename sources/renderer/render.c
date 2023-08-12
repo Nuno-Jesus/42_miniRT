@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/11 16:41:51 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/12 17:34:17 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	world_hit(t_vector *shapes, t_ray *ray, t_hit *closest)
 	while (++i < shapes->size)
 	{
 		shape = nc_vector_at(shapes, i);
-		if (!intersects(shape, ray, &tmp) || tmp.t >= closest->t)
+		if (!intersects(shape, ray, &tmp) || tmp.t > closest->t)
 			continue ;
 		*closest = tmp;
 		closest->ray = *ray;
@@ -65,7 +65,7 @@ int	render(t_world *w)
 			factors = pixels_to_viewport(coords.x, coords.y);
 			ray = make_ray(w, factors);
 			if (world_hit(w->shapes, &ray, &closest))
-				illuminate(w, &closest);
+				illuminate(w, &closest);				
 			put_pixel(w, closest.color, coords.x, coords.y);
 		}
 	}

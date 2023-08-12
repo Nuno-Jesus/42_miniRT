@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/12 15:12:57 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/12 17:28:37 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static bool	hits(t_vector *shapes, t_shape *own, t_ray *ray, double max_t)
 	i = -1;
 	tmp.t = INFINITY;
 	tmp.shape = NULL;
-	(void) own;
 	while (++i < shapes->size)
 	{
 		shape = nc_vector_at(shapes, i);
@@ -33,31 +32,29 @@ static bool	hits(t_vector *shapes, t_shape *own, t_ray *ray, double max_t)
 	return (false);
 }
 
-
 bool	shadowed(t_world *world, t_hit *closest)
 {
 	t_vec3	light_dir;
-	t_light *light;
+	t_light	*light;
 	t_ray	ray;
 
 	light = nc_vector_at(world->lights, 0);
 	light_dir = vec3_sub(light->center, closest->point);
-	// vec3_print(light_dir);
-	ray.origin = vec3_add(closest->point,VEC_EPSILON);
+	ray.origin = vec3_add(closest->point, VEC_EPSILON);
 	ray.direction = vec3_normalize(light_dir);
 	return (hits(world->shapes, closest->shape, &ray, vec3_length(light_dir)));
 }
 
 void	illuminate(t_world *world, t_hit *closest)
 {
-	t_color	final_color;
+	t_color	color;
 	t_light	*bulb;
 
 	bulb = nc_vector_at(world->lights, 0); 
-	final_color = ambient(closest->color, world->ambient.ratio);
+	color = ambient(closest->color, world->ambient.ratio);
 	if (!shadowed(world, closest))
-		final_color = color_add(final_color, diffuse(bulb, closest, bulb->ratio));
-	closest->color = final_color;
+		color = color_add(color, diffuse(bulb, closest, bulb->ratio));
+	closest->color = color;
 }
 
 /* 
@@ -90,10 +87,13 @@ t_color	diffuse(t_light *bulb, t_hit *inter, double k)
 	t_color	diff_color;
 	double	cos_angle;
 	double	diffuse_ratio;
+	double	attenuation;
 
 	light_dir = vec3_sub(bulb->center, inter->point);
+	attenuation = MIN(90 / vec3_length(light_dir), 1);
 	cos_angle = vec3_cossine(inter->normal, light_dir);
-	diffuse_ratio = k * cos_angle;
+	diffuse_ratio = k * cos_angle * attenuation;
+	// printf("diffuse_ratio: %f\n", diffuse_ratio);
 	diff_color = color_mult(inter->color, diffuse_ratio);
 	return (diff_color);
 }
