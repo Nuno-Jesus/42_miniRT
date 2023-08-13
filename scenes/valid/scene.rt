@@ -1,13 +1,13 @@
 # Complex scene description file for ray tracer
 
 # Ambient lighting
-A 0.2 255,255,255
+A 0.1 255,255,255
 
 # Camera
 C 0,-1,0 0,0,1 90
 
 # Light
-L -10,8,5 0.3 255,255,255
+L -10,8,5 0.7 255,255,255
 
 # Spheres
 sp 0,0,15 5 255,0,0
