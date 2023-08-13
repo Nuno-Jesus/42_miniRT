@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 15:28:36 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/13 21:13:32 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@
 
 t_world	*parse(char *filename);
 
-void	parse_map(t_world *world, char **map);
+void	parse_map(t_world *world, char **map, int counters[3]);
 
 char	**read_map(t_world *world, char *filename);
 
-bool	identifying(t_world *world, char **tokens);
+bool	identifying(t_world *world, char **tokens, int count[3]);
 
 bool	parse_syntax(char **tokens, char *code);
 
 bool	is_filename_valid(char *filename);
 
-bool	parse_ambient_light(t_light *ambient, char **tokens);
+bool	parse_ambient_light(t_light *ambient, char **tokens, int counters[3]);
 
-bool	parse_camera(t_camera *cam, char **tokens);
+bool	parse_camera(t_camera *cam, char **tokens, int counters[3]);
 
-bool	parse_light_source(t_vector *lights, char **tokens);
+bool	parse_light_source(t_vector *lights, char **tokens, int counters[3]);
 
 bool	parse_plane(t_vector *shapes, char **tokens);
 

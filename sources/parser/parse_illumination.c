@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_illumination.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/12 16:41:09 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/13 21:12:41 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-bool	parse_ambient_light(t_light *ambient, char **tokens)
+bool	parse_ambient_light(t_light *ambient, char **tokens, int counters[3])
 {
 	char	**cl;
 
@@ -28,10 +28,11 @@ bool	parse_ambient_light(t_light *ambient, char **tokens)
 	ambient->ratio = nc_atod(tokens[1]);
 	ambient->color = color_new(nc_atoi(cl[R]), nc_atoi(cl[G]), nc_atoi(cl[B]));
 	nc_matrix_delete(cl, &free);
+	counters[0]++;
 	return (true);
 }
 
-bool	parse_camera(t_camera *cam, char **tokens)
+bool	parse_camera(t_camera *cam, char **tokens, int counters[3])
 {
 	char	**tmp;
 
@@ -48,10 +49,11 @@ bool	parse_camera(t_camera *cam, char **tokens)
 	cam->normal = vec3_add(cam->normal, VEC_EPSILON);
 	cam->normal = vec3_normalize(cam->normal);
 	cam->fov = nc_atod(tokens[3]);
+	counters[1]++;
 	return (true);
 }
 
-bool	parse_light_source(t_vector *lights, char **tokens)
+bool	parse_light_source(t_vector *lights, char **tokens, int counters[3])
 {
 	char	**origin;
 	char	**color;
@@ -71,5 +73,6 @@ bool	parse_light_source(t_vector *lights, char **tokens)
 	nc_vector_push(lights, light);
 	nc_matrix_delete(origin, &free);
 	nc_matrix_delete(color, &free);
+	counters[2]++;
 	return (true);
 }
