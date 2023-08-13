@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/11 17:02:06 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/13 21:03:54 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ typedef struct s_world
 	t_light		ambient;
 	t_vector	*lights;
 	t_vector	*shapes;
+	int			counters[3];
 	t_graphics	disp;
 	t_vec3		up;
 	t_vec3		right;

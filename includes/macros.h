@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/12 17:30:06 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/13 21:09:53 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define ERROR_OPEN_FILE	"Couldn't open requested file"
 # define ERROR_EMPTY_MAP	"Empty map."
 # define ERROR_NO_CAMERA	"No camera in the map."
+# define ERROR_TOO_MANY		"Found more than 1 A, C or L entities"
 # define ERROR_MALLOC(str)  "Failed allocation on "str"."
 # define ERROR_USAGE 		"Usage: ./miniRT <scene>.rt"
 
@@ -73,7 +74,7 @@
 # ifdef __APPLE__
 #  define WIDTH 800
 # else
-#  define WIDTH 1920
+#  define WIDTH 640
 # endif
 
 # define RATIO 	(16.0/9.0)

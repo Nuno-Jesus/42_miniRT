@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:09:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 15:38:08 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/12 18:40:59 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	**read_map(t_world *world, char *filename)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (line[0] != '\n')
+		if (!nc_strchr("\n#", line[0]))
 			map[i++] = line;
 		else
 			free(line);
@@ -72,4 +72,3 @@ char	**read_map(t_world *world, char *filename)
 	close(fd);
 	return (map);
 }
-//nc_matrix_print(map, print);

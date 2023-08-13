@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 17:41:59 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/13 21:11:57 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ bool	parse_syntax(char **tokens, char *code)
 	return (true);
 }
 
-bool	identifying(t_world *world, char **tokens)
+bool	identifying(t_world *world, char **tokens, int count[3])
 {
 	if (!nc_strncmp(tokens[0], "A", nc_strlen(tokens[0])))
-		return (parse_ambient_light(&world->ambient, tokens));
+		return (parse_ambient_light(&world->ambient, tokens, count));
 	else if (!nc_strncmp(tokens[0], "C", nc_strlen(tokens[0])))
-		return (parse_camera(&world->camera, tokens));
+		return (parse_camera(&world->camera, tokens, count));
 	else if (!nc_strncmp(tokens[0], "L", nc_strlen(tokens[0])))
-		return (parse_light_source(world->lights, tokens));
+		return (parse_light_source(world->lights, tokens, count));
 	else if (!nc_strncmp(tokens[0], "pl", nc_strlen(tokens[0])))
 		return (parse_plane(world->shapes, tokens));
 	else if (!nc_strncmp(tokens[0], "sp", nc_strlen(tokens[0])))
@@ -57,7 +57,7 @@ bool	identifying(t_world *world, char **tokens)
 	return (true);
 }
 
-void	parse_map(t_world *world, char **map)
+void	parse_map(t_world *world, char **map, int counters[3])
 {
 	int		i;
 	bool	ok;
@@ -67,7 +67,7 @@ void	parse_map(t_world *world, char **map)
 	while (map[++i])
 	{
 		tokens = nc_split(map[i], ' ');
-		ok = identifying(world, tokens);
+		ok = identifying(world, tokens, counters);
 		nc_matrix_delete(tokens, &free);
 		if (!ok)
 			message(world, ERROR_SYNTAX);
@@ -77,7 +77,9 @@ void	parse_map(t_world *world, char **map)
 t_world	*parse(char *filename)
 {
 	t_world	*world;
+	int		counters[3];
 
+	nc_bzero(counters, 3 * sizeof(int));
 	if (!is_filename_valid(filename))
 		message(NULL, ERROR_NOT_BER);
 	world = world_new();
@@ -86,8 +88,10 @@ t_world	*parse(char *filename)
 	world->map = read_map(world, filename);
 	if (nc_matrix_size(world->map) == 0)
 		message(world, ERROR_EMPTY_MAP);
-	parse_map(world, world->map);
+	parse_map(world, world->map, counters);
 	if (vec3_length(world->camera.normal) == 0)
 		message(world, ERROR_NO_CAMERA);
+	if (counters[0] > 1 || counters[1] > 1 || counters[2] > 1)
+		message(world, ERROR_TOO_MANY);
 	return (world);
 }
