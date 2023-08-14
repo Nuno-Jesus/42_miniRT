@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/12 17:52:36 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 12:04:34 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	check_caps(t_cylinder *cy, t_vec3 cap, t_hit *inter, double t)
 	point = ray_at(&inter->ray, t);
 	len = vec3_length(vec3_sub(point, cap));
 	len += EPSILON;
-	if (len <= cy->radius && t < inter->t)
+	if (len <= cy->radius && t > EPSILON && t < inter->t)
 	{
 		inter->a = cap;
 		inter->t = t;
@@ -72,7 +72,9 @@ bool	check_walls(t_cylinder *cy, t_hit *inter, double t)
 	len = vec3_length(vec3_sub(point, a));
 	m -= EPSILON;
 	len -= EPSILON;
-	if (m >= 0 && m <= cy->height && len <= cy->radius && t < inter->t)
+	//Debug the m and the height
+	// printf("m: %f, len: %f\n", m, len);
+	if (m >= 0 && m <= cy->height && len <= cy->radius && t > EPSILON && t < inter->t)
 	{
 		inter->a = a;
 		inter->t = t;
@@ -127,6 +129,9 @@ bool	cylinder_intersect(t_cylinder *cy, t_ray *ray, t_hit *inter)
 	equation.c = vec3_dot(co, co) - pow(vec3_dot(co, cy->normal), 2) - \
 		pow(cy->radius, 2);
 	solve(&equation);
+	//Debug the solutions
+	// printf("t1: %f, t2: %f\n", equation.t1, equation.t2);
+	// printf("--------------------\n");
 	if (equation.t1 <= 0 && equation.t2 <= 0)
 		return (false);
 	t = verify_intersections(cy, ray, &equation, inter);

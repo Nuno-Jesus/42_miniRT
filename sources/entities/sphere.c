@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/12 17:31:45 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 11:56:54 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,16 @@ bool	sphere_intersect(t_sphere *sp, t_ray *ray, t_hit *inter)
 	equation.a = vec3_dot(ray->direction, ray->direction);
 	equation.b = 2.0f * vec3_dot(co, ray->direction);
 	equation.c = vec3_dot(co, co) - pow(sp->radius, 2);
-	if (solve(&equation) > 0 && equation.t1 > EPSILON)
+	if (solve(&equation) > 0 && (equation.t1 > EPSILON || equation.t2 > EPSILON))
 	{
-		inter->t = equation.t1;
+		//Debug equation solutions
+		// printf("t1: %f\n", equation.t1);
+		// printf("t2: %f\n", equation.t2);
+		// printf("------------------------------\n");
+		if (equation.t1 > EPSILON)
+			inter->t = equation.t1;
+		else
+			inter->t = equation.t2;
 		inter->color = sp->color;
 		return (true);
 	}

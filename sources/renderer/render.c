@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/12 18:42:29 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 11:51:29 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ bool	world_hit(t_vector *shapes, t_ray *ray, t_hit *closest)
 	while (++i < shapes->size)
 	{
 		shape = nc_vector_at(shapes, i);
-		if (!intersects(shape, ray, &tmp) || tmp.t > closest->t)
+		if (!intersects(shape, ray, &tmp))
+			continue ;		
+		if (tmp.t > closest->t)
 			continue ;
 		*closest = tmp;
 		closest->ray = *ray;
