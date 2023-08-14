@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:09:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 13:15:45 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:34:32 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ bool	sphere_from_strings(t_sphere* sp, char **tokens)
 		// .color = color_new(nc_atod(cl[R]), nc_atod(cl[G]), nc_atod(cl[B])), 
 		.color = color_from_strings(cl),
 	};
-	if (sp->radius < EPSILON)
-		return (false);
 	nc_matrix_delete(c, &free);
 	nc_matrix_delete(cl, &free);
+	if (sp->radius < EPSILON)
+		return (false);
 	return (true);
 }
 

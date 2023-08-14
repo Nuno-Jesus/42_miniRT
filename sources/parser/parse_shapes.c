@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 12:54:17 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:36:25 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	parse_plane(t_vector *shapes, char **tokens)
 		return (ERROR("Colors misformatting in plane"), false);
 	ok = plane_from_strings(&plane, tokens);
 	if (!ok)
-		return (ERROR("Normal is too small in plane"), false);
+		return (ERROR("Values are too small in plane"), false);
 	shape = shape_new(&plane, PLANE, shapes->size);
 	nc_vector_push(shapes, shape);
 	return (true);
@@ -46,7 +46,7 @@ bool	parse_sphere(t_vector *shapes, char **tokens)
 		return (ERROR("Colors misformatting in sphere"), false);
 	ok = sphere_from_strings(&sphere, tokens);
 	if (!ok)
-		return (ERROR("Normal is too small in sphere"), false);
+		return (ERROR("Values are too small in sphere"), false);
 	shape = shape_new(&sphere, SPHERE, shapes->size);
 	nc_vector_push(shapes, shape);
 	return (true);
@@ -66,7 +66,7 @@ bool	parse_cylinder(t_vector *shapes, char **tokens)
 		return (ERROR("Colors misformatting in cylinder"), false);
 	ok = cylinder_from_strings(&cylinder, tokens);
 	if (!ok)
-		return (ERROR("Normal is too small in cylinder"), false);
+		return (ERROR("Values are too small in cylinder"), false);
 	shape = shape_new(&cylinder, CYLINDER, shapes->size);
 	nc_vector_push(shapes, shape);
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 13:15:32 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:34:43 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ bool	cylinder_from_strings(t_cylinder* cy, char **tokens)
 		// .color = color_new(nc_atod(cl[R]), nc_atod(cl[G]), nc_atod(cl[B])),
 		.color = color_from_strings(cl),
 	};
+	nc_matrix_delete(c, &free);
+	nc_matrix_delete(n, &free);
+	nc_matrix_delete(cl, &free);
 	if (vec3_length(cy->normal) < 1.0 - EPSILON \
 		|| cy->radius < EPSILON || cy->height < EPSILON)
 		return (false);
 	cy->normal = vec3_normalize(cy->normal);
 	cy->cap1 = vec3_add(cy->center, vec3_scale(cy->normal, -cy->height / 2.0));
 	cy->cap2 = vec3_add(cy->center, vec3_scale(cy->normal, cy->height / 2.0));
-	nc_matrix_delete(c, &free);
-	nc_matrix_delete(n, &free);
-	nc_matrix_delete(cl, &free);
 	return (true);
 }
 

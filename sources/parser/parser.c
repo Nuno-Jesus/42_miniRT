@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 12:58:56 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:22:35 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ bool	identifying(t_world *world, char **tokens, int count[3])
 	else if (!nc_strncmp(tokens[0], "cy", nc_strlen(tokens[0])))
 		return (parse_cylinder(world->shapes, tokens));
 	else
-		return (false);
+		return (ERROR("Error parsing entities"), false);
 	return (true);
 }
 
