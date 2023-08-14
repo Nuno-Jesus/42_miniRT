@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/13 21:11:57 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/14 12:58:56 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_world	*parse(char *filename)
 	if (nc_matrix_size(world->map) == 0)
 		message(world, ERROR_EMPTY_MAP);
 	parse_map(world, world->map, counters);
-	if (vec3_length(world->camera.normal) == 0)
+	if (counters[1] == 0)
 		message(world, ERROR_NO_CAMERA);
 	if (counters[0] > 1 || counters[1] > 1 || counters[2] > 1)
 		message(world, ERROR_TOO_MANY);

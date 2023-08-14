@@ -6,34 +6,38 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/12 16:19:13 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:16:01 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_plane	plane_from_strings(char **tokens)
+bool	plane_from_strings(t_plane* plane, char **tokens)
 {
 	char	**c;
 	char	**n;
 	char	**cl;
-	t_plane	plane;
 
 	c = nc_split(tokens[1], ',');
 	n = nc_split(tokens[2], ',');
 	cl = nc_split(tokens[3], ',');
-	plane = (t_plane)
+	*plane = (t_plane)
 	{
-		.center = vec3_new(nc_atod(c[X]), nc_atod(c[Y]), nc_atod(c[Z])), 
-		.normal = vec3_new(nc_atod(n[X]), nc_atod(n[Y]), nc_atod(n[Z])), 
-		.color = color_new(nc_atod(cl[R]), nc_atod(cl[G]), nc_atod(cl[B])),
+		// .center = vec3_new(nc_atod(c[X]), nc_atod(c[Y]), nc_atod(c[Z])), 
+		// .normal = vec3_new(nc_atod(n[X]), nc_atod(n[Y]), nc_atod(n[Z])), 
+		// .color = color_new(nc_atod(cl[R]), nc_atod(cl[G]), nc_atod(cl[B])),
+		.center = vec3_from_strings(c),
+		.normal = vec3_from_strings(n),
+		.color = color_from_strings(cl),
 	};
-	plane.normal = vec3_normalize(plane.normal);
-	plane.normal = vec3_add(plane.normal, VEC_EPSILON);
+	if (vec3_length(plane->normal) < 1.0 - EPSILON)
+		return (false);
+	plane->normal = vec3_normalize(plane->normal);
+	plane->normal = vec3_add(plane->normal, VEC_EPSILON);
 	nc_matrix_delete(c, &free);
 	nc_matrix_delete(n, &free);
 	nc_matrix_delete(cl, &free);
-	return (plane);
+	return (true);
 }
 
 t_plane	plane_from_numbers(t_vec3 center, t_vec3 normal, t_color color)

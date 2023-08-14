@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/12 13:53:07 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 12:44:05 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 //! Planes
 
-t_plane		plane_from_strings(char **tokens);
+bool		plane_from_strings(t_plane* plane, char **tokens);
 
 t_plane		plane_from_numbers(t_vec3 point, t_vec3 normal, t_color color);
 
@@ -25,7 +25,7 @@ bool		plane_intersect(t_plane *pl, t_ray *ray, t_hit *inter);
 
 //! Spheres
 
-t_sphere	sphere_from_strings(char **tokens);
+bool		sphere_from_strings(t_sphere* sp, char **tokens);
 
 bool		sphere_intersect(t_sphere *sp, t_ray *ray, t_hit *inter);
 
@@ -33,7 +33,7 @@ t_vec3		sphere_normal(t_hit *inter, t_ray *ray);
 
 //! Cylinders
 
-t_cylinder	cylinder_from_strings(char **tokens);
+bool		cylinder_from_strings(t_cylinder* cy, char **tokens);
 
 bool		cylinder_intersect(t_cylinder *cy, t_ray *ray, \
 	t_hit *inter);

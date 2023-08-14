@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 12:08:48 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/14 12:49:44 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 //! Debug related macros
 
 # define DEBUG
-# define HERE printf("HERE\n");
+# define HERE 		printf("HERE\n");
+# define ERROR(m)	printf("Error\n%s\n", m)
 
 //! Parsing macros
 

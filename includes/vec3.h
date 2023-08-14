@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec3.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:44:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/09 20:15:54 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/14 13:07:43 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "miniRT.h"
 
 t_vec3	vec3_new(double x, double y, double z);
+
+t_vec3	vec3_from_strings(char **vec);
 
 t_vec3	vec3_add(t_vec3 v1, t_vec3 v2);
 
