@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 17:11:33 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/14 17:42:20 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,30 @@
 # include "entities.h"
 # include "renderer.h"
 
-void	init_graphics(t_world *w);
-
+/**
+ * @brief A callback to free the t_world struct memory and exit the program.
+ * This function is called whenever the ESC key is clicked on or when the
+ * X button is clicked on the window
+ * 
+ * @param world The t_world struct
+ * @return int (not used)
+ */
 int		quit(t_world *world);
 
+/**
+ * @brief Updates the scene's camera position given the clicked key.
+ * 
+ * @param keycode The clicked key
+ * @param w The world struct
+ * @return int (dummy value)
+ */
 int		on_keypress(int keycode, t_world *w);
 
-void	init_viewport(t_world *w);
-
+/**
+ * @brief Initializes the mlx library pointer, window and image
+ * 
+ * @param w The t_world struct
+ */
+void	init_graphics(t_world *w);
 
 #endif

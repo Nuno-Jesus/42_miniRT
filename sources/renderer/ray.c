@@ -6,11 +6,20 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 21:27:09 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/10 17:46:44 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/14 17:41:24 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+void	init_viewport(t_world *w)
+{
+	w->wview = tan(RADIANS(w->camera.fov / 2.0));
+	w->hview = w->wview / RATIO;
+	w->right = vec3_normalize(vec3_cross(w->camera.normal, UPGUIDE));
+	w->up = vec3_normalize(vec3_cross(w->camera.normal, w->right));
+	w->right = vec3_normalize(vec3_cross(w->camera.normal, w->up));
+}
 
 t_vec3	pixels_to_viewport(int x, int y)
 {
