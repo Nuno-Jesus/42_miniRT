@@ -6,11 +6,37 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 19:39:48 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/09 21:43:55 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/14 17:08:38 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+bool	parse_syntax(char **tokens, char *code)
+{
+	int		i;
+	bool	ok;
+	int		numbers_size;
+	char	**numbers;
+
+	i = -1;
+	ok = true;
+	while (tokens[++i])
+	{
+		numbers = nc_split(tokens[i], ',');
+		numbers_size = nc_matrix_size(numbers);
+		if (code[i] == HAS_COMMAS)
+			ok = (nc_count(tokens[i], ',') == 2 && numbers_size == 3);
+		else
+			ok = (nc_count(tokens[i], ',') == 0);
+		if (!parse_double(numbers) && i > 0)
+			ok = false;
+		nc_matrix_delete(numbers, &free);
+		if (!ok)
+			return (false);
+	}
+	return (true);
+}
 
 bool	parse_double(char **nb)
 {

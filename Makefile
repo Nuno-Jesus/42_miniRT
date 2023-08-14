@@ -75,7 +75,7 @@ vpath %.h $(INCLUDES)
 
 NAME    = miniRT
 _FILES += debug_1 debug_2
-_FILES += world cylinder plane shape sphere source
+_FILES += world cylinder plane shape sphere lightsource
 _FILES += intersections_1 intersections_2
 _FILES += read_map parser parse_shapes parse_illumination parse_utils
 _FILES += pixel render color light ray normal

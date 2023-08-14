@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entities.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 12:44:05 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:10:30 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define ENTITIES_H
 
 # include "miniRT.h"
+
+bool		intersects(t_shape *shape, t_ray *ray, t_hit *inter);
 
 //! Planes
 
@@ -35,8 +37,7 @@ t_vec3		sphere_normal(t_hit *inter, t_ray *ray);
 
 bool		cylinder_from_strings(t_cylinder* cy, char **tokens);
 
-bool		cylinder_intersect(t_cylinder *cy, t_ray *ray, \
-	t_hit *inter);
+bool		cylinder_intersect(t_cylinder *cy, t_ray *ray, t_hit *inter);
 
 t_vec3		cylinder_normal(t_hit *inter, t_ray *ray);
 

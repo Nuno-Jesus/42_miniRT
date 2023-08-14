@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 12:09:54 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:11:33 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,14 @@
 # include "utils.h"
 # include "entities.h"
 # include "renderer.h"
+
+void	init_graphics(t_world *w);
+
+int		quit(t_world *world);
+
+int		on_keypress(int keycode, t_world *w);
+
+void	init_viewport(t_world *w);
+
 
 #endif
