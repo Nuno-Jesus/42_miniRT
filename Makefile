@@ -39,7 +39,7 @@ OBJECTS		= objects
 LIBNC		= libnc
 GNL			= gnl
 MLX			= mlx_linux
-_SUBFOLDERS	= . debug parser renderer entities utils vec3
+_SUBFOLDERS	= . debug entities intersections parser renderer utils vec3
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -74,12 +74,13 @@ vpath %.h $(INCLUDES)
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 NAME    = miniRT
-_FILES += vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_length vec3_new \
-	vec3_sub vec3_cossine vec3_compare vec3_from_strings
 _FILES += debug_1 debug_2
+_FILES += world cylinder plane shape sphere source
+_FILES += intersections_1 intersections_2
 _FILES += read_map parser parse_shapes parse_illumination parse_utils
 _FILES += pixel render color light ray normal
-_FILES += world cylinder plane shape sphere source
+_FILES += vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_length vec3_new \
+	vec3_sub vec3_cossine vec3_compare vec3_from_strings
 _FILES += math message
 _FILES += main
 

@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 11:51:29 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:55:58 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-bool	intersects(t_shape *shape, t_ray *ray, t_hit *inter)
-{
-	if (shape->type == SPHERE)
-		return (sphere_intersect(&shape->data.sp, ray, inter));
-	else if (shape->type == PLANE)
-		return (plane_intersect(&shape->data.pl, ray, inter));
-	else if (shape->type == CYLINDER)
-		return (cylinder_intersect(&shape->data.cy, ray, inter));
-	return (false);
-}
 
 bool	world_hit(t_vector *shapes, t_ray *ray, t_hit *closest)
 {
@@ -36,7 +25,7 @@ bool	world_hit(t_vector *shapes, t_ray *ray, t_hit *closest)
 	{
 		shape = nc_vector_at(shapes, i);
 		if (!intersects(shape, ray, &tmp))
-			continue ;		
+			continue ;
 		if (tmp.t > closest->t)
 			continue ;
 		*closest = tmp;

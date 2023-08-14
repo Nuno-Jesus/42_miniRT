@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_shapes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 13:36:25 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:48:06 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool	parse_plane(t_vector *shapes, char **tokens)
 
 bool	parse_sphere(t_vector *shapes, char **tokens)
 {
-	bool	ok;
+	bool		ok;
 	t_sphere	sphere;
 	t_shape		*shape;
 
@@ -54,7 +54,7 @@ bool	parse_sphere(t_vector *shapes, char **tokens)
 
 bool	parse_cylinder(t_vector *shapes, char **tokens)
 {
-	bool	ok;
+	bool		ok;
 	t_cylinder	cylinder;
 	t_shape		*shape;
 
