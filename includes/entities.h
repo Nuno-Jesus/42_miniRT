@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 18:26:13 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/14 18:27:28 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool		intersects(t_shape *shape, t_ray *ray, t_hit *inter);
  * @param tokens string array with plane information
  * @return true if the plane was created correctly, false otherwise
  */
-bool		plane_from_strings(t_plane* plane, char **tokens);
+bool		plane_from_strings(t_plane *plane, char **tokens);
 
 /**
  * @brief this function will create a plane with the correponding information
@@ -69,7 +69,7 @@ bool		plane_intersect(t_plane *pl, t_ray *ray, t_hit *inter);
  * @param tokens string array with sphere information
  * @return true if the sphere was created correctly, false otherwise
  */
-bool		sphere_from_strings(t_sphere* sp, char **tokens);
+bool		sphere_from_strings(t_sphere *sp, char **tokens);
 
 /**
  * @brief this function will check if the ray intersects with the sphere,
@@ -104,7 +104,7 @@ t_vec3		sphere_normal(t_hit *inter, t_ray *ray);
  * @param tokens string array with cylinder information
  * @return true if the cylinder was created correctly, false otherwise
  */
-bool		cylinder_from_strings(t_cylinder* cy, char **tokens);
+bool		cylinder_from_strings(t_cylinder *cy, char **tokens);
 
 /**
  * @brief this function will check if the ray intersects with the cylinder,
