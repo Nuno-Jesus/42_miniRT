@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 16:47:36 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/14 17:41:09 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,6 @@ int	on_keypress(int keycode, t_world *w)
 	vec3_print(w->camera.center);
 	render(w);
 	return (keycode);
-}
-
-void	init_viewport(t_world *w)
-{
-	w->wview = tan(RADIANS(w->camera.fov / 2.0));
-	w->hview = w->wview / RATIO;
-	w->right = vec3_normalize(vec3_cross(w->camera.normal, UPGUIDE));
-	w->up = vec3_normalize(vec3_cross(w->camera.normal, w->right));
-	w->right = vec3_normalize(vec3_cross(w->camera.normal, w->up));
 }
 
 int	main(int argc, char **argv)
