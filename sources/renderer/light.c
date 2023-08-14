@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/12 18:42:03 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:05:10 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static bool	hits(t_vector *shapes, t_shape *own, t_ray *ray, double max_t)
+bool	is_obscured(t_vector *shapes, t_shape *own, t_ray *ray, double max_t)
 {
 	uint32_t	i;
 	t_hit		tmp;
@@ -32,17 +32,19 @@ static bool	hits(t_vector *shapes, t_shape *own, t_ray *ray, double max_t)
 	return (false);
 }
 
-bool	shadowed(t_world *world, t_hit *closest)
+bool	is_shadowed(t_world *world, t_hit *closest)
 {
 	t_vec3	light_dir;
 	t_light	*light;
 	t_ray	ray;
+	double	light_distance;
 
 	light = nc_vector_at(world->lights, 0);
 	light_dir = vec3_sub(light->center, closest->point);
+	light_distance = vec3_length(light_dir);
 	ray.origin = vec3_add(closest->point, VEC_EPSILON);
 	ray.direction = vec3_normalize(light_dir);
-	return (hits(world->shapes, closest->shape, &ray, vec3_length(light_dir)));
+	return (is_obscured(world->shapes, closest->shape, &ray, light_distance));
 }
 
 void	illuminate(t_world *world, t_hit *closest)
@@ -52,7 +54,7 @@ void	illuminate(t_world *world, t_hit *closest)
 
 	bulb = nc_vector_at(world->lights, 0); 
 	color = ambient(closest->color, world->ambient.ratio);
-	if (!shadowed(world, closest))
+	if (!is_shadowed(world, closest))
 		color = color_add(color, diffuse(bulb, closest, bulb->ratio));
 	closest->color = color;
 }
