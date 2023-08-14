@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 13:16:01 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:56:17 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-bool	plane_from_strings(t_plane* plane, char **tokens)
+bool	plane_from_strings(t_plane *plane, char **tokens)
 {
 	char	**c;
 	char	**n;
@@ -23,9 +23,6 @@ bool	plane_from_strings(t_plane* plane, char **tokens)
 	cl = nc_split(tokens[3], ',');
 	*plane = (t_plane)
 	{
-		// .center = vec3_new(nc_atod(c[X]), nc_atod(c[Y]), nc_atod(c[Z])), 
-		// .normal = vec3_new(nc_atod(n[X]), nc_atod(n[Y]), nc_atod(n[Z])), 
-		// .color = color_new(nc_atod(cl[R]), nc_atod(cl[G]), nc_atod(cl[B])),
 		.center = vec3_from_strings(c),
 		.normal = vec3_from_strings(n),
 		.color = color_from_strings(cl),
@@ -51,26 +48,4 @@ t_plane	plane_from_numbers(t_vec3 center, t_vec3 normal, t_color color)
 		.color = color
 	};
 	return (plane);
-}
-
-bool	plane_intersect(t_plane *pl, t_ray *ray, t_hit *inter)
-{
-	t_vec3		co;
-	t_equation	equation;
-
-	if (vec3_dot(ray->direction, pl->normal) != 0.0)
-	{
-		co = vec3_sub(ray->origin, pl->center);
-		equation.a = 0;
-		equation.b = vec3_dot(ray->direction, pl->normal);
-		equation.c = vec3_dot(co, pl->normal);
-		solve(&equation);
-		if (equation.t1 > EPSILON)
-		{
-			inter->t = equation.t1;
-			inter->color = pl->color;
-			return (true);
-		}
-	}
-	return (false);
 }

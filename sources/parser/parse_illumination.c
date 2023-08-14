@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_illumination.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/14 13:30:51 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:48:29 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ bool	parse_camera(t_camera *cam, char **tokens, int counters[3])
 	cam->normal = vec3_normalize(cam->normal);
 	cam->fov = nc_atod(tokens[3]);
 	if (cam->fov < 0.0 || cam->fov > 180.0)
-		return (ERROR("FOV out of bounds [0, 180]"), false);	
+		return (ERROR("FOV out of bounds [0, 180]"), false);
 	counters[1]++;
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/13 21:20:17 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/14 16:47:36 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int	quit(t_world *world)
 	exit(EXIT_SUCCESS);
 }
 
+// t_light	*light;
+
+// light = nc_vector_at(w->lights, 0);
 int	on_keypress(int keycode, t_world *w)
 {
-	// t_light	*light;
-
-	// light = nc_vector_at(w->lights, 0);
 	if (keycode == ESC)
 		quit(w);
 	else if (keycode == W)
