@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 11:22:37 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/14 12:08:48 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,10 @@
 #  define D 2
 #  define C 8
 #  define V 9
+#  define KeyPress 2
+#  define KeyPressMask (1L<<0)
+#  define DestroyNotify 17
+#  define StructureNotifyMask (1L<<17)
 # else
 #  define ESC 65307
 #  define W 119

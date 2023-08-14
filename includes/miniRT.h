@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/10 17:03:05 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/14 12:09:54 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #  include "../mlx_macos/mlx.h"
 # else
 #  include "../mlx_linux/mlx.h"
+#  include <X11/X.h>
 # endif
 
 # include "macros.h"
@@ -30,7 +31,5 @@
 # include "utils.h"
 # include "entities.h"
 # include "renderer.h"
-
-# include <X11/X.h>
 
 #endif
