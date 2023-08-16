@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 17:41:09 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/14 20:16:43 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ int	quit(t_world *world)
 	exit(EXIT_SUCCESS);
 }
 
-// t_light	*light;
-
-// light = nc_vector_at(w->lights, 0);
 int	on_keypress(int keycode, t_world *w)
 {
 	if (keycode == ESC)
@@ -54,7 +51,6 @@ int	on_keypress(int keycode, t_world *w)
 		w->camera.center.z -= 5;
 	else if (keycode == V)
 		w->camera.center.z += 5;
-	vec3_print(w->camera.center);
 	render(w);
 	return (keycode);
 }
