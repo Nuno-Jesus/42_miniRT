@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:53:41 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/15 16:05:24 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:02:20 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	intersects(t_shape *shape, t_ray *ray, t_hit *inter)
 		return (plane_intersect(&shape->data.pl, ray, inter));
 	else if (shape->type == CYLINDER)
 		return (cylinder_intersect(&shape->data.cy, ray, inter));
-	else if (shape->type == TORUS)
-		return (torus_intersect(&shape->data.cy, ray, inter));
+	else if (shape->type == CONE)
+		return (cone_intersect(&shape->data.co, ray, inter));
 	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 18:32:36 by marvin           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:34:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ bool	parse_sphere(t_vector *shapes, char **tokens);
 bool	parse_cylinder(t_vector *shapes, char **tokens);
 
 bool	parse_texture(t_vector *shapes, char **tokens);
-bool	parse_torus(t_vector *shapes, char **tokens);
+
+bool	parse_cone(t_vector *shapes, char **tokens);
 
 bool	parse_double(char **nb);
 

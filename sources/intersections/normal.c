@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:38:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/15 16:14:30 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:24:03 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,27 @@ t_vec3	cylinder_normal(t_hit *inter, t_ray *ray)
 	return (normal);
 }
 
+t_vec3	cone_normal(t_hit *inter, t_ray *ray)
+{
+	t_vec3	n;
+	double 	res;
+
+	(void)ray;
+	res = vec3_dot(inter->cp, inter->cp) / vec3_dot(inter->normal, inter->cp);
+	n = vec3_scale(inter->cp, res);
+	n = vec3_sub(inter->cp, n);
+	inter->normal = n;
+	return (n);
+}
+
 t_vec3	shape_normal(t_hit *inter, t_ray *ray)
 {
 	if (inter->shape->type == PLANE)
 		return (inter->shape->data.pl.normal);
-	else if (inter->shape->type == SPHERE || inter->shape->type == TORUS)
+	else if (inter->shape->type == SPHERE)
 		return (sphere_normal(inter, ray));
-	else
+	else if (inter->shape->type == CYLINDER)
 		return (cylinder_normal(inter, ray));
+	else
+		return (cone_normal(inter, ray));
 }

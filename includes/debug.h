@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:01:30 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/15 15:41:07 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/16 12:20:10 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	sphere_print(t_sphere *s);
  */
 void	cylinder_print(t_cylinder *c);
 
-void	torus_print(t_torus *to);
+void	cone_print(t_cone *to);
 
 /**
  * @brief Redirects the program flow to one of the other print functions,

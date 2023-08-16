@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 18:32:29 by marvin           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:34:14 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef enum s_shape_type
 	PLANE,
 	SPHERE,
 	CYLINDER,
-	TORUS,
+	CONE,
 }	t_shape_type;
 
 /**
@@ -168,14 +168,15 @@ typedef struct s_cylinder
 	t_color	color;
 }	t_cylinder;
 
-typedef struct s_torus
+typedef struct s_cone
 {
-	t_vec3	center;
+	t_vec3	tip;
 	t_vec3	normal;
-	double	r1;
-	double	r2;
+	double 	height;
+	double	radius;
+	double 	angle;
 	t_color	color;
-}	t_torus;
+}	t_cone;
 
 /**
  * @brief Contains the data of only ONE of the shapes at a time.
@@ -191,7 +192,7 @@ typedef union u_data
 	t_sphere	sp;
 	t_plane		pl;
 	t_cylinder	cy;
-	t_torus		to;
+	t_cone		co;
 }	t_data;
 
 /**!
@@ -257,6 +258,7 @@ typedef struct s_hit
 	t_vec3	point;
 	t_vec3	normal;
 	t_color	color;
+	t_vec3	cp;
 	t_vec3	a;
 	double	t;
 }	t_hit;

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:34:42 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 18:32:15 by marvin           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:34:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	shape_print(t_shape *shape)
 		sphere_print(&shape->data.sp);
 	else if (shape->type == CYLINDER)
 		cylinder_print(&shape->data.cy);
-	else if (shape->type == TORUS)
-		torus_print(&shape->data.to);
+	else if (shape->type == CONE)
+		cone_print(&shape->data.co);
 	printf("  ID: %d\n", shape->id);
 	printf("  Textured? %d\n", shape->is_textured);
 	printf("  Specular Coefficient (Ks): %lf\n", shape->ks);
@@ -59,16 +59,16 @@ void	plane_print(t_plane *p)
 	printf("  Color: (%d, %d, %d)\n", p->color.r, p->color.g, p->color.b);
 }
 
-void	torus_print(t_torus *to)
+void	cone_print(t_cone *co)
 {
-	printf("Torus:\n");
+	printf("Cone:\n");
 	printf("  Center: (%.4lf, %.4lf, %.4lf)\n", \
-		to->center.x, to->center.y, to->center.z);
+		co->tip.x, co->tip.y, co->tip.z);
 	printf("  Normal: (%.4lf, %.4lf, %.4lf)\n", \
-		to->normal.x, to->normal.y, to->normal.z);
-	printf("  R1: %.4lf\n", to->r1);
-	printf("  R2: %.4lf\n", to->r2);
-	printf("  Color: (%d, %d, %d)\n", to->color.r, to->color.g, to->color.b);
+		co->normal.x, co->normal.y, co->normal.z);
+	printf("  Radius: %.4lf\n", co->radius);
+	printf("  Height: %.4lf\n", co->height);
+	printf("  Color: (%d, %d, %d)\n", co->color.r, co->color.g, co->color.b);
 }
 
 void	world_print(t_world *world)
