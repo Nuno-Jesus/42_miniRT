@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 17:08:33 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/15 15:28:20 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ bool	identifying(t_world *world, char **tokens, int count[3])
 		return (parse_sphere(world->shapes, tokens));
 	else if (!nc_strncmp(tokens[0], "cy", nc_strlen(tokens[0])))
 		return (parse_cylinder(world->shapes, tokens));
+	else if (!nc_strncmp(tokens[0], "to", nc_strlen(tokens[0])))
+		return (parse_torus(world->shapes, tokens));
 	else
 		return (ERROR("Error parsing entities"), false);
 	return (true);

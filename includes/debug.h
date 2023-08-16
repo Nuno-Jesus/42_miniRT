@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:01:30 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/14 17:27:10 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/15 15:41:07 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	sphere_print(t_sphere *s);
  * @param c The t_cylinder struct to debug
  */
 void	cylinder_print(t_cylinder *c);
+
+void	torus_print(t_torus *to);
 
 /**
  * @brief Redirects the program flow to one of the other print functions,

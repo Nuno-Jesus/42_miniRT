@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:34:42 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/11 17:04:32 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/15 15:50:18 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	shape_print(t_shape *shape)
 		sphere_print(&shape->data.sp);
 	else if (shape->type == CYLINDER)
 		cylinder_print(&shape->data.cy);
+	else if (shape->type == TORUS)
+		torus_print(&shape->data.to);
 	printf("  ID: %d\n", shape->id);
 }
 
@@ -52,6 +54,18 @@ void	plane_print(t_plane *p)
 	printf("  Normal: %.4lf, %.4lf, %.4lf\n", \
 		p->normal.x, p->normal.y, p->normal.z);
 	printf("  Color: (%d, %d, %d)\n", p->color.r, p->color.g, p->color.b);
+}
+
+void	torus_print(t_torus *to)
+{
+	printf("Torus:\n");
+	printf("  Center: (%.4lf, %.4lf, %.4lf)\n", \
+		to->center.x, to->center.y, to->center.z);
+	printf("  Normal: (%.4lf, %.4lf, %.4lf)\n", \
+		to->normal.x, to->normal.y, to->normal.z);
+	printf("  R1: %.4lf\n", to->r1);
+	printf("  R2: %.4lf\n", to->r2);
+	printf("  Color: (%d, %d, %d)\n", to->color.r, to->color.g, to->color.b);
 }
 
 void	world_print(t_world *world)
