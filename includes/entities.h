@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/15 16:11:58 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:00:31 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,11 +184,11 @@ bool		check_caps(t_cylinder *cy, t_vec3 cap, t_hit *inter, double t);
  */
 t_vec3		cylinder_normal(t_hit *inter, t_ray *ray);
 
-//! Torus
+//! Cone
 
-bool	torus_from_strings(t_torus *to, char **tokens);
+bool	cone_from_strings(t_cone *co, char **tokens);
 
-bool	torus_intersect(t_cylinder *to, t_ray *ray, t_hit *inter);
+bool	cone_intersect(t_cone *co, t_ray *ray, t_hit *inter);
 
 //! Shapes
 /**

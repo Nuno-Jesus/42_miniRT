@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:32:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/15 15:56:01 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/16 12:24:13 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_shape	*shape_new(void	*data, t_shape_type type, int id)
 		shape->data.sp = *(t_sphere *)data;
 	else if (type == CYLINDER)
 		shape->data.cy = *(t_cylinder *)data;
-	else if (type == TORUS)
-		shape->data.to = *(t_torus *)data;
+	else if (type == CONE)
+		shape->data.co = *(t_cone *)data;
 	return (shape);
 }
 
@@ -47,7 +47,7 @@ t_shape	*shape_copy(t_shape *shape)
 		copy->data.sp = shape->data.sp;
 	else if (shape->type == CYLINDER)
 		copy->data.cy = shape->data.cy;
-	else if (shape->type == TORUS)
-		copy->data.to = shape->data.to;
+	else if (shape->type == CONE)
+		copy->data.co = shape->data.co;
 	return (copy);
 }

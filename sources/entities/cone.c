@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   torus.c                                            :+:      :+:    :+:   */
+/*   cone.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "miniRT.h"
 
-bool	torus_from_strings(t_torus *to, char **tokens)
+bool	cone_from_strings(t_cone *co, char **tokens)
 {
 	char		**c;
 	char		**n;
@@ -21,20 +21,23 @@ bool	torus_from_strings(t_torus *to, char **tokens)
 	c = nc_split(tokens[1], ',');
 	n = nc_split(tokens[2], ',');
 	cl = nc_split(tokens[5], ',');
-	*to = (t_torus)
+	*co = (t_cone)
 	{
-		.r1 = nc_atod(tokens[3]) / 2.0,
-		.r2 = nc_atod(tokens[4]) / 2.0,
-		.center = vec3_from_strings(c),
+		.radius = nc_atod(tokens[3]),
+		.height = nc_atod(tokens[4]),
+		.tip = vec3_from_strings(c),
 		.normal = vec3_from_strings(n),
 		.color = color_from_strings(cl),
 	};
 	nc_matrix_delete(c, &free);
 	nc_matrix_delete(n, &free);
 	nc_matrix_delete(cl, &free);
-	if (vec3_length(to->normal) < 1.0 - EPSILON \
-		|| to->r1 < EPSILON || to->r2 < EPSILON || to->r1 <= to->r2)
+	if (vec3_length(co->normal) < 1.0 - EPSILON \
+		|| co->radius < EPSILON || co->height < EPSILON)
 		return (false);
-	to->normal = vec3_normalize(to->normal);
+	co->normal = vec3_normalize(co->normal);
+	co->normal = vec3_add(co->normal, VEC_EPSILON);
+	co->angle = atan(co->radius / co->height);
 	return (true);
 }
+

@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/15 15:28:20 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/16 12:21:41 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ bool	identifying(t_world *world, char **tokens, int count[3])
 		return (parse_sphere(world->shapes, tokens));
 	else if (!nc_strncmp(tokens[0], "cy", nc_strlen(tokens[0])))
 		return (parse_cylinder(world->shapes, tokens));
-	else if (!nc_strncmp(tokens[0], "to", nc_strlen(tokens[0])))
-		return (parse_torus(world->shapes, tokens));
+	else if (!nc_strncmp(tokens[0], "co", nc_strlen(tokens[0])))
+		return (parse_cone(world->shapes, tokens));
 	else
 		return (ERROR("Error parsing entities"), false);
 	return (true);

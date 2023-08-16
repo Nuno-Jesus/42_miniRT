@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/15 15:54:46 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:17:51 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,22 @@ bool	parse_cylinder(t_vector *shapes, char **tokens)
 	return (true);
 }
 
-bool	parse_torus(t_vector *shapes, char **tokens)
+bool	parse_cone(t_vector *shapes, char **tokens)
 {
 	bool		ok;
-	t_torus		torus;
+	t_cone		cone;
 	t_shape		*shape;
 
 	if (nc_matrix_size(tokens) != 6)
-		return (ERROR("Wrong number of args in torus (need 6)"), false);
+		return (ERROR("Wrong number of args in cone (need 6)"), false);
 	if (!parse_syntax(tokens, "011001"))
-		return (ERROR("Misconfiguration in commas/numbers in torus"), false);
+		return (ERROR("Misconfiguration in commas/numbers in cone"), false);
 	if (!parse_rgb(tokens[5]))
-		return (ERROR("Colors misformatting in torus"), false);
-	ok = torus_from_strings(&torus, tokens);
-	printf("entrei\n");
+		return (ERROR("Colors misformatting in cone"), false);
+	ok = cone_from_strings(&cone, tokens);
 	if (!ok)
-		return (ERROR("Values are too small in torus"), false);
-	shape = shape_new(&torus, TORUS, shapes->size);
+		return (ERROR("Values are too small in cone"), false);
+	shape = shape_new(&cone, CONE, shapes->size);
 	nc_vector_push(shapes, shape);
 	return (true);
 }
