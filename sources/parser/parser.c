@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 11:08:12 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:31:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ bool	identifying(t_world *world, char **tokens, int count[2])
 	if (!nc_strncmp(tokens[0], "tt", nc_strlen(tokens[0])))
 		return (parse_texture(world->shapes, tokens));
 	return (ERROR("Error parsing entities"), false);
+	else if (!nc_strncmp(tokens[0], "to", nc_strlen(tokens[0])))
+		return (parse_torus(world->shapes, tokens));
+	else
+		return (ERROR("Error parsing entities"), false);
+	return (true);
 }
 
 void	parse_map(t_world *world, char **map, int counters[2])

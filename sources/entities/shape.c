@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:32:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 17:21:12 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:32:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_shape	*shape_new(void	*data, t_shape_type type, int id, char **tokens)
 		shape->data.cy = *(t_cylinder *)data;
 	shape->ks = nc_atod(tokens[0]);
 	shape->shininess = nc_atod(tokens[1]);
+	else if (type == TORUS)
+		shape->data.to = *(t_torus *)data;
 	return (shape);
 }
 

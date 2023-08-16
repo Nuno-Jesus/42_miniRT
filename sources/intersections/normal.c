@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:38:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/10 18:04:33 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/15 16:14:30 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_vec3	shape_normal(t_hit *inter, t_ray *ray)
 {
 	if (inter->shape->type == PLANE)
 		return (inter->shape->data.pl.normal);
-	else if (inter->shape->type == SPHERE)
+	else if (inter->shape->type == SPHERE || inter->shape->type == TORUS)
 		return (sphere_normal(inter, ray));
 	else
 		return (cylinder_normal(inter, ray));

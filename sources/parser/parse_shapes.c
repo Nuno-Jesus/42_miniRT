@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_shapes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 16:47:50 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:31:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,25 @@ bool	parse_texture(t_vector *shapes, char **tokens)
 		return (false);
 	last = nc_vector_last(shapes);
 	last->is_textured = true;
+	return (true);
+}
+bool	parse_torus(t_vector *shapes, char **tokens)
+{
+	bool		ok;
+	t_torus		torus;
+	t_shape		*shape;
+
+	if (nc_matrix_size(tokens) != 6)
+		return (ERROR("Wrong number of args in torus (need 6)"), false);
+	if (!parse_syntax(tokens, "011001"))
+		return (ERROR("Misconfiguration in commas/numbers in torus"), false);
+	if (!parse_rgb(tokens[5]))
+		return (ERROR("Colors misformatting in torus"), false);
+	ok = torus_from_strings(&torus, tokens);
+	printf("entrei\n");
+	if (!ok)
+		return (ERROR("Values are too small in torus"), false);
+	shape = shape_new(&torus, TORUS, shapes->size);
+	nc_vector_push(shapes, shape);
 	return (true);
 }
