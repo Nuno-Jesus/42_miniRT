@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 18:05:45 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/16 15:20:42 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@
  * @return int (dummy value)
  */
 int		render(t_world *w);
+
+/**
+ * @brief Given all the scene's shapes and the casted ray, it asserts
+ * if the ray ever hit one of the shapes. If so, the closest struct will
+ * be filled with a pointer to the closest hit shape, among other 
+ * useful variables.
+ * 
+ * @param shapes The scene's shapes
+ * @param ray The casted ray
+ * @param closest The closest hit shape
+ * @return true If it hit something
+ * @return false Otherwise
+ */
+bool	world_hit(t_vector *shapes, t_ray *ray, t_hit *closest);
 
 /**
  * @brief Puts a pixel in an image with the given color and at the given
@@ -156,5 +170,9 @@ t_ray	make_ray(t_world *w, t_vec3 factors);
  * @return t_vec3 The point at t
  */
 t_vec3	ray_at(t_ray *ray, double t);
+
+// void	prepare_threads(t_world	*world);
+
+void	launch_threads(t_world *world);
 
 #endif

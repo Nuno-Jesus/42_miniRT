@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 20:26:02 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:15:03 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <math.h>
+# include <pthread.h>
 
 //! Debug related macros
 
@@ -104,5 +105,8 @@
 #  define C 99
 #  define V 118
 # endif
+
+# define NUM_THREADS 8
+# define THREADABLE
 
 #endif

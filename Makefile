@@ -53,6 +53,7 @@ MAKEFLAGS	= --no-print-directory
 MLXFLAGS	= -L ./$(MLX) -lmlx -lXext -lX11 -lm 
 LIBNCFLAGS	= -L ./$(LIBNC) -lnc
 GNLFLAGS	= -L ./$(GNL) -lgnl
+LDFLAGS		= $(LIBNCFLAGS) $(GNLFLAGS) $(MLXFLAGS) -lm -lpthread
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -76,9 +77,9 @@ vpath %.h $(INC_FOLDER)
 
 _FILES += debug_1 debug_2
 _FILES += world cylinder plane shape sphere lightsource
-_FILES += intersections_1 intersections_2
+_FILES += intersections_1 intersections_2 normal
 _FILES += read_map parser parse_shapes parse_illumination parse_utils
-_FILES += pixel render color light ray normal
+_FILES += pixel render color light ray threads	
 _FILES += vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_length vec3_new \
 	vec3_sub vec3_cossine vec3_compare vec3_from_strings
 _FILES += math message
@@ -143,7 +144,7 @@ $(NAME): $(OBJ_FOLDER) $(DEP_FOLDER) $(OBJS)
 	$(MAKE) -C $(MLX)
 
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)$(NAME)$(RESET)"
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME) -lm $(LIBNCFLAGS) $(GNLFLAGS) $(MLXFLAGS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS) 
 	
 	mv $(OBJS:.o=.d) $(DEP_FOLDER)
 	echo "$(GREEN)Done.$(RESET)"
