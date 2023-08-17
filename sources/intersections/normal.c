@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:38:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/16 18:24:03 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/17 14:02:15 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,14 @@ t_vec3	cylinder_normal(t_hit *inter, t_ray *ray)
 
 t_vec3	cone_normal(t_hit *inter, t_ray *ray)
 {
-	t_vec3	n;
-	double 	res;
+	t_vec3	point;
+	t_vec3	normal;
 
-	(void)ray;
-	res = vec3_dot(inter->cp, inter->cp) / vec3_dot(inter->normal, inter->cp);
-	n = vec3_scale(inter->cp, res);
-	n = vec3_sub(inter->cp, n);
-	inter->normal = n;
-	return (n);
+	point = ray_at(ray, inter->t);
+	normal = vec3_sub(point, inter->a);
+	if (vec3_compare(inter->a, inter->shape->data.co.tip))
+		normal = inter->shape->data.co.normal;
+	return (normal);
 }
 
 t_vec3	shape_normal(t_hit *inter, t_ray *ray)

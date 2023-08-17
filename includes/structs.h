@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 18:34:14 by marvin           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:35:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,10 @@ typedef struct s_hit
 	t_color	color;
 	t_vec3	cp;
 	t_vec3	a;
+	double 	m;
 	double	t;
+	double 	t1;
+	double 	t2;
 }	t_hit;
 
 //!
