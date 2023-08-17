@@ -6,11 +6,21 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/16 17:09:18 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:11:23 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+double 	closest_value(double t1, double t2)
+{
+	if (t1 > EPSILON)
+		return (t1);
+	else if (t2 > EPSILON)
+		return (t2);
+	else
+		return (-1.0f);
+}
 
 double	determinant(t_equation *eq)
 {

@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:04:41 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 18:07:11 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:11:44 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
  * @param text text to be printed
  */
 void	message(t_world *world, char *text);
+
+double 	closest_value(double t1, double t2);
 
 /**
  * @brief this function checks how many intersections the ray has with the

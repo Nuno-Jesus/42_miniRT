@@ -6,73 +6,93 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:03:15 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/16 19:26:29 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:39:42 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-double 	closest_value(double t1, double t2)
+bool	check_base(t_cone *co, t_vec3 cap, t_hit *inter, double t)
 {
-	if (t1 > EPSILON)
-		return (t1);
-	else if (t2 > EPSILON)
-		return (t2);
-	else
-		return (-1.0f);
-}
-
-bool 	check_length(t_hit *inter, t_cone *co, double m)
-{
-	t_vec3	a;
+	double	len;
 	t_vec3	point;
-	double 	h2;
-	double	r2;
-	double 	len;
 
-	point = ray_at(&inter->ray, inter->t);
-	a = vec3_add(co->tip, vec3_scale(co->normal, m));
-	h2 = vec3_length(vec3_sub(a, co->tip));
-	r2 = co->radius * h2 / co->height;
-	len = vec3_length(vec3_sub(point, a));
-	//printf("len = %f\n", len);
-	////printf("r2 = %f\n", r2);
-	if (len <= r2)
+	point = ray_at(&inter->ray, t);
+	len = vec3_length(vec3_sub(point, cap));
+	if (len <= co->radius && t > EPSILON && t < inter->t)
 	{
-		printf("entrei\n");
+		inter->a = cap;
+		inter->t = t;
 		return (true);
 	}
 	return (false);
 }
 
-bool	verify_intersection(t_equation eq, t_hit *inter, t_cone *co)
+bool	check_sides(t_cone *co, t_hit *inter, double t)
 {
+	t_vec3	oc;
+	t_vec3	tmp;
+	t_vec3	point;
+	double 	angle;
 	double	m;
-	bool	ok;
 
-	if (!solve(&eq))
-		return (false);
-	inter->t = closest_value(eq.t1, eq.t2);
-	inter->cp = vec3_add(inter->ray.origin, vec3_scale(inter->ray.direction, inter->t));
-	inter->cp = vec3_sub(inter->cp, co->tip);
-	inter->normal = co->normal;
-	m = vec3_dot(inter->cp, co->normal);
-	ok = check_length(inter, co, m);
-	//printf("m = %f\n", m);
-	if (m >= 0 && m <= co->height && ok && inter->t > 0)
+	point = ray_at(&inter->ray, t);
+	oc = vec3_sub(inter->ray.origin, co->tip);
+	m = vec3_dot(inter->ray.direction, co->normal) * t + \
+			vec3_dot(oc, co->normal);
+	tmp = vec3_sub(point, vec3_sub(co->tip, vec3_scale(co->normal, m)));
+	angle = acos(vec3_dot(tmp, co->normal) / (vec3_length(tmp) * \
+				vec3_length(co->normal)));
+	if (m >= 0 && m <= co->height && angle <= co->angle && t > EPSILON \
+			&& t < inter->t)
 	{
-		//printf("t = %f\n", inter->t);
-		//printf("point ");
-		vec3_print(ray_at(&inter->ray, inter->t));
+		inter->a = vec3_add(co->tip, vec3_scale(co->normal, m));
+		inter->t = t;
 		return (true);
 	}
 	return (false);
+}
+
+double	cap_intersect(t_cone *co, t_ray *ray, t_vec3 cap)
+{
+	t_plane	plane;
+	t_hit	inter;
+
+	plane = plane_from_numbers(cap, co->normal, BLACK);
+	if (plane_intersect(&plane, ray, &inter))
+		return (inter.t);
+	return (-1);
+}
+
+double	verify_intersects(t_cone *co, t_equation *equation, t_hit *inter)
+{
+	double	t1;
+	double	t2;
+	t_vec3 	base;
+
+	if (!solve(equation))
+		return (0);
+	base = vec3_add(co->tip, vec3_scale(co->normal, co->height));
+	t1 = closest_value(equation->t1, equation->t2);
+	t2 = cap_intersect(co, &inter->ray, base);
+	inter->t1 = equation->t1;
+	inter->t2 = equation->t2;
+	inter->t = INFINITY;
+	check_sides(co, inter, t1);
+	check_base(co, base, inter, t2);
+	inter->cp = vec3_sub(vec3_add(inter->ray.origin, \
+					vec3_scale(inter->ray.direction, inter->t)), co->tip);
+	inter->normal = co->normal;
+	if (inter->t == INFINITY || inter->t < 0)
+		return (0);
+	return (inter->t);
 }
 
 bool	cone_intersect(t_cone *co, t_ray *ray, t_hit *inter)
 {
 	t_vec3		oc;
 	t_equation	equation;
+	double 		t;
 	
 	inter->t = -1.0f;
 	oc = vec3_sub(ray->origin, co->tip);
@@ -84,8 +104,10 @@ bool	cone_intersect(t_cone *co, t_ray *ray, t_hit *inter)
 	equation.c = pow(vec3_dot(oc, co->normal), 2) - vec3_dot(oc, oc) * \
 					pow(cos(co->angle), 2);
 	inter->ray = *ray;
-	if (verify_intersection(equation, inter, co) == true)
+	t = verify_intersects(co, &equation, inter);
+	if (t > 0.0f)
 	{
+		inter->t = t;
 		inter->color = co->color;
 		return (true);
 	}
