@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/18 18:45:04 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:47:44 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,23 +81,22 @@ t_color	specular(t_light *bulb, t_hit *closest)
 
 void	illuminate(t_world *world, t_hit *closest)
 {
-	t_color	color;
-	t_color	diffuse_color;
-	t_color	specular_color;
-	t_light	*bulb;
+	uint32_t	i;
+	t_light		*bulb;
+	t_color		color;
+	t_color		component;
 
-	uint32_t i = 0;
 	color = ambient(closest->color, world->ambient.ratio);
-	for (i = 0; i < world->lights->size; i++)
+	i = -1;
+	while (++i < world->lights->size)
 	{
-		bulb = nc_vector_at(world->lights, i); 
-		if (!is_shadowed(world, bulb, closest))
-		{
-			diffuse_color = diffuse(bulb, closest);
-			specular_color = specular(bulb, closest);
-			color = color_add(color, diffuse_color);
-			color = color_add(color, specular_color);
-		}
+		bulb = nc_vector_at(world->lights, i);
+		if (is_shadowed(world, bulb, closest))
+			continue ;
+		component = diffuse(bulb, closest);
+		color = color_add(color, component);
+		component = specular(bulb, closest);
+		color = color_add(color, component);
 	}
 	closest->color = color;
 }
