@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/18 19:06:23 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 19:17:16 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	illuminate(t_world *world, t_hit *closest)
 	t_light		*bulb;
 	t_color		color;
 
-	color = ambient(closest->color, world->ambient.ratio);
+	color = ambient(&world->ambient, closest->color);
 	i = -1;
 	while (++i < world->lights->size)
 	{
@@ -31,9 +31,15 @@ void	illuminate(t_world *world, t_hit *closest)
 	closest->color = color;
 }
 
-t_color	ambient(t_color	color, double ratio)
+t_color	ambient(t_light *ambient, t_color color)
 {
-	return (color_mult(color, ratio));
+	t_color	ambient_ratios;
+
+	ambient_ratios = color_mult(ambient->color, 1.0/255);
+	color.r *= ambient_ratios.r;
+	color.g *= ambient_ratios.g;
+	color.b *= ambient_ratios.b;
+	return (color_mult(color, ambient->ratio));
 }
 
 t_color	diffuse(t_light *bulb, t_hit *inter)

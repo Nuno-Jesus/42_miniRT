@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 19:05:14 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 19:13:33 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,20 @@ void	put_pixel(t_world *w, t_color c, int x, int y);
 void	illuminate(t_world *world, t_hit *closest);
 
 /**
- * @brief Calculates the ambient lighting in a shape. The 
- * ambient lighting is calculated by the following formula:
+ * !@brief Calculates the ambient lighting in a shape. The 
+ * !ambient lighting is calculated by the following formula:
  * 
- * 		Ia = Ka * ShapeColor
+ * 		!Ia = Ka * ShapeColor
  * 
- * Ia - ambient color
- * Ka - ratio of ambient lighting in the scene
- * ShapeColor - the closest shape color
+ * !Ia - ambient color
+ * !Ka - ratio of ambient lighting in the scene
+ * !ShapeColor - the closest shape color
  * 
- * @param color The closest shape's color
- * @param ratio The ambient lighting ration in the scene
- * @return t_color The final color
+ * !@param color The closest shape's color
+ * !@param ratio The ambient lighting ration in the scene
+ * !@return t_color The final color
  */
-t_color	ambient(t_color	color, double ratio);
+t_color	ambient(t_light *ambient, t_color color);
 
 /**
  * @brief Calculates the diffuse lighting in a shape. The 
