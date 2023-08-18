@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 18:30:04 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:52:34 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	on_keypress(int keycode, t_world *w)
 		w->camera.center.z -= 5;
 	else if (keycode == V)
 		w->camera.center.z += 5;
-	launch_threads(w);
+	multithread(w);
 	return (keycode);
 }
 
@@ -64,9 +64,7 @@ int	main(int argc, char **argv)
 	world = parse(argv[1]);
 	init_viewport(world);
 	init_graphics(world);
-	// world_print(world);
-	// render(world);
-	launch_threads(world);
+	multithread(world);
 	mlx_hook(world->disp.win, KeyPress, KeyPressMask, on_keypress, world);
 	mlx_hook(world->disp.win, DestroyNotify, StructureNotifyMask, quit, world);
 	mlx_loop(world->disp.mlx);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 16:55:58 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/18 19:03:12 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,17 @@ bool	world_hit(t_vector *shapes, t_ray *ray, t_hit *closest)
 	return (closest->shape != NULL);
 }
 
-int	render(t_world *w)
+void	*render(t_runner *worker)
 {
 	t_vec3	coords;
 	t_vec3	factors;
 	t_ray	ray;
 	t_hit	closest;
+	t_world	*w;
 
-	coords.y = -1;
-	while (++coords.y < HEIGHT)
+	w = worker->world;
+	coords.y = worker->min_y - 1;
+	while (++coords.y < worker->max_y)
 	{
 		coords.x = -1;
 		while (++coords.x < WIDTH)
@@ -60,6 +62,5 @@ int	render(t_world *w)
 			put_pixel(w, closest.color, coords.x, coords.y);
 		}
 	}
-	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.img, 0, 0);
-	return (0);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/18 18:47:44 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:57:50 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,22 @@ bool	is_shadowed(t_world *world, t_light *bulb, t_hit *closest)
 	return (is_obscured(world->shapes, closest->shape, &ray, light_distance));
 }
 
-
 /**
  * !@brief Calculates the specular lighting in a given point
  * 
- * !The specular lighting in a given point is calculated given the following formula
+ * !The specular lighting in a given point is calculated given the 
+ * !following formula
  * 
  * !	Ie = Ke * Ip * (N.H)^n
  * 
  * !Ie - specular lighting
  * !Ke - specular constant (depends on the material)
  * !Ip - light source intensity 
- * !H - half vector (the normalized vector between the light and camera directions)
+ * !H - half vector (the normalized vector between the light and 
+ * ! camera directions)
  * !N - the normal vector in that surface
- * !n - a value depending on the material (high for highly polished surfaces)
+ * !n - a value depending on the material (high for highly polished 
+ * !surfaces)
  */
 t_color	specular(t_light *bulb, t_hit *closest)
 {
@@ -75,7 +77,8 @@ t_color	specular(t_light *bulb, t_hit *closest)
 	camera_dir = vec3_normalize(camera_dir);
 	half_vector = vec3_normalize(vec3_add(camera_dir, light_dir));
 	cosine = MAX(0.0, vec3_dot(half_vector, closest->normal));
-	specular_ratio = closest->shape->ks * bulb->ratio * pow(cosine, closest->shape->shininess);
+	specular_ratio = closest->shape->ks * bulb->ratio * \
+		pow(cosine, closest->shape->shininess);
 	return (color_mult(closest->color, specular_ratio));
 }
 
@@ -121,4 +124,3 @@ t_color	diffuse(t_light *bulb, t_hit *inter)
 	diff_color = color_mult(inter->color, diffuse_ratio);
 	return (diff_color);
 }
-

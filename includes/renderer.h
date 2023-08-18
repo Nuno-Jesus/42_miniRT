@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 18:33:14 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:55:38 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 # include "miniRT.h"
 
 /**
- * @brief The function that renders the scene. Iterates over the scene's
- * pixels and traces a ray for each that will be used to collide with 
- * the world. The pixels are painted one by one until the final image
- * is rendered.
+ * !@brief The function that renders the scene. Iterates over the scene's
+ * !pixels and traces a ray for each that will be used to collide with 
+ * !the world. The pixels are painted one by one until the final image
+ * !is rendered.
  * 
- * @param w The t_world struct 
- * @return int (dummy value)
+ * !@param w The t_world struct 
+ * !@return int (dummy value)
  */
-int		render(t_world *w);
+void	*render(t_runner *worker);
 
 /**
  * @brief Given all the scene's shapes and the casted ray, it asserts
@@ -174,6 +174,6 @@ t_ray	make_ray(t_world *w, t_vec3 factors);
 t_vec3	ray_at(t_ray *ray, double t);
 
 //!
-void	launch_threads(t_world *world);
+void	multithread(t_world *world);
 
 #endif

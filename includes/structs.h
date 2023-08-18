@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 17:17:43 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 19:02:35 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,24 +249,12 @@ typedef struct s_hit
 	double	t;
 }	t_hit;
 
-
-typedef	struct	s_img
-{
-	void	*img;
-	void	*addr;
-	int		bpp;
-	int		line_length;
-	int		endian;
-	int		height;
-	int		width;
-}	t_img;
-
-typedef struct	s_runner
+//!
+typedef struct s_runner
 {
 	pthread_t		thread;
-	int 			min_y;
-	int 			max_y;
-	t_img			image;
+	int				min_y;
+	int				max_y;
 	struct s_world	*world;
 }	t_runner;
 
@@ -298,9 +286,6 @@ typedef struct s_world
 	char		**map;
 	double		hview;
 	double		wview;
-	t_runner	runners[NUM_THREADS];
-	pthread_mutex_t mtx;
 }	t_world;
-
 
 #endif
