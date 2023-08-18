@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 17:59:48 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:25:09 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ bool	parse_plane(t_vector *shapes, char **tokens)
 	if (!parse_rgb(tokens[3]))
 		return (ERROR_MISFORMAT_COLOR("plane"), false);
 	if (nc_atod(tokens[4]) < 0.0 || nc_atod(tokens[4]) > 1.0)
-		return (ERROR_SPECULAR("plane"), false);
+		return (ERROR_KS_OUT_OF_BOUNDS("plane"), false);
 	if (nc_atod(tokens[5]) < 0.0)
-		return (ERROR_SHININESS("plane"), false);
+		return (ERROR_SHININESS_OUT_OF_BOUNDS("plane"), false);
 	ok = plane_from_strings(&plane, tokens);
 	if (!ok)
 		return (ERROR_VALUES_TOO_SMALL("plane"), false);
@@ -49,9 +49,9 @@ bool	parse_sphere(t_vector *shapes, char **tokens)
 	if (!parse_rgb(tokens[3]))
 		return (ERROR_MISFORMAT_COLOR("sphere"), false);
 	if (nc_atod(tokens[4]) < 0.0 || nc_atod(tokens[4]) > 1.0)
-		return (ERROR_SPECULAR("sphere"), false);
+		return (ERROR_KS_OUT_OF_BOUNDS("sphere"), false);
 	if (nc_atod(tokens[5]) < 0.0)
-		return (ERROR_SHININESS("sphere"), false);
+		return (ERROR_SHININESS_OUT_OF_BOUNDS("sphere"), false);
 	ok = sphere_from_strings(&sphere, tokens);
 	if (!ok)
 		return (ERROR_VALUES_TOO_SMALL("plane"), false);
@@ -73,9 +73,9 @@ bool	parse_cylinder(t_vector *shapes, char **tokens)
 	if (!parse_rgb(tokens[5]))
 		return (ERROR_MISFORMAT_COLOR("cylinder"), false);
 	if (nc_atod(tokens[6]) < 0.0 || nc_atod(tokens[6]) > 1.0)
-		return (ERROR_SPECULAR("cylinder"), false);
+		return (ERROR_KS_OUT_OF_BOUNDS("cylinder"), false);
 	if (nc_atod(tokens[7]) < 0.0)
-		return (ERROR_SHININESS("cylinder"), false);
+		return (ERROR_SHININESS_OUT_OF_BOUNDS("cylinder"), false);
 	ok = cylinder_from_strings(&cylinder, tokens);
 	if (!ok)
 		return (ERROR_VALUES_TOO_SMALL("plane"), false);

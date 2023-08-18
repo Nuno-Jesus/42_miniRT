@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 17:57:02 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:25:55 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,23 @@
 # define HAS_COMMAS '1'
 
 # define ERROR(m)	        	printf("Error\n%s\n", m)
-# define ERROR_NUM_ARGS(x, n)	ERROR("Wrong number of args in "x" (need "n")")
-# define ERROR_NUM_COMMAS(x)	ERROR("Too many/few commas in "x)
+# define ERROR_NUM_ARGS(x, n)		\
+	ERROR("Wrong number of args in "x" (need "n")")
+# define ERROR_NUM_COMMAS(x)		\
+	ERROR("Too many/few commas in "x)
 # define ERROR_MISFORMAT_COLOR(x)	\
 	ERROR("Colors misformatting in "x)
-# define ERROR_SPECULAR(x)			\
+# define ERROR_AMBIENT_RATIO_OUT_OF_BOUNDS		\
+	ERROR("Ambient coefficient out of bounds in [0.0,1.0]")
+# define ERROR_CAMERA_FOV_OUT_OF_BOUNDS			\
+	ERROR("FOV coefficient out of bounds in [0.0,1.0]")
+# define ERROR_LIGHT_BRIGHTNESS_OUT_OF_BOUNDS	\
+	ERROR("Light brightness out of bounds in [0.0,1.0]")
+# define ERROR_KS_OUT_OF_BOUNDS(x)				\
 	ERROR("Specular coefficient out of bounds in "x" [0.0,1.0]")
-# define ERROR_SHININESS(x)			\
-	ERROR("Shininess out of bounds in "x" [0.0, +∞[")
-# define ERROR_VALUES_TOO_SMALL(x)	\
+# define ERROR_SHININESS_OUT_OF_BOUNDS(x)		\
+	ERROR("Shininess out of bounds in "x" [0.0,+∞[")
+# define ERROR_VALUES_TOO_SMALL(x)				\
 	ERROR("Values are too small in "x)
 
 # define ERROR_SYNTAX		"Syntax: file format misconfiguration."
@@ -57,7 +65,7 @@
 # define ERROR_OPEN_FILE	"Couldn't open requested file"
 # define ERROR_EMPTY_MAP	"Empty map."
 # define ERROR_NO_CAMERA	"No camera in the map."
-# define ERROR_TOO_MANY		"Found more than 1 A, C or L entities"
+# define ERROR_TOO_MANY		"Found more than 1 A or C entities"
 # define ERROR_MALLOC(str)  "Failed allocation on "str"."
 # define ERROR_USAGE 		"Usage: ./miniRT <scene>.rt"
 
