@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/18 18:24:27 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:28:11 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ bool	parse_ambient_light(t_light *ambient, char **tokens, int *counter)
 	if (nc_atod(tokens[1]) < 0.0 || nc_atod(tokens[1]) > 1.0)
 		return (ERROR_AMBIENT_RATIO_OUT_OF_BOUNDS, false);
 	color = nc_split(tokens[2], ',');
-	ambient->ratio = nc_atod(tokens[1]);
 	ambient->color = color_from_strings(color);
+	ambient->ratio = nc_atod(tokens[1]);
 	nc_matrix_delete(color, &free);
 	(*counter)++;
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 18:09:52 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:33:14 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,10 +120,11 @@ bool	is_obscured(t_vector *shapes, t_shape *own, t_ray *ray, double max_t);
  * like the light direction and distance 
  * 
  * @param world The t_world struct
+ * @param bulb The light source
  * @param closest The closest shape
  * @return The is_obscured return value
  */
-bool	is_shadowed(t_world *world, t_hit *closest);
+bool	is_shadowed(t_world *world, t_light *bulb, t_hit *closest);
 
 /**
  * @brief Initializes the scene's viewport (what the camera can see). The 

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/18 18:10:05 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:45:04 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,13 @@ bool	is_obscured(t_vector *shapes, t_shape *own, t_ray *ray, double max_t)
 	return (false);
 }
 
-bool	is_shadowed(t_world *world, t_hit *closest)
+bool	is_shadowed(t_world *world, t_light *bulb, t_hit *closest)
 {
 	t_vec3	light_dir;
-	t_light	*light;
 	t_ray	ray;
 	double	light_distance;
 
-	light = nc_vector_at(world->lights, 0);
-	light_dir = vec3_sub(light->center, closest->point);
+	light_dir = vec3_sub(bulb->center, closest->point);
 	light_distance = vec3_length(light_dir);
 	ray.origin = vec3_add(closest->point, VEC_EPSILON);
 	ray.direction = vec3_normalize(light_dir);
@@ -88,14 +86,18 @@ void	illuminate(t_world *world, t_hit *closest)
 	t_color	specular_color;
 	t_light	*bulb;
 
-	bulb = nc_vector_at(world->lights, 0); 
+	uint32_t i = 0;
 	color = ambient(closest->color, world->ambient.ratio);
-	if (!is_shadowed(world, closest))
+	for (i = 0; i < world->lights->size; i++)
 	{
-		diffuse_color = diffuse(bulb, closest);
-		specular_color = specular(bulb, closest);
-		color = color_add(color, diffuse_color);
-		color = color_add(color, specular_color);
+		bulb = nc_vector_at(world->lights, i); 
+		if (!is_shadowed(world, bulb, closest))
+		{
+			diffuse_color = diffuse(bulb, closest);
+			specular_color = specular(bulb, closest);
+			color = color_add(color, diffuse_color);
+			color = color_add(color, specular_color);
+		}
 	}
 	closest->color = color;
 }

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 18:25:55 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:27:52 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@
 # define ERROR_MISFORMAT_COLOR(x)	\
 	ERROR("Colors misformatting in "x)
 # define ERROR_AMBIENT_RATIO_OUT_OF_BOUNDS		\
-	ERROR("Ambient coefficient out of bounds in [0.0,1.0]")
+	ERROR("Ambient coefficient out of bounds [0.0,1.0]")
 # define ERROR_CAMERA_FOV_OUT_OF_BOUNDS			\
-	ERROR("FOV coefficient out of bounds in [0.0,1.0]")
+	ERROR("FOV coefficient out of bounds [0.0,1.0]")
 # define ERROR_LIGHT_BRIGHTNESS_OUT_OF_BOUNDS	\
-	ERROR("Light brightness out of bounds in [0.0,1.0]")
+	ERROR("Light brightness out of bounds [0.0,1.0]")
 # define ERROR_KS_OUT_OF_BOUNDS(x)				\
 	ERROR("Specular coefficient out of bounds in "x" [0.0,1.0]")
 # define ERROR_SHININESS_OUT_OF_BOUNDS(x)		\

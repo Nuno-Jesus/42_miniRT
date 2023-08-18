@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 18:12:14 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:26:23 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	identifying(t_world *world, char **tokens, int count[2])
 		return (parse_ambient_light(&world->ambient, tokens, &count[0]));
 	else if (!nc_strncmp(tokens[0], "C", nc_strlen(tokens[0])))
 		return (parse_camera(&world->camera, tokens, &count[1]));
-	else if (!nc_strncmp(tokens[0], "L", nc_strlen(tokens[0])))
+	else if (!nc_strncmp(tokens[0], "l", nc_strlen(tokens[0])))
 		return (parse_light_source(world->lights, tokens));
 	else if (!nc_strncmp(tokens[0], "pl", nc_strlen(tokens[0])))
 		return (parse_plane(world->shapes, tokens));
