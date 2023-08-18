@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/16 15:20:42 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/18 12:53:05 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,11 @@ t_color	ambient(t_color	color, double ratio);
  * @brief Calculates the diffuse lighting in a shape. The 
  * diffuse lighting is calculated by the following formula:
  * 
- * 		Id = Kd * cos(A) * ShapeColor
+ * 		Id = Kd * Ip * cos(A) * ShapeColor
  * 
  * Id - diffuse color
  * Kd - ratio of diffuse lighting in the scene
+ * Ip - intensity of the light source
  * A - angle between the normal at the intersection point and the 
  * light direction
  * cos(A) - cosine of A
@@ -98,7 +99,7 @@ t_color	ambient(t_color	color, double ratio);
  * @param ratio The ambient lighting ration in the scene
  * @return t_color The final color
  */
-t_color	diffuse(t_light *bulb, t_hit *inter, double k);
+t_color	diffuse(t_light *bulb, t_hit *inter);
 
 /**
  * @brief Looks if any object is between the closest shape and the 

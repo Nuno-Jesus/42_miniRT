@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/14 20:16:52 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 13:09:06 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,43 @@ bool	is_shadowed(t_world *world, t_hit *closest)
 	return (is_obscured(world->shapes, closest->shape, &ray, light_distance));
 }
 
+
+/**
+ * @brief Calculates the specular lighting in a given point
+ * 
+ * The specular lighting in a given point is calculated given the following formula
+ * 
+ * 		Ie = Ke * Ip * (cos(A))^n
+ * 
+ * Ie - specular lighting
+ * Ke - specular constant (depends on the material)
+ * Ip - light source intensity 
+ * A - angle between the reflected ray and the camera
+ * cos(A) - cosine of A
+ * n - a value depending on the material (high for highly polished surfaces)
+ */
+t_color	specular(t_light *bulb, t_hit *closest)
+{
+	double	specular_ratio;
+	t_vec3	reflected_ray;
+	t_vec3 light_dir;
+	t_vec3 camera_dir;
+	double cosine;
+
+	//2 * (N ⋅ L) * N - L
+	light_dir = vec3_sub(bulb->center, closest->point);
+	camera_dir = vec3_normalize(vec3_scale(closest->ray.direction, -1));
+	if (vec3_dot(light_dir, camera_dir) < EPSILON)
+		return (BLACK);
+	reflected_ray = vec3_scale(closest->normal, 2 * vec3_dot(closest->normal, light_dir));
+	reflected_ray = vec3_sub(reflected_ray, light_dir);
+	reflected_ray = vec3_normalize(reflected_ray);
+	cosine = vec3_cossine(camera_dir, reflected_ray);
+
+	specular_ratio = bulb->ratio * pow(cosine, 10);
+	return (color_mult(closest->color, specular_ratio));
+}
+
 void	illuminate(t_world *world, t_hit *closest)
 {
 	t_color	color;
@@ -55,7 +92,10 @@ void	illuminate(t_world *world, t_hit *closest)
 	bulb = nc_vector_at(world->lights, 0); 
 	color = ambient(closest->color, world->ambient.ratio);
 	if (!is_shadowed(world, closest))
-		color = color_add(color, diffuse(bulb, closest, bulb->ratio));
+	{
+		color = color_add(color, diffuse(bulb, closest));
+		color = color_add(color, specular(bulb, closest));
+	}
 	closest->color = color;
 }
 
@@ -64,7 +104,7 @@ t_color	ambient(t_color	color, double ratio)
 	return (color_mult(color, ratio));
 }
 
-t_color	diffuse(t_light *bulb, t_hit *inter, double k)
+t_color	diffuse(t_light *bulb, t_hit *inter)
 {
 	t_vec3	light_dir;
 	t_color	diff_color;
@@ -75,7 +115,8 @@ t_color	diffuse(t_light *bulb, t_hit *inter, double k)
 	light_dir = vec3_sub(bulb->center, inter->point);
 	attenuation = MIN(1.0, 90.0 / vec3_length(light_dir));
 	cos_angle = vec3_cossine(inter->normal, light_dir);
-	diffuse_ratio = k * cos_angle * attenuation;
+	diffuse_ratio = KD * bulb->ratio * cos_angle * attenuation;
 	diff_color = color_mult(inter->color, diffuse_ratio);
 	return (diff_color);
 }
+
