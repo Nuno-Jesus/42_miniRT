@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/16 19:37:50 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:26:27 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,23 @@ int	quit(t_world *world)
 
 int	on_keypress(int keycode, t_world *w)
 {
+	t_light	*light;
+
+	light = nc_vector_at(w->lights, 0);
 	if (keycode == ESC)
 		quit(w);
 	else if (keycode == W)
-		w->camera.center.y += 5;
+		light->center.y += 5;
 	else if (keycode == A)
-		w->camera.center.x -= 5;
+		light->center.x -= 5;
 	else if (keycode == S)
-		w->camera.center.y -= 5;
+		light->center.y -= 5;
 	else if (keycode == D)
-		w->camera.center.x += 5;
+		light->center.x += 5;
 	else if (keycode == C)
-		w->camera.center.z -= 5;
+		light->center.z -= 5;
 	else if (keycode == V)
-		w->camera.center.z += 5;
+		light->center.z += 5;
 	launch_threads(w);
 	return (keycode);
 }
@@ -66,14 +69,14 @@ int	main(int argc, char **argv)
 	world = parse(argv[1]);
 	init_viewport(world);
 	init_graphics(world);
-	pthread_mutex_init(&world->mtx, NULL);
+	// pthread_mutex_init(&world->mtx, NULL);
 	// world_print(world);
 	// render(world);
 	launch_threads(world);
 	mlx_hook(world->disp.win, KeyPress, KeyPressMask, on_keypress, world);
 	mlx_hook(world->disp.win, DestroyNotify, StructureNotifyMask, quit, world);
 	mlx_loop(world->disp.mlx);
-	pthread_mutex_destroy(&world->mtx);
+	// pthread_mutex_destroy(&world->mtx);
 	
 	destroy_world(&world);
 	return (0);

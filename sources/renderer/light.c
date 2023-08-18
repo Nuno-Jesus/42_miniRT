@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/18 13:09:06 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:51:45 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,48 +53,48 @@ bool	is_shadowed(t_world *world, t_hit *closest)
  * 
  * The specular lighting in a given point is calculated given the following formula
  * 
- * 		Ie = Ke * Ip * (cos(A))^n
+ * 		Ie = Ke * Ip * (N.H)^n
  * 
  * Ie - specular lighting
  * Ke - specular constant (depends on the material)
  * Ip - light source intensity 
- * A - angle between the reflected ray and the camera
- * cos(A) - cosine of A
+ * H - half vector (the normalized vector between the light and camera directions)
+ * N - the normal vector in that surface
  * n - a value depending on the material (high for highly polished surfaces)
  */
 t_color	specular(t_light *bulb, t_hit *closest)
 {
 	double	specular_ratio;
-	t_vec3	reflected_ray;
-	t_vec3 light_dir;
-	t_vec3 camera_dir;
-	double cosine;
+	t_vec3	light_dir;
+	t_vec3	camera_dir;
+	t_vec3	half_vector;
+	double	cosine;
 
-	//2 * (N ⋅ L) * N - L
 	light_dir = vec3_sub(bulb->center, closest->point);
-	camera_dir = vec3_normalize(vec3_scale(closest->ray.direction, -1));
-	if (vec3_dot(light_dir, camera_dir) < EPSILON)
-		return (BLACK);
-	reflected_ray = vec3_scale(closest->normal, 2 * vec3_dot(closest->normal, light_dir));
-	reflected_ray = vec3_sub(reflected_ray, light_dir);
-	reflected_ray = vec3_normalize(reflected_ray);
-	cosine = vec3_cossine(camera_dir, reflected_ray);
-
-	specular_ratio = bulb->ratio * pow(cosine, 10);
+	camera_dir = vec3_scale(closest->ray.direction, -1);
+	camera_dir = vec3_normalize(camera_dir);
+	half_vector = vec3_normalize(vec3_add(camera_dir, light_dir));
+	cosine = MAX(0.0, vec3_dot(half_vector, closest->normal));
+	specular_ratio = 0.8 * bulb->ratio * pow(cosine, 30);
 	return (color_mult(closest->color, specular_ratio));
 }
 
 void	illuminate(t_world *world, t_hit *closest)
 {
 	t_color	color;
+	t_color	diffuse_color;
+	t_color	specular_color;
 	t_light	*bulb;
 
 	bulb = nc_vector_at(world->lights, 0); 
 	color = ambient(closest->color, world->ambient.ratio);
 	if (!is_shadowed(world, closest))
 	{
-		color = color_add(color, diffuse(bulb, closest));
-		color = color_add(color, specular(bulb, closest));
+		diffuse_color = diffuse(bulb, closest);
+		specular_color = specular(bulb, closest);
+		// color_print(&specular_color);
+		color = color_add(color, diffuse_color);
+		color = color_add(color, specular_color);
 	}
 	closest->color = color;
 }
