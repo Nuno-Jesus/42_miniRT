@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 12:53:05 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:09:52 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,8 +172,7 @@ t_ray	make_ray(t_world *w, t_vec3 factors);
  */
 t_vec3	ray_at(t_ray *ray, double t);
 
-// void	prepare_threads(t_world	*world);
-
+//!
 void	launch_threads(t_world *world);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/18 17:29:24 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:10:05 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,18 @@ bool	is_shadowed(t_world *world, t_hit *closest)
 
 
 /**
- * @brief Calculates the specular lighting in a given point
+ * !@brief Calculates the specular lighting in a given point
  * 
- * The specular lighting in a given point is calculated given the following formula
+ * !The specular lighting in a given point is calculated given the following formula
  * 
- * 		Ie = Ke * Ip * (N.H)^n
+ * !	Ie = Ke * Ip * (N.H)^n
  * 
- * Ie - specular lighting
- * Ke - specular constant (depends on the material)
- * Ip - light source intensity 
- * H - half vector (the normalized vector between the light and camera directions)
- * N - the normal vector in that surface
- * n - a value depending on the material (high for highly polished surfaces)
+ * !Ie - specular lighting
+ * !Ke - specular constant (depends on the material)
+ * !Ip - light source intensity 
+ * !H - half vector (the normalized vector between the light and camera directions)
+ * !N - the normal vector in that surface
+ * !n - a value depending on the material (high for highly polished surfaces)
  */
 t_color	specular(t_light *bulb, t_hit *closest)
 {
@@ -94,7 +94,6 @@ void	illuminate(t_world *world, t_hit *closest)
 	{
 		diffuse_color = diffuse(bulb, closest);
 		specular_color = specular(bulb, closest);
-		// color_print(&specular_color);
 		color = color_add(color, diffuse_color);
 		color = color_add(color, specular_color);
 	}

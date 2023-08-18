@@ -6,13 +6,13 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/18 17:12:18 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:11:21 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-bool	parse_ambient_light(t_light *ambient, char **tokens, int counters[3])
+bool	parse_ambient_light(t_light *ambient, char **tokens, int *counter)
 {
 	char	**color;
 
@@ -28,11 +28,11 @@ bool	parse_ambient_light(t_light *ambient, char **tokens, int counters[3])
 	ambient->ratio = nc_atod(tokens[1]);
 	ambient->color = color_from_strings(color);
 	nc_matrix_delete(color, &free);
-	counters[0]++;
+	(*counter)++;
 	return (true);
 }
 
-bool	parse_camera(t_camera *cam, char **tokens, int counters[3])
+bool	parse_camera(t_camera *cam, char **tokens, int *counter)
 {
 	char	**color;
 	char	**normal;
@@ -54,11 +54,11 @@ bool	parse_camera(t_camera *cam, char **tokens, int counters[3])
 	if (vec3_length(cam->normal) < 1.0 - EPSILON)
 		return (ERROR("Normal vector is too small in camera"), false);
 	cam->normal = vec3_normalize(cam->normal);
-	counters[1]++;
+	(*counter)++;
 	return (true);
 }
 
-bool	parse_light_source(t_vector *lights, char **tokens, int counters[3])
+bool	parse_light_source(t_vector *lights, char **tokens)
 {
 	char	**origin;
 	char	**color;
@@ -78,6 +78,5 @@ bool	parse_light_source(t_vector *lights, char **tokens, int counters[3])
 	nc_vector_push(lights, light);
 	nc_matrix_delete(origin, &free);
 	nc_matrix_delete(color, &free);
-	counters[2]++;
 	return (true);
 }
