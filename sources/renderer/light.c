@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/18 19:17:16 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 19:31:43 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	illuminate(t_world *world, t_hit *closest)
 			continue ;
 		color = color_add(color, diffuse(bulb, closest));
 		color = color_add(color, specular(bulb, closest));
+		color = color_mix(color, bulb->color);
 	}
 	closest->color = color;
 }

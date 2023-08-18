@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:22:56 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 17:19:40 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/18 19:27:26 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,17 @@ t_color	color_add(t_color c1, t_color c2)
 			.b = nc_clamp(c1.b + c2.b, 0, 255),
 		}
 	);
+}
+
+t_color	color_mix(t_color color, t_color mixer)
+{
+	t_color	ratios;
+
+	ratios = color_mult(mixer, 1.0/255.0);
+	color.r *= ratios.r;
+	color.g *= ratios.g;
+	color.b *= ratios.b;
+	return (color);
 }
 
 t_color	color_from_strings(char **rgb)
