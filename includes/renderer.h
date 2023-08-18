@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 18:55:38 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 19:05:14 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,25 @@ t_color	ambient(t_color	color, double ratio);
  * @return t_color The final color
  */
 t_color	diffuse(t_light *bulb, t_hit *inter);
+
+/**
+ * !@brief Calculates the specular lighting in a given point
+ * 
+ * !The specular lighting in a given point is calculated given the 
+ * !following formula
+ * 
+ * !	Ie = Ke * Ip * (N.H)^n
+ * 
+ * !Ie - specular lighting
+ * !Ke - specular constant (depends on the material)
+ * !Ip - light source intensity 
+ * !H - half vector (the normalized vector between the light and 
+ * ! camera directions)
+ * !N - the normal vector in that surface
+ * !n - a value depending on the material (high for highly polished 
+ * !surfaces)
+ */
+t_color	specular(t_light *bulb, t_hit *closest);
 
 /**
  * @brief Looks if any object is between the closest shape and the 

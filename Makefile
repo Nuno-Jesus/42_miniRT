@@ -79,7 +79,7 @@ _FILES += debug_1 debug_2
 _FILES += world cylinder plane shape sphere lightsource
 _FILES += intersections_1 intersections_2 normal
 _FILES += read_map parser parse_shapes parse_illumination parse_utils
-_FILES += pixel render color light ray threads	
+_FILES += color light pixel ray render shadow threads	
 _FILES += vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_length vec3_new \
 	vec3_sub vec3_cossine vec3_compare vec3_from_strings
 _FILES += math message
