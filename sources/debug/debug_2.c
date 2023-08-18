@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:34:42 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/11 17:04:32 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/18 17:22:12 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	shape_print(t_shape *shape)
 	else if (shape->type == CYLINDER)
 		cylinder_print(&shape->data.cy);
 	printf("  ID: %d\n", shape->id);
+	printf("  Specular Coefficient (Ks): %lf\n", shape->ks);
+	printf("  Shininess (n): %lf\n", shape->shininess);
 }
 
 void	sphere_print(t_sphere *s)

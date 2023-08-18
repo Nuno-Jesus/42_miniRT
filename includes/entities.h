@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entities.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 18:27:28 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/18 17:17:07 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,15 +186,15 @@ t_vec3		cylinder_normal(t_hit *inter, t_ray *ray);
 
 //! Shapes
 /**
- * @brief this function will create the corresponding shape given in the
- * type parameter and store it's information on the shape struct
+ * !@brief this function will create the corresponding shape given in the
+ * !type parameter and store it's information on the shape struct
  * 
- * @param data struct with shape information
- * @param type type of the shape
- * @param id id of the shape (each shape has a unique id)
- * @return t_shape struct with shape information
+ * !@param data struct with shape information
+ * !@param type type of the shape
+ * !@param id id of the shape (each shape has a unique id)
+ * !@return t_shape struct with shape information
  */
-t_shape		*shape_new(void	*data, t_shape_type type, int id);
+t_shape		*shape_new(void	*data, t_shape_type type, int id, char **tokens);
 
 /**
  * @brief this function will copy the shape information from the shape

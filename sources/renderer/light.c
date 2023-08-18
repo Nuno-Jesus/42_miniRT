@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/18 16:51:45 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:29:24 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,14 @@ t_color	specular(t_light *bulb, t_hit *closest)
 	t_vec3	half_vector;
 	double	cosine;
 
+	if (closest->shape->shininess < 1.0)
+		return (BLACK);
 	light_dir = vec3_sub(bulb->center, closest->point);
 	camera_dir = vec3_scale(closest->ray.direction, -1);
 	camera_dir = vec3_normalize(camera_dir);
 	half_vector = vec3_normalize(vec3_add(camera_dir, light_dir));
 	cosine = MAX(0.0, vec3_dot(half_vector, closest->normal));
-	specular_ratio = 0.8 * bulb->ratio * pow(cosine, 30);
+	specular_ratio = closest->shape->ks * bulb->ratio * pow(cosine, closest->shape->shininess);
 	return (color_mult(closest->color, specular_ratio));
 }
 

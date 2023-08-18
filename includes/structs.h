@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/16 16:07:16 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/18 17:17:43 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,18 +183,21 @@ typedef union u_data
 	t_cylinder	cy;
 }	t_data;
 
-/**
- * @brief Describes a shape
+/**!
+ *! @brief Describes a shape
  * 
- * @param data The union containing the shape data
- * @param type The type of shape
- * @param id A number between 0 and the number of shapes in the scene
+ *! @param data The union containing the shape data
+ *! @param type The type of shape
+ *! @param id A number between 0 and the number of shapes in the scene
  */
 typedef struct s_shape
 {
+	int				id;
 	t_data			data;
 	t_shape_type	type;
-	int				id;
+	// t_color			color;
+	double			ks;
+	double			shininess;
 }	t_shape;
 
 /**

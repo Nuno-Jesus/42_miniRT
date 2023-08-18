@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_illumination.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/14 16:48:29 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/18 17:12:18 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,19 @@ bool	parse_camera(t_camera *cam, char **tokens, int counters[3])
 		return (ERROR("Wrong number of args in camera (need 4)"), false);
 	if (!parse_syntax(tokens, "0110"))
 		return (ERROR("Misconfiguration in commas/numbers in camera"), false);
+	if (nc_atod(tokens[3]) < 0.0 || nc_atod(tokens[3]) > 180.0)
+		return (ERROR("FOV out of bounds [0, 180]"), false);
 	color = nc_split(tokens[1], ',');
 	normal = nc_split(tokens[2], ',');
 	cam->center = vec3_from_strings(color);
 	cam->normal = vec3_from_strings(normal);
 	cam->normal = vec3_add(cam->normal, VEC_EPSILON);
+	cam->fov = nc_atod(tokens[3]);
 	nc_matrix_delete(color, &free);
 	nc_matrix_delete(normal, &free);
 	if (vec3_length(cam->normal) < 1.0 - EPSILON)
 		return (ERROR("Normal vector is too small in camera"), false);
 	cam->normal = vec3_normalize(cam->normal);
-	cam->fov = nc_atod(tokens[3]);
-	if (cam->fov < 0.0 || cam->fov > 180.0)
-		return (ERROR("FOV out of bounds [0, 180]"), false);
 	counters[1]++;
 	return (true);
 }
