@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 12:53:33 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:57:02 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 
 # define DEBUG
 # define HERE 		printf("HERE\n");
-# define ERROR(m)	printf("Error\n%s\n", m)
 
 //! Parsing macros
 
@@ -41,8 +40,18 @@
 
 # define HAS_COMMAS '1'
 
-# define ERROR_COLOR_A		"Wrong color syntax for ambient lightning."
-# define ERROR_COLOR_L		"Wrong color syntax for light source."
+# define ERROR(m)	        	printf("Error\n%s\n", m)
+# define ERROR_NUM_ARGS(x, n)	ERROR("Wrong number of args in "x" (need "n")")
+# define ERROR_NUM_COMMAS(x)	ERROR("Too many/few commas in "x)
+# define ERROR_MISFORMAT_COLOR(x)	\
+	ERROR("Colors misformatting in "x)
+# define ERROR_SPECULAR(x)			\
+	ERROR("Specular coefficient out of bounds in "x" [0.0,1.0]")
+# define ERROR_SHININESS(x)			\
+	ERROR("Shininess out of bounds in "x" [0.0, +∞[")
+# define ERROR_VALUES_TOO_SMALL(x)	\
+	ERROR("Values are too small in "x)
+
 # define ERROR_SYNTAX		"Syntax: file format misconfiguration."
 # define ERROR_NOT_BER		"File extension is not '.ber'."
 # define ERROR_OPEN_FILE	"Couldn't open requested file"
