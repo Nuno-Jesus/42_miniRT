@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/18 19:31:43 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/21 19:50:16 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	illuminate(t_world *world, t_hit *closest)
 			continue ;
 		color = color_add(color, diffuse(bulb, closest));
 		color = color_add(color, specular(bulb, closest));
-		color = color_mix(color, bulb->color);
+		// color = color_mix(color, bulb->color);
 	}
 	closest->color = color;
 }
@@ -54,8 +54,9 @@ t_color	diffuse(t_light *bulb, t_hit *inter)
 	light_dir = vec3_sub(bulb->center, inter->point);
 	attenuation = MIN(1.0, 90.0 / vec3_length(light_dir));
 	cos_angle = vec3_cossine(inter->normal, light_dir);
-	diffuse_ratio = KD * bulb->ratio * cos_angle * attenuation;
+	diffuse_ratio = MAX(0.0, KD * bulb->ratio * cos_angle * attenuation);
 	diff_color = color_mult(inter->color, diffuse_ratio);
+	diff_color = color_mix(diff_color, bulb->color);
 	return (diff_color);
 }
 
@@ -66,6 +67,7 @@ t_color	specular(t_light *bulb, t_hit *closest)
 	t_vec3	camera_dir;
 	t_vec3	half_vector;
 	double	cosine;
+	t_color	spec_color;
 
 	if (closest->shape->shininess < 1.0)
 		return (BLACK);
@@ -76,5 +78,7 @@ t_color	specular(t_light *bulb, t_hit *closest)
 	cosine = MAX(0.0, vec3_dot(half_vector, closest->normal));
 	specular_ratio = closest->shape->ks * bulb->ratio * \
 		pow(cosine, closest->shape->shininess);
-	return (color_mult(closest->color, specular_ratio));
+	spec_color = color_mult(closest->color, specular_ratio);
+	spec_color = color_mix(spec_color, bulb->color);
+	return (spec_color);
 }

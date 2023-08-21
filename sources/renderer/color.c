@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:22:56 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 19:27:26 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/21 19:24:07 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ t_color	color_add(t_color c1, t_color c2)
 
 t_color	color_mix(t_color color, t_color mixer)
 {
-	t_color	ratios;
-
-	ratios = color_mult(mixer, 1.0/255.0);
-	color.r *= ratios.r;
-	color.g *= ratios.g;
-	color.b *= ratios.b;
+	// printf("color_mix\n");
+	// color_print(&color);
+	color.r *= (int)(mixer.r / 255.0);
+	color.g *= (int)(mixer.g / 255.0);
+	color.b *= (int)(mixer.b / 255.0);
+	// color_print(&color);
 	return (color);
 }
 

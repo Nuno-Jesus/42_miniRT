@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 18:27:52 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/21 19:01:05 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@
 
 # define HAS_COMMAS '1'
 
-# define ERROR(m)	        	printf("Error\n%s\n", m)
+# define ERROR(m)	\
+	printf("Error\n%s\n", m)
 # define ERROR_NUM_ARGS(x, n)		\
 	ERROR("Wrong number of args in "x" (need "n")")
 # define ERROR_NUM_COMMAS(x)		\
@@ -78,9 +79,9 @@
 
 //! Fixed t_color structs
 
-# define BLUE		(t_color){0, 0, 0, 255}
-# define BLACK		(t_color){0, 0, 0, 0}
 # define WHITE		(t_color){0, 255, 255, 255}
+# define BLACK		(t_color){0, 0, 0, 0}
+# define BLUE		(t_color){0, 0, 0, 255}
 # define RED		(t_color){0, 255, 0, 0}
 
 //! Fixed t_vec3 structs
