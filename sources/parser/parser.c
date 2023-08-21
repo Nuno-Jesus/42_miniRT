@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 18:26:23 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/21 18:25:32 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	identifying(t_world *world, char **tokens, int count[2])
 	return (true);
 }
 
-void	parse_map(t_world *world, char **map, int counters[3])
+void	parse_map(t_world *world, char **map, int counters[2])
 {
 	int		i;
 	bool	ok;
@@ -53,7 +53,7 @@ t_world	*parse(char *filename)
 	t_world	*world;
 	int		counters[2];
 
-	nc_bzero(counters, 3 * sizeof(int));
+	nc_bzero(counters, 2 * sizeof(int));
 	if (!is_filename_valid(filename))
 		message(NULL, ERROR_NOT_BER);
 	world = world_new();

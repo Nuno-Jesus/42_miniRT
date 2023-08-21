@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 18:10:48 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/21 18:24:52 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 t_world	*parse(char *filename);
 
-bool	identifying(t_world *world, char **tokens, int count[3]);
+bool	identifying(t_world *world, char **tokens, int count[2]);
 
-void	parse_map(t_world *world, char **map, int counters[3]);
+void	parse_map(t_world *world, char **map, int counters[2]);
 
 bool	parse_ambient_light(t_light *ambient, char **tokens, int *counter);
 
