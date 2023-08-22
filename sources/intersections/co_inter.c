@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:03:15 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/22 12:34:53 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:28:37 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,6 @@ double	verify_intersects(t_cone *co, t_equation *equation, t_hit *inter)
 	base = vec3_add(co->tip, vec3_scale(co->normal, co->height));
 	t1 = closest_value(equation->t1, equation->t2);
 	t2 = cap_intersect(co, &inter->ray, base);
-	//printf("t1: %f\n", equation->t1);
-	//printf("t2: %f\n", equation->t2);
-	//printf("t: %f\n", t1);
-	//printf("-----------------\n");
 	check_sides(co, inter, t1);
 	check_base(co, base, inter, t2);
 	if (inter->t == INFINITY || inter->t < 0)
