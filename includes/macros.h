@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/21 19:01:05 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/22 10:57:51 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@
 	ERROR("Shininess out of bounds in "x" [0.0,+∞[")
 # define ERROR_VALUES_TOO_SMALL(x)				\
 	ERROR("Values are too small in "x)
+# define ERROR_UNKNOWN_SHAPE				\
+	ERROR("Unknown shape to apply texture")
 
 # define ERROR_SYNTAX		"Syntax: file format misconfiguration."
 # define ERROR_NOT_BER		"File extension is not '.ber'."

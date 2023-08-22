@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 19:02:35 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/22 10:53:15 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ typedef struct s_shape
 	t_data			data;
 	t_shape_type	type;
 	// t_color			color;
+	bool			is_textured;
 	double			ks;
 	double			shininess;
 }	t_shape;

@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/21 18:24:52 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/22 11:08:28 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ bool	parse_plane(t_vector *shapes, char **tokens);
 bool	parse_sphere(t_vector *shapes, char **tokens);
 
 bool	parse_cylinder(t_vector *shapes, char **tokens);
+
+bool	parse_texture(t_vector *shapes, char **tokens);
 
 bool	parse_double(char **nb);
 
