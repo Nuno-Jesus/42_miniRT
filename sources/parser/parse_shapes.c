@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 11:08:41 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/22 16:47:50 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,23 +86,13 @@ bool	parse_cylinder(t_vector *shapes, char **tokens)
 
 bool	parse_texture(t_vector *shapes, char **tokens)
 {
-	bool	ok;
 	t_shape	*last;
 	
-	ok = false;
 	if (nc_matrix_size(tokens) < 2)
 		return (ERROR_NUM_ARGS("checkerboard", "2"), false);
-	else if (!nc_strncmp(tokens[1], "pl", nc_strlen(tokens[1])))
-		ok = parse_plane(shapes, tokens + 1);
-	else if (!nc_strncmp(tokens[1], "sp", nc_strlen(tokens[1])))
-		ok = parse_sphere(shapes, tokens + 1);
-	else if (!nc_strncmp(tokens[1], "cy", nc_strlen(tokens[1])))
-		ok = parse_cylinder(shapes, tokens + 1);
-	else
-		return (ERROR_UNKNOWN_SHAPE, false);
-	if (!ok)
+	if (!parse_plane(shapes, tokens))
 		return (false);
 	last = nc_vector_last(shapes);
 	last->is_textured = true;
-	return (ok);
+	return (true);
 }

@@ -6,10 +6,9 @@ l      50,50,-50          1.0               255,255,255
 l      -50,50,-50          1.0               255,255,255
 
 # pl     0,0,0      0,0,-1       255,0,0    0.8 100
-tt        pl     0,0,0      0,0,-1       255,255,255    0.8 100
+tt       0,0,0      0,0,-1       255,255,255    0.8 100
 
 # The texture entity will override the color value and use an inner calculation
 # to determine the color of the pixel
 # Name Shape  ...
 sp     0,0,0            5       255,255,255    0.8 100
-# tt     sp     0,6,0            5       255,255,255    0.8 100
