@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 18:52:34 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:36:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,21 @@ int	quit(t_world *world)
 
 int	on_keypress(int keycode, t_world *w)
 {
+	t_light	*light;
+
+	light = nc_vector_at(w->lights, 0);
 	if (keycode == ESC)
 		quit(w);
 	else if (keycode == W)
-		w->camera.center.y += 5;
+		light->center.y += 5;
 	else if (keycode == A)
-		w->camera.center.x -= 5;
+		light->center.x -= 5;
 	else if (keycode == S)
-		w->camera.center.y -= 5;
+		light->center.y -= 5;
 	else if (keycode == D)
-		w->camera.center.x += 5;
+		light->center.x += 5;
 	else if (keycode == C)
-		w->camera.center.z -= 5;
+		light->center.z -= 5;
 	else if (keycode == V)
 		w->camera.center.z += 5;
 	multithread(w);
