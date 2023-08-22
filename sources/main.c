@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/17 20:17:41 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/22 21:04:12 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,10 @@ int	quit(t_world *world)
 
 int	on_keypress(int keycode, t_world *w)
 {
-	t_light	*light;
-
-	light = nc_vector_at(w->lights, 0);
 	if (keycode == ESC)
 		quit(w);
-	else if (keycode == W)
-		light->center.y += 5;
-	else if (keycode == A)
-		light->center.x -= 5;
-	else if (keycode == S)
-		light->center.y -= 5;
-	else if (keycode == D)
-		light->center.x += 5;
-	else if (keycode == C)
-		light->center.z -= 5;
-	else if (keycode == V)
-		light->center.z += 5;
-	vec3_print(light->center);
-	render(w);
+	else if (keycode == M)
+		render_menu(w);
 	return (keycode);
 }
 

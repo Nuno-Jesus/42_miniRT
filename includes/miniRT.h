@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 17:42:20 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/22 22:39:16 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,27 @@ int		on_keypress(int keycode, t_world *w);
  * @param w The t_world struct
  */
 void	init_graphics(t_world *w);
+
+void	search_shapes(t_world *w, t_vector *s);
+
+void	change_ambient_light(t_world *w);
+
+void	change_camera(t_world *w);
+
+void	menu_execution(t_world *w);
+
+void	write_shapes(t_world *w);
+
+void	write_info1(t_world *w);
+
+void	write_info2(t_world *w);
+
+void	menu_text(t_world *w);
+
+void	change_light(t_world *w);
+
+int		menu_keys(int keycode, t_world *w);
+
+void	render_menu(t_world *w);
 
 #endif

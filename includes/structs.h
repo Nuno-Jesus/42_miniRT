@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 13:59:16 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/22 21:06:53 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,6 +227,7 @@ typedef struct s_graphics
 	void	*mlx;
 	void	*win;
 	void	*img;
+	void	*menu;
 	char	*addr;
 	int		height;
 	int		width;
@@ -258,6 +259,15 @@ typedef struct s_hit
 	double	t;
 }	t_hit;
 
+typedef struct s_helper
+{
+	int		sp_flag;
+	int		pl_flag;
+	int		cy_flag;
+	int		co_flag;
+	int		i;
+}	t_helper;
+
 /**
  * @brief The primary struct, contains everything needed to describe a scene
  * 
@@ -279,6 +289,7 @@ typedef struct s_world
 	t_light		ambient;
 	t_vector	*lights;
 	t_vector	*shapes;
+	t_helper	helper;
 	int			counters[3];
 	t_graphics	disp;
 	t_vec3		up;

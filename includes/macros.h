@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 16:19:21 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/22 22:06:39 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 # define G 1
 # define B 2
 
+# define MOVE 5
+
 # define HAS_COMMAS '1'
 
 # define ERROR_COLOR_A		"Wrong color syntax for ambient lightning."
@@ -64,6 +66,8 @@
 # define BLACK		(t_color){0, 0, 0, 0}
 # define WHITE		(t_color){0, 255, 255, 255}
 # define RED		(t_color){0, 255, 0, 0}
+# define GREEN		(t_color){0, 0, 255, 0}
+# define YELLOW		(t_color){0, 255, 255, 0}
 
 //! Fixed t_vec3 structs
 
@@ -73,7 +77,7 @@
 //! Viewport and window macros
 
 # ifdef __APPLE__
-#  define WIDTH 800
+#  define WIDTH 1440
 # else
 #  define WIDTH 640
 # endif
@@ -91,6 +95,25 @@
 #  define D 2
 #  define C 8
 #  define V 9
+#  define Q 12
+#  define M 46
+#  define Bk 11
+#  define O 31
+#  define Rk 15
+#  define Yk 16
+#  define Gk 5
+#  define SPACE 49
+#  define UP 126
+#  define DOWN 125
+#  define LEFT 123
+#  define RIGHT 124
+#  define ONE 18
+#  define TWO 19
+#  define THREE 20
+#  define FOUR 21
+#  define FIVE 23
+#  define SIX 22
+#  define SEVEN 26
 #  define KeyPress 2
 #  define KeyPressMask (1L<<0)
 #  define DestroyNotify 17
@@ -103,6 +126,20 @@
 #  define D 100
 #  define C 99
 #  define V 118
+#  define Q 113
+#  define M 109
+#  define SPACE 32
+#  define UP 65362
+#  define DOWN 65364
+#  define LEFT 65361
+#  define RIGHT 65363
+#  define ONE 49
+#  define TWO 50
+#  define THREE 51
+#  define FOUR 52
+#  define FIVE 53
+#  define SIX 54
+#  define SEVEN 55
 # endif
 
 #endif
