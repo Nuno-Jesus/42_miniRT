@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 17:41:09 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/17 20:17:41 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,26 @@ int	quit(t_world *world)
 	exit(EXIT_SUCCESS);
 }
 
-// t_light	*light;
-
-// light = nc_vector_at(w->lights, 0);
 int	on_keypress(int keycode, t_world *w)
 {
+	t_light	*light;
+
+	light = nc_vector_at(w->lights, 0);
 	if (keycode == ESC)
 		quit(w);
 	else if (keycode == W)
-		w->camera.center.y += 5;
+		light->center.y += 5;
 	else if (keycode == A)
-		w->camera.center.x -= 5;
+		light->center.x -= 5;
 	else if (keycode == S)
-		w->camera.center.y -= 5;
+		light->center.y -= 5;
 	else if (keycode == D)
-		w->camera.center.x += 5;
+		light->center.x += 5;
 	else if (keycode == C)
-		w->camera.center.z -= 5;
+		light->center.z -= 5;
 	else if (keycode == V)
-		w->camera.center.z += 5;
-	vec3_print(w->camera.center);
+		light->center.z += 5;
+	vec3_print(light->center);
 	render(w);
 	return (keycode);
 }

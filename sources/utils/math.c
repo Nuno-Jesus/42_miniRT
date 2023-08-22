@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/17 11:11:23 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/22 12:34:36 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double 	closest_value(double t1, double t2)
 {
-	if (t1 > EPSILON)
+	if (t1 > EPSILON && t1 < t2)
 		return (t1);
 	else if (t2 > EPSILON)
 		return (t2);
