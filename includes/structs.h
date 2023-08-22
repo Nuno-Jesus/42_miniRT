@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/17 12:23:32 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/22 13:59:16 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,12 +254,8 @@ typedef struct s_hit
 	t_vec3	point;
 	t_vec3	normal;
 	t_color	color;
-	t_vec3	cp;
 	t_vec3	a;
-	double 	m;
 	double	t;
-	double 	t1;
-	double 	t2;
 }	t_hit;
 
 /**
