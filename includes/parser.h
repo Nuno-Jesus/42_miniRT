@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 17:09:12 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/16 12:20:10 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ bool	parse_plane(t_vector *shapes, char **tokens);
 bool	parse_sphere(t_vector *shapes, char **tokens);
 
 bool	parse_cylinder(t_vector *shapes, char **tokens);
+
+bool	parse_cone(t_vector *shapes, char **tokens);
 
 bool	parse_double(char **nb);
 

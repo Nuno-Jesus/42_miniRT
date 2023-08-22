@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_shapes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 16:48:06 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/16 14:17:51 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,26 @@ bool	parse_cylinder(t_vector *shapes, char **tokens)
 	if (!ok)
 		return (ERROR("Values are too small in cylinder"), false);
 	shape = shape_new(&cylinder, CYLINDER, shapes->size);
+	nc_vector_push(shapes, shape);
+	return (true);
+}
+
+bool	parse_cone(t_vector *shapes, char **tokens)
+{
+	bool		ok;
+	t_cone		cone;
+	t_shape		*shape;
+
+	if (nc_matrix_size(tokens) != 6)
+		return (ERROR("Wrong number of args in cone (need 6)"), false);
+	if (!parse_syntax(tokens, "011001"))
+		return (ERROR("Misconfiguration in commas/numbers in cone"), false);
+	if (!parse_rgb(tokens[5]))
+		return (ERROR("Colors misformatting in cone"), false);
+	ok = cone_from_strings(&cone, tokens);
+	if (!ok)
+		return (ERROR("Values are too small in cone"), false);
+	shape = shape_new(&cone, CONE, shapes->size);
 	nc_vector_push(shapes, shape);
 	return (true);
 }

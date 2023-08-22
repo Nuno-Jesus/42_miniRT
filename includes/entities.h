@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entities.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 18:27:28 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/16 13:00:31 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,12 @@ bool		check_caps(t_cylinder *cy, t_vec3 cap, t_hit *inter, double t);
  * point
  */
 t_vec3		cylinder_normal(t_hit *inter, t_ray *ray);
+
+//! Cone
+
+bool	cone_from_strings(t_cone *co, char **tokens);
+
+bool	cone_intersect(t_cone *co, t_ray *ray, t_hit *inter);
 
 //! Shapes
 /**

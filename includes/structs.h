@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 18:25:29 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/22 13:59:16 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef enum s_shape_type
 	PLANE,
 	SPHERE,
 	CYLINDER,
+	CONE,
 }	t_shape_type;
 
 /**
@@ -167,6 +168,16 @@ typedef struct s_cylinder
 	t_color	color;
 }	t_cylinder;
 
+typedef struct s_cone
+{
+	t_vec3	tip;
+	t_vec3	normal;
+	double 	height;
+	double	radius;
+	double 	angle;
+	t_color	color;
+}	t_cone;
+
 /**
  * @brief Contains the data of only ONE of the shapes at a time.
  * This means that if the cylinder is used, reading from the plane or 
@@ -181,6 +192,7 @@ typedef union u_data
 	t_sphere	sp;
 	t_plane		pl;
 	t_cylinder	cy;
+	t_cone		co;
 }	t_data;
 
 /**
