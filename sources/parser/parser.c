@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 18:35:12 by marvin           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:41:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,9 @@ bool	identifying(t_world *world, char **tokens, int count[2])
 		return (parse_cylinder(world->shapes, tokens));
 	if (!nc_strncmp(tokens[0], "tt", nc_strlen(tokens[0])))
 		return (parse_texture(world->shapes, tokens));
-	return (ERROR("Error parsing entities"), false);
-	else if (!nc_strncmp(tokens[0], "co", nc_strlen(tokens[0])))
+	if (!nc_strncmp(tokens[0], "co", nc_strlen(tokens[0])))
 		return (parse_cone(world->shapes, tokens));
-	else
-		return (ERROR("Error parsing entities"), false);
-	return (true);
+	return (ERROR("Error parsing entities"), false);
 }
 
 void	parse_map(t_world *world, char **map, int counters[2])

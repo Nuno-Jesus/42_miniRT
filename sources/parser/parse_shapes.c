@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 18:34:57 by marvin           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:44:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ bool	parse_cylinder(t_vector *shapes, char **tokens)
 	return (true);
 }
 
-<<<<<<< HEAD
 bool	parse_texture(t_vector *shapes, char **tokens)
 {
 	t_shape	*last;
@@ -97,25 +96,24 @@ bool	parse_texture(t_vector *shapes, char **tokens)
 	last->is_textured = true;
 	return (true);
 }
-bool	parse_torus(t_vector *shapes, char **tokens)
-=======
+
 bool	parse_cone(t_vector *shapes, char **tokens)
->>>>>>> acad2b5... code: cone ongoing
 {
 	bool		ok;
 	t_cone		cone;
 	t_shape		*shape;
 
-	if (nc_matrix_size(tokens) != 6)
-		return (ERROR("Wrong number of args in cone (need 6)"), false);
-	if (!parse_syntax(tokens, "011001"))
+	if (nc_matrix_size(tokens) != 8)
+		return (ERROR("Wrong number of args in cone (need 8)"), false);
+	if (!parse_syntax(tokens, "01100100"))
 		return (ERROR("Misconfiguration in commas/numbers in cone"), false);
 	if (!parse_rgb(tokens[5]))
 		return (ERROR("Colors misformatting in cone"), false);
 	ok = cone_from_strings(&cone, tokens);
 	if (!ok)
 		return (ERROR("Values are too small in cone"), false);
-	shape = shape_new(&cone, CONE, shapes->size);
+	shape = shape_new(&cone, CONE, shapes->size, tokens + 6);
 	nc_vector_push(shapes, shape);
 	return (true);
 }
+
