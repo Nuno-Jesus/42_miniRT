@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:22:56 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 17:19:40 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/21 19:24:07 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,17 @@ t_color	color_add(t_color c1, t_color c2)
 			.b = nc_clamp(c1.b + c2.b, 0, 255),
 		}
 	);
+}
+
+t_color	color_mix(t_color color, t_color mixer)
+{
+	// printf("color_mix\n");
+	// color_print(&color);
+	color.r *= (int)(mixer.r / 255.0);
+	color.g *= (int)(mixer.g / 255.0);
+	color.b *= (int)(mixer.b / 255.0);
+	// color_print(&color);
+	return (color);
 }
 
 t_color	color_from_strings(char **rgb)

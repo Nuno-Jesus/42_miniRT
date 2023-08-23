@@ -3,37 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/16 12:21:41 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:41:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-bool	identifying(t_world *world, char **tokens, int count[3])
+bool	identifying(t_world *world, char **tokens, int count[2])
 {
 	if (!nc_strncmp(tokens[0], "A", nc_strlen(tokens[0])))
-		return (parse_ambient_light(&world->ambient, tokens, count));
-	else if (!nc_strncmp(tokens[0], "C", nc_strlen(tokens[0])))
-		return (parse_camera(&world->camera, tokens, count));
-	else if (!nc_strncmp(tokens[0], "L", nc_strlen(tokens[0])))
-		return (parse_light_source(world->lights, tokens, count));
-	else if (!nc_strncmp(tokens[0], "pl", nc_strlen(tokens[0])))
+		return (parse_ambient_light(&world->ambient, tokens, &count[0]));
+	if (!nc_strncmp(tokens[0], "C", nc_strlen(tokens[0])))
+		return (parse_camera(&world->camera, tokens, &count[1]));
+	if (!nc_strncmp(tokens[0], "l", nc_strlen(tokens[0])))
+		return (parse_light_source(world->lights, tokens));
+	if (!nc_strncmp(tokens[0], "pl", nc_strlen(tokens[0])))
 		return (parse_plane(world->shapes, tokens));
-	else if (!nc_strncmp(tokens[0], "sp", nc_strlen(tokens[0])))
+	if (!nc_strncmp(tokens[0], "sp", nc_strlen(tokens[0])))
 		return (parse_sphere(world->shapes, tokens));
-	else if (!nc_strncmp(tokens[0], "cy", nc_strlen(tokens[0])))
+	if (!nc_strncmp(tokens[0], "cy", nc_strlen(tokens[0])))
 		return (parse_cylinder(world->shapes, tokens));
-	else if (!nc_strncmp(tokens[0], "co", nc_strlen(tokens[0])))
+	if (!nc_strncmp(tokens[0], "tt", nc_strlen(tokens[0])))
+		return (parse_texture(world->shapes, tokens));
+	if (!nc_strncmp(tokens[0], "co", nc_strlen(tokens[0])))
 		return (parse_cone(world->shapes, tokens));
-	else
-		return (ERROR("Error parsing entities"), false);
-	return (true);
+	return (ERROR("Error parsing entities"), false);
 }
 
-void	parse_map(t_world *world, char **map, int counters[3])
+void	parse_map(t_world *world, char **map, int counters[2])
 {
 	int		i;
 	bool	ok;
@@ -53,9 +53,9 @@ void	parse_map(t_world *world, char **map, int counters[3])
 t_world	*parse(char *filename)
 {
 	t_world	*world;
-	int		counters[3];
+	int		counters[2];
 
-	nc_bzero(counters, 3 * sizeof(int));
+	nc_bzero(counters, 2 * sizeof(int));
 	if (!is_filename_valid(filename))
 		message(NULL, ERROR_NOT_BER);
 	world = world_new();
@@ -67,7 +67,7 @@ t_world	*parse(char *filename)
 	parse_map(world, world->map, counters);
 	if (counters[1] == 0)
 		message(world, ERROR_NO_CAMERA);
-	if (counters[0] > 1 || counters[1] > 1 || counters[2] > 1)
+	if (counters[0] > 1 || counters[1] > 1)
 		message(world, ERROR_TOO_MANY);
 	return (world);
 }

@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 12:21:03 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:30:23 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		move_ambient(int keycode, t_world *w)
 		quit(w);
 	else
 		return (keycode);
-	render(w);
+	multithread(w);
 	change_ambient_light(w);
 	return (keycode);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:19:03 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/16 12:20:10 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:42:57 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,23 @@
 
 t_world	*parse(char *filename);
 
-bool	identifying(t_world *world, char **tokens, int count[3]);
+bool	identifying(t_world *world, char **tokens, int count[2]);
 
-void	parse_map(t_world *world, char **map, int counters[3]);
+void	parse_map(t_world *world, char **map, int counters[2]);
 
-bool	parse_ambient_light(t_light *ambient, char **tokens, int counters[3]);
+bool	parse_ambient_light(t_light *ambient, char **tokens, int *counter);
 
-bool	parse_camera(t_camera *cam, char **tokens, int counters[3]);
+bool	parse_camera(t_camera *cam, char **tokens, int *counter);
 
-bool	parse_light_source(t_vector *lights, char **tokens, int counters[3]);
+bool	parse_light_source(t_vector *lights, char **tokens);
 
 bool	parse_plane(t_vector *shapes, char **tokens);
 
 bool	parse_sphere(t_vector *shapes, char **tokens);
 
 bool	parse_cylinder(t_vector *shapes, char **tokens);
+
+bool	parse_texture(t_vector *shapes, char **tokens);
 
 bool	parse_cone(t_vector *shapes, char **tokens);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:06:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/14 17:20:29 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/18 19:27:44 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ t_color	color_mult(t_color color, double k);
  * @return t_color The final color
  */
 t_color	color_add(t_color c1, t_color c2);
+
+//!
+t_color	color_mix(t_color color, t_color mixer);
 
 /**
  * @brief Given an array of strings, where each string maps to a

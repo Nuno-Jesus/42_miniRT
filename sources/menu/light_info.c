@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:58:12 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 12:24:03 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:30:48 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		move_light2(int keycode, t_world *w, t_light *l)
 		quit(w);
 	else
 		return (keycode);
-	render(w);
+	multithread(w);
 	light(w, w->helper.light_id);
 	return (keycode);
 }
@@ -109,7 +109,7 @@ int		move_light(int keycode, t_world *w)
 		keycode = move_light2(keycode, w, l);
 		return (keycode);
 	}
-	render(w);
+	multithread(w);
 	light(w, w->helper.light_id);
 	return (keycode);
 }

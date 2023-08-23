@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:34:42 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/16 14:24:21 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:42:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	shape_print(t_shape *shape)
 	else if (shape->type == CONE)
 		cone_print(&shape->data.co);
 	printf("  ID: %d\n", shape->id);
+	printf("  Textured? %d\n", shape->is_textured);
+	printf("  Specular Coefficient (Ks): %lf\n", shape->ks);
+	printf("  Shininess (n): %lf\n", shape->shininess);
 }
 
 void	sphere_print(t_sphere *s)

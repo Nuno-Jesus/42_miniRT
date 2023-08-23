@@ -32,10 +32,10 @@ AR = ar -rcs
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-#! Add DEPENDENCIES folder and use the -I flag which specifies the path to find them
-INCLUDES	= includes 
-SOURCES		= sources
-OBJECTS		= objects
+INC_FOLDER	= includes 
+SRC_FOLDER	= sources
+OBJ_FOLDER	= objects
+DEP_FOLDER	= dependencies
 LIBNC		= libnc
 GNL			= gnl
 MLX			= mlx_linux
@@ -47,11 +47,13 @@ _SUBFOLDERS	= . debug entities intersections parser renderer utils vec3 menu
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-CFLAGS		= -Wall -Wextra -Werror -O3
+CFLAGS		= -Wall -Wextra -Werror -Ofast
+CPPFLAGS	= -I $(INC_FOLDER) -MMD
 MAKEFLAGS	= --no-print-directory
 MLXFLAGS	= -L ./$(MLX) -lmlx -lXext -lX11 -lm 
 LIBNCFLAGS	= -L ./$(LIBNC) -lnc
 GNLFLAGS	= -L ./$(GNL) -lgnl
+LDFLAGS		= $(LIBNCFLAGS) $(GNLFLAGS) $(MLXFLAGS) -lm -lpthread
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -64,8 +66,8 @@ GNLFLAGS	= -L ./$(GNL) -lgnl
 # not the absolute path of them, the vpath directive helps the make to find
 # the file names on it.
 
-vpath %.c $(foreach subfolder, $(_SUBFOLDERS), $(SOURCES)/$(subfolder))
-vpath %.h $(INCLUDES)
+vpath %.c $(foreach subfolder, $(_SUBFOLDERS), $(SRC_FOLDER)/$(subfolder))
+vpath %.h $(INC_FOLDER)
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -73,21 +75,20 @@ vpath %.h $(INCLUDES)
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-NAME    = miniRT
 _FILES += debug_1 debug_2
 _FILES += world cylinder plane shape sphere lightsource cone
 _FILES += intersects pl_inter sp_inter cy_inter co_inter
 _FILES += read_map parser parse_shapes parse_illumination parse_utils
-_FILES += pixel render color light ray normal
+_FILES += color light pixel ray normal render shadow threads	
 _FILES += vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_length vec3_new \
 	vec3_sub vec3_cossine vec3_compare vec3_from_strings
 _FILES += math message
 _FILES += menu shapes camera ambient lights light_info
 _FILES += main
 
-#! Change the names of these variables, too confusing 
-TARGET	= $(patsubst %, %.o, $(_FILES))
-OBJS	= $(foreach target, $(TARGET), $(OBJECTS)/$(target))
+DEPFILES = $(patsubst %, $(DEP_FOLDER)/%.d, $(_FILES))
+OBJS	 = $(patsubst %, $(OBJ_FOLDER)/%.o, $(_FILES))
+NAME     = miniRT
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -103,8 +104,6 @@ OBJS	= $(foreach target, $(TARGET), $(OBJECTS)/$(target))
 # If you need both debug and sanitizer:
 # 	make D=1 SAN=A
 
-
-#! Change this to use MAKEFLAGS and declare a flag to activate -g
 ifdef D
 	CFLAGS += -g
 endif
@@ -117,8 +116,8 @@ else ifeq ($(SAN), M)
 	CFLAGS += -fsanitize=memory
 else ifeq ($(SAN), T)
 	CFLAGS += -fsanitize=thread
-# else ifeq ($(SAN), U)
-# 	CFLAGS += -fsanitize=undefined
+else ifeq ($(SAN), U)
+	CFLAGS += -fsanitize=undefined
 endif
 
 ifeq ($(OS), Darwin)
@@ -135,42 +134,55 @@ endif
 all: $(NAME)
 
 #! Remove the echos and replace everything with a loading bar
-$(NAME): $(OBJECTS) $(OBJS)
+$(NAME): $(OBJ_FOLDER) $(DEP_FOLDER) $(OBJS)
 	echo "[$(CYAN)Compiling$(RESET)] $(GREEN)$(LIBNC)$(RESET)"
-	$(MAKE) -C $(LIBNC)/
+	$(MAKE) -C $(LIBNC)
 
 	echo "[$(CYAN)Compiling$(RESET)] $(GREEN)$(GNL)$(RESET)"
-	$(MAKE) -C $(GNL)/
+	$(MAKE) -C $(GNL)
 
 	echo "[$(CYAN)Compiling$(RESET)] $(GREEN)$(MLX)$(RESET)"
-	$(MAKE) -C $(MLX)/
+	$(MAKE) -C $(MLX)
 
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)$(NAME)$(RESET)"
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I $(INCLUDES) -lm $(LIBNCFLAGS) $(GNLFLAGS) $(MLXFLAGS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS) 
 	
+	mv $(OBJS:.o=.d) $(DEP_FOLDER)
 	echo "$(GREEN)Done.$(RESET)"
 	
-$(OBJECTS)/%.o: %.c
+$(OBJ_FOLDER)/%.o: %.c
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCLUDES)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-$(OBJECTS):
-	mkdir -p $(OBJECTS)
+-include $(DEPFILES)
+
+$(OBJ_FOLDER):
+	mkdir -p $(OBJ_FOLDER)
+
+$(DEP_FOLDER):
+	mkdir -p $(DEP_FOLDER)
 
 clean:	
-	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(OBJECTS)$(RESET)"
-	$(RM) $(OBJECTS)
-	$(RM) output.log
+	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(OBJ_FOLDER)$(RESET)"
+	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(DEP_FOLDER)$(RESET)"
+	$(RM) $(OBJ_FOLDER) $(DEP_FOLDER)
 
 fclean: clean
 	$(MAKE) fclean -C $(LIBNC)
 	$(MAKE) fclean -C $(GNL)
 	$(MAKE) clean -C $(MLX)
+
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(NAME)$(RESET)"
 	$(RM) $(NAME)
 
 re: fclean
 	$(MAKE) all
+
+#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+#_                                                                                           _
+#_                                        CUSTOM RULES                                       _
+#_                                                                                           _
+#_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 fast:
 	$(MAKE) re -j

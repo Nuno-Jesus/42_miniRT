@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/23 10:52:13 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:28:12 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,18 +195,22 @@ typedef union u_data
 	t_cone		co;
 }	t_data;
 
-/**
- * @brief Describes a shape
+/**!
+ *! @brief Describes a shape
  * 
- * @param data The union containing the shape data
- * @param type The type of shape
- * @param id A number between 0 and the number of shapes in the scene
+ *! @param data The union containing the shape data
+ *! @param type The type of shape
+ *! @param id A number between 0 and the number of shapes in the scene
  */
 typedef struct s_shape
 {
+	int				id;
 	t_data			data;
 	t_shape_type	type;
-	int				id;
+	// t_color			color;
+	bool			is_textured;
+	double			ks;
+	double			shininess;
 }	t_shape;
 
 /**
@@ -269,6 +273,15 @@ typedef struct s_helper
 	int		light_id;
 	int		i;
 }	t_helper;
+
+//!
+typedef struct s_runner
+{
+	pthread_t		thread;
+	int				min_y;
+	int				max_y;
+	struct s_world	*world;
+}	t_runner;
 
 /**
  * @brief The primary struct, contains everything needed to describe a scene

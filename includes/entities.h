@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entities.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/16 13:00:31 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:43:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,15 +192,15 @@ bool	cone_intersect(t_cone *co, t_ray *ray, t_hit *inter);
 
 //! Shapes
 /**
- * @brief this function will create the corresponding shape given in the
- * type parameter and store it's information on the shape struct
+ * !@brief this function will create the corresponding shape given in the
+ * !type parameter and store it's information on the shape struct
  * 
- * @param data struct with shape information
- * @param type type of the shape
- * @param id id of the shape (each shape has a unique id)
- * @return t_shape struct with shape information
+ * !@param data struct with shape information
+ * !@param type type of the shape
+ * !@param id id of the shape (each shape has a unique id)
+ * !@return t_shape struct with shape information
  */
-t_shape		*shape_new(void	*data, t_shape_type type, int id);
+t_shape		*shape_new(void	*data, t_shape_type type, int id, char **tokens);
 
 /**
  * @brief this function will copy the shape information from the shape
