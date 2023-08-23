@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:34:07 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 12:36:21 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/23 20:05:53 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int		menu_keys(int keycode, t_world *w)
 		change_ambient_light(w);
 	else if (keycode == THREE)
 		change_light(w);
-	//else if (keycode == FOUR)
-	//	change_sphere(w);
-	//else if (keycode == FIVE)
-	//	change_plane(w);
-	//else if (keycode == SIX)
-	//	change_cylinder(w);
-	//else if (keycode == SEVEN)
-	//	change_cone(w);
+	else if (keycode == FOUR)
+		change_sphere(w);
+	else if (keycode == FIVE)
+		change_plane(w);
+	else if (keycode == SIX)
+		change_cylinder(w);
+	else if (keycode == SEVEN)
+		change_cone(w);
 	return (keycode);
 }
 
@@ -54,6 +54,7 @@ void	menu_execution(t_world *w)
 {
 	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
 	menu_text(w);
+	w->menu.i = 0;
 	write_shapes(w);
 	mlx_hook(w->disp.win, KeyPress, KeyPressMask, menu_keys, w);
 }

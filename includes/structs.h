@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/23 12:28:12 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/23 16:00:36 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,16 +263,17 @@ typedef struct s_hit
 	double	t;
 }	t_hit;
 
-typedef struct s_helper
+typedef struct s_menu
 {
 	int		sp_flag;
 	int		pl_flag;
 	int		cy_flag;
 	int		co_flag;
-	int		n_lights;
-	int		light_id;
+	int		iterator;
+	int		id;
 	int		i;
-}	t_helper;
+	int		ids[9];
+}	t_menu;
 
 //!
 typedef struct s_runner
@@ -304,7 +305,7 @@ typedef struct s_world
 	t_light		ambient;
 	t_vector	*lights;
 	t_vector	*shapes;
-	t_helper	helper;
+	t_menu	menu;
 	int			counters[3];
 	t_graphics	disp;
 	t_vec3		up;

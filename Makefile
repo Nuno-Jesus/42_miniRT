@@ -83,7 +83,9 @@ _FILES += color light pixel ray normal render shadow threads
 _FILES += vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_length vec3_new \
 	vec3_sub vec3_cossine vec3_compare vec3_from_strings
 _FILES += math message
-_FILES += menu shapes camera ambient lights light_info
+_FILES += menu parse_objects shapes camera ambient lights lights_info \
+	spheres spheres_info spheres_info2 cones cones_info cones_info2 \
+	cylinders cylinders_info cylinders_info2 planes planes_info planes_info2
 _FILES += main
 
 DEPFILES = $(patsubst %, $(DEP_FOLDER)/%.d, $(_FILES))
