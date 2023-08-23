@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:50:10 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/22 21:55:30 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:20:43 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	write_shapes(t_world *w)
 	mlx_string_put(w->disp.mlx, w->disp.win, 5, \
 		145 + (w->helper.i * 20 + 35), 0xFFFF00, "PRESS A NUMBER");
 	mlx_string_put(w->disp.mlx, w->disp.win, 5, \
-		145 + (++w->helper.i * 20 + 50), 0xFFFF00, "Q");
+		145 + (++w->helper.i * 20 + 50), 0xFF0000, "Q");
 	mlx_string_put(w->disp.mlx, w->disp.win, 25, \
 			145 + (w->helper.i * 20 + 50), 0xFFFFFF, "- Quit Menu");
 }

@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 21:06:53 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:52:13 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,6 +265,8 @@ typedef struct s_helper
 	int		pl_flag;
 	int		cy_flag;
 	int		co_flag;
+	int		n_lights;
+	int		light_id;
 	int		i;
 }	t_helper;
 

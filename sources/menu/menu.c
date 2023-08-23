@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:34:07 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/22 23:26:59 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:42:34 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 int		menu_keys(int keycode, t_world *w)
 {
 	if (keycode == Q)
-	{
-		render(w);
 		mlx_hook(w->disp.win, KeyPress, KeyPressMask, on_keypress, w);
-	}
 	else if (keycode == ESC)
 		quit(w);
 	else if (keycode == ONE)

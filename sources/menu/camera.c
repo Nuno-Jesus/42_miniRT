@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:40:42 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/22 22:12:29 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:20:56 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	camera_info1(t_world *w)
 	mlx_string_put(w->disp.mlx, w->disp.win, 10, 150, 0xFFFF00, "D");
 	mlx_string_put(w->disp.mlx, w->disp.win, 10, 180, 0xFFFF00, "UP");
 	mlx_string_put(w->disp.mlx, w->disp.win, 10, 200, 0xFFFF00, "DOWN");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 230, 0xFFFF00, "Q");
+	mlx_string_put(w->disp.mlx, w->disp.win, 10, 230, 0xFF0000, "Q");
 }
 
 void	camera_info2(t_world *w)
@@ -38,7 +38,7 @@ void	camera_info2(t_world *w)
 	mlx_string_put(w->disp.mlx, w->disp.win, 45, 200, \
 		0xFFFFFF, " - Go Down");
 	mlx_string_put(w->disp.mlx, w->disp.win, 20, 230, \
-		0xFFFFFF, " - Close Menu");
+		0xFFFFFF, " - Previous menu");
 }
 
 int		move_camera(int keycode, t_world *w)
@@ -62,6 +62,8 @@ int		move_camera(int keycode, t_world *w)
 	}
 	else if (keycode == ESC)
 		quit(w);
+	else
+		return (keycode);
 	render(w);
 	change_camera(w);
 	return (keycode);

@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/22 22:27:56 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:21:03 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 
 void	ambient_info1(t_world *w)
 {
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 90, 0xFFFF00, "A");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 110, 0xFFFF00, "D");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 140, 0xFFFF00, "Q");
+	mlx_string_put(w->disp.mlx, w->disp.win, 10, 90, 0xFFFF00, "LEFT");
+	mlx_string_put(w->disp.mlx, w->disp.win, 10, 110, 0xFFFF00, "RIGHT");
+	mlx_string_put(w->disp.mlx, w->disp.win, 10, 140, 0xFF0000, "Q");
 }
 
 void	ambient_info2(t_world *w)
 {
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 90, \
-		0xFFFFFF, " - Increase Intensity");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 110, \
-		0xFFFFFF, " - Decrease Intensity");
+	mlx_string_put(w->disp.mlx, w->disp.win, 45, 90, \
+		0xFFFFFF, " - Increase ratio");
+	mlx_string_put(w->disp.mlx, w->disp.win, 50, 110, \
+		0xFFFFFF, " - Decrease ratio");
 	mlx_string_put(w->disp.mlx, w->disp.win, 20, 140, \
-		0xFFFFFF, " - Close Menu");
+		0xFFFFFF, " - Previous menu");
 }
 
 int		move_ambient(int keycode, t_world *w)
 {
-	if (keycode == A)
+	if (keycode == LEFT)
 		w->ambient.ratio += 0.1;
-	else if (keycode == D)
+	else if (keycode == RIGHT)
 		w->ambient.ratio -= 0.1;
 	else if (keycode == Q)
 	{
@@ -42,6 +42,8 @@ int		move_ambient(int keycode, t_world *w)
 	}
 	else if (keycode == ESC)
 		quit(w);
+	else
+		return (keycode);
 	render(w);
 	change_ambient_light(w);
 	return (keycode);

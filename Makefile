@@ -82,7 +82,7 @@ _FILES += pixel render color light ray normal
 _FILES += vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_length vec3_new \
 	vec3_sub vec3_cossine vec3_compare vec3_from_strings
 _FILES += math message
-_FILES += menu shapes camera ambient lights
+_FILES += menu shapes camera ambient lights light_info
 _FILES += main
 
 #! Change the names of these variables, too confusing 

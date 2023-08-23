@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 22:06:39 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:49:26 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@
 #  define FIVE 23
 #  define SIX 22
 #  define SEVEN 26
+#  define EIGHT 28
+#  define NINE 25
 #  define KeyPress 2
 #  define KeyPressMask (1L<<0)
 #  define DestroyNotify 17
@@ -128,6 +130,11 @@
 #  define V 118
 #  define Q 113
 #  define M 109
+#  define Bk 65288
+#  define O 111
+#  define Rk 114
+#  define Yk 121
+#  define Gk 103
 #  define SPACE 32
 #  define UP 65362
 #  define DOWN 65364
@@ -140,6 +147,8 @@
 #  define FIVE 53
 #  define SIX 54
 #  define SEVEN 55
+#  define EIGHT 56
+#  define NINE 57
 # endif
 
 #endif
