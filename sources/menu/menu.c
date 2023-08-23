@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:34:07 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 10:42:34 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:36:21 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		menu_keys(int keycode, t_world *w)
 {
 	if (keycode == Q)
-		mlx_hook(w->disp.win, KeyPress, KeyPressMask, on_keypress, w);
+		main_menu(w);
 	else if (keycode == ESC)
 		quit(w);
 	else if (keycode == ONE)
@@ -33,6 +33,12 @@ int		menu_keys(int keycode, t_world *w)
 	//else if (keycode == SEVEN)
 	//	change_cone(w);
 	return (keycode);
+}
+
+void	main_menu(t_world *w)
+{
+	multithread(w);
+	mlx_hook(w->disp.win, KeyPress, KeyPressMask, on_keypress, w);
 }
 
 void	menu_text(t_world *w)

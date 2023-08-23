@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:01:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/23 12:12:14 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:43:48 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	light_info1(t_world *w);
 
 void	light_info2(t_world *w);
 
+void	light_info3(t_world *w);
+
 int		light_menu(int keycode, t_world *w);
 
 int		move_light(int keycode, t_world *w);
@@ -93,5 +95,7 @@ void	light(t_world *w, int id);
 int		move_light2(int keycode, t_world *w, t_light *l);
 
 int		move_light(int keycode, t_world *w);
+
+void	main_menu(t_world *w);
 
 #endif

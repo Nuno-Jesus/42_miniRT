@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:58:12 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 12:30:48 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:42:58 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	light_info1(t_world *w)
 	mlx_string_put(w->disp.mlx, w->disp.win, 10, 290, 0xFFFF00, "2");
 	mlx_string_put(w->disp.mlx, w->disp.win, 10, 310, 0xFFFF00, "3");
 	mlx_string_put(w->disp.mlx, w->disp.win, 10, 330, 0xFFFF00, "4");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 360, 0xFF0000, "Q");
+	mlx_string_put(w->disp.mlx, w->disp.win, 10, 350, 0xFFFF00, "5");
+	mlx_string_put(w->disp.mlx, w->disp.win, 10, 380, 0xFF0000, "Q");
 }
 
 void	light_info2(t_world *w)
@@ -48,30 +49,36 @@ void	light_info2(t_world *w)
 	mlx_string_put(w->disp.mlx, w->disp.win, 50, 240, \
 		0xFFFFFF, " - Decrease ratio");
 	mlx_string_put(w->disp.mlx, w->disp.win, 20, 270, \
-		0xFFFFFF, " - Color Yellow");
+		0xFFFFFF, " - Color white");
 	mlx_string_put(w->disp.mlx, w->disp.win, 20, 290, \
-		0xFFFFFF, " - Color Red");
+		0xFFFFFF, " - Color Yellow");
 	mlx_string_put(w->disp.mlx, w->disp.win, 20, 310, \
-		0xFFFFFF, " - Color Green");
+		0xFFFFFF, " - Color Red");
 	mlx_string_put(w->disp.mlx, w->disp.win, 20, 330, \
+		0xFFFFFF, " - Color Green");
+}
+
+void	light_info3(t_world *w)
+{
+	mlx_string_put(w->disp.mlx, w->disp.win, 20, 350, \
 		0xFFFFFF, " - Color Blue");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 360, \
-		0xFFFFFF, " - Previous menu");
+	mlx_string_put(w->disp.mlx, w->disp.win, 20, 380, \
+		0xFFFFFF, " - Previous menu");		
 }
 
 int		move_light2(int keycode, t_world *w, t_light *l)
 {
-	if (keycode == LEFT)
-		l->ratio += 0.1;
-	else if (keycode == RIGHT)
+	if (keycode == RIGHT)
 		l->ratio -= 0.1;
 	else if (keycode == ONE)
-		l->color = YELLOW;
+		l->color = WHITE;
 	else if (keycode == TWO)
-		l->color = RED;
+		l->color = YELLOW;
 	else if (keycode == THREE)
-		l->color = GREEN;
+		l->color = RED;
 	else if (keycode == FOUR)
+		l->color = GREEN;
+	else if (keycode == FIVE)
 		l->color = BLUE;
 	else if (keycode == Q)
 	{
@@ -104,6 +111,8 @@ int		move_light(int keycode, t_world *w)
 		l->center.y += MOVE;
 	else if (keycode == DOWN)
 		l->center.y -= MOVE;
+	else if (keycode == LEFT)
+		l->ratio += 0.1;
 	else
 	{
 		keycode = move_light2(keycode, w, l);
