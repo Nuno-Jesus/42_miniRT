@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 18:46:12 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/25 17:23:03 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		move_sphere2(int keycode, t_world *w, t_sphere *s)
 	if (keycode == LEFT)
 		s->radius += MOVE;
 	else if (keycode == RIGHT)
-		s->radius -= MOVE; 
+		s->radius -= MOVE;
 	else
 	{
 		keycode = move_sphere_color(keycode, w, s);
@@ -59,6 +59,7 @@ int		move_sphere(int keycode, t_world *w)
 	t_sphere	*s;
 	int			id;
 
+	printf("keycode = %d\n", keycode);
 	id = w->menu.ids[w->menu.id];
 	s = nc_vector_at(w->shapes, id);
 	if (keycode == W)

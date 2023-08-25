@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:58:12 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 19:59:36 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/25 17:26:16 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	cone_info2(t_world *w)
 		0xFFFFFF, " - Decrease radius");
 	mlx_string_put(w->disp.mlx, w->disp.win, 20, 270, \
 		0xFFFFFF, " - Increase Height");
-	mlx_string_put(w->disp.mlx, w->disp.win, 40, 290, \
+	mlx_string_put(w->disp.mlx, w->disp.win, 20, 290, \
 		0xFFFFFF, " - Decrease Height");
 	mlx_string_put(w->disp.mlx, w->disp.win, 20, 320, \
 		0xFFFFFF, " - Color white");
