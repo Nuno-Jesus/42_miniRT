@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   co_inter.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:03:15 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 12:38:13 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:37:27 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,15 @@ double	verify_intersects(t_cone *co, t_equation *equation, t_hit *inter)
 {
 	double	t1;
 	double	t2;
-	t_vec3 	base;
 
 	if (!solve(equation))
 		return (0);
 	inter->t = INFINITY;
-	base = vec3_add(co->tip, vec3_scale(co->normal, co->height));
+	// base = vec3_add(co->tip, vec3_scale(co->normal, co->height));
 	t1 = closest_value(equation->t1, equation->t2);
-	t2 = cap_intersect(co, &inter->ray, base);
+	t2 = cap_intersect(co, &inter->ray, co->base);
 	check_sides(co, inter, t1);
-	check_base(co, base, inter, t2);
+	check_base(co, co->base, inter, t2);
 	if (inter->t == INFINITY || inter->t < 0)
 		return (0);
 	return (inter->t);
@@ -91,7 +90,7 @@ bool	cone_intersect(t_cone *co, t_ray *ray, t_hit *inter)
 	double 		t;
 	
 	inter->t = -1.0f;
-	co->angle = atan(co->radius / co->height);
+	// co->angle = atan(co->radius / co->height);
 	oc = vec3_sub(ray->origin, co->tip);
 	equation.a = pow(vec3_dot(ray->direction, co->normal), 2) - \
 					pow(cos(co->angle), 2);

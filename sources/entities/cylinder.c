@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:29 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 16:53:59 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 19:28:11 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,5 @@ bool	cylinder_from_strings(t_cylinder *cy, char **tokens)
 		|| cy->radius < EPSILON || cy->height < EPSILON)
 		return (false);
 	cy->normal = vec3_normalize(cy->normal);
-	cy->cap1 = vec3_add(cy->center, vec3_scale(cy->normal, -cy->height / 2.0));
-	cy->cap2 = vec3_add(cy->center, vec3_scale(cy->normal, cy->height / 2.0));
 	return (true);
 }

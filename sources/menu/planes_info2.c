@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 18:20:37 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 18:22:54 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_menu_state	handle_plane_color_changes(int keycode, t_world *w, t_plane *pl)
 t_menu_state	handle_plane_changes(int keycode, t_world *w)
 {
 	t_plane	*pl;
-	int			id;
+	int		id;
 
 	id = w->menu.ids[w->menu.id];
 	pl = &((t_shape*)nc_vector_at(w->shapes, id))->data.pl;

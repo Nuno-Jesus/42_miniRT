@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/29 18:20:55 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 18:26:31 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,20 @@ int	on_keypress(int keycode, t_world *w)
 {
 	t_menu_state (*handlers[])() = 
 	{
-		(void *)handle_closed_menu,
-		(void *)handle_opened_menu,
-		(void *)handle_camera_changes,
-		(void *)handle_amb_light_changes,
-		(void *)handle_light_choice,
-		(void *)handle_light_changes,
+		handle_closed_menu,
+		handle_opened_menu,
+		handle_camera_changes,
+		handle_amb_light_changes,
+		handle_light_choice,
+		handle_light_changes,
 		handle_sphere_choice,
 		handle_sphere_changes,
 		handle_plane_choice,
 		handle_plane_changes,
-		// handle_cylinder_choice,
-		// handle_cylinder_changes,		
+		handle_cylinder_choice,
+		handle_cylinder_changes,
 		// handle_cone_choice,
-		// handle_cone_changes,		
+		// handle_cone_changes,
 	};
 	if (keycode == ESC)
 		quit(w);

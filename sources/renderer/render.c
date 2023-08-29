@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/29 12:36:45 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:37:22 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,34 @@ bool	world_hit(t_vector *shapes, t_ray *ray, t_hit *closest)
 	return (closest->shape != NULL);
 }
 
+void	compute_shapes_constants(t_vector *shapes)
+{
+	t_shape		*shape;
+	t_cylinder	*cy;
+	t_cone 		*co;
+	uint32_t	i;
+
+	i = -1;
+	while (++i < shapes->size)
+	{
+		shape = nc_vector_at(shapes, i);
+		if (shape->type == CYLINDER)
+		{
+			cy = &shape->data.cy;
+			cy->cap1 = vec3_add(cy->center, \
+				vec3_scale(cy->normal, -cy->height / 2.0));
+			cy->cap2 = vec3_add(cy->center, \
+				vec3_scale(cy->normal, cy->height / 2.0));
+		}
+		else if (shape->type == CONE)
+		{
+			co = &shape->data.co;
+			co->angle = atan(co->radius / co->height);
+			co->base = vec3_add(co->tip, vec3_scale(co->normal, co->height));
+		}
+	}
+}
+
 void	*render(t_runner *worker)
 {
 	t_vec3	coords;
@@ -60,6 +88,7 @@ void	*render(t_runner *worker)
 
 	w = worker->world;
 	coords.y = worker->min_y - 1;
+	compute_shapes_constants(w->shapes);
 	while (++coords.y < worker->max_y)
 	{
 		coords.x = -1;

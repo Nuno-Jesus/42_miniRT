@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/29 14:34:50 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 19:32:05 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,9 +187,11 @@ typedef struct s_cylinder
 	t_color	color;
 }	t_cylinder;
 
+//!
 typedef struct s_cone
 {
 	t_vec3	tip;
+	t_vec3	base;
 	t_vec3	normal;
 	double 	height;
 	double	radius;

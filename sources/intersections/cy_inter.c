@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cy_inter.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:53:41 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/16 15:18:19 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:37:30 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ bool	cylinder_intersect(t_cylinder *cy, t_ray *ray, t_hit *inter)
 
 	equation.t1 = -1;
 	equation.t2 = -1;
+	// cy->cap1 = vec3_add(cy->center, vec3_scale(cy->normal, -cy->height / 2.0));
+	// cy->cap2 = vec3_add(cy->center, vec3_scale(cy->normal, cy->height / 2.0));
 	co = vec3_sub(ray->origin, cy->cap1);
 	equation.a = vec3_dot(ray->direction, ray->direction) - \
 		pow(vec3_dot(ray->direction, cy->normal), 2);
@@ -104,11 +106,9 @@ bool	cylinder_intersect(t_cylinder *cy, t_ray *ray, t_hit *inter)
 	if (equation.t1 <= 0 && equation.t2 <= 0)
 		return (false);
 	t = verify_intersections(cy, ray, &equation, inter);
-	if (t > 0.0f)
-	{
-		inter->t = t;
-		inter->color = cy->color;
-		return (true);
-	}
-	return (false);
+	if (t < EPSILON)
+		return (false);
+	inter->t = t;
+	inter->color = cy->color;
+	return (true);
 }

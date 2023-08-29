@@ -6,13 +6,13 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:28:51 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 15:33:08 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 18:47:22 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int		move_cylinder_color(int keycode, t_world *w, t_cylinder *cy)
+t_menu_state	handle_cylinder_color_changes(int keycode, t_world *w, t_cylinder *cy)
 {
 	if (keycode == ONE)
 		cy->color = WHITE;
@@ -25,20 +25,15 @@ int		move_cylinder_color(int keycode, t_world *w, t_cylinder *cy)
 	else if (keycode == FIVE)
 		cy->color = BLUE;
 	else if (keycode == Q)
-	{
-		handle_cylinder_choice(w);
-		return (keycode);
-	}
-	else if (keycode == ESC)
-		quit(w);
+		return (display_cylinder_choice_menu(w), CHOOSE_CYLINDER);
 	else
-		return (keycode);
+		return (CHANGE_CYLINDER);
 	multithread(w);
-	cylinder(w, w->menu.id);
-	return (keycode);
+	display_cylinder_commands(w, w->menu.id);
+	return (CHANGE_CYLINDER);
 }
 
-int		move_cylinder2(int keycode, t_world *w, t_cylinder *cy)
+t_menu_state	handle_cylinder_size_changes(int keycode, t_world *w, t_cylinder *cy)
 {
 	if (keycode == LEFT)
 		cy->radius += LEN;
@@ -49,16 +44,13 @@ int		move_cylinder2(int keycode, t_world *w, t_cylinder *cy)
 	else if (keycode == V)
 		cy->height -= LEN; 
 	else
-	{
-		move_cylinder_color(keycode, w, cy);
-		return (keycode);
-	}
+		return(handle_cylinder_color_changes(keycode, w, cy));
 	multithread(w);
-	cylinder(w, w->menu.id);
-	return (keycode);
+	display_cylinder_commands(w, w->menu.id);
+	return (CHANGE_CYLINDER);
 }
 
-int		move_cylinder(int keycode, t_world *w)
+t_menu_state	handle_cylinder_changes(int keycode, t_world *w)
 {
 	t_cylinder	*cy;
 	int			id;
@@ -78,11 +70,10 @@ int		move_cylinder(int keycode, t_world *w)
 	else if (keycode == DOWN)
 		cy->center.y -= MOVE;
 	else
-	{
-		keycode = move_cylinder2(keycode, w, cy);
-		return (keycode);
-	}
+		return (handle_cylinder_size_changes(keycode, w, cy));
+	//Display the coordinates of the cylinder
+	// vec3_print(cy->center);
 	multithread(w);
-	cylinder(w, w->menu.id);
-	return (keycode);
+	display_cylinder_commands(w, w->menu.id);
+	return (CHANGE_CYLINDER);
 }
