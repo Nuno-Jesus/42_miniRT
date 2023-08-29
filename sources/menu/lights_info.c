@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:58:12 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 17:20:13 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 18:11:54 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ t_menu_state	handle_light_changes_2(int keycode, t_world *w, t_light *l)
 		l->color = BLUE;
 	else if (keycode == Q)
 		return (display_light_choice_menu(w), CHOOSE_LIGHT);
-	else if (keycode == ESC)
-		quit(w);
 	else
 		return (CHANGE_LIGHT);
 	multithread(w);

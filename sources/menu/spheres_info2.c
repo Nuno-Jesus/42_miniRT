@@ -6,13 +6,13 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 15:32:45 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 18:11:07 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int		move_sphere_color(int keycode, t_world *w, t_sphere *sp)
+t_menu_state	handle_sphere_color_change(int keycode, t_world *w, t_sphere *sp)
 {
 	if (keycode == ONE)
 		sp->color = WHITE;
@@ -25,36 +25,28 @@ int		move_sphere_color(int keycode, t_world *w, t_sphere *sp)
 	else if (keycode == FIVE)
 		sp->color = BLUE;
 	else if (keycode == Q)
-	{
-		handle_sphere_choice(w);
-		return (keycode);
-	}
-	else if (keycode == ESC)
-		quit(w);
+		return (display_sphere_choice_menu(w), CHOOSE_SPHERE);
 	else
-		return (keycode);
+		return (CHANGE_SPHERE);
 	multithread(w);
-	sphere(w, w->menu.id);
-	return (keycode);
+	display_light_commands(w, w->menu.id);
+	return (CHANGE_SPHERE);
 }
 
-int		move_sphere2(int keycode, t_world *w, t_sphere *sp)
+t_menu_state	handle_sphere_size_change(int keycode, t_world *w, t_sphere *sp)
 {
 	if (keycode == LEFT)
 		sp->radius += LEN;
 	else if (keycode == RIGHT)
 		sp->radius -= LEN;
 	else
-	{
-		keycode = move_sphere_color(keycode, w, sp);
-		return (keycode);
-	}
+		return (handle_sphere_color_change(keycode, w, sp));
 	multithread(w);
-	sphere(w, w->menu.id);
-	return (keycode);
+	display_light_commands(w, w->menu.id);
+	return (CHANGE_SPHERE);
 }
 
-int		move_sphere(int keycode, t_world *w)
+t_menu_state	handle_sphere_changes(int keycode, t_world *w)
 {
 	t_sphere	*sp;
 	int			id;
@@ -74,11 +66,8 @@ int		move_sphere(int keycode, t_world *w)
 	else if (keycode == DOWN)
 		sp->center.y -= MOVE;
 	else
-	{
-		keycode = move_sphere2(keycode, w, sp);
-		return (keycode);
-	}
+		return (handle_sphere_size_change(keycode, w, sp));
 	multithread(w);
-	sphere(w, w->menu.id);
-	return (keycode);
+	display_light_commands(w, w->menu.id);
+	return (CHANGE_SPHERE);
 }

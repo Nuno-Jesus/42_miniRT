@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:29:06 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 17:18:00 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 17:57:21 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,13 @@ void	light_info2(t_world *w);
 void	light_info3(t_world *w);
 
 //! Sphere
-void	sphere(t_world *w, int id);
+void	display_light_commands(t_world *w, int id);
 
-void	handle_sphere_choice(t_world *w);
+t_menu_state	handle_sphere_choice(int keycode, t_world *w);
 
-int		move_sphere(int keycode, t_world *w);
+void	display_sphere_choice_menu(t_world *w);
+
+t_menu_state	handle_sphere_changes(int keycode, t_world *w);
 
 void	sphere_info1(t_world *w);
 
