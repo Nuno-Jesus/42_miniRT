@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 18:25:29 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/23 16:00:36 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef enum s_shape_type
 	PLANE,
 	SPHERE,
 	CYLINDER,
+	CONE,
 }	t_shape_type;
 
 /**
@@ -167,6 +168,16 @@ typedef struct s_cylinder
 	t_color	color;
 }	t_cylinder;
 
+typedef struct s_cone
+{
+	t_vec3	tip;
+	t_vec3	normal;
+	double 	height;
+	double	radius;
+	double 	angle;
+	t_color	color;
+}	t_cone;
+
 /**
  * @brief Contains the data of only ONE of the shapes at a time.
  * This means that if the cylinder is used, reading from the plane or 
@@ -181,20 +192,25 @@ typedef union u_data
 	t_sphere	sp;
 	t_plane		pl;
 	t_cylinder	cy;
+	t_cone		co;
 }	t_data;
 
-/**
- * @brief Describes a shape
+/**!
+ *! @brief Describes a shape
  * 
- * @param data The union containing the shape data
- * @param type The type of shape
- * @param id A number between 0 and the number of shapes in the scene
+ *! @param data The union containing the shape data
+ *! @param type The type of shape
+ *! @param id A number between 0 and the number of shapes in the scene
  */
 typedef struct s_shape
 {
+	int				id;
 	t_data			data;
 	t_shape_type	type;
-	int				id;
+	// t_color			color;
+	bool			is_textured;
+	double			ks;
+	double			shininess;
 }	t_shape;
 
 /**
@@ -215,6 +231,7 @@ typedef struct s_graphics
 	void	*mlx;
 	void	*win;
 	void	*img;
+	void	*menu;
 	char	*addr;
 	int		height;
 	int		width;
@@ -246,6 +263,27 @@ typedef struct s_hit
 	double	t;
 }	t_hit;
 
+typedef struct s_menu
+{
+	int		sp_flag;
+	int		pl_flag;
+	int		cy_flag;
+	int		co_flag;
+	int		iterator;
+	int		id;
+	int		i;
+	int		ids[9];
+}	t_menu;
+
+//!
+typedef struct s_runner
+{
+	pthread_t		thread;
+	int				min_y;
+	int				max_y;
+	struct s_world	*world;
+}	t_runner;
+
 /**
  * @brief The primary struct, contains everything needed to describe a scene
  * 
@@ -267,6 +305,7 @@ typedef struct s_world
 	t_light		ambient;
 	t_vector	*lights;
 	t_vector	*shapes;
+	t_menu	menu;
 	int			counters[3];
 	t_graphics	disp;
 	t_vec3		up;

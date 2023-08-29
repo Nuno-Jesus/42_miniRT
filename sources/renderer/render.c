@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 16:55:58 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/23 12:28:40 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+void	apply_texture(t_hit *closest)
+{
+	t_vec3	point;
+
+	if (!closest->shape->is_textured)
+		return ;
+	point = closest->point;
+	if ((int)(floor(point.x) + floor(point.y) + floor(point.z)) % 2)
+		closest->color = BLACK;
+	else 
+		closest->color = WHITE;
+}
 
 bool	world_hit(t_vector *shapes, t_ray *ray, t_hit *closest)
 {
@@ -37,15 +50,17 @@ bool	world_hit(t_vector *shapes, t_ray *ray, t_hit *closest)
 	return (closest->shape != NULL);
 }
 
-int	render(t_world *w)
+void	*render(t_runner *worker)
 {
 	t_vec3	coords;
 	t_vec3	factors;
 	t_ray	ray;
 	t_hit	closest;
+	t_world	*w;
 
-	coords.y = -1;
-	while (++coords.y < HEIGHT)
+	w = worker->world;
+	coords.y = worker->min_y - 1;
+	while (++coords.y < worker->max_y)
 	{
 		coords.x = -1;
 		while (++coords.x < WIDTH)
@@ -56,10 +71,12 @@ int	render(t_world *w)
 			factors = pixels_to_viewport(coords.x, coords.y);
 			ray = make_ray(w, factors);
 			if (world_hit(w->shapes, &ray, &closest))
+			{
+				apply_texture(&closest);
 				illuminate(w, &closest);
+			}
 			put_pixel(w, closest.color, coords.x, coords.y);
 		}
 	}
-	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.img, 0, 0);
-	return (0);
+	return (NULL);
 }

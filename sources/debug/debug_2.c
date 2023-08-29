@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:34:42 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/11 17:04:32 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:42:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ void	shape_print(t_shape *shape)
 		sphere_print(&shape->data.sp);
 	else if (shape->type == CYLINDER)
 		cylinder_print(&shape->data.cy);
+	else if (shape->type == CONE)
+		cone_print(&shape->data.co);
 	printf("  ID: %d\n", shape->id);
+	printf("  Textured? %d\n", shape->is_textured);
+	printf("  Specular Coefficient (Ks): %lf\n", shape->ks);
+	printf("  Shininess (n): %lf\n", shape->shininess);
 }
 
 void	sphere_print(t_sphere *s)
@@ -52,6 +57,18 @@ void	plane_print(t_plane *p)
 	printf("  Normal: %.4lf, %.4lf, %.4lf\n", \
 		p->normal.x, p->normal.y, p->normal.z);
 	printf("  Color: (%d, %d, %d)\n", p->color.r, p->color.g, p->color.b);
+}
+
+void	cone_print(t_cone *co)
+{
+	printf("Cone:\n");
+	printf("  Center: (%.4lf, %.4lf, %.4lf)\n", \
+		co->tip.x, co->tip.y, co->tip.z);
+	printf("  Normal: (%.4lf, %.4lf, %.4lf)\n", \
+		co->normal.x, co->normal.y, co->normal.z);
+	printf("  Radius: %.4lf\n", co->radius);
+	printf("  Height: %.4lf\n", co->height);
+	printf("  Color: (%d, %d, %d)\n", co->color.r, co->color.g, co->color.b);
 }
 
 void	world_print(t_world *world)

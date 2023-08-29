@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 20:16:43 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:34:05 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,33 +39,21 @@ int	on_keypress(int keycode, t_world *w)
 {
 	if (keycode == ESC)
 		quit(w);
-	else if (keycode == W)
-		w->camera.center.y += 5;
-	else if (keycode == A)
-		w->camera.center.x -= 5;
-	else if (keycode == S)
-		w->camera.center.y -= 5;
-	else if (keycode == D)
-		w->camera.center.x += 5;
-	else if (keycode == C)
-		w->camera.center.z -= 5;
-	else if (keycode == V)
-		w->camera.center.z += 5;
-	render(w);
+	else if (keycode == M)
+		render_menu(w);
 	return (keycode);
 }
 
 int	main(int argc, char **argv)
 {
-	t_world	*world;
+	t_world		*world;
 
 	if (argc != 2)
 		message(NULL, ERROR_USAGE);
 	world = parse(argv[1]);
 	init_viewport(world);
 	init_graphics(world);
-	world_print(world);
-	render(world);
+	multithread(world);
 	mlx_hook(world->disp.win, KeyPress, KeyPressMask, on_keypress, world);
 	mlx_hook(world->disp.win, DestroyNotify, StructureNotifyMask, quit, world);
 	mlx_loop(world->disp.mlx);

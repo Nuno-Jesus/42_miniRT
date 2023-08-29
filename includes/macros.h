@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 20:26:02 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:27:24 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <math.h>
+# include <pthread.h>
 
 //! Debug related macros
 
 # define DEBUG
 # define HERE 		printf("HERE\n");
-# define ERROR(m)	printf("Error\n%s\n", m)
 
 //! Parsing macros
 
@@ -38,16 +38,39 @@
 # define G 1
 # define B 2
 
+# define MOVE 5
+
 # define HAS_COMMAS '1'
 
-# define ERROR_COLOR_A		"Wrong color syntax for ambient lightning."
-# define ERROR_COLOR_L		"Wrong color syntax for light source."
+# define ERROR(m)	\
+	printf("Error\n%s\n", m)
+# define ERROR_NUM_ARGS(x, n)		\
+	ERROR("Wrong number of args in "x" (need "n")")
+# define ERROR_NUM_COMMAS(x)		\
+	ERROR("Too many/few commas in "x)
+# define ERROR_MISFORMAT_COLOR(x)	\
+	ERROR("Colors misformatting in "x)
+# define ERROR_AMBIENT_RATIO_OUT_OF_BOUNDS		\
+	ERROR("Ambient coefficient out of bounds [0.0,1.0]")
+# define ERROR_CAMERA_FOV_OUT_OF_BOUNDS			\
+	ERROR("FOV coefficient out of bounds [0.0,1.0]")
+# define ERROR_LIGHT_BRIGHTNESS_OUT_OF_BOUNDS	\
+	ERROR("Light brightness out of bounds [0.0,1.0]")
+# define ERROR_KS_OUT_OF_BOUNDS(x)				\
+	ERROR("Specular coefficient out of bounds in "x" [0.0,1.0]")
+# define ERROR_SHININESS_OUT_OF_BOUNDS(x)		\
+	ERROR("Shininess out of bounds in "x" [0.0,+∞[")
+# define ERROR_VALUES_TOO_SMALL(x)				\
+	ERROR("Values are too small in "x)
+# define ERROR_UNKNOWN_SHAPE				\
+	ERROR("Unknown shape to apply texture")
+
 # define ERROR_SYNTAX		"Syntax: file format misconfiguration."
 # define ERROR_NOT_BER		"File extension is not '.ber'."
 # define ERROR_OPEN_FILE	"Couldn't open requested file"
 # define ERROR_EMPTY_MAP	"Empty map."
 # define ERROR_NO_CAMERA	"No camera in the map."
-# define ERROR_TOO_MANY		"Found more than 1 A, C or L entities"
+# define ERROR_TOO_MANY		"Found more than 1 A or C entities"
 # define ERROR_MALLOC(str)  "Failed allocation on "str"."
 # define ERROR_USAGE 		"Usage: ./miniRT <scene>.rt"
 
@@ -60,10 +83,12 @@
 
 //! Fixed t_color structs
 
-# define BLUE		(t_color){0, 0, 0, 255}
-# define BLACK		(t_color){0, 0, 0, 0}
 # define WHITE		(t_color){0, 255, 255, 255}
+# define BLACK		(t_color){0, 0, 0, 0}
+# define BLUE		(t_color){0, 0, 0, 255}
 # define RED		(t_color){0, 255, 0, 0}
+# define GREEN		(t_color){0, 0, 255, 0}
+# define YELLOW		(t_color){0, 255, 255, 0}
 
 //! Fixed t_vec3 structs
 
@@ -73,7 +98,7 @@
 //! Viewport and window macros
 
 # ifdef __APPLE__
-#  define WIDTH 800
+#  define WIDTH 1440
 # else
 #  define WIDTH 1920
 # endif
@@ -91,6 +116,27 @@
 #  define D 2
 #  define C 8
 #  define V 9
+#  define Q 12
+#  define M 46
+#  define Bk 11
+#  define O 31
+#  define Rk 15
+#  define Yk 16
+#  define Gk 5
+#  define SPACE 49
+#  define UP 126
+#  define DOWN 125
+#  define LEFT 123
+#  define RIGHT 124
+#  define ONE 18
+#  define TWO 19
+#  define THREE 20
+#  define FOUR 21
+#  define FIVE 23
+#  define SIX 22
+#  define SEVEN 26
+#  define EIGHT 28
+#  define NINE 25
 #  define KeyPress 2
 #  define KeyPressMask (1L<<0)
 #  define DestroyNotify 17
@@ -103,6 +149,32 @@
 #  define D 100
 #  define C 99
 #  define V 118
+#  define Q 113
+#  define M 109
+#  define Bk 65288
+#  define O 111
+#  define Rk 114
+#  define Yk 121
+#  define Gk 103
+#  define SPACE 32
+#  define UP 65362
+#  define DOWN 65364
+#  define LEFT 65361
+#  define RIGHT 65363
+#  define ONE 49
+#  define TWO 50
+#  define THREE 51
+#  define FOUR 52
+#  define FIVE 53
+#  define SIX 54
+#  define SEVEN 55
+#  define EIGHT 56
+#  define NINE 57
 # endif
+
+# define NUM_THREADS 8
+# define THREADABLE
+
+# define KD 0.8
 
 #endif

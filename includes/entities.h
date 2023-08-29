@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entities.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 18:27:28 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:43:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,17 +184,23 @@ bool		check_caps(t_cylinder *cy, t_vec3 cap, t_hit *inter, double t);
  */
 t_vec3		cylinder_normal(t_hit *inter, t_ray *ray);
 
+//! Cone
+
+bool	cone_from_strings(t_cone *co, char **tokens);
+
+bool	cone_intersect(t_cone *co, t_ray *ray, t_hit *inter);
+
 //! Shapes
 /**
- * @brief this function will create the corresponding shape given in the
- * type parameter and store it's information on the shape struct
+ * !@brief this function will create the corresponding shape given in the
+ * !type parameter and store it's information on the shape struct
  * 
- * @param data struct with shape information
- * @param type type of the shape
- * @param id id of the shape (each shape has a unique id)
- * @return t_shape struct with shape information
+ * !@param data struct with shape information
+ * !@param type type of the shape
+ * !@param id id of the shape (each shape has a unique id)
+ * !@return t_shape struct with shape information
  */
-t_shape		*shape_new(void	*data, t_shape_type type, int id);
+t_shape		*shape_new(void	*data, t_shape_type type, int id, char **tokens);
 
 /**
  * @brief this function will copy the shape information from the shape

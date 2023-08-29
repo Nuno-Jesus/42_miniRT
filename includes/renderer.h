@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 18:05:45 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/18 19:13:33 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,29 @@
 # include "miniRT.h"
 
 /**
- * @brief The function that renders the scene. Iterates over the scene's
- * pixels and traces a ray for each that will be used to collide with 
- * the world. The pixels are painted one by one until the final image
- * is rendered.
+ * !@brief The function that renders the scene. Iterates over the scene's
+ * !pixels and traces a ray for each that will be used to collide with 
+ * !the world. The pixels are painted one by one until the final image
+ * !is rendered.
  * 
- * @param w The t_world struct 
- * @return int (dummy value)
+ * !@param w The t_world struct 
+ * !@return int (dummy value)
  */
-int		render(t_world *w);
+void	*render(t_runner *worker);
+
+/**
+ * @brief Given all the scene's shapes and the casted ray, it asserts
+ * if the ray ever hit one of the shapes. If so, the closest struct will
+ * be filled with a pointer to the closest hit shape, among other 
+ * useful variables.
+ * 
+ * @param shapes The scene's shapes
+ * @param ray The casted ray
+ * @param closest The closest hit shape
+ * @return true If it hit something
+ * @return false Otherwise
+ */
+bool	world_hit(t_vector *shapes, t_ray *ray, t_hit *closest);
 
 /**
  * @brief Puts a pixel in an image with the given color and at the given
@@ -52,29 +66,30 @@ void	put_pixel(t_world *w, t_color c, int x, int y);
 void	illuminate(t_world *world, t_hit *closest);
 
 /**
- * @brief Calculates the ambient lighting in a shape. The 
- * ambient lighting is calculated by the following formula:
+ * !@brief Calculates the ambient lighting in a shape. The 
+ * !ambient lighting is calculated by the following formula:
  * 
- * 		Ia = Ka * ShapeColor
+ * 		!Ia = Ka * ShapeColor
  * 
- * Ia - ambient color
- * Ka - ratio of ambient lighting in the scene
- * ShapeColor - the closest shape color
+ * !Ia - ambient color
+ * !Ka - ratio of ambient lighting in the scene
+ * !ShapeColor - the closest shape color
  * 
- * @param color The closest shape's color
- * @param ratio The ambient lighting ration in the scene
- * @return t_color The final color
+ * !@param color The closest shape's color
+ * !@param ratio The ambient lighting ration in the scene
+ * !@return t_color The final color
  */
-t_color	ambient(t_color	color, double ratio);
+t_color	ambient(t_light *ambient, t_color color);
 
 /**
  * @brief Calculates the diffuse lighting in a shape. The 
  * diffuse lighting is calculated by the following formula:
  * 
- * 		Id = Kd * cos(A) * ShapeColor
+ * 		Id = Kd * Ip * cos(A) * ShapeColor
  * 
  * Id - diffuse color
  * Kd - ratio of diffuse lighting in the scene
+ * Ip - intensity of the light source
  * A - angle between the normal at the intersection point and the 
  * light direction
  * cos(A) - cosine of A
@@ -84,7 +99,26 @@ t_color	ambient(t_color	color, double ratio);
  * @param ratio The ambient lighting ration in the scene
  * @return t_color The final color
  */
-t_color	diffuse(t_light *bulb, t_hit *inter, double k);
+t_color	diffuse(t_light *bulb, t_hit *inter);
+
+/**
+ * !@brief Calculates the specular lighting in a given point
+ * 
+ * !The specular lighting in a given point is calculated given the 
+ * !following formula
+ * 
+ * !	Ie = Ke * Ip * (N.H)^n
+ * 
+ * !Ie - specular lighting
+ * !Ke - specular constant (depends on the material)
+ * !Ip - light source intensity 
+ * !H - half vector (the normalized vector between the light and 
+ * ! camera directions)
+ * !N - the normal vector in that surface
+ * !n - a value depending on the material (high for highly polished 
+ * !surfaces)
+ */
+t_color	specular(t_light *bulb, t_hit *closest);
 
 /**
  * @brief Looks if any object is between the closest shape and the 
@@ -105,10 +139,11 @@ bool	is_obscured(t_vector *shapes, t_shape *own, t_ray *ray, double max_t);
  * like the light direction and distance 
  * 
  * @param world The t_world struct
+ * @param bulb The light source
  * @param closest The closest shape
  * @return The is_obscured return value
  */
-bool	is_shadowed(t_world *world, t_hit *closest);
+bool	is_shadowed(t_world *world, t_light *bulb, t_hit *closest);
 
 /**
  * @brief Initializes the scene's viewport (what the camera can see). The 
@@ -156,5 +191,8 @@ t_ray	make_ray(t_world *w, t_vec3 factors);
  * @return t_vec3 The point at t
  */
 t_vec3	ray_at(t_ray *ray, double t);
+
+//!
+void	multithread(t_world *world);
 
 #endif
