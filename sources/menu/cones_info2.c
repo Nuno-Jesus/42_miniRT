@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:28:51 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 12:33:57 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 12:46:12 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ int		move_cone_color(int keycode, t_world *w, t_cone *co)
 int		move_cone2(int keycode, t_world *w, t_cone *co)
 {
 	if (keycode == LEFT)
-		co->radius += MOVE;
+		co->radius += LEN;
 	else if (keycode == RIGHT)
-		co->radius -= MOVE; 
+		co->radius -= LEN; 
 	else if (keycode == C)
-		co->height += MOVE;
+		co->height += LEN;
 	else if (keycode == V)
-		co->height -= MOVE; 
-	else if (keycode == Q)
+		co->height -= LEN; 
+	else
 	{
 		move_cone_color(keycode, w, co);
 		return (keycode);

@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/23 12:27:24 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 12:45:54 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define B 2
 
 # define MOVE 5
+# define LEN 2
 
 # define HAS_COMMAS '1'
 

@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:28:51 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 12:38:55 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 12:46:04 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ int		move_cylinder_color(int keycode, t_world *w, t_cylinder *cy)
 int		move_cylinder2(int keycode, t_world *w, t_cylinder *cy)
 {
 	if (keycode == LEFT)
-		cy->radius += MOVE;
+		cy->radius += LEN;
 	else if (keycode == RIGHT)
-		cy->radius -= MOVE; 
+		cy->radius -= LEN; 
 	else if (keycode == C)
-		cy->height += MOVE;
+		cy->height += LEN;
 	else if (keycode == V)
-		cy->height -= MOVE; 
-	else if (keycode == Q)
+		cy->height -= LEN; 
+	else
 	{
 		move_cylinder_color(keycode, w, cy);
 		return (keycode);
