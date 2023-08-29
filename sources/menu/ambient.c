@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ambient.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 12:30:23 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:02:32 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,22 @@ void	ambient_info2(t_world *w)
 		0xFFFFFF, " - Previous menu");
 }
 
-int		move_ambient(int keycode, t_world *w)
+t_menu_state	handle_amb_light_changes(int keycode, t_world *w)
 {
 	if (keycode == LEFT)
 		w->ambient.ratio += 0.1;
 	else if (keycode == RIGHT)
 		w->ambient.ratio -= 0.1;
 	else if (keycode == Q)
-	{
-		menu_execution(w);
-		return (keycode);
-	}
-	else if (keycode == ESC)
-		quit(w);
+		return (display_main_menu(w), MENU_OPENED);
 	else
-		return (keycode);
+		return (CHANGE_AMBIENT_LIGHT);
 	multithread(w);
-	change_ambient_light(w);
-	return (keycode);
+	display_amb_light_menu(w);
+	return (CHANGE_AMBIENT_LIGHT);
 }
 
-void	change_ambient_light(t_world *w)
+void	display_amb_light_menu(t_world *w)
 {
 	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
 	menu_text(w);
@@ -59,5 +54,4 @@ void	change_ambient_light(t_world *w)
 		0xFFA160, "-------------");
 	ambient_info1(w);
 	ambient_info2(w);
-	mlx_hook(w->disp.win, KeyPress, KeyPressMask, move_ambient, w);
 }

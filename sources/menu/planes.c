@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   planes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 20:06:09 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:42:58 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		plane_menu(int keycode, t_world *w)
 	else if (keycode == NINE && w->menu.iterator > 8)
 		plane(w, 8);
 	else if (keycode == Q)
-		menu_execution(w);
+		display_main_menu(w);
 	return (keycode);
 }
 
@@ -78,7 +78,7 @@ void	display_plane(t_world *w, t_vector *l)
 	}
 }
 
-void	change_plane(t_world *w)
+void	handle_plane_choice(t_world *w)
 {
 	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
 	menu_text(w);

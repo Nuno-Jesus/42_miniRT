@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   planes_info2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 12:39:13 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:33:00 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		move_plane_color(int keycode, t_world *w, t_plane *pl)
 		pl->color = BLUE;
 	else if (keycode == Q)
 	{
-		change_plane(w);
+		handle_plane_choice(w);
 		return (keycode);
 	}
 	else if (keycode == ESC)

@@ -6,50 +6,52 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:34:07 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 14:52:28 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 15:59:43 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	handle_closed_menu(int keycode, t_world *w)
+t_menu_state	handle_closed_menu(int keycode, t_world *w)
 {
 	if (keycode != M)
-		return ;
-	w->state = MENU_OPENED;
-	menu_execution(w);
+		return (MENU_CLOSED);
+	display_main_menu(w);
+	return (MENU_OPENED);
 }
 
-int		menu_keys(int keycode, t_world *w)
+// void	render_menu(t_world *w)
+// {
+// 	w->disp.menu = mlx_new_image(w->disp.mlx, WIDTH/6, HEIGHT);
+// 	display_main_menu(w);
+// }
+
+t_menu_state	handle_opened_menu(int keycode, t_world *w)
 {
-	(void) keycode;
-	(void) w;
-	// if (keycode == Q)
-	// 	main_menu(w);
-	// else if (keycode == ESC)
-	// 	quit(w);
-	// else if (keycode == ONE)
-	// 	change_camera(w);
-	// else if (keycode == TWO)
-	// 	change_ambient_light(w);
+	if (keycode == ONE)
+		return (display_camera_menu(w), CHANGE_CAMERA);
+	else if (keycode == TWO)
+		return (display_amb_light_menu(w), CHANGE_AMBIENT_LIGHT);
 	// else if (keycode == THREE)
-	// 	change_light(w);
+	// 	return (handle_light_choice(w));
 	// else if (keycode == FOUR)
-	// 	change_sphere(w);
+	// 	return (handle_sphere_choice(w));
 	// else if (keycode == FIVE)
-	// 	change_plane(w);
+	// 	return (handle_plane_choice(w));
 	// else if (keycode == SIX)
-	// 	change_cylinder(w);
+	// 	return (handle_cylinder_choice(w));
 	// else if (keycode == SEVEN)
-	// 	change_cone(w);
-	return (keycode);
+	// 	return (handle_cone_choice(w));
+	else if (keycode == Q)
+		return (multithread(w), MENU_CLOSED);
+	return (MENU_OPENED);
 }
 
-void	main_menu(t_world *w)
-{
-	multithread(w);
-	mlx_hook(w->disp.win, KeyPress, KeyPressMask, on_keypress, w);
-}
+// void	main_menu(t_world *w)
+// {
+// 	multithread(w);
+// 	mlx_hook(w->disp.win, KeyPress, KeyPressMask, on_keypress, w);
+// }
 
 void	menu_text(t_world *w)
 {
@@ -60,11 +62,10 @@ void	menu_text(t_world *w)
 	mlx_string_put(w->disp.mlx, w->disp.win, 54, 11, 0xFFA160, "|");
 }
 
-void	menu_execution(t_world *w)
+void	display_main_menu(t_world *w)
 {
 	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
 	menu_text(w);
 	w->menu.i = 0;
 	write_shapes(w);
-	mlx_hook(w->disp.win, KeyPress, KeyPressMask, menu_keys, w);
 }

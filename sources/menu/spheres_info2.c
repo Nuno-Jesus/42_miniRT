@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spheres_info2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 12:46:19 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:32:45 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		move_sphere_color(int keycode, t_world *w, t_sphere *sp)
 		sp->color = BLUE;
 	else if (keycode == Q)
 	{
-		change_sphere(w);
+		handle_sphere_choice(w);
 		return (keycode);
 	}
 	else if (keycode == ESC)

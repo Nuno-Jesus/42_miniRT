@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cones_info2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:28:51 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 12:46:12 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:33:25 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		move_cone_color(int keycode, t_world *w, t_cone *co)
 		co->color = BLUE;
 	else if (keycode == Q)
 	{
-		change_cone(w);
+		handle_cone_choice(w);
 		return (keycode);
 	}
 	else if (keycode == ESC)

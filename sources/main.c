@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/29 14:48:35 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 16:03:13 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int	quit(t_world *world)
 
 int	on_keypress(int keycode, t_world *w)
 {
-	void (*handlers[])() = 
+	t_menu_state (*handlers[])() = 
 	{
-		handle_closed_menu,
-		// handle_opened_menu,
-		// handle_camera_changes
-		// handle_ambient_light_changes,
+		(void *)handle_closed_menu,
+		(void *)handle_opened_menu,
+		(void *)handle_camera_changes,
+		(void *)handle_amb_light_changes,
 		// handle_light_choice,
 		// handle_light_changes,
 		// handle_sphere_choice,
@@ -60,7 +60,7 @@ int	on_keypress(int keycode, t_world *w)
 	};
 	if (keycode == ESC)
 		quit(w);
-	handlers[w->state](keycode, w);
+	w->state = handlers[w->state](keycode, w);
 	return (keycode);
 }
 

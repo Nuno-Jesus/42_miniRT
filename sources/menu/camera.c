@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:40:42 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 12:30:11 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:02:20 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	camera_info2(t_world *w)
 		0xFFFFFF, " - Previous menu");
 }
 
-int		move_camera(int keycode, t_world *w)
+t_menu_state	handle_camera_changes(int keycode, t_world *w)
 {
 	if (keycode == W)
 		w->camera.center.z += MOVE;
@@ -56,20 +56,15 @@ int		move_camera(int keycode, t_world *w)
 	else if (keycode == DOWN)
 		w->camera.center.y -= MOVE;
 	else if (keycode == Q)
-	{
-		menu_execution(w);
-		return (keycode);
-	}
-	else if (keycode == ESC)
-		quit(w);
+		return (display_main_menu(w), MENU_OPENED);
 	else
-		return (keycode);
+		return (CHANGE_CAMERA);
 	multithread(w);
-	change_camera(w);
-	return (keycode);
+	display_camera_menu(w);
+	return (CHANGE_CAMERA);
 }
 
-void	change_camera(t_world *w)
+void	display_camera_menu(t_world *w)
 {
 	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
 	menu_text(w);
@@ -79,5 +74,4 @@ void	change_camera(t_world *w)
 		0xFFA160, "------");
 	camera_info1(w);
 	camera_info2(w);
-	mlx_hook(w->disp.win, KeyPress, KeyPressMask, move_camera, w);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_info.c                                       :+:      :+:    :+:   */
+/*   lights_info.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:58:12 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 16:00:36 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:32:38 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		move_light2(int keycode, t_world *w, t_light *l)
 		l->color = BLUE;
 	else if (keycode == Q)
 	{
-		change_light(w);
+		handle_light_choice(w);
 		return (keycode);
 	}
 	else if (keycode == ESC)
