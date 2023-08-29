@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:34:07 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 18:23:46 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 19:40:01 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ t_menu_state	handle_opened_menu(int keycode, t_world *w)
 		return (display_plane_choice_menu(w), CHOOSE_PLANE);
 	else if (keycode == SIX)
 		return (display_cylinder_choice_menu(w), CHOOSE_CYLINDER);
-	// else if (keycode == SEVEN)
-	// 	return (handle_cone_choice(w));
+	else if (keycode == SEVEN)
+		return (display_cone_choice_menu(w), CHOOSE_CONE);
 	else if (keycode == Q)
 		return (multithread(w), MENU_CLOSED);
 	return (MENU_OPENED);

@@ -6,13 +6,13 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:28:51 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 15:33:25 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 19:44:52 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int		move_cone_color(int keycode, t_world *w, t_cone *co)
+t_menu_state	handle_cone_color_changes(int keycode, t_world *w, t_cone *co)
 {
 	if (keycode == ONE)
 		co->color = WHITE;
@@ -25,20 +25,15 @@ int		move_cone_color(int keycode, t_world *w, t_cone *co)
 	else if (keycode == FIVE)
 		co->color = BLUE;
 	else if (keycode == Q)
-	{
-		handle_cone_choice(w);
-		return (keycode);
-	}
-	else if (keycode == ESC)
-		quit(w);
+		return (display_cone_choice_menu(w), CHOOSE_CONE);
 	else
-		return (keycode);
+		return (CHANGE_CONE);
 	multithread(w);
-	cone(w, w->menu.id);
-	return (keycode);
+	display_cylinder_commands(w, w->menu.id);
+	return (CHANGE_CONE);
 }
 
-int		move_cone2(int keycode, t_world *w, t_cone *co)
+t_menu_state	handle_cone_size_changes(int keycode, t_world *w, t_cone *co)
 {
 	if (keycode == LEFT)
 		co->radius += LEN;
@@ -49,16 +44,13 @@ int		move_cone2(int keycode, t_world *w, t_cone *co)
 	else if (keycode == V)
 		co->height -= LEN; 
 	else
-	{
-		move_cone_color(keycode, w, co);
-		return (keycode);
-	}
+		return (handle_cone_color_changes(keycode, w, co));
 	multithread(w);
-	cone(w, w->menu.id);
-	return (keycode);
+	display_cylinder_commands(w, w->menu.id);
+	return (CHANGE_CONE);
 }
 
-int		move_cone(int keycode, t_world *w)
+t_menu_state	handle_cone_changes(int keycode, t_world *w)
 {
 	t_cone	*co;
 	int			id;
@@ -78,11 +70,8 @@ int		move_cone(int keycode, t_world *w)
 	else if (keycode == DOWN)
 		co->tip.y -= MOVE;
 	else
-	{
-		keycode = move_cone2(keycode, w, co);
-		return (keycode);
-	}
+		return (handle_cone_size_changes(keycode, w, co));
 	multithread(w);
-	cone(w, w->menu.id);
-	return (keycode);
+	display_cylinder_commands(w, w->menu.id);
+	return (CHANGE_CONE);
 }

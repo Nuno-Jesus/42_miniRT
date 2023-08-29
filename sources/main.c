@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/29 18:26:31 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 19:47:29 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	on_keypress(int keycode, t_world *w)
 		handle_plane_changes,
 		handle_cylinder_choice,
 		handle_cylinder_changes,
-		// handle_cone_choice,
-		// handle_cone_changes,
+		handle_cone_choice,
+		handle_cone_changes,
 	};
 	if (keycode == ESC)
 		quit(w);

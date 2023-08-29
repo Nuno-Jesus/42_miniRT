@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:29:06 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 18:30:11 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 19:47:45 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,13 @@ void	cylinder_info2(t_world *w);
 void	cylinder_info3(t_world *w);
 
 //! Cone
-void	cone(t_world *w, int id);
+void	display_cylinder_commands(t_world *w, int id);
 
-void	handle_cone_choice(t_world *w);
+void	display_cone_choice_menu(t_world *w);
 
-int		move_cone(int keycode, t_world *w);
+t_menu_state	handle_cone_changes(int keycode, t_world *w);
+
+t_menu_state	handle_cone_choice(int keycode, t_world *w);
 
 void	cone_info1(t_world *w);
 
