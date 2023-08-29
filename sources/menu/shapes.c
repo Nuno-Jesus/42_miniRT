@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:50:10 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 19:22:10 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:47:54 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_flags(t_world *w)
 	w->menu.co_flag = 0;
 }
 
-void	write_shapes(t_world *w)
+void	display_menu_entites(t_world *w)
 {
 	mlx_string_put(w->disp.mlx, w->disp.win, 10, 53, \
 		0xFFFFFF, "LIST OF OBJECTS");

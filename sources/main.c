@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/29 16:03:13 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 17:18:24 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	on_keypress(int keycode, t_world *w)
 		(void *)handle_opened_menu,
 		(void *)handle_camera_changes,
 		(void *)handle_amb_light_changes,
-		// handle_light_choice,
-		// handle_light_changes,
+		(void *)handle_light_choice,
+		(void *)handle_light_changes,
 		// handle_sphere_choice,
 		// handle_sphere_changes,
 		// handle_plane_choice,

@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:34:07 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 15:59:43 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 17:13:23 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ t_menu_state	handle_opened_menu(int keycode, t_world *w)
 		return (display_camera_menu(w), CHANGE_CAMERA);
 	else if (keycode == TWO)
 		return (display_amb_light_menu(w), CHANGE_AMBIENT_LIGHT);
-	// else if (keycode == THREE)
-	// 	return (handle_light_choice(w));
+	else if (keycode == THREE)
+		return (display_light_choice_menu(w), CHOOSE_LIGHT);
 	// else if (keycode == FOUR)
 	// 	return (handle_sphere_choice(w));
 	// else if (keycode == FIVE)
@@ -53,7 +53,7 @@ t_menu_state	handle_opened_menu(int keycode, t_world *w)
 // 	mlx_hook(w->disp.win, KeyPress, KeyPressMask, on_keypress, w);
 // }
 
-void	menu_text(t_world *w)
+void	display_menu_title(t_world *w)
 {
 	mlx_string_put(w->disp.mlx, w->disp.win, 6, 0, 0xFFA160, "-----");
 	mlx_string_put(w->disp.mlx, w->disp.win, 12, 13, 0xFFFFFF, "MENU");
@@ -64,8 +64,8 @@ void	menu_text(t_world *w)
 
 void	display_main_menu(t_world *w)
 {
-	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
-	menu_text(w);
 	w->menu.i = 0;
-	write_shapes(w);
+	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
+	display_menu_title(w);
+	display_menu_entites(w);
 }

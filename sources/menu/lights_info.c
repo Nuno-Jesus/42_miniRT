@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:58:12 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 15:32:38 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 17:20:13 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,9 @@ void	light_info3(t_world *w)
 		0xFFFFFF, " - Previous menu");		
 }
 
-int		move_light2(int keycode, t_world *w, t_light *l)
+t_menu_state	handle_light_changes_2(int keycode, t_world *w, t_light *l)
 {
-	if (keycode == RIGHT)
-		l->ratio -= 0.1;
-	else if (keycode == ONE)
+	if (keycode == ONE)
 		l->color = WHITE;
 	else if (keycode == TWO)
 		l->color = YELLOW;
@@ -81,20 +79,17 @@ int		move_light2(int keycode, t_world *w, t_light *l)
 	else if (keycode == FIVE)
 		l->color = BLUE;
 	else if (keycode == Q)
-	{
-		handle_light_choice(w);
-		return (keycode);
-	}
+		return (display_light_choice_menu(w), CHOOSE_LIGHT);
 	else if (keycode == ESC)
 		quit(w);
 	else
-		return (keycode);
+		return (CHANGE_LIGHT);
 	multithread(w);
-	light(w, w->menu.id);
-	return (keycode);
+	display_light_commands(w, w->menu.id);
+	return (CHANGE_LIGHT);
 }
 
-int		move_light(int keycode, t_world *w)
+t_menu_state	handle_light_changes(int keycode, t_world *w)
 {
 	t_light	*l;
 
@@ -113,12 +108,11 @@ int		move_light(int keycode, t_world *w)
 		l->center.y -= MOVE;
 	else if (keycode == LEFT)
 		l->ratio += 0.1;
+	if (keycode == RIGHT)
+		l->ratio -= 0.1;
 	else
-	{
-		keycode = move_light2(keycode, w, l);
-		return (keycode);
-	}
+		return (handle_light_changes_2(keycode, w, l));
 	multithread(w);
-	light(w, w->menu.id);
-	return (keycode);
+	display_light_commands(w, w->menu.id);
+	return (CHANGE_LIGHT);
 }

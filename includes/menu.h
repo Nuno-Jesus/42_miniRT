@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:29:06 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 16:03:26 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 17:18:00 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ t_menu_state	handle_opened_menu(int keycode, t_world *w);
 
 void	display_main_menu(t_world *w);
 
-void	menu_text(t_world *w);
+void	display_menu_title(t_world *w);
 
 //! Shapes
-void	write_shapes(t_world *w);
+void	display_menu_entites(t_world *w);
 
 void	init_flags(t_world *w);
 
@@ -56,13 +56,14 @@ void	display_amb_light_menu(t_world *w);
 t_menu_state	handle_amb_light_changes(int keycode, t_world *w);
 
 //! Light
-int		light_menu(int keycode, t_world *w);
 
-int		move_light(int keycode, t_world *w);
+t_menu_state	handle_light_changes(int keycode, t_world *w);
 
-void	light(t_world *w, int id);
+t_menu_state	handle_light_choice(int keycode, t_world *w);
 
-void	handle_light_choice(t_world *w);
+void	display_light_commands(t_world *w, int id);
+
+void	display_light_choice_menu(t_world *w);
 
 void	light_info1(t_world *w);
 

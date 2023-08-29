@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 15:42:58 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 16:47:43 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	sphere(t_world *w, int id)
 {
 	w->menu.id = id;
 	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
-	menu_text(w);
+	display_menu_title(w);
 	mlx_string_put(w->disp.mlx, w->disp.win, 10, 53, \
 		0xFFFFFF, "SHEPRES");
 	mlx_string_put(w->disp.mlx, w->disp.win, 9, 64, \
@@ -82,7 +82,7 @@ void	display_sphere(t_world *w, t_vector *l)
 void	handle_sphere_choice(t_world *w)
 {
 	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
-	menu_text(w);
+	display_menu_title(w);
 	mlx_string_put(w->disp.mlx, w->disp.win, 10, 53, \
 		0xFFFFFF, "SPHERE");
 	mlx_string_put(w->disp.mlx, w->disp.win, 9, 64, \
