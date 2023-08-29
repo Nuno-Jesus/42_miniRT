@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/23 12:34:05 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:48:35 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ void	init_graphics(t_world *w)
 		&w->disp.line_length, &w->disp.endian);
 	if (!w->disp.addr)
 		message(w, ERROR_MALLOC("init_graphics (mlx image address)"));
+	w->disp.menu = mlx_new_image(w->disp.mlx, WIDTH/6, HEIGHT);
+	if (!w->disp.img)
+		message(w, ERROR_MALLOC("init_graphics (mlx menu image)"));
+	
 }
 
 int	quit(t_world *world)
@@ -37,10 +41,26 @@ int	quit(t_world *world)
 
 int	on_keypress(int keycode, t_world *w)
 {
+	void (*handlers[])() = 
+	{
+		handle_closed_menu,
+		// handle_opened_menu,
+		// handle_camera_changes
+		// handle_ambient_light_changes,
+		// handle_light_choice,
+		// handle_light_changes,
+		// handle_sphere_choice,
+		// handle_sphere_changes,
+		// handle_plane_choice,
+		// handle_plane_changes,
+		// handle_cylinder_choice,
+		// handle_cylinder_changes,		
+		// handle_cone_choice,
+		// handle_cone_changes,		
+	};
 	if (keycode == ESC)
 		quit(w);
-	else if (keycode == M)
-		render_menu(w);
+	handlers[w->state](keycode, w);
 	return (keycode);
 }
 

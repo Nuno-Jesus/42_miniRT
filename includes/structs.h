@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/23 16:00:36 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:34:50 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,25 @@ typedef enum s_shape_type
 	CYLINDER,
 	CONE,
 }	t_shape_type;
+
+typedef enum s_menu_state
+{
+	MENU_CLOSED,
+	MENU_OPENED,
+	CHANGE_CAMERA,
+	CHANGE_AMBIENT_LIGHT,
+	CHOOSE_LIGHT,
+	CHANGE_LIGHT,
+	CHOOSE_SPHERE,
+	CHANGE_SPHERE,
+	CHOOSE_PLANE,
+	CHANGE_PLANE,
+	CHOOSE_CYLINDER,
+	CHANGE_CYLINDER,
+	CHOOSE_CONE,
+	CHANGE_CONE
+}	t_menu_state;
+
 
 /**
  * @brief Represents a tridimensional vector
@@ -305,8 +324,8 @@ typedef struct s_world
 	t_light		ambient;
 	t_vector	*lights;
 	t_vector	*shapes;
-	t_menu	menu;
-	int			counters[3];
+	t_menu		menu;
+	t_menu_state	state;
 	t_graphics	disp;
 	t_vec3		up;
 	t_vec3		right;

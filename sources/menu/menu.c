@@ -3,35 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:34:07 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/25 17:27:46 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:52:28 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
+void	handle_closed_menu(int keycode, t_world *w)
+{
+	if (keycode != M)
+		return ;
+	w->state = MENU_OPENED;
+	menu_execution(w);
+}
+
 int		menu_keys(int keycode, t_world *w)
 {
-	if (keycode == Q)
-		main_menu(w);
-	else if (keycode == ESC)
-		quit(w);
-	else if (keycode == ONE)
-		change_camera(w);
-	else if (keycode == TWO)
-		change_ambient_light(w);
-	else if (keycode == THREE)
-		change_light(w);
-	else if (keycode == FOUR)
-		change_sphere(w);
-	else if (keycode == FIVE)
-		change_plane(w);
-	else if (keycode == SIX)
-		change_cylinder(w);
-	else if (keycode == SEVEN)
-		change_cone(w);
+	(void) keycode;
+	(void) w;
+	// if (keycode == Q)
+	// 	main_menu(w);
+	// else if (keycode == ESC)
+	// 	quit(w);
+	// else if (keycode == ONE)
+	// 	change_camera(w);
+	// else if (keycode == TWO)
+	// 	change_ambient_light(w);
+	// else if (keycode == THREE)
+	// 	change_light(w);
+	// else if (keycode == FOUR)
+	// 	change_sphere(w);
+	// else if (keycode == FIVE)
+	// 	change_plane(w);
+	// else if (keycode == SIX)
+	// 	change_cylinder(w);
+	// else if (keycode == SEVEN)
+	// 	change_cone(w);
 	return (keycode);
 }
 
@@ -57,10 +67,4 @@ void	menu_execution(t_world *w)
 	w->menu.i = 0;
 	write_shapes(w);
 	mlx_hook(w->disp.win, KeyPress, KeyPressMask, menu_keys, w);
-}
-
-void	render_menu(t_world *w)
-{
-	w->disp.menu = mlx_new_image(w->disp.mlx, WIDTH/6, HEIGHT);
-	menu_execution(w);
 }

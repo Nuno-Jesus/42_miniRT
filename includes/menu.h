@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:29:06 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 20:05:32 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:45:24 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 # include "miniRT.h"
 
+//! Handlers
+
+void	handle_closed_menu(int keycode, t_world *w);
+
 //! Menu
 void	main_menu(t_world *w);
-
-void	render_menu(t_world *w);
 
 int		menu_keys(int keycode, t_world *w);
 
