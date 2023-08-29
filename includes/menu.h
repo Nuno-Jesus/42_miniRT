@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:29:06 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 17:57:21 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 18:21:25 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,13 @@ void	sphere_info2(t_world *w);
 void	sphere_info3(t_world *w);
 
 //! Plane
-void	plane(t_world *w, int id);
+void	display_plane_commands(t_world *w, int id);
 
-void	handle_plane_choice(t_world *w);
+void	display_plane_choice_menu(t_world *w);
 
-int		move_plane(int keycode, t_world *w);
+t_menu_state	handle_plane_changes(int keycode, t_world *w);
+
+t_menu_state	handle_plane_choice(int keycode, t_world *w);
 
 void	plane_info1(t_world *w);
 

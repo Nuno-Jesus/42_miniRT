@@ -6,13 +6,13 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 15:33:00 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/29 18:20:37 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int		move_plane_color(int keycode, t_world *w, t_plane *pl)
+t_menu_state	handle_plane_color_changes(int keycode, t_world *w, t_plane *pl)
 {
 	if (keycode == ONE)
 		pl->color = WHITE;
@@ -25,20 +25,15 @@ int		move_plane_color(int keycode, t_world *w, t_plane *pl)
 	else if (keycode == FIVE)
 		pl->color = BLUE;
 	else if (keycode == Q)
-	{
-		handle_plane_choice(w);
-		return (keycode);
-	}
-	else if (keycode == ESC)
-		quit(w);
+		return (display_plane_choice_menu(w), CHOOSE_PLANE);
 	else
-		return (keycode);
+		return (CHANGE_PLANE);
 	multithread(w);
-	plane(w, w->menu.id);
-	return (keycode);
+	display_plane_commands(w, w->menu.id);
+	return (CHANGE_PLANE);
 }
 
-int		move_plane(int keycode, t_world *w)
+t_menu_state	handle_plane_changes(int keycode, t_world *w)
 {
 	t_plane	*pl;
 	int			id;
@@ -58,11 +53,8 @@ int		move_plane(int keycode, t_world *w)
 	else if (keycode == DOWN)
 		pl->center.y -= MOVE;
 	else
-	{
-		keycode = move_plane_color(keycode, w, pl);
-		return (keycode);
-	}
+		return (handle_plane_color_changes(keycode, w, pl));
 	multithread(w);
-	plane(w, w->menu.id);
-	return (keycode);
+	display_plane_commands(w, w->menu.id);
+	return (CHANGE_PLANE);
 }
