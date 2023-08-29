@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 11:48:35 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 12:39:07 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		move_sphere(int keycode, t_world *w)
 	int			id;
 
 	id = w->menu.ids[w->menu.id];
-	sp = nc_vector_at(w->shapes, id);
+	sp = &((t_shape*)nc_vector_at(w->shapes, id))->data.sp;
 	if (keycode == W)
 		sp->center.z += MOVE;
 	else if (keycode == S)

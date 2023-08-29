@@ -37,7 +37,6 @@ bool	cone_from_strings(t_cone *co, char **tokens)
 		return (false);
 	co->normal = vec3_normalize(co->normal);
 	co->normal = vec3_add(co->normal, VEC_EPSILON);
-	co->angle = atan(co->radius / co->height);
 	return (true);
 }
 

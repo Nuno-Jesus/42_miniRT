@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:28:51 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 11:48:50 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 12:38:55 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		move_cylinder(int keycode, t_world *w)
 	int			id;
 
 	id = w->menu.ids[w->menu.id];
-	cy = nc_vector_at(w->shapes, id);
+	cy = &((t_shape*)nc_vector_at(w->shapes, id))->data.cy;
 	if (keycode == W)
 		cy->center.z += MOVE;
 	else if (keycode == S)

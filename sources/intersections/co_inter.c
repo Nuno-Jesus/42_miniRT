@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:03:15 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/22 15:28:37 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 12:38:13 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ bool	cone_intersect(t_cone *co, t_ray *ray, t_hit *inter)
 	double 		t;
 	
 	inter->t = -1.0f;
+	co->angle = atan(co->radius / co->height);
 	oc = vec3_sub(ray->origin, co->tip);
 	equation.a = pow(vec3_dot(ray->direction, co->normal), 2) - \
 					pow(cos(co->angle), 2);

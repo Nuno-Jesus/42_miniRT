@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:28:51 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 11:48:54 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 12:33:57 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		move_cone(int keycode, t_world *w)
 	int			id;
 
 	id = w->menu.ids[w->menu.id];
-	co = nc_vector_at(w->shapes, id);
+	co = &((t_shape*)nc_vector_at(w->shapes, id))->data.co;
 	if (keycode == W)
 		co->tip.z += MOVE;
 	else if (keycode == S)

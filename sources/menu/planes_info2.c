@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 11:48:46 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 12:39:13 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		move_plane(int keycode, t_world *w)
 	int			id;
 
 	id = w->menu.ids[w->menu.id];
-	pl = nc_vector_at(w->shapes, id);
+	pl = &((t_shape*)nc_vector_at(w->shapes, id))->data.pl;
 	if (keycode == W)
 		pl->center.z += MOVE;
 	else if (keycode == S)
