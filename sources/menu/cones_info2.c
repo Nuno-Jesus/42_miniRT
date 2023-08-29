@@ -6,24 +6,24 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:28:51 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 18:30:10 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 11:48:54 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int		move_cone_color(int keycode, t_world *w, t_cone *s)
+int		move_cone_color(int keycode, t_world *w, t_cone *co)
 {
 	if (keycode == ONE)
-		s->color = WHITE;
+		co->color = WHITE;
 	else if (keycode == TWO)
-		s->color = YELLOW;
+		co->color = YELLOW;
 	else if (keycode == THREE)
-		s->color = RED;
+		co->color = RED;
 	else if (keycode == FOUR)
-		s->color = GREEN;
+		co->color = GREEN;
 	else if (keycode == FIVE)
-		s->color = BLUE;
+		co->color = BLUE;
 	else if (keycode == Q)
 	{
 		change_cone(w);
@@ -38,19 +38,19 @@ int		move_cone_color(int keycode, t_world *w, t_cone *s)
 	return (keycode);
 }
 
-int		move_cone2(int keycode, t_world *w, t_cone *s)
+int		move_cone2(int keycode, t_world *w, t_cone *co)
 {
 	if (keycode == LEFT)
-		s->radius += MOVE;
+		co->radius += MOVE;
 	else if (keycode == RIGHT)
-		s->radius -= MOVE; 
+		co->radius -= MOVE; 
 	else if (keycode == C)
-		s->height += MOVE;
+		co->height += MOVE;
 	else if (keycode == V)
-		s->height -= MOVE; 
+		co->height -= MOVE; 
 	else if (keycode == Q)
 	{
-		move_cone_color(keycode, w, s);
+		move_cone_color(keycode, w, co);
 		return (keycode);
 	}
 	multithread(w);
@@ -60,26 +60,26 @@ int		move_cone2(int keycode, t_world *w, t_cone *s)
 
 int		move_cone(int keycode, t_world *w)
 {
-	t_cone	*c;
+	t_cone	*co;
 	int			id;
 
 	id = w->menu.ids[w->menu.id];
-	c = nc_vector_at(w->shapes, id);
+	co = nc_vector_at(w->shapes, id);
 	if (keycode == W)
-		c->tip.z += MOVE;
+		co->tip.z += MOVE;
 	else if (keycode == S)
-		c->tip.z -= MOVE;
+		co->tip.z -= MOVE;
 	else if (keycode == A)
-		c->tip.x -= MOVE;
+		co->tip.x -= MOVE;
 	else if (keycode == D)
-		c->tip.x += MOVE;
+		co->tip.x += MOVE;
 	else if (keycode == UP)
-		c->tip.y += MOVE;
+		co->tip.y += MOVE;
 	else if (keycode == DOWN)
-		c->tip.y -= MOVE;
+		co->tip.y -= MOVE;
 	else
 	{
-		keycode = move_cone2(keycode, w,c);
+		keycode = move_cone2(keycode, w, co);
 		return (keycode);
 	}
 	multithread(w);

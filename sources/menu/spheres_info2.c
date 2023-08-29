@@ -6,24 +6,24 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/25 17:23:03 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 11:48:35 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int		move_sphere_color(int keycode, t_world *w, t_sphere *s)
+int		move_sphere_color(int keycode, t_world *w, t_sphere *sp)
 {
 	if (keycode == ONE)
-		s->color = WHITE;
+		sp->color = WHITE;
 	else if (keycode == TWO)
-		s->color = YELLOW;
+		sp->color = YELLOW;
 	else if (keycode == THREE)
-		s->color = RED;
+		sp->color = RED;
 	else if (keycode == FOUR)
-		s->color = GREEN;
+		sp->color = GREEN;
 	else if (keycode == FIVE)
-		s->color = BLUE;
+		sp->color = BLUE;
 	else if (keycode == Q)
 	{
 		change_sphere(w);
@@ -38,15 +38,15 @@ int		move_sphere_color(int keycode, t_world *w, t_sphere *s)
 	return (keycode);
 }
 
-int		move_sphere2(int keycode, t_world *w, t_sphere *s)
+int		move_sphere2(int keycode, t_world *w, t_sphere *sp)
 {
 	if (keycode == LEFT)
-		s->radius += MOVE;
+		sp->radius += MOVE;
 	else if (keycode == RIGHT)
-		s->radius -= MOVE;
+		sp->radius -= MOVE;
 	else
 	{
-		keycode = move_sphere_color(keycode, w, s);
+		keycode = move_sphere_color(keycode, w, sp);
 		return (keycode);
 	}
 	multithread(w);
@@ -56,27 +56,26 @@ int		move_sphere2(int keycode, t_world *w, t_sphere *s)
 
 int		move_sphere(int keycode, t_world *w)
 {
-	t_sphere	*s;
+	t_sphere	*sp;
 	int			id;
 
-	printf("keycode = %d\n", keycode);
 	id = w->menu.ids[w->menu.id];
-	s = nc_vector_at(w->shapes, id);
+	sp = nc_vector_at(w->shapes, id);
 	if (keycode == W)
-		s->center.z += MOVE;
+		sp->center.z += MOVE;
 	else if (keycode == S)
-		s->center.z -= MOVE;
+		sp->center.z -= MOVE;
 	else if (keycode == A)
-		s->center.x -= MOVE;
+		sp->center.x -= MOVE;
 	else if (keycode == D)
-		s->center.x += MOVE;
+		sp->center.x += MOVE;
 	else if (keycode == UP)
-		s->center.y += MOVE;
+		sp->center.y += MOVE;
 	else if (keycode == DOWN)
-		s->center.y -= MOVE;
+		sp->center.y -= MOVE;
 	else
 	{
-		keycode = move_sphere2(keycode, w, s);
+		keycode = move_sphere2(keycode, w, sp);
 		return (keycode);
 	}
 	multithread(w);

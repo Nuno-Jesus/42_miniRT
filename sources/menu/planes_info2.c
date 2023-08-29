@@ -6,24 +6,24 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 20:03:26 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 11:48:46 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int		move_plane_color(int keycode, t_world *w, t_plane *s)
+int		move_plane_color(int keycode, t_world *w, t_plane *pl)
 {
 	if (keycode == ONE)
-		s->color = WHITE;
+		pl->color = WHITE;
 	else if (keycode == TWO)
-		s->color = YELLOW;
+		pl->color = YELLOW;
 	else if (keycode == THREE)
-		s->color = RED;
+		pl->color = RED;
 	else if (keycode == FOUR)
-		s->color = GREEN;
+		pl->color = GREEN;
 	else if (keycode == FIVE)
-		s->color = BLUE;
+		pl->color = BLUE;
 	else if (keycode == Q)
 	{
 		change_plane(w);
@@ -40,26 +40,26 @@ int		move_plane_color(int keycode, t_world *w, t_plane *s)
 
 int		move_plane(int keycode, t_world *w)
 {
-	t_plane	*s;
+	t_plane	*pl;
 	int			id;
 
 	id = w->menu.ids[w->menu.id];
-	s = nc_vector_at(w->shapes, id);
+	pl = nc_vector_at(w->shapes, id);
 	if (keycode == W)
-		s->center.z += MOVE;
+		pl->center.z += MOVE;
 	else if (keycode == S)
-		s->center.z -= MOVE;
+		pl->center.z -= MOVE;
 	else if (keycode == A)
-		s->center.x -= MOVE;
+		pl->center.x -= MOVE;
 	else if (keycode == D)
-		s->center.x += MOVE;
+		pl->center.x += MOVE;
 	else if (keycode == UP)
-		s->center.y += MOVE;
+		pl->center.y += MOVE;
 	else if (keycode == DOWN)
-		s->center.y -= MOVE;
+		pl->center.y -= MOVE;
 	else
 	{
-		keycode = move_plane_color(keycode, w, s);
+		keycode = move_plane_color(keycode, w, pl);
 		return (keycode);
 	}
 	multithread(w);

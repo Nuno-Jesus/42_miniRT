@@ -6,24 +6,24 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:28:51 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 18:46:55 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/29 11:48:50 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int		move_cylinder_color(int keycode, t_world *w, t_cylinder *s)
+int		move_cylinder_color(int keycode, t_world *w, t_cylinder *cy)
 {
 	if (keycode == ONE)
-		s->color = WHITE;
+		cy->color = WHITE;
 	else if (keycode == TWO)
-		s->color = YELLOW;
+		cy->color = YELLOW;
 	else if (keycode == THREE)
-		s->color = RED;
+		cy->color = RED;
 	else if (keycode == FOUR)
-		s->color = GREEN;
+		cy->color = GREEN;
 	else if (keycode == FIVE)
-		s->color = BLUE;
+		cy->color = BLUE;
 	else if (keycode == Q)
 	{
 		change_cylinder(w);
@@ -38,19 +38,19 @@ int		move_cylinder_color(int keycode, t_world *w, t_cylinder *s)
 	return (keycode);
 }
 
-int		move_cylinder2(int keycode, t_world *w, t_cylinder *s)
+int		move_cylinder2(int keycode, t_world *w, t_cylinder *cy)
 {
 	if (keycode == LEFT)
-		s->radius += MOVE;
+		cy->radius += MOVE;
 	else if (keycode == RIGHT)
-		s->radius -= MOVE; 
+		cy->radius -= MOVE; 
 	else if (keycode == C)
-		s->height += MOVE;
+		cy->height += MOVE;
 	else if (keycode == V)
-		s->height -= MOVE; 
+		cy->height -= MOVE; 
 	else if (keycode == Q)
 	{
-		move_cylinder_color(keycode, w, s);
+		move_cylinder_color(keycode, w, cy);
 		return (keycode);
 	}
 	multithread(w);
@@ -60,26 +60,26 @@ int		move_cylinder2(int keycode, t_world *w, t_cylinder *s)
 
 int		move_cylinder(int keycode, t_world *w)
 {
-	t_cylinder	*c;
+	t_cylinder	*cy;
 	int			id;
 
 	id = w->menu.ids[w->menu.id];
-	c = nc_vector_at(w->shapes, id);
+	cy = nc_vector_at(w->shapes, id);
 	if (keycode == W)
-		c->center.z += MOVE;
+		cy->center.z += MOVE;
 	else if (keycode == S)
-		c->center.z -= MOVE;
+		cy->center.z -= MOVE;
 	else if (keycode == A)
-		c->center.x -= MOVE;
+		cy->center.x -= MOVE;
 	else if (keycode == D)
-		c->center.x += MOVE;
+		cy->center.x += MOVE;
 	else if (keycode == UP)
-		c->center.y += MOVE;
+		cy->center.y += MOVE;
 	else if (keycode == DOWN)
-		c->center.y -= MOVE;
+		cy->center.y -= MOVE;
 	else
 	{
-		keycode = move_cylinder2(keycode, w,c);
+		keycode = move_cylinder2(keycode, w, cy);
 		return (keycode);
 	}
 	multithread(w);
