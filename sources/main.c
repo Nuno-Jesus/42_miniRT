@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/29 19:47:29 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/30 09:41:40 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	quit(t_world *world)
 
 int	on_keypress(int keycode, t_world *w)
 {
-	t_menu_state (*handlers[])() = 
+	t_menu_state (*handlers[])(int, t_world*) = 
 	{
 		handle_closed_menu,
 		handle_opened_menu,
