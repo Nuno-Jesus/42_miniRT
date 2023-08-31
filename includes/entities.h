@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 18:25:25 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:35:48 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ t_vec3		cylinder_normal(t_hit *inter, t_ray *ray);
  * @brief this function will create a cone and store it's information
  * from a string array. 
  * 
- * @param co The t_cone struct to fill 
+ * @param co The t_cone struct to work with to fill 
  * @param tokens The string array with cone information
  * @return true If the cone was created correctly
  * @return false Otherwise

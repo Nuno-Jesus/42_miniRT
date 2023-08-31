@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   planes.c                                           :+:      :+:    :+:   */
+/*   plane_display.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 18:01:55 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:31:28 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	display_plane_choice_menu(t_world *w)
 	display_menu_title(w);
 	display(w, (t_xy){10, 53}, 0xFFFFFF, "PLANE");
 	display(w, (t_xy){9, 64}, 0xFFA160, "-----");
-	display_plane(w, w->shapes);
+	display_planes(w, w->shapes);
 	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 15)}, \
 		0xFFFF00, "FOR MORE INFO");
 	display(w, (t_xy){5, 90 + (w->menu.i * 20 + 35)}, \
@@ -40,7 +40,7 @@ void	display_plane_choice_menu(t_world *w)
 		0xFFFFFF, "- Previous Menu");
 }
 
-void	display_plane(t_world *w, t_vector *l)
+void	display_planes(t_world *w, t_vector *l)
 {
 	uint32_t	i;
 	t_shape		*shape;

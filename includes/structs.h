@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 17:40:50 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:35:41 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,9 +225,9 @@ typedef struct s_cone
  * This means that if the cylinder is used, reading from the plane or 
  * sphere will give you random values.
  * 
- * @param sp The t_sphere struct
- * @param pl The t_plane struct
- * @param cy The t_cylinder struct
+ * @param sp The t_sphere struct to work with
+ * @param pl The t_plane struct to work with
+ * @param cy The t_cylinder struct to work with
  */
 typedef union u_data
 {

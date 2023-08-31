@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cones.c                                            :+:      :+:    :+:   */
+/*   cone_display.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 17:53:45 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:33:53 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	display_cone_choice_menu(t_world *w)
 	display_menu_title(w);
 	display(w, (t_xy){10, 53}, 0xFFFFFF, "CONE");
 	display(w, (t_xy){9, 64}, 0xFFA160, "----");
-	display_cone(w, w->shapes);
+	display_cones(w, w->shapes);
 	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 15)}, \
 		0xFFFF00, "FOR MORE INFO");
 	display(w, (t_xy){5, 90 + (w->menu.i * 20 + 35)}, \
@@ -29,7 +29,7 @@ void	display_cone_choice_menu(t_world *w)
 		0xFFFFFF, "- Previous Menu");
 }
 
-void	display_cone(t_world *w, t_vector *l)
+void	display_cones(t_world *w, t_vector *l)
 {
 	uint32_t	i;
 	t_shape		*shape;
