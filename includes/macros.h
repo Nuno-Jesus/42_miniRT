@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 15:00:13 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 16:39:50 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@
 # define RED		(t_color){0, 255, 0, 0}
 # define GREEN		(t_color){0, 0, 255, 0}
 # define YELLOW		(t_color){0, 255, 255, 0}
+# define PINK		(t_color){0, 255, 0, 255}
+# define CYAN		(t_color){0, 0, 255, 255}
 
 //! Fixed t_vec3 structs
 

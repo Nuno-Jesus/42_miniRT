@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/29 19:32:05 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 15:48:26 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ typedef enum s_menu_state
 	CHANGE_CONE
 }	t_menu_state;
 
+typedef struct s_xy
+{
+	int x;
+	int y;
+}	t_xy;
 
 /**
  * @brief Represents a tridimensional vector
@@ -322,18 +327,19 @@ typedef struct s_runner
  */
 typedef struct s_world
 {
-	t_camera	camera;
-	t_light		ambient;
-	t_vector	*lights;
-	t_vector	*shapes;
-	t_menu		menu;
+	t_camera		camera;
+	t_light			ambient;
+	t_vector		*lights;
+	t_vector		*shapes;
+	t_menu			menu;
 	t_menu_state	state;
-	t_graphics	disp;
-	t_vec3		up;
-	t_vec3		right;
-	char		**map;
-	double		hview;
-	double		wview;
+	t_xy			xy;
+	t_graphics		disp;
+	t_vec3			up;
+	t_vec3			right;
+	char			**map;
+	double			hview;
+	double			wview;
 }	t_world;
 
 #endif

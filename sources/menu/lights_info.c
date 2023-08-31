@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lights_info.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:58:12 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 18:11:54 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 16:42:57 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,56 +14,42 @@
 
 void	light_info1(t_world *w)
 {
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 90, 0xFFFF00, "W");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 110, 0xFFFF00, "S");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 130, 0xFFFF00, "A");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 150, 0xFFFF00, "D");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 180, 0xFFFF00, "UP");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 200, 0xFFFF00, "DOWN");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 220, 0xFFFF00, "LEFT");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 240, 0xFFFF00, "RIGHT");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 270, 0xFFFF00, "1");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 290, 0xFFFF00, "2");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 310, 0xFFFF00, "3");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 330, 0xFFFF00, "4");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 350, 0xFFFF00, "5");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 380, 0xFF0000, "Q");
+	display(w, (t_xy){10, 90}, 0xFFFF00, "W");
+	display(w, (t_xy){10, 110}, 0xFFFF00, "S");
+	display(w, (t_xy){10, 130}, 0xFFFF00, "A");
+	display(w, (t_xy){10, 150}, 0xFFFF00, "D");
+	display(w, (t_xy){10, 180}, 0xFFFF00, "UP");
+	display(w, (t_xy){10, 200}, 0xFFFF00, "DOWN");
+	display(w, (t_xy){10, 220}, 0xFFFF00, "LEFT");
+	display(w, (t_xy){10, 240}, 0xFFFF00, "RIGHT");
+	display(w, (t_xy){10, 270}, 0xFFFF00, "1");
+	display(w, (t_xy){10, 290}, 0xFFFF00, "2");
+	display(w, (t_xy){10, 310}, 0xFFFF00, "3");
+	display(w, (t_xy){10, 330}, 0xFFFF00, "4");
+	display(w, (t_xy){10, 350}, 0xFFFF00, "5");
+	display(w, (t_xy){10, 370}, 0xFFFF00, "6");
+	display(w, (t_xy){10, 390}, 0xFFFF00, "7");
+	display(w, (t_xy){10, 420}, 0xFF0000, "Q");
 }
 
 void	light_info2(t_world *w)
 {
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 90, \
-		0xFFFFFF, " - Move Foward");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 110, \
-		0xFFFFFF, " - Move Backwards");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 130, \
-		0xFFFFFF, " - Move Left");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 150, \
-		0xFFFFFF, " - Move Right");
-	mlx_string_put(w->disp.mlx, w->disp.win, 25, 180, \
-		0xFFFFFF, " - Go Up");
-	mlx_string_put(w->disp.mlx, w->disp.win, 45, 200, \
-		0xFFFFFF, " - Go Down");
-	mlx_string_put(w->disp.mlx, w->disp.win, 45, 220, \
-		0xFFFFFF, " - Increase ratio");
-	mlx_string_put(w->disp.mlx, w->disp.win, 50, 240, \
-		0xFFFFFF, " - Decrease ratio");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 270, \
-		0xFFFFFF, " - Color white");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 290, \
-		0xFFFFFF, " - Color Yellow");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 310, \
-		0xFFFFFF, " - Color Red");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 330, \
-		0xFFFFFF, " - Color Green");
-}
-
-void	light_info3(t_world *w)
-{
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 350, \
-		0xFFFFFF, " - Color Blue");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 380, \
-		0xFFFFFF, " - Previous menu");		
+	display(w, (t_xy){20, 90}, 0xFFFFFF, " - Move Foward");
+	display(w, (t_xy){20, 110}, 0xFFFFFF, " - Move Backwards");
+	display(w, (t_xy){20, 130}, 0xFFFFFF, " - Move Left");
+	display(w, (t_xy){20, 150}, 0xFFFFFF, " - Move Right");
+	display(w, (t_xy){25, 180}, 0xFFFFFF, " - Go Up");
+	display(w, (t_xy){45, 200}, 0xFFFFFF, " - Go Down");
+	display(w, (t_xy){45, 220}, 0xFFFFFF, " - Increase ratio");
+	display(w, (t_xy){50, 240}, 0xFFFFFF, " - Decrease ratio");
+	display(w, (t_xy){20, 270}, 0xFFFFFF, " - Color white");
+	display(w, (t_xy){20, 290}, 0xFFFFFF, " - Color Yellow");
+	display(w, (t_xy){20, 310}, 0xFFFFFF, " - Color Red");
+	display(w, (t_xy){20, 330}, 0xFFFFFF, " - Color Green");
+	display(w, (t_xy){20, 350}, 0xFFFFFF, " - Color Blue");
+	display(w, (t_xy){20, 370}, 0xFFFFFF, " - Color Pink");
+	display(w, (t_xy){20, 390}, 0xFFFFFF, " - Color Cyan");
+	display(w, (t_xy){20, 420}, 0xFFFFFF, " - Previous menu");	
 }
 
 t_menu_state	handle_light_changes_2(int keycode, t_world *w, t_light *l)
@@ -78,6 +64,10 @@ t_menu_state	handle_light_changes_2(int keycode, t_world *w, t_light *l)
 		l->color = GREEN;
 	else if (keycode == FIVE)
 		l->color = BLUE;
+	else if (keycode == SIX)
+		l->color = PINK;
+	else if (keycode == SEVEN)
+		l->color = CYAN;
 	else if (keycode == Q)
 		return (display_light_choice_menu(w), CHOOSE_LIGHT);
 	else
@@ -91,7 +81,7 @@ t_menu_state	handle_light_changes(int keycode, t_world *w)
 {
 	t_light	*l;
 
-	l = nc_vector_at(w->lights, w->menu.id);
+	l = (t_light*)nc_vector_at(w->lights, w->menu.id);
 	if (keycode == W)
 		l->center.z += MOVE;
 	else if (keycode == S)
@@ -106,7 +96,7 @@ t_menu_state	handle_light_changes(int keycode, t_world *w)
 		l->center.y -= MOVE;
 	else if (keycode == LEFT)
 		l->ratio += 0.1;
-	if (keycode == RIGHT)
+	else if (keycode == RIGHT)
 		l->ratio -= 0.1;
 	else
 		return (handle_light_changes_2(keycode, w, l));

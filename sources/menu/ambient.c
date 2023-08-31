@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ambient.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 16:47:43 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 16:11:14 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,16 @@
 
 void	ambient_info1(t_world *w)
 {
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 90, 0xFFFF00, "LEFT");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 110, 0xFFFF00, "RIGHT");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 140, 0xFF0000, "Q");
+	display(w, (t_xy){10, 90}, 0xFFFF00, "LEFT");
+	display(w, (t_xy){10, 110}, 0xFFFF00, "RIGHT");
+	display(w, (t_xy){10, 140}, 0xFF0000, "Q");
 }
 
 void	ambient_info2(t_world *w)
 {
-	mlx_string_put(w->disp.mlx, w->disp.win, 45, 90, \
-		0xFFFFFF, " - Increase ratio");
-	mlx_string_put(w->disp.mlx, w->disp.win, 50, 110, \
-		0xFFFFFF, " - Decrease ratio");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 140, \
-		0xFFFFFF, " - Previous menu");
+	display(w, (t_xy){45, 90}, 0xFFFFFF, " - Increase ratio");
+	display(w, (t_xy){50, 110}, 0xFFFFFF, " - Decrease ratio");
+	display(w, (t_xy){20, 140}, 0xFFFFFF, " - Previous menu");
 }
 
 t_menu_state	handle_amb_light_changes(int keycode, t_world *w)
@@ -48,10 +45,8 @@ void	display_amb_light_menu(t_world *w)
 {
 	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
 	display_menu_title(w);
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 53, \
-		0xFFFFFF, "AMBIENT LIGHT");
-	mlx_string_put(w->disp.mlx, w->disp.win, 9, 64, \
-		0xFFA160, "-------------");
+	display(w, (t_xy){10, 53}, 0xFFFFFF, "AMBIENT LIGHT");
+	display(w, (t_xy){9, 64}, 0xFFA160, "-------------");
 	ambient_info1(w);
 	ambient_info2(w);
 }

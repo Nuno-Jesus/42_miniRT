@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:50:10 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 16:47:54 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 16:14:45 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,21 @@ void	init_flags(t_world *w)
 
 void	display_menu_entites(t_world *w)
 {
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 53, \
-		0xFFFFFF, "LIST OF OBJECTS");
-	mlx_string_put(w->disp.mlx, w->disp.win, 6, 64, \
-		0xFFA160, "----------------");
-	mlx_string_put(w->disp.mlx, w->disp.win, 5, 85, 0xFFFF00, "1");
-	mlx_string_put(w->disp.mlx, w->disp.win, 5, 105, 0xFFFF00, "2");
-	mlx_string_put(w->disp.mlx, w->disp.win, 5, 125, 0xFFFF00, "3");
-	mlx_string_put(w->disp.mlx, w->disp.win, 25, 85, \
-		0xFFFFFF, "- CAMERA");
-	mlx_string_put(w->disp.mlx, w->disp.win, 25, 105, \
-		0xFFFFFF, "- AMBIENT LIGHT");
-	mlx_string_put(w->disp.mlx, w->disp.win, 25, 125, \
-		0xFFFFFF, "- LIGHTS");
+	display(w, (t_xy){10, 53}, 0xFFFFFF, "LIST OF OBJECTS");
+	display(w, (t_xy){6, 64}, 0xFFA160, "----------------");
+	display(w, (t_xy){5, 85}, 0xFFFF00, "1");
+	display(w, (t_xy){5, 105}, 0xFFFF00, "2");
+	display(w, (t_xy){5, 125}, 0xFFFF00, "3");
+	display(w, (t_xy){25, 85}, 0xFFFFFF, "- CAMERA");
+	display(w, (t_xy){25, 105}, 0xFFFFFF, "- AMBIENT LIGHT");
+	display(w, (t_xy){25, 125}, 0xFFFFFF, "- LIGHTS");
 	search_shapes(w);
-	mlx_string_put(w->disp.mlx, w->disp.win, 5, \
-		145 + (++w->menu.i * 20 + 15), 0xFFFF00, "FOR MORE INFO");
-	mlx_string_put(w->disp.mlx, w->disp.win, 5, \
-		145 + (w->menu.i * 20 + 35), 0xFFFF00, "PRESS A NUMBER");
-	mlx_string_put(w->disp.mlx, w->disp.win, 5, \
-		145 + (++w->menu.i * 20 + 50), 0xFF0000, "Q");
-	mlx_string_put(w->disp.mlx, w->disp.win, 25, \
-			145 + (w->menu.i * 20 + 50), 0xFFFFFF, "- Quit Menu");
+	display(w, (t_xy){5, 145 + (++w->menu.i * 20 + 15)}, \
+		0xFFFF00, "FOR MORE INFO");
+	display(w, (t_xy){5, 145 + (w->menu.i * 20 + 35)}, \
+		0xFFFF00, "PRESS A NUMBER");
+	display(w, (t_xy){5, 145 + (++w->menu.i * 20 + 50)}, \
+		0xFF0000, "Q");
+	display(w, (t_xy){25, 145 + (w->menu.i * 20 + 50)}, \
+		0xFFFFFF, "- Quit Menu");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   planes_info2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 18:22:54 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 16:41:46 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ t_menu_state	handle_plane_color_changes(int keycode, t_world *w, t_plane *pl)
 		pl->color = GREEN;
 	else if (keycode == FIVE)
 		pl->color = BLUE;
+	else if (keycode == SIX)
+		pl->color = PINK;
+	else if (keycode == SEVEN)
+		pl->color = CYAN;
 	else if (keycode == Q)
 		return (display_plane_choice_menu(w), CHOOSE_PLANE);
 	else

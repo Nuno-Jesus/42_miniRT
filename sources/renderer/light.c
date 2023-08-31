@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/21 19:50:16 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 15:42:19 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+int		color_to_int(t_color color)
+{
+	return ((int)color.r << 16 | (int)color.g << 8 | (int)color.b);
+}
 
 void	illuminate(t_world *world, t_hit *closest)
 {

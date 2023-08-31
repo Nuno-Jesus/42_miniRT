@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinders_info2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:28:51 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 18:47:22 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 16:41:12 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ t_menu_state	handle_cylinder_color_changes(int keycode, t_world *w, t_cylinder *
 		cy->color = GREEN;
 	else if (keycode == FIVE)
 		cy->color = BLUE;
+	else if (keycode == SIX)
+		cy->color = PINK;
+	else if (keycode == SEVEN)
+		cy->color = CYAN;
 	else if (keycode == Q)
 		return (display_cylinder_choice_menu(w), CHOOSE_CYLINDER);
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:34:07 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 19:40:01 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 16:05:57 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ t_menu_state	handle_opened_menu(int keycode, t_world *w)
 
 void	display_menu_title(t_world *w)
 {
-	mlx_string_put(w->disp.mlx, w->disp.win, 6, 0, 0xFFA160, "-----");
-	mlx_string_put(w->disp.mlx, w->disp.win, 12, 13, 0xFFFFFF, "MENU");
-	mlx_string_put(w->disp.mlx, w->disp.win, 6, 26, 0xFFA160, "-----");
-	mlx_string_put(w->disp.mlx, w->disp.win, 0, 11, 0xFFA160, "|");
-	mlx_string_put(w->disp.mlx, w->disp.win, 54, 11, 0xFFA160, "|");
+	display(w, (t_xy){6, 0}, 0xFFA160, "-----");
+	display(w, (t_xy){12, 13}, 0xFFFFFF, "MENU");
+	display(w, (t_xy){6, 26}, 0xFFA160, "-----");
+	display(w, (t_xy){0, 11}, 0xFFA160, "|");
+	display(w, (t_xy){54, 11}, 0xFFA160, "|");
 }
 
 void	display_main_menu(t_world *w)

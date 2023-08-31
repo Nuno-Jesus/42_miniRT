@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:52:06 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/23 19:53:57 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:08:38 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	check_for_spheres(t_world *w)
 		if (shape->type == SPHERE &&w->menu.sp_flag == 0)
 		{
 			w->menu.sp_flag = 1;
-			mlx_string_put(w->disp.mlx, w->disp.win, 5, \
-			125 + (++w->menu.i * 20), 0xFFFF00, nc_itoa(4));
-			mlx_string_put(w->disp.mlx, w->disp.win, 25, \
-				125 + (w->menu.i * 20), 0xFFFFFF, "- SPHERE");
+			display(w, (t_xy){5, 125 + (++w->menu.i * 20)}, \
+				0xFFFF00, nc_itoa(4));
+			display(w, (t_xy){25, 125 + (w->menu.i * 20)},\
+				0xFFFFFF, "- SPHERE");
 		}
 	}
 }
@@ -48,10 +48,10 @@ void	check_for_planes(t_world *w)
 		if (shape->type == PLANE &&w->menu.sp_flag == 0)
 		{
 			w->menu.sp_flag = 1;
-			mlx_string_put(w->disp.mlx, w->disp.win, 5, \
-			125 + (++w->menu.i * 20), 0xFFFF00, nc_itoa(5));
-			mlx_string_put(w->disp.mlx, w->disp.win, 25, \
-				125 + (w->menu.i * 20), 0xFFFFFF, "- PLANE");
+			display(w, (t_xy){5, 125 + (++w->menu.i * 20)}, \
+				0xFFFF00, nc_itoa(5));
+			display(w, (t_xy){25, 125 + (w->menu.i * 20)}, \
+				0xFFFFFF, "- PLANE");
 		}
 	}
 }
@@ -70,10 +70,10 @@ void	check_for_cylinders(t_world *w)
 		if (shape->type == CYLINDER &&w->menu.sp_flag == 0)
 		{
 			w->menu.sp_flag = 1;
-			mlx_string_put(w->disp.mlx, w->disp.win, 5, \
-			125 + (++w->menu.i * 20), 0xFFFF00, nc_itoa(6));
-			mlx_string_put(w->disp.mlx, w->disp.win, 25, \
-				125 + (w->menu.i * 20), 0xFFFFFF, "- CYLINDER");
+			display(w, (t_xy){5, 125 + (++w->menu.i * 20)}, \
+				0xFFFF00, nc_itoa(6));
+			display(w, (t_xy){25, 125 + (w->menu.i * 20)}, \
+				0xFFFFFF, "- CYLINDER");
 		}
 	}
 }
@@ -92,10 +92,10 @@ void	check_for_cones(t_world *w)
 		if (shape->type == CONE &&w->menu.sp_flag == 0)
 		{
 			w->menu.sp_flag = 1;
-			mlx_string_put(w->disp.mlx, w->disp.win, 5, \
-			125 + (++w->menu.i * 20), 0xFFFF00, nc_itoa(7));
-			mlx_string_put(w->disp.mlx, w->disp.win, 25, \
-				125 + (w->menu.i * 20), 0xFFFFFF, "- CONE");
+			display(w, (t_xy){5, 125 + (++w->menu.i * 20)}, \
+				0xFFFF00, nc_itoa(7));
+			display(w, (t_xy){25, 125 + (w->menu.i * 20)}, \
+				0xFFFFFF, "- CONE");
 		}
 	}
 }

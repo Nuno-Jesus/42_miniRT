@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spheres_info2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 18:11:07 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 16:42:10 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ t_menu_state	handle_sphere_color_change(int keycode, t_world *w, t_sphere *sp)
 		sp->color = GREEN;
 	else if (keycode == FIVE)
 		sp->color = BLUE;
+	else if (keycode == SIX)
+		sp->color = PINK;
+	else if (keycode == SEVEN)
+		sp->color = CYAN;
 	else if (keycode == Q)
 		return (display_sphere_choice_menu(w), CHOOSE_SPHERE);
 	else

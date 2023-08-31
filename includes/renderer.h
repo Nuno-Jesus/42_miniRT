@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/18 19:13:33 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/31 15:42:47 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ bool	world_hit(t_vector *shapes, t_ray *ray, t_hit *closest);
  * @param y The vertical displacement
  */
 void	put_pixel(t_world *w, t_color c, int x, int y);
+
+int		color_to_int(t_color color);
 
 /**
  * @brief Responsible to calculate the illumination in a given shape. 

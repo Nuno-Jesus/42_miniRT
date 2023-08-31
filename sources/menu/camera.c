@@ -3,48 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:40:42 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 15:00:29 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 16:17:04 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	camera_info1(t_world *w)
+void	camera_info(t_world *w)
 {
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 90, 0xFFFF00, "W");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 110, 0xFFFF00, "S");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 130, 0xFFFF00, "A");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 150, 0xFFFF00, "D");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 180, 0xFFFF00, "UP");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 200, 0xFFFF00, "DOWN");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 220, 0xFFFF00, "LEFT");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 240, 0xFFFF00, "RIGHT");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 270, 0xFF0000, "Q");
-}
-
-void	camera_info2(t_world *w)
-{
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 90, \
-		0xFFFFFF, " - Move Foward");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 110, \
-		0xFFFFFF, " - Move Backwards");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 130, \
-		0xFFFFFF, " - Move Left");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 150, \
-		0xFFFFFF, " - Move Right");
-	mlx_string_put(w->disp.mlx, w->disp.win, 25, 180, \
-		0xFFFFFF, " - Go Up");
-	mlx_string_put(w->disp.mlx, w->disp.win, 45, 200, \
-		0xFFFFFF, " - Go Down");
-	mlx_string_put(w->disp.mlx, w->disp.win, 45, 220, \
-		0xFFFFFF, " - Rotate Left");
-	mlx_string_put(w->disp.mlx, w->disp.win, 55, 240, \
-		0xFFFFFF, " - Rotate Right");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 270, \
-		0xFFFFFF, " - Previous menu");
+	display(w, (t_xy){10, 90,}, 0xFFFF00, "W");
+	display(w, (t_xy){10, 110}, 0xFFFF00, "S");
+	display(w, (t_xy){10, 130}, 0xFFFF00, "A");
+	display(w, (t_xy){10, 150}, 0xFFFF00, "D");
+	display(w, (t_xy){10, 180}, 0xFFFF00, "UP");
+	display(w, (t_xy){10, 200}, 0xFFFF00, "DOWN");
+	display(w, (t_xy){10, 220}, 0xFFFF00, "LEFT");
+	display(w, (t_xy){10, 240}, 0xFFFF00, "RIGHT");
+	display(w, (t_xy){10, 270}, 0xFF0000, "Q");
+	display(w, (t_xy){30, 90}, 0xFFFFFF, " - Move Foward");
+	display(w, (t_xy){20, 110}, 0xFFFFFF, " - Move Backwards");
+	display(w, (t_xy){20, 130}, 0xFFFFFF, " - Move Left");
+	display(w, (t_xy){20, 150}, 0xFFFFFF, " - Move Right");
+	display(w, (t_xy){25, 180}, 0xFFFFFF, " - Go Up");
+	display(w, (t_xy){45, 200}, 0xFFFFFF, " - Go Down");
+	display(w, (t_xy){45, 220}, 0xFFFFFF, " - Rotate Left");
+	display(w, (t_xy){55, 240}, 0xFFFFFF, " - Rotate Right");
+	display(w, (t_xy){20, 270}, 0xFFFFFF, " - Previous menu");
 }
 
 t_menu_state	handle_camera_changes(int keycode, t_world *w)
@@ -78,10 +65,7 @@ void	display_camera_menu(t_world *w)
 {
 	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
 	display_menu_title(w);
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 53, \
-		0xFFFFFF, "CAMERA");
-	mlx_string_put(w->disp.mlx, w->disp.win, 9, 64, \
-		0xFFA160, "------");
-	camera_info1(w);
-	camera_info2(w);
+	display(w,(t_xy){10, 53}, 0xFFFFFF, "CAMERA");
+	display(w,(t_xy){9, 64}, 0xFFA160, "------");
+	camera_info(w);
 }
