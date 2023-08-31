@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:01:30 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/16 12:20:10 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:22:06 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,13 @@ void	sphere_print(t_sphere *s);
  */
 void	cylinder_print(t_cylinder *c);
 
-void	cone_print(t_cone *to);
+/**
+ * @brief Prints in the standard output all the values related to a scene's
+ * cone.
+ * 
+ * @param co The t_cone struct to debug
+ */
+void	cone_print(t_cone *co);
 
 /**
  * @brief Redirects the program flow to one of the other print functions,

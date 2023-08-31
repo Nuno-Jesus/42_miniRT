@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entities.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 18:43:02 by marvin           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:25:25 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,19 +186,40 @@ t_vec3		cylinder_normal(t_hit *inter, t_ray *ray);
 
 //! Cone
 
+/**
+ * @brief this function will create a cone and store it's information
+ * from a string array. 
+ * 
+ * @param co The t_cone struct to fill 
+ * @param tokens The string array with cone information
+ * @return true If the cone was created correctly
+ * @return false Otherwise
+ */
 bool	cone_from_strings(t_cone *co, char **tokens);
 
+/**
+ * @brief asserts if a ray has intersercted a cone. If it has, it stores the
+ * intersection information in the t_hit struct.
+ * 
+ * @param co The cone to check
+ * @param ray The casted ray
+ * @param inter The t_hit struct to store the intersection information
+ * @return true If it hit
+ * @return false Otherwise
+ */
 bool	cone_intersect(t_cone *co, t_ray *ray, t_hit *inter);
 
 //! Shapes
 /**
- * !@brief this function will create the corresponding shape given in the
- * !type parameter and store it's information on the shape struct
+ * @brief this function will create the corresponding shape given in the
+ * type parameter and store it's information on the shape struct
  * 
- * !@param data struct with shape information
- * !@param type type of the shape
- * !@param id id of the shape (each shape has a unique id)
- * !@return t_shape struct with shape information
+ * @param data struct with shape information
+ * @param type type of the shape
+ * @param id id of the shape (each shape has a unique id)
+ * @param tokens string array with common shape information, like 
+ * shininess and specular ratio
+ * @return t_shape struct with shape information
  */
 t_shape		*shape_new(void	*data, t_shape_type type, int id, char **tokens);
 
