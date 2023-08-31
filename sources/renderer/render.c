@@ -6,13 +6,13 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 14:53:20 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:51:10 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	get_uv(t_data *d, t_vec3 point, double *u, double *v)
+void	get_uv(t_mesh *d, t_vec3 point, double *u, double *v)
 {
 	//vec3_print(d->pl.normal);
 	if (d->pl.normal.x != 0 + EPSILON)

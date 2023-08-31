@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 18:35:41 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:51:10 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ typedef enum s_shape_type
 	CONE,
 }	t_shape_type;
 
-//!
+/**
+ * @brief Describes how the menu is behaving and what is displaying
+ */
 typedef enum s_menu_state
 {
 	MENU_CLOSED,
@@ -229,13 +231,13 @@ typedef struct s_cone
  * @param pl The t_plane struct to work with
  * @param cy The t_cylinder struct to work with
  */
-typedef union u_data
+typedef union u_mesh
 {
 	t_sphere	sp;
 	t_plane		pl;
 	t_cylinder	cy;
 	t_cone		co;
-}	t_data;
+}	t_mesh;
 
 /**!
  *! @brief Describes a shape
@@ -247,9 +249,8 @@ typedef union u_data
 typedef struct s_shape
 {
 	int				id;
-	t_data			data;
+	t_mesh			data;
 	t_shape_type	type;
-	// t_color			color;
 	bool			is_textured;
 	double			ks;
 	double			shininess;
@@ -317,7 +318,14 @@ typedef struct s_menu
 	int		ids[9];
 }	t_menu;
 
-//!
+/**
+ * @brief Describes a working thread
+ * 
+ * @param thread The own pthread
+ * @param min_y The line to start rendering from
+ * @param max_y The line to end rendering on
+ * @param world The t_world struct
+ */
 typedef struct s_runner
 {
 	pthread_t		thread;
