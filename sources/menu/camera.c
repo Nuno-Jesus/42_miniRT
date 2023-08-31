@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:40:42 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 16:47:43 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 14:47:42 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	camera_info1(t_world *w)
 	mlx_string_put(w->disp.mlx, w->disp.win, 10, 150, 0xFFFF00, "D");
 	mlx_string_put(w->disp.mlx, w->disp.win, 10, 180, 0xFFFF00, "UP");
 	mlx_string_put(w->disp.mlx, w->disp.win, 10, 200, 0xFFFF00, "DOWN");
-	mlx_string_put(w->disp.mlx, w->disp.win, 10, 230, 0xFF0000, "Q");
+	mlx_string_put(w->disp.mlx, w->disp.win, 10, 220, 0xFFFF00, "LEFT");
+	mlx_string_put(w->disp.mlx, w->disp.win, 10, 240, 0xFFFF00, "RIGHT");
+	mlx_string_put(w->disp.mlx, w->disp.win, 10, 270, 0xFF0000, "Q");
 }
 
 void	camera_info2(t_world *w)
@@ -37,7 +39,11 @@ void	camera_info2(t_world *w)
 		0xFFFFFF, " - Go Up");
 	mlx_string_put(w->disp.mlx, w->disp.win, 45, 200, \
 		0xFFFFFF, " - Go Down");
-	mlx_string_put(w->disp.mlx, w->disp.win, 20, 230, \
+	mlx_string_put(w->disp.mlx, w->disp.win, 45, 220, \
+		0xFFFFFF, " - Rotate Left");
+	mlx_string_put(w->disp.mlx, w->disp.win, 55, 240, \
+		0xFFFFFF, " - Rotate Right");
+	mlx_string_put(w->disp.mlx, w->disp.win, 20, 270, \
 		0xFFFFFF, " - Previous menu");
 }
 
@@ -55,6 +61,10 @@ t_menu_state	handle_camera_changes(int keycode, t_world *w)
 		w->camera.center.y += MOVE;
 	else if (keycode == DOWN)
 		w->camera.center.y -= MOVE;
+	//else if (keycode == LEFT)
+	//	w->camera.normal = vec3_rotate();
+	//else if (keycode == RIGHT)
+	//	w->camera.normal = vec3_rotate();
 	else if (keycode == Q)
 		return (display_main_menu(w), MENU_OPENED);
 	else
