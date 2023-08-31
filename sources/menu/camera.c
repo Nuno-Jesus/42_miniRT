@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:40:42 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 14:47:42 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 15:00:29 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ t_menu_state	handle_camera_changes(int keycode, t_world *w)
 		w->camera.center.y += MOVE;
 	else if (keycode == DOWN)
 		w->camera.center.y -= MOVE;
-	//else if (keycode == LEFT)
-	//	w->camera.normal = vec3_rotate();
-	//else if (keycode == RIGHT)
-	//	w->camera.normal = vec3_rotate();
+	else if (keycode == LEFT)
+		w->camera.normal = vec3_rotate(w->camera.normal, Y, -ROTATE);
+	else if (keycode == RIGHT)
+		w->camera.normal = vec3_rotate(w->camera.normal, Y, ROTATE);
 	else if (keycode == Q)
 		return (display_main_menu(w), MENU_OPENED);
 	else

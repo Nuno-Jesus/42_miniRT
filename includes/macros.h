@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/29 12:45:54 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 15:00:13 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@
 # define G 1
 # define B 2
 
-# define MOVE 5
-# define LEN 2
+# define MOVE 3
+# define LEN 0.5
+# define ROTATE 0.1
 
 # define HAS_COMMAS '1'
 

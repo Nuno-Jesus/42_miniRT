@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 12:58:29 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 14:53:20 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ void	get_uv(t_data *d, t_vec3 point, double *u, double *v)
 	{
 		*u = point.x;
 		*v = point.y;
+	}
+	else
+	{
+		*u = 0.0;
+		*v = 0.0;
 	}
 }
 

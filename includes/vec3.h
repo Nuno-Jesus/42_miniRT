@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec3.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:44:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 13:52:55 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 15:02:11 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,8 @@ double	vec3_cossine(t_vec3 v1, t_vec3 v2);
  * @return true if the vectors are equal, false otherwise
  */
 bool	vec3_compare(t_vec3 v1, t_vec3 v2);
+
+//!
+t_vec3	vec3_rotate(t_vec3 vec, int axis, double angle);
 
 #endif

@@ -47,7 +47,7 @@ _SUBFOLDERS	= . debug entities intersections parser renderer utils vec3 menu
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-CFLAGS		= -Wall -Wextra -Werror -Ofast
+CFLAGS		= -Wall -Wextra -Werror -O3
 CPPFLAGS	= -I $(INC_FOLDER) -MMD
 MAKEFLAGS	= --no-print-directory
 MLXFLAGS	= -L ./$(MLX) -lmlx -lXext -lX11 -lm 
@@ -81,7 +81,7 @@ _FILES += intersects pl_inter sp_inter cy_inter co_inter
 _FILES += read_map parser parse_shapes parse_illumination parse_utils
 _FILES += color light pixel ray normal render shadow threads	
 _FILES += vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_length vec3_new \
-	vec3_sub vec3_cossine vec3_compare vec3_from_strings
+	vec3_sub vec3_cossine vec3_compare vec3_from_strings vec3_rotate
 _FILES += math message
 _FILES += menu parse_objects shapes camera ambient lights lights_info \
 	spheres spheres_info spheres_info2 cones cones_info cones_info2 \

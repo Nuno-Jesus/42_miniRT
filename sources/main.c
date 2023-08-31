@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/30 09:41:40 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 15:05:20 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	on_keypress(int keycode, t_world *w)
 		handle_cone_choice,
 		handle_cone_changes,
 	};
+	
 	if (keycode == ESC)
 		quit(w);
 	w->state = handlers[w->state](keycode, w);
