@@ -1,18 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lights_info.c                                      :+:      :+:    :+:   */
+/*   light_display.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 10:58:12 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 16:42:57 by maricard         ###   ########.fr       */
+/*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
+/*   Updated: 2023/08/31 18:10:58 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	light_info1(t_world *w)
+void	display_light_commands(t_world *w, int id)
+{
+	w->menu.id = id;
+	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
+	display_menu_title(w);
+	display(w, (t_xy){10, 53}, 0xFFFFFF, "LIGHT");
+	display(w, (t_xy){9, 64}, 0xFFA160, "-----");
+	display_light_info_1(w);
+	display_light_info_2(w);
+}
+
+void	display_lights(t_world *w, t_vector *l)
+{
+	uint32_t	i;
+	t_light		*light;
+	int			color;
+
+	i = -1;
+	w->menu.i = -1;
+	w->menu.id = 0;
+	w->menu.iterator = 0;
+	while (++i < l->size)
+	{
+		light = nc_vector_at(l, i);
+		color = color_to_int(light->color);
+		display(w, (t_xy){5, 90 + (++w->menu.i * 20)}, \
+			0xFFFF00, nc_itoa(i + 1));
+		display(w, (t_xy){25, 90 + (w->menu.i * 20)}, \
+			color, "- LIGHT");
+		w->menu.iterator++;
+	}
+}
+
+void	display_light_choice_menu(t_world *w)
+{
+	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
+	display_menu_title(w);
+	display(w, (t_xy){10, 53}, 0xFFFFFF, "LIGHTS");
+	display(w, (t_xy){9, 64}, 0xFFA160, "------");
+	display_lights(w, w->lights);
+	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 15)}, 0xFFFF00, "FOR MORE INFO");
+	display(w, (t_xy){5, 90 + (w->menu.i * 20 + 35)}, 0xFFFF00, "PRESS A NUMBER");
+	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 50)}, 0xFF0000, "Q");
+	display(w, (t_xy){25, 90 + (w->menu.i * 20 + 50)}, 0xFFFFFF, "- Previous Menu");
+}
+
+void	display_light_info_1(t_world *w)
 {
 	display(w, (t_xy){10, 90}, 0xFFFF00, "W");
 	display(w, (t_xy){10, 110}, 0xFFFF00, "S");
@@ -32,7 +78,7 @@ void	light_info1(t_world *w)
 	display(w, (t_xy){10, 420}, 0xFF0000, "Q");
 }
 
-void	light_info2(t_world *w)
+void	display_light_info_2(t_world *w)
 {
 	display(w, (t_xy){20, 90}, 0xFFFFFF, " - Move Foward");
 	display(w, (t_xy){20, 110}, 0xFFFFFF, " - Move Backwards");
@@ -50,57 +96,4 @@ void	light_info2(t_world *w)
 	display(w, (t_xy){20, 370}, 0xFFFFFF, " - Color Pink");
 	display(w, (t_xy){20, 390}, 0xFFFFFF, " - Color Cyan");
 	display(w, (t_xy){20, 420}, 0xFFFFFF, " - Previous menu");	
-}
-
-t_menu_state	handle_light_changes_2(int keycode, t_world *w, t_light *l)
-{
-	if (keycode == ONE)
-		l->color = WHITE;
-	else if (keycode == TWO)
-		l->color = YELLOW;
-	else if (keycode == THREE)
-		l->color = RED;
-	else if (keycode == FOUR)
-		l->color = GREEN;
-	else if (keycode == FIVE)
-		l->color = BLUE;
-	else if (keycode == SIX)
-		l->color = PINK;
-	else if (keycode == SEVEN)
-		l->color = CYAN;
-	else if (keycode == Q)
-		return (display_light_choice_menu(w), CHOOSE_LIGHT);
-	else
-		return (CHANGE_LIGHT);
-	multithread(w);
-	display_light_commands(w, w->menu.id);
-	return (CHANGE_LIGHT);
-}
-
-t_menu_state	handle_light_changes(int keycode, t_world *w)
-{
-	t_light	*l;
-
-	l = (t_light*)nc_vector_at(w->lights, w->menu.id);
-	if (keycode == W)
-		l->center.z += MOVE;
-	else if (keycode == S)
-		l->center.z -= MOVE;
-	else if (keycode == A)
-		l->center.x -= MOVE;
-	else if (keycode == D)
-		l->center.x += MOVE;
-	else if (keycode == UP)
-		l->center.y += MOVE;
-	else if (keycode == DOWN)
-		l->center.y -= MOVE;
-	else if (keycode == LEFT)
-		l->ratio += 0.1;
-	else if (keycode == RIGHT)
-		l->ratio -= 0.1;
-	else
-		return (handle_light_changes_2(keycode, w, l));
-	multithread(w);
-	display_light_commands(w, w->menu.id);
-	return (CHANGE_LIGHT);
 }

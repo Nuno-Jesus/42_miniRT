@@ -3,51 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   spheres_info2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 16:42:10 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:06:11 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_menu_state	handle_sphere_color_change(int keycode, t_world *w, t_sphere *sp)
+t_menu_state	handle_sphere_choice(int keycode, t_world *w)
 {
-	if (keycode == ONE)
-		sp->color = WHITE;
-	else if (keycode == TWO)
-		sp->color = YELLOW;
-	else if (keycode == THREE)
-		sp->color = RED;
-	else if (keycode == FOUR)
-		sp->color = GREEN;
-	else if (keycode == FIVE)
-		sp->color = BLUE;
-	else if (keycode == SIX)
-		sp->color = PINK;
-	else if (keycode == SEVEN)
-		sp->color = CYAN;
-	else if (keycode == Q)
-		return (display_sphere_choice_menu(w), CHOOSE_SPHERE);
-	else
-		return (CHANGE_SPHERE);
-	multithread(w);
-	display_light_commands(w, w->menu.id);
-	return (CHANGE_SPHERE);
-}
-
-t_menu_state	handle_sphere_size_change(int keycode, t_world *w, t_sphere *sp)
-{
-	if (keycode == LEFT)
-		sp->radius += LEN;
-	else if (keycode == RIGHT)
-		sp->radius -= LEN;
-	else
-		return (handle_sphere_color_change(keycode, w, sp));
-	multithread(w);
-	display_light_commands(w, w->menu.id);
-	return (CHANGE_SPHERE);
+	if (keycode == Q)
+		return (display_main_menu(w), MENU_OPENED);
+	else if (keycode >= ONE && keycode <= NINE)
+		return (display_sphere_commands(w, keycode - ONE), CHANGE_SPHERE);
+	return (CHOOSE_SPHERE);
 }
 
 t_menu_state	handle_sphere_changes(int keycode, t_world *w)
@@ -71,6 +42,44 @@ t_menu_state	handle_sphere_changes(int keycode, t_world *w)
 		sp->center.y -= MOVE;
 	else
 		return (handle_sphere_size_change(keycode, w, sp));
+	multithread(w);
+	display_light_commands(w, w->menu.id);
+	return (CHANGE_SPHERE);
+}
+
+t_menu_state	handle_sphere_size_change(int keycode, t_world *w, t_sphere *sp)
+{
+	if (keycode == LEFT)
+		sp->radius += LEN;
+	else if (keycode == RIGHT)
+		sp->radius -= LEN;
+	else
+		return (handle_sphere_color_change(keycode, w, sp));
+	multithread(w);
+	display_light_commands(w, w->menu.id);
+	return (CHANGE_SPHERE);
+}
+
+t_menu_state	handle_sphere_color_change(int keycode, t_world *w, t_sphere *sp)
+{
+	if (keycode == ONE)
+		sp->color = WHITE;
+	else if (keycode == TWO)
+		sp->color = YELLOW;
+	else if (keycode == THREE)
+		sp->color = RED;
+	else if (keycode == FOUR)
+		sp->color = GREEN;
+	else if (keycode == FIVE)
+		sp->color = BLUE;
+	else if (keycode == SIX)
+		sp->color = PINK;
+	else if (keycode == SEVEN)
+		sp->color = CYAN;
+	else if (keycode == Q)
+		return (display_sphere_choice_menu(w), CHOOSE_SPHERE);
+	else
+		return (CHANGE_SPHERE);
 	multithread(w);
 	display_light_commands(w, w->menu.id);
 	return (CHANGE_SPHERE);

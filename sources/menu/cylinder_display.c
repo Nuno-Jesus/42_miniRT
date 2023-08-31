@@ -1,18 +1,71 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cones_info.c                                       :+:      :+:    :+:   */
+/*   cylinders.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 10:58:12 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 16:43:20 by maricard         ###   ########.fr       */
+/*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
+/*   Updated: 2023/08/31 17:57:07 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	cone_info1(t_world *w)
+void	display_cylinder_commands(t_world *w, int id)
+{
+	w->menu.id = id;
+	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
+	display_menu_title(w);
+	display(w, (t_xy){10, 53} ,0xFFFFFF, "CYLINDERS");
+	display(w, (t_xy){9, 64} ,0xFFA160, "---------");
+	display_cylinder_info_1(w);
+	display_cylinder_info_2(w);
+}
+
+void	display_cylinder_choice_menu(t_world *w)
+{
+	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
+	display_menu_title(w);
+	display(w, (t_xy){10, 53} ,0xFFFFFF, "CYLINDER");
+	display(w, (t_xy){9, 64} ,0xFFA160, "--------");
+	display_cylinder(w, w->shapes);
+	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 15)}, \
+		0xFFFF00, "FOR MORE INFO");
+	display(w, (t_xy){5, 90 + (w->menu.i * 20 + 35)}, \
+		0xFFFF00, "PRESS A NUMBER");
+	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 50)}, \
+		0xFF0000, "Q");
+	display(w, (t_xy){25,90 + (w->menu.i * 20 + 50)}, \
+		0xFFFFFF, "- Previous Menu");
+}
+
+void	display_cylinder(t_world *w, t_vector *l)
+{
+	uint32_t	i;
+	t_shape		*shape;
+	int 		color;
+
+	i = -1;
+	w->menu.i = -1;
+	w->menu.iterator = 0;
+	shape = NULL;
+	while (++i < l->size)
+	{
+		shape = nc_vector_at(l, i);
+		if (shape->type != CYLINDER)
+			continue ;
+		color = color_to_int(shape->data.cy.color);
+		display(w, (t_xy){5, 90 + (++w->menu.i * 20)}, \
+			0xFFFF00,nc_itoa(w->menu.iterator + 1));
+		display(w, (t_xy){25, 90 + (w->menu.i * 20)}, \
+			color, "- CYLINDER");
+		w->menu.ids[w->menu.iterator] = shape->id;
+		w->menu.iterator++;
+	}
+}
+
+void	display_cylinder_info_1(t_world *w)
 {
 	display(w, (t_xy){10, 90}, 0xFFFF00, "W");
 	display(w, (t_xy){10, 110}, 0xFFFF00, "S");
@@ -34,7 +87,7 @@ void	cone_info1(t_world *w)
 	display(w, (t_xy){10, 470}, 0xFF0000, "Q");
 }
 
-void	cone_info2(t_world *w)
+void	display_cylinder_info_2(t_world *w)
 {
 	display(w, (t_xy){20, 90}, 0xFFFFFF, " - Move Foward");
 	display(w, (t_xy){20, 110}, 0xFFFFFF, " - Move Backwards");
@@ -42,7 +95,7 @@ void	cone_info2(t_world *w)
 	display(w, (t_xy){20, 150}, 0xFFFFFF, " - Move Right");
 	display(w, (t_xy){25, 180}, 0xFFFFFF, " - Go Up");
 	display(w, (t_xy){45, 200}, 0xFFFFFF, " - Go Down");
-	display(w, (t_xy){45, 220}, 0xFFFFFF, " - Increase radius");
+	display(w, (t_xy){45, 220}, 0xFFFFFF, " - Incrise radius");
 	display(w, (t_xy){50, 240}, 0xFFFFFF, " - Decrease radius");
 	display(w, (t_xy){20, 270}, 0xFFFFFF, " - Increase Height");
 	display(w, (t_xy){20, 290}, 0xFFFFFF, " - Decrease Height");

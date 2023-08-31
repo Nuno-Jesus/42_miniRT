@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:29:06 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 17:45:09 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:14:32 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,28 +76,28 @@ void	search_shapes(t_world *w);
  * 
  * @param w The world struct
  */
-void	check_for_spheres(t_world *w);
+void	search_for_spheres(t_world *w);
 
 /**
  * @brief Checks if there are planes in the scene
  * 
  * @param w The world struct
  */
-void	check_for_planes(t_world *w);
+void	search_for_planes(t_world *w);
 
 /**
  * @brief Checks if there are cylinders in the scene
  * 
  * @param w The world struct
  */
-void	check_for_cylinders(t_world *w);
+void	search_for_cylinders(t_world *w);
 
 /**
  * @brief Checks if there are cones in the scene
  * 
  * @param w The world struct
  */
-void	check_for_cones(t_world *w);
+void	search_for_cones(t_world *w);
 
 
 //! Camera
@@ -144,6 +144,9 @@ void	display_amb_light_menu(t_world *w);
  */
 t_menu_state	handle_light_changes(int keycode, t_world *w);
 
+//!
+t_menu_state	handle_light_color_changes(int keycode, t_world *w, t_light *l);
+
 /**
  * @brief checks if a light was selected
  * 
@@ -151,6 +154,9 @@ t_menu_state	handle_light_changes(int keycode, t_world *w);
  * @param w The world struct
  */
 t_menu_state	handle_light_choice(int keycode, t_world *w);
+
+//!
+void	display_lights(t_world *w, t_vector *l);
 
 /**
  * @brief Main menu for light info
@@ -172,14 +178,14 @@ void	display_light_choice_menu(t_world *w);
  * 
  * @param w The world struct
  */
-void	light_info1(t_world *w);
+void	display_light_info_1(t_world *w);
 
 /**
  * @brief Displays the light info
  * 
  * @param w The world struct
  */
-void	light_info2(t_world *w);
+void	display_light_info_2(t_world *w);
 
 
 //! Sphere
@@ -207,6 +213,12 @@ void	display_sphere_choice_menu(t_world *w);
  */
 t_menu_state	handle_sphere_changes(int keycode, t_world *w);
 
+//!
+t_menu_state	handle_sphere_size_change(int keycode, t_world *w, t_sphere *sp);
+
+//!
+t_menu_state	handle_sphere_color_change(int keycode, t_world *w, t_sphere *sp);
+
 /**
  * @brief checks if a sphere was selected
  * 
@@ -220,14 +232,14 @@ t_menu_state	handle_sphere_choice(int keycode, t_world *w);
  * 
  * @param w The world struct
  */
-void	sphere_info1(t_world *w);
+void	display_sphere_info_1(t_world *w);
 
 /**
  * @brief Displays the sphere info
  * 
  * @param w The world struct
  */
-void	sphere_info2(t_world *w);
+void	display_sphere_info_2(t_world *w);
 
 //! Plane
 /**
@@ -245,6 +257,9 @@ void	display_plane_commands(t_world *w, int id);
  */
 void	display_plane_choice_menu(t_world *w);
 
+//!
+void	display_plane(t_world *w, t_vector *l);
+
 /**
  * @brief Handler for changes in the plane
  * 
@@ -253,6 +268,9 @@ void	display_plane_choice_menu(t_world *w);
  * @return t_menu_state The menu state
  */
 t_menu_state	handle_plane_changes(int keycode, t_world *w);
+
+//!
+t_menu_state	handle_plane_color_changes(int keycode, t_world *w, t_plane *pl);
 
 /**
  * @brief checks if a plane was selected
@@ -294,6 +312,9 @@ void	display_cylinder_commands(t_world *w, int id);
  */
 void	display_cylinder_choice_menu(t_world *w);
 
+//!
+void	display_cylinder(t_world *w, t_vector *l);
+
 /**
  * @brief Handler for changes in the cylinder
  * 
@@ -302,6 +323,15 @@ void	display_cylinder_choice_menu(t_world *w);
  * @return t_menu_state The menu state
  */
 t_menu_state	handle_cylinder_changes(int keycode, t_world *w);
+
+//!
+t_menu_state	handle_cylinder_changes(int keycode, t_world *w);
+
+//!
+t_menu_state	handle_cylinder_size_changes(int keycode, t_world *w, t_cylinder *cy);
+
+//!
+t_menu_state	handle_cylinder_color_changes(int keycode, t_world *w, t_cylinder *cy);
 
 /**
  * @brief checks if a cylinder was selected
@@ -317,14 +347,14 @@ t_menu_state	handle_cylinder_choice(int keycode, t_world *w);
  * 
  * @param w The world struct
  */
-void	cylinder_info1(t_world *w);
+void	display_cylinder_info_1(t_world *w);
 
 /**
  * @brief Displays the cylinder info
  * 
  * @param w The world struct
  */
-void	cylinder_info2(t_world *w);
+void	display_cylinder_info_2(t_world *w);
 
 
 //! Cone
@@ -343,6 +373,9 @@ void	display_cone_commands(t_world *w, int id);
  */
 void	display_cone_choice_menu(t_world *w);
 
+//!
+void	display_cone(t_world *w, t_vector *l);
+
 /**
  * @brief Handler for changes in the cone
  * 
@@ -351,6 +384,12 @@ void	display_cone_choice_menu(t_world *w);
  * @return t_menu_state The menu state
  */
 t_menu_state	handle_cone_changes(int keycode, t_world *w);
+
+//!
+t_menu_state	handle_cone_size_changes(int keycode, t_world *w, t_cone *co);
+
+//!
+t_menu_state	handle_cone_color_changes(int keycode, t_world *w, t_cone *co);
 
 /**
  * @brief checks if a cone was selected
@@ -366,13 +405,13 @@ t_menu_state	handle_cone_choice(int keycode, t_world *w);
  * 
  * @param w The world struct
  */
-void	cone_info1(t_world *w);
+void	display_cone_info_1(t_world *w);
 
 /**
  * @brief Displays the cone info
  * 
  * @param w The world struct
  */
-void	cone_info2(t_world *w);
+void	display_cone_info_2(t_world *w);
 
 #endif

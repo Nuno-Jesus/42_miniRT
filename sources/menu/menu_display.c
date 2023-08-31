@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shapes.c                                           :+:      :+:    :+:   */
+/*   menu_display.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 18:50:10 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 16:14:45 by maricard         ###   ########.fr       */
+/*   Created: 2023/08/22 16:34:07 by maricard          #+#    #+#             */
+/*   Updated: 2023/08/31 18:04:06 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	init_flags(t_world *w)
+void	display_menu_title(t_world *w)
 {
-	w->menu.sp_flag = 0;
-	w->menu.pl_flag = 0;
-	w->menu.cy_flag = 0;
-	w->menu.co_flag = 0;
+	display(w, (t_xy){6, 0}, 0xFFA160, "-----");
+	display(w, (t_xy){12, 13}, 0xFFFFFF, "MENU");
+	display(w, (t_xy){6, 26}, 0xFFA160, "-----");
+	display(w, (t_xy){0, 11}, 0xFFA160, "|");
+	display(w, (t_xy){54, 11}, 0xFFA160, "|");
+}
+
+void	display_main_menu(t_world *w)
+{
+	w->menu.i = 0;
+	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
+	display_menu_title(w);
+	display_menu_entites(w);
 }
 
 void	display_menu_entites(t_world *w)

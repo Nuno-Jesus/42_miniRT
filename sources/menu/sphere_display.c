@@ -1,18 +1,71 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spheres_info.c                                     :+:      :+:    :+:   */
+/*   spheres.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 10:58:12 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 16:42:21 by maricard         ###   ########.fr       */
+/*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
+/*   Updated: 2023/08/31 18:06:57 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	sphere_info1(t_world *w)
+void	display_sphere_commands(t_world *w, int id)
+{
+	w->menu.id = id;
+	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
+	display_menu_title(w);
+	display(w, (t_xy){10, 53}, 0xFFFFFF, "SHEPRES");
+	display(w, (t_xy){9, 64}, 0xFFA160, "-------");
+	display_sphere_info_1(w);
+	display_sphere_info_2(w);
+}
+
+void	display_sphere(t_world *w, t_vector *l)
+{
+	uint32_t	i;
+	t_shape		*shape;
+	int 		color;
+
+	i = -1;
+	w->menu.i = -1;
+	w->menu.iterator = 0;
+	shape = NULL;
+	while (++i < l->size)
+	{
+		shape = nc_vector_at(l, i);
+		if (shape->type != SPHERE)
+			continue ;
+		color = color_to_int(shape->data.sp.color);
+		display(w, (t_xy){5, 90 + (++w->menu.i * 20)}, \
+			0xFFFF00, nc_itoa(w->menu.iterator + 1));
+		display(w, (t_xy){25, 90 + (w->menu.i * 20)}, \
+			color, "- SPHERE");
+		w->menu.ids[w->menu.iterator] = shape->id;
+		w->menu.iterator++;
+	}
+}
+
+void	display_sphere_choice_menu(t_world *w)
+{
+	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
+	display_menu_title(w);
+	display(w, (t_xy){10, 53}, 0xFFFFFF, "SPHERE");
+	display(w, (t_xy){9, 64}, 0xFFA160, "------");
+	display_sphere(w, w->shapes);
+	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 15)}, \
+		0xFFFF00, "FOR MORE INFO");
+	display(w, (t_xy){5, 90 + (w->menu.i * 20 + 35)}, \
+		0xFFFF00, "PRESS A NUMBER");
+	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 50)}, \
+		0xFF0000, "Q");
+	display(w, (t_xy){25, 90 + (w->menu.i * 20 + 50)}, \
+		0xFFFFFF, "- Previous Menu");
+}
+
+void	display_sphere_info_1(t_world *w)
 {
 	display(w, (t_xy){10, 90}, 0xFFFF00, "W");
 	display(w, (t_xy){10, 110}, 0xFFFF00, "S");
@@ -32,7 +85,7 @@ void	sphere_info1(t_world *w)
 	display(w, (t_xy){10, 420}, 0xFF0000, "Q");
 }
 
-void	sphere_info2(t_world *w)
+void	display_sphere_info_2(t_world *w)
 {
 	display(w, (t_xy){20, 90}, 0xFFFFFF, " - Move Foward");
 	display(w, (t_xy){20, 110}, 0xFFFFFF, " - Move Backwards");
