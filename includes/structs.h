@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 15:48:26 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:40:50 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef enum s_shape_type
 	CONE,
 }	t_shape_type;
 
+//!
 typedef enum s_menu_state
 {
 	MENU_CLOSED,
@@ -42,6 +43,11 @@ typedef enum s_menu_state
 	CHANGE_CONE
 }	t_menu_state;
 
+/**
+ * @brief Represents a two dimensional point
+ * @param x The x component
+ * @param y The y component
+ */
 typedef struct s_xy
 {
 	int x;
@@ -192,7 +198,17 @@ typedef struct s_cylinder
 	t_color	color;
 }	t_cylinder;
 
-//!
+/**
+ * @brief Describes a cone
+ * 
+ * @param tip The tip of the cone
+ * @param base The base of the cone
+ * @param normal The direction of the cone
+ * @param height The height of the cone
+ * @param radius The radius of the cone
+ * @param angle The half angle of the cone
+ * @param color The color of the cone
+ */
 typedef struct s_cone
 {
 	t_vec3	tip;

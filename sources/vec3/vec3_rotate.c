@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec3_rotate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:00:43 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/31 15:01:11 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 17:06:58 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ t_vec3	vec3_rotate(t_vec3 vec, int axis, double angle)
 		rotated.x = vec.x * cos(angle) - vec.y * sin(angle);
 		rotated.y = vec.x * sin(angle) + vec.y * cos(angle);
 	}
-	return (rotated);
+	return (vec3_normalize(rotated));
 }

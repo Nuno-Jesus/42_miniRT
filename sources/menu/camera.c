@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:40:42 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 16:17:04 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:15:30 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_menu_state	handle_camera_changes(int keycode, t_world *w)
 		return (display_main_menu(w), MENU_OPENED);
 	else
 		return (CHANGE_CAMERA);
+	init_viewport(w);
 	multithread(w);
 	display_camera_menu(w);
 	return (CHANGE_CAMERA);
