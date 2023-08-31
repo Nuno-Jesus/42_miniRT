@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:06:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/31 18:21:27 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:38:36 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,13 @@ t_color	color_mix(t_color color, t_color mixer);
  * @return t_color The new color
  */
 t_color	color_from_strings(char **rgb);
+
+/**
+ * @brief Given a color, it converts it to an int value.
+ * 
+ * @param color The RGB to convert to int
+ * @return int The final integer value
+ */
+int		color_to_int(t_color color);
 
 #endif
