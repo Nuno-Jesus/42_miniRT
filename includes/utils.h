@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:04:41 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 18:38:13 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:51:57 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@
 void	message(t_world *world, char *text);
 
 /**
- * @brief function that prints a message on the screen using
- * mlx_string_put from the mlx library
+ * @brief A wrapper function to mlx_string_put from the mlx library
  * 
  * @param world t_world struct with all the information of the world 
  * @param xy x and y coordinates of the text

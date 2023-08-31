@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:44:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 15:02:11 by crypto           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:54:22 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,15 @@ double	vec3_cossine(t_vec3 v1, t_vec3 v2);
  */
 bool	vec3_compare(t_vec3 v1, t_vec3 v2);
 
-//!
+/**
+ * @brief rotates a vector around an axis. The result is a normalized
+ * vector
+ * 
+ * @param vec The vector to rotate 
+ * @param axis The axis to rotate around
+ * @param angle The angle to rotate
+ * @return t_vec3 The rotated vector
+ */
 t_vec3	vec3_rotate(t_vec3 vec, int axis, double angle);
 
 #endif
