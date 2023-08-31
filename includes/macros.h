@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 16:39:50 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:27:32 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@
 # define ROTATE 0.1
 
 # define HAS_COMMAS '1'
+
+//! Error macros
 
 # define ERROR(m)	\
 	printf("Error\n%s\n", m)
@@ -83,6 +85,14 @@
 # define DEGREES(rad) ((rad * 180.0f) / PI)
 # define EPSILON 0.0001
 
+//! Illumination macros
+
+# define KD 0.8
+
+//! Threads rendering macro
+
+# define NUM_THREADS 8
+
 //! Fixed t_color structs
 
 # define WHITE		(t_color){0, 255, 255, 255}
@@ -122,11 +132,7 @@
 #  define V 9
 #  define Q 12
 #  define M 46
-#  define Bk 11
 #  define O 31
-#  define Rk 15
-#  define Yk 16
-#  define Gk 5
 #  define SPACE 49
 #  define UP 126
 #  define DOWN 125
@@ -155,11 +161,7 @@
 #  define V 118
 #  define Q 113
 #  define M 109
-#  define Bk 65288
 #  define O 111
-#  define Rk 114
-#  define Yk 121
-#  define Gk 103
 #  define SPACE 32
 #  define UP 65362
 #  define DOWN 65364
@@ -175,10 +177,5 @@
 #  define EIGHT 56
 #  define NINE 57
 # endif
-
-# define NUM_THREADS 8
-# define THREADABLE
-
-# define KD 0.8
 
 #endif
