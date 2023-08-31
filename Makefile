@@ -39,7 +39,8 @@ DEP_FOLDER	= dependencies
 LIBNC		= libnc
 GNL			= gnl
 MLX			= mlx_linux
-_SUBFOLDERS	= . debug entities intersections parser renderer utils vec3 menu
+_SUBFOLDERS	= . debug entities intersections parser renderer utils vec3 \
+	menu/menu menu/ambient menu/camera menu/light menu/plane menu/sphere menu/cone menu/cylinder
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
