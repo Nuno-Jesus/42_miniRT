@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:04:41 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 17:43:35 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/01 14:58:13 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,6 @@ void	message(t_world *world, char *text);
  * @param line line where the error happened
  */
 void	display(t_world *w, t_xy xy, int color, char *text);
-
-/**
- * @brief function that checks what is the closest value to 0
- * 
- * @param t1 first value
- * @param t2 second value
- * @return the closest value to 0 
- */
-double 	closest_value(double t1, double t2);
 
 /**
  * @brief function for optimization purposes, it calculates the constants

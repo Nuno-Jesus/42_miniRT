@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cy_inter.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:53:41 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/29 19:38:24 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/01 14:51:56 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ double	cap_intersection(t_cylinder *cy, t_ray *ray, t_vec3 cap)
 	t_plane	plane;
 	t_hit	inter;
 
-	plane = plane_from_numbers(cap, cy->normal, BLACK);
+	plane = plane_from_numbers(cap, cy->normal, cy->color);
 	if (plane_intersect(&plane, ray, &inter))
 		return (inter.t);
 	return (-1);

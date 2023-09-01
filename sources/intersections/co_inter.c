@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   co_inter.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:03:15 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/29 19:37:27 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/01 19:10:21 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ bool	check_base(t_cone *co, t_vec3 cap, t_hit *inter, double t)
 
 	point = ray_at(&inter->ray, t);
 	len = vec3_length(vec3_sub(point, cap));
-	len += EPSILON;
-	if (len <= co->radius && t > EPSILON && t < inter->t)
+	len -= EPSILON;
+	if (len >= 0 && len <= co->radius && t > EPSILON && t < inter->t)
 	{
 		inter->a = co->normal;
 		inter->t = t;
@@ -44,10 +44,10 @@ bool	check_sides(t_cone *co, t_hit *inter, double t)
 	tmp = vec3_sub(point, vec3_sub(co->tip, vec3_scale(co->normal, m)));
 	angle = acos(vec3_dot(tmp, co->normal) / (vec3_length(tmp) * \
 				vec3_length(co->normal)));
-	if (m >= 0 && m <= co->height && angle <= co->angle && t > EPSILON \
-			&& t < inter->t)
+	if (m >= 0 && m <= co->height && angle <= co->angle && \
+			t > EPSILON && t < inter->t)
 	{
-		inter->a = vec3_add(co->tip, vec3_scale(co->normal, m));
+		inter->a = vec3_new(0, 0, 0);
 		inter->t = t;
 		return (true);
 	}
@@ -59,7 +59,7 @@ double	cap_intersect(t_cone *co, t_ray *ray, t_vec3 cap)
 	t_plane	plane;
 	t_hit	inter;
 
-	plane = plane_from_numbers(cap, co->normal, BLACK);
+	plane = plane_from_numbers(cap, co->normal, co->color);
 	if (plane_intersect(&plane, ray, &inter))
 		return (inter.t);
 	return (-1);
@@ -67,17 +67,15 @@ double	cap_intersect(t_cone *co, t_ray *ray, t_vec3 cap)
 
 double	verify_intersects(t_cone *co, t_equation *equation, t_hit *inter)
 {
-	double	t1;
-	double	t2;
+	double	t3;
 
 	if (!solve(equation))
 		return (0);
 	inter->t = INFINITY;
-	// base = vec3_add(co->tip, vec3_scale(co->normal, co->height));
-	t1 = closest_value(equation->t1, equation->t2);
-	t2 = cap_intersect(co, &inter->ray, co->base);
-	check_sides(co, inter, t1);
-	check_base(co, co->base, inter, t2);
+	t3 = cap_intersect(co, &inter->ray, co->base);
+	check_sides(co, inter, equation->t1);
+	check_sides(co, inter, equation->t2);
+	check_base(co, co->base, inter, t3);
 	if (inter->t == INFINITY || inter->t < 0)
 		return (0);
 	return (inter->t);
@@ -90,7 +88,6 @@ bool	cone_intersect(t_cone *co, t_ray *ray, t_hit *inter)
 	double 		t;
 	
 	inter->t = -1.0f;
-	// co->angle = atan(co->radius / co->height);
 	oc = vec3_sub(ray->origin, co->tip);
 	equation.a = pow(vec3_dot(ray->direction, co->normal), 2) - \
 					pow(cos(co->angle), 2);

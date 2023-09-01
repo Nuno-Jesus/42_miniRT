@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 11:40:23 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/01 18:40:55 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,6 @@ void	compute_shapes_constants(t_vector *shapes)
 			co->base = vec3_add(co->tip, vec3_scale(co->normal, co->height));
 		}
 	}
-}
-
-double 	closest_value(double t1, double t2)
-{
-	if (t1 > EPSILON && t1 < t2)
-		return (t1);
-	else if (t2 > EPSILON)
-		return (t2);
-	else
-		return (-1.0f);
 }
 
 double	determinant(t_equation *eq)

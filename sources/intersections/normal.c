@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:38:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/22 15:28:29 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:39:27 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_vec3	cone_normal(t_hit *inter, t_ray *ray)
 	adj = vec3_length(vec3_sub(point, inter->shape->data.co.tip));
 	hip = adj / cos(inter->shape->data.co.angle);
 	tmp = vec3_add(inter->shape->data.co.tip, \
-				vec3_scale(inter->shape->data.co.normal, hip));
+			vec3_scale(inter->shape->data.co.normal, hip));
 	normal = vec3_sub(point, tmp);
 	if (vec3_compare(inter->a, inter->shape->data.co.normal))
 		normal = inter->shape->data.co.normal;
