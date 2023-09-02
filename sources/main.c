@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/02 21:19:15 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/02 22:22:12 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	main(int argc, char **argv)
 	world = parse(argv[1]);
 	init_viewport(world);
 	init_graphics(world);
+	world_print(world);
 	multithread(world);
 	mlx_hook(world->disp.win, KeyPress, KeyPressMask, on_keypress, world);
 	mlx_hook(world->disp.win, DestroyNotify, StructureNotifyMask, quit, world);

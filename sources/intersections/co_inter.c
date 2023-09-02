@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:03:15 by maricard          #+#    #+#             */
-/*   Updated: 2023/09/02 21:47:50 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/02 22:33:07 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ bool	check_sides(t_cone *co, t_hit *inter, double t)
 			vec3_dot(oc, co->normal);
 	tmp = vec3_sub(point, co->tip);
 	angle = acos(vec3_cossine(co->normal, tmp));
+	//Print the angle in degrees
+	// if (m <= co->height && t < inter->t)
+	// 	printf("Angle: %f\n", DEGREES(angle));
 	if (m >= 0 && m <= co->height && angle <= co->angle && \
 			t > EPSILON && t < inter->t)
 	{
@@ -88,6 +91,7 @@ bool	cone_intersect(t_cone *co, t_ray *ray, t_hit *inter)
 	t_equation	equation;
 	double 		t;
 	
+	equation = (t_equation){0, 0, 0, 0, 0};
 	inter->t = -1.0f;
 	oc = vec3_sub(ray->origin, co->tip);
 	equation.a = pow(vec3_dot(ray->direction, co->normal), 2) - \

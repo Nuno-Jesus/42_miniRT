@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 18:27:32 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/02 22:18:38 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,14 @@
 
 //! Fixed t_color structs
 
-# define WHITE		(t_color){0, 255, 255, 255}
-# define BLACK		(t_color){0, 0, 0, 0}
-# define BLUE		(t_color){0, 0, 0, 255}
 # define RED		(t_color){0, 255, 0, 0}
 # define GREEN		(t_color){0, 0, 255, 0}
+# define BLUE		(t_color){0, 0, 0, 255}
 # define YELLOW		(t_color){0, 255, 255, 0}
 # define PINK		(t_color){0, 255, 0, 255}
 # define CYAN		(t_color){0, 0, 255, 255}
+# define WHITE		(t_color){0, 255, 255, 255}
+# define BLACK		(t_color){0, 0, 0, 0}
 
 //! Fixed t_vec3 structs
 
@@ -114,7 +114,7 @@
 # ifdef __APPLE__
 #  define WIDTH 1440
 # else
-#  define WIDTH 1920
+#  define WIDTH 400
 # endif
 
 # define RATIO 	(16.0/9.0)
