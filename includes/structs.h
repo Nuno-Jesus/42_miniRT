@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/01 14:58:30 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/02 17:26:39 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,6 +303,7 @@ typedef struct s_hit
 	t_color	color;
 	t_vec3	a;
 	double	t;
+	double	m;
 }	t_hit;
 
 typedef struct s_menu

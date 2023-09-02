@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 16:17:30 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/02 18:18:27 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	display_sphere_commands(t_world *w, int id)
 	w->menu.id = id;
 	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
 	display_menu_title(w);
-	display(w, (t_xy){10, 53}, 0xFFFFFF, "SHEPRES");
+	display(w, (t_xy){10, 53}, 0xFFFFFF, "SPHERE");
 	display(w, (t_xy){9, 64}, 0xFFA160, "-------");
 	sphere_info1(w);
 	sphere_info2(w);

@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:03:15 by maricard          #+#    #+#             */
-/*   Updated: 2023/09/01 19:10:21 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/02 17:25:08 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ bool	check_base(t_cone *co, t_vec3 cap, t_hit *inter, double t)
 	{
 		inter->a = co->normal;
 		inter->t = t;
+		inter->m = co->height;
 		return (true);
 	}
 	return (false);
@@ -47,7 +48,8 @@ bool	check_sides(t_cone *co, t_hit *inter, double t)
 	if (m >= 0 && m <= co->height && angle <= co->angle && \
 			t > EPSILON && t < inter->t)
 	{
-		inter->a = vec3_new(0, 0, 0);
+		inter->a = vec3_add(co->tip, vec3_scale(co->normal, m));
+		inter->m = m;
 		inter->t = t;
 		return (true);
 	}
