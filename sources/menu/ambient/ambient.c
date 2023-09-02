@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ambient.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 16:11:14 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:50:31 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-void	ambient_info1(t_world *w)
-{
-	display(w, (t_xy){10, 90}, 0xFFFF00, "LEFT");
-	display(w, (t_xy){10, 110}, 0xFFFF00, "RIGHT");
-	display(w, (t_xy){10, 140}, 0xFF0000, "Q");
-}
-
-void	ambient_info2(t_world *w)
-{
-	display(w, (t_xy){45, 90}, 0xFFFFFF, " - Increase ratio");
-	display(w, (t_xy){50, 110}, 0xFFFFFF, " - Decrease ratio");
-	display(w, (t_xy){20, 140}, 0xFFFFFF, " - Previous menu");
-}
 
 t_menu_state	handle_amb_light_changes(int keycode, t_world *w)
 {
@@ -47,6 +33,10 @@ void	display_amb_light_menu(t_world *w)
 	display_menu_title(w);
 	display(w, (t_xy){10, 53}, 0xFFFFFF, "AMBIENT LIGHT");
 	display(w, (t_xy){9, 64}, 0xFFA160, "-------------");
-	ambient_info1(w);
-	ambient_info2(w);
+	display(w, (t_xy){10, 90}, 0xFFFF00, "LEFT");
+	display(w, (t_xy){10, 110}, 0xFFFF00, "RIGHT");
+	display(w, (t_xy){10, 140}, 0xFF0000, "Q");
+	display(w, (t_xy){45, 90}, 0xFFFFFF, " - Increase ratio");
+	display(w, (t_xy){50, 110}, 0xFFFFFF, " - Decrease ratio");
+	display(w, (t_xy){20, 140}, 0xFFFFFF, " - Previous menu");
 }

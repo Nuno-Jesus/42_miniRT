@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:04:41 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/01 14:58:13 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/02 21:49:43 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@
 void	message(t_world *world, char *text);
 
 /**
- * @brief function that prints a message on the screen using
- * mlx_string_put from the mlx library
+ * @brief A wrapper function to mlx_string_put from the mlx library
  * 
  * @param world t_world struct with all the information of the world 
  * @param xy x and y coordinates of the text

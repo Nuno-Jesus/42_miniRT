@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:06:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/18 19:27:44 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:38:36 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,17 @@ t_color	color_mult(t_color color, double k);
  */
 t_color	color_add(t_color c1, t_color c2);
 
-//!
+/**
+ * @brief Given the original color and a color to mix with,
+ * it blends both by multiplying each component of the original
+ * color by the corresponding component of the mixer color.
+ * Each mixer component is mapped to a value between 0 and 1
+ * The final components are clamped between 0 and 255.
+ * 
+ * @param color The original color
+ * @param mixer The color to blend with
+ * @return t_color The final color
+ */
 t_color	color_mix(t_color color, t_color mixer);
 
 /**
@@ -60,5 +70,13 @@ t_color	color_mix(t_color color, t_color mixer);
  * @return t_color The new color
  */
 t_color	color_from_strings(char **rgb);
+
+/**
+ * @brief Given a color, it converts it to an int value.
+ * 
+ * @param color The RGB to convert to int
+ * @return int The final integer value
+ */
+int		color_to_int(t_color color);
 
 #endif

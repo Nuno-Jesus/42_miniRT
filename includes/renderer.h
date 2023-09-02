@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 15:42:47 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:41:38 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,18 @@
 # include "miniRT.h"
 
 /**
- * !@brief The function that renders the scene. Iterates over the scene's
- * !pixels and traces a ray for each that will be used to collide with 
- * !the world. The pixels are painted one by one until the final image
- * !is rendered.
+ * @brief The function that renders the scene. Iterates over the scene's
+ * pixels and traces a ray for each that will be used to collide with 
+ * the world. The pixels are painted one by one until the final image
+ * is rendered.
  * 
- * !@param w The t_world struct 
- * !@return int (dummy value)
+ * However, this function only operates between the boundaries set on 
+ * the t_runner struct. This is the routine all threads run in parallel
+ * to achieve the final image.
+ * 
+ * @param worker A thread runner struct. Contains the thread's id and
+ * the boundaries it should operate in.
+ * @return NULL
  */
 void	*render(t_runner *worker);
 
@@ -51,8 +56,6 @@ bool	world_hit(t_vector *shapes, t_ray *ray, t_hit *closest);
  */
 void	put_pixel(t_world *w, t_color c, int x, int y);
 
-int		color_to_int(t_color color);
-
 /**
  * @brief Responsible to calculate the illumination in a given shape. 
  * The final illumination is given by the following formula:
@@ -68,18 +71,18 @@ int		color_to_int(t_color color);
 void	illuminate(t_world *world, t_hit *closest);
 
 /**
- * !@brief Calculates the ambient lighting in a shape. The 
- * !ambient lighting is calculated by the following formula:
+ * @brief Calculates the ambient lighting in a shape. The 
+ * ambient lighting is calculated by the following formula:
  * 
- * 		!Ia = Ka * ShapeColor
+ * 		 Ia = Ka * ShapeColor
  * 
- * !Ia - ambient color
- * !Ka - ratio of ambient lighting in the scene
- * !ShapeColor - the closest shape color
+ * Ia - ambient color
+ * Ka - ratio of ambient lighting in the scene
+ * ShapeColor - the closest shape color
  * 
- * !@param color The closest shape's color
- * !@param ratio The ambient lighting ration in the scene
- * !@return t_color The final color
+ * @param ambient The ambient light struct
+ * @param color The shape's color
+ * @return t_color The final color
  */
 t_color	ambient(t_light *ambient, t_color color);
 
@@ -97,28 +100,32 @@ t_color	ambient(t_light *ambient, t_color color);
  * cos(A) - cosine of A
  * ShapeColor - the closest shape's color
  * 
- * @param color The closest shape color
- * @param ratio The ambient lighting ration in the scene
+ * @param bulb The light source
+ * @param inter The closest shape information
  * @return t_color The final color
  */
 t_color	diffuse(t_light *bulb, t_hit *inter);
 
 /**
- * !@brief Calculates the specular lighting in a given point
+ * @brief Calculates the specular lighting in a given point
  * 
- * !The specular lighting in a given point is calculated given the 
- * !following formula
+ * The specular lighting in a given point is calculated given the 
+ * following formula
  * 
- * !	Ie = Ke * Ip * (N.H)^n
+ * 		Ie = Ke * Ip * (N.H)^n
  * 
- * !Ie - specular lighting
- * !Ke - specular constant (depends on the material)
- * !Ip - light source intensity 
- * !H - half vector (the normalized vector between the light and 
- * ! camera directions)
- * !N - the normal vector in that surface
- * !n - a value depending on the material (high for highly polished 
- * !surfaces)
+ * Ie - specular lighting
+ * Ke - specular constant (depends on the material)
+ * Ip - light source intensity 
+ * H - half vector (the normalized vector between the light and 
+ *  camera directions)
+ * N - the normal vector in that surface
+ * n - a value depending on the material (high for highly polished 
+ * surfaces)
+ * 
+ * @param bulb The light source
+ * @param closest The closest shape information
+ * @return t_color The final color
  */
 t_color	specular(t_light *bulb, t_hit *closest);
 
@@ -194,7 +201,12 @@ t_ray	make_ray(t_world *w, t_vec3 factors);
  */
 t_vec3	ray_at(t_ray *ray, double t);
 
-//!
+/**
+ * @brief The callback used on a relevant keypress. Launches N threads
+ * to render the scene and assigns each one with a screen zone to render.
+ * 
+ * @param world The t_world struct
+ */
 void	multithread(t_world *world);
 
 #endif

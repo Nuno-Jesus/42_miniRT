@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:01:30 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/16 12:20:10 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:35:48 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	light_print(t_light *l);
  * @brief Prints in the standard output all the values related to a scene's
  * plane.
  * 
- * @param p The t_plane struct to debug
+ * @param p The t_plane struct to work with to debug
  */
 void	plane_print(t_plane *p);
 
@@ -51,7 +51,7 @@ void	plane_print(t_plane *p);
  * @brief Prints in the standard output all the values related to a scene's
  * sphere.
  * 
- * @param s The t_sphere struct to debug
+ * @param s The t_sphere struct to work with to debug
  */
 void	sphere_print(t_sphere *s);
 
@@ -59,11 +59,17 @@ void	sphere_print(t_sphere *s);
  * @brief Prints in the standard output all the values related to a scene's
  * cylinder.
  * 
- * @param c The t_cylinder struct to debug
+ * @param c The t_cylinder struct to work with to debug
  */
 void	cylinder_print(t_cylinder *c);
 
-void	cone_print(t_cone *to);
+/**
+ * @brief Prints in the standard output all the values related to a scene's
+ * cone.
+ * 
+ * @param co The t_cone struct to work with to debug
+ */
+void	cone_print(t_cone *co);
 
 /**
  * @brief Redirects the program flow to one of the other print functions,

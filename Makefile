@@ -39,7 +39,8 @@ DEP_FOLDER	= dependencies
 LIBNC		= libnc
 GNL			= gnl
 MLX			= mlx_linux
-_SUBFOLDERS	= . debug entities intersections parser renderer utils vec3 menu
+_SUBFOLDERS	= . debug entities intersections parser renderer utils vec3 \
+	menu/menu menu/ambient menu/camera menu/light menu/plane menu/sphere menu/cone menu/cylinder
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -83,9 +84,9 @@ _FILES += color light pixel ray normal render shadow threads
 _FILES += vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_length vec3_new \
 	vec3_sub vec3_cossine vec3_compare vec3_from_strings vec3_rotate
 _FILES += math message
-_FILES += menu parse_objects shapes camera ambient lights lights_info \
-	spheres spheres_info spheres_info2 cones cones_info cones_info2 \
-	cylinders cylinders_info cylinders_info2 planes planes_info planes_info2
+_FILES += ambient camera search_objects menu_display menu_handler light_display light_handler \
+	sphere_display sphere_handler cone_display cone_handler \
+	cylinder_display cylinder_handler plane_display plane_handler
 _FILES += main
 
 DEPFILES = $(patsubst %, $(DEP_FOLDER)/%.d, $(_FILES))

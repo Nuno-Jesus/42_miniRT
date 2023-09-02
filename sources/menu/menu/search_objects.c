@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:52:06 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 16:08:38 by maricard         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:00:26 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	check_for_spheres(t_world *w)
+void	search_for_spheres(t_world *w)
 {
 	uint32_t	i;
 	t_shape		*shape;
@@ -34,7 +34,7 @@ void	check_for_spheres(t_world *w)
 	}
 }
 
-void	check_for_planes(t_world *w)
+void	search_for_planes(t_world *w)
 {
 	uint32_t	i;
 	t_shape		*shape;
@@ -56,7 +56,7 @@ void	check_for_planes(t_world *w)
 	}
 }
 
-void	check_for_cylinders(t_world *w)
+void	search_for_cylinders(t_world *w)
 {
 	uint32_t	i;
 	t_shape		*shape;
@@ -78,7 +78,7 @@ void	check_for_cylinders(t_world *w)
 	}
 }
 
-void	check_for_cones(t_world *w)
+void	search_for_cones(t_world *w)
 {
 	uint32_t	i;
 	t_shape		*shape;
@@ -102,8 +102,8 @@ void	check_for_cones(t_world *w)
 
 void	search_shapes(t_world *w)
 {
-	check_for_spheres(w);
-	check_for_planes(w);
-	check_for_cylinders(w);
-	check_for_cones(w);
+	search_for_spheres(w);
+	search_for_planes(w);
+	search_for_cylinders(w);
+	search_for_cones(w);
 }
