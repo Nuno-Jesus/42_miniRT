@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 18:51:10 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/02 21:19:15 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_graphics(t_world *w)
 	w->disp.img = mlx_new_image(w->disp.mlx, WIDTH, HEIGHT);
 	if (!w->disp.img)
 		message(w, ERROR_MALLOC("init_graphics (mlx image)"));
-	w->disp.addr = mlx_get_mesh_addr(w->disp.img, &w->disp.bpp, \
+	w->disp.addr = mlx_get_data_addr(w->disp.img, &w->disp.bpp, \
 		&w->disp.line_length, &w->disp.endian);
 	if (!w->disp.addr)
 		message(w, ERROR_MALLOC("init_graphics (mlx image address)"));
