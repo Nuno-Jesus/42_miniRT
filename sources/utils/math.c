@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/01 18:40:55 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/03 18:15:21 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	compute_shapes_constants(t_vector *shapes)
 		else if (shape->type == CONE)
 		{
 			co = &shape->data.co;
-			co->angle = atan(co->radius / co->height);
+			co->angle = atan(co->radius / co->height) + EPSILON;
 			co->base = vec3_add(co->tip, vec3_scale(co->normal, co->height));
 		}
 	}

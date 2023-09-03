@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   co_inter.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:03:15 by maricard          #+#    #+#             */
-/*   Updated: 2023/09/02 21:47:50 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/03 18:14:54 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ bool	check_sides(t_cone *co, t_hit *inter, double t)
 	m = vec3_dot(inter->ray.direction, co->normal) * t + \
 			vec3_dot(oc, co->normal);
 	tmp = vec3_sub(point, co->tip);
-	angle = acos(vec3_cossine(co->normal, tmp));
-	if (m >= 0 && m <= co->height && angle <= co->angle && \
+	angle = acos(vec3_cossine(co->normal, tmp)) - 0.001;
+	if (m >= 0 && m <= co->height && angle - EPSILON <= co->angle && \
 			t > EPSILON && t < inter->t)
 	{
 		inter->a = vec3_add(co->tip, vec3_scale(co->normal, m));
