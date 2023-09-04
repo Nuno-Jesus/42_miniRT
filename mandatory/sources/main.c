@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 20:16:43 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:08:11 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	main(int argc, char **argv)
 	world = parse(argv[1]);
 	init_viewport(world);
 	init_graphics(world);
-	world_print(world);
 	render(world);
 	mlx_hook(world->disp.win, KeyPress, KeyPressMask, on_keypress, world);
 	mlx_hook(world->disp.win, DestroyNotify, StructureNotifyMask, quit, world);
