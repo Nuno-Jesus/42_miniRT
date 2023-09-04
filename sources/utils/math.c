@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:06:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/03 18:15:21 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/04 13:44:08 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	compute_shapes_constants(t_vector *shapes)
 {
 	t_shape		*shape;
 	t_cylinder	*cy;
-	t_cone 		*co;
+	t_cone		*co;
 	uint32_t	i;
 
 	i = -1;

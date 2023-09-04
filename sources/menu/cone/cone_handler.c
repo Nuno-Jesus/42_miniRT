@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:28:51 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 17:54:52 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 10:57:02 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ t_menu_state	handle_cone_choice(int keycode, t_world *w)
 t_menu_state	handle_cone_changes(int keycode, t_world *w)
 {
 	t_cone	*co;
-	int			id;
+	int		id;
 
 	id = w->menu.ids[w->menu.id];
-	co = &((t_shape*)nc_vector_at(w->shapes, id))->data.co;
+	co = &((t_shape *)nc_vector_at(w->shapes, id))->data.co;
 	if (keycode == W)
 		co->tip.z += MOVE;
 	else if (keycode == S)
@@ -52,11 +52,11 @@ t_menu_state	handle_cone_size_changes(int keycode, t_world *w, t_cone *co)
 	if (keycode == LEFT)
 		co->radius += LEN;
 	else if (keycode == RIGHT)
-		co->radius -= LEN; 
+		co->radius -= LEN;
 	else if (keycode == C)
 		co->height += LEN;
 	else if (keycode == V)
-		co->height -= LEN; 
+		co->height -= LEN;
 	else
 		return (handle_cone_color_changes(keycode, w, co));
 	multithread(w);

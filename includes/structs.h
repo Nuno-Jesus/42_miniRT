@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/02 21:49:20 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 11:13:13 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef enum s_shape_type
 	SPHERE,
 	CYLINDER,
 	CONE,
-}	t_shape_type;
+}					t_shape_type;
 
 /**
  * @brief Describes how the menu is behaving and what is displaying
@@ -43,7 +43,7 @@ typedef enum s_menu_state
 	CHANGE_CYLINDER,
 	CHOOSE_CONE,
 	CHANGE_CONE
-}	t_menu_state;
+}					t_menu_state;
 
 /**
  * @brief Represents a two dimensional point
@@ -52,9 +52,9 @@ typedef enum s_menu_state
  */
 typedef struct s_xy
 {
-	int x;
-	int y;
-}	t_xy;
+	int				x;
+	int				y;
+}					t_xy;
 
 /**
  * @brief Represents a tridimensional vector
@@ -64,10 +64,10 @@ typedef struct s_xy
  */
 typedef struct s_vec3
 {
-	double	x;
-	double	y;
-	double	z;
-}	t_vec3;
+	double			x;
+	double			y;
+	double			z;
+}					t_vec3;
 
 /**
  * @brief Represents a color by its components
@@ -78,16 +78,16 @@ typedef struct s_vec3
  */
 typedef struct s_color
 {
-	int	t;
-	int	r;
-	int	g;
-	int	b;
-}	t_color;
+	int				t;
+	int				r;
+	int				g;
+	int				b;
+}					t_color;
 
 /**
  * @brief Contains the necessary fields to handle both second degree
  * and linear equations.
- * 
+ *
  * @param a The a value
  * @param b The b value
  * @param c The c value
@@ -96,93 +96,93 @@ typedef struct s_color
  */
 typedef struct s_equation
 {
-	double	a;
-	double	b;
-	double	c;
-	double	t1;
-	double	t2;
-}	t_equation;
+	double			a;
+	double			b;
+	double			c;
+	double			t1;
+	double			t2;
+}					t_equation;
 
 /**
  * @brief A scene's ray
- * 
+ *
  * @param origin The origin of the ray
  * @param direction The direction of the ray
  */
 typedef struct s_ray
 {
-	t_vec3	origin;
-	t_vec3	direction;
-}	t_ray;
+	t_vec3			origin;
+	t_vec3			direction;
+}					t_ray;
 
 /**
  * @brief Used to represent both the ambient light and a light source.
- * 
+ *
  * @param center The center of the light source
  * @param ratio The ratio/brightness of the light
  * @param color The light's color
- * 
+ *
  * @note The center field is not used in ambient lighting
  */
 typedef struct s_light
 {
-	t_vec3	center;
-	double	ratio;
-	t_color	color;
-}	t_light;
+	t_vec3			center;
+	double			ratio;
+	t_color			color;
+}					t_light;
 
 /**
  * @brief Describes how the camera is positioned in the scene
- * 
+ *
  * @param center The center of the camera
  * @param normal The direction of the camera
- * @param fov The camera's Field Of View 
+ * @param fov The camera's Field Of View
  */
 typedef struct s_camera
 {
-	t_vec3	center;
-	t_vec3	normal;
-	double	fov;
-}	t_camera;
+	t_vec3			center;
+	t_vec3			normal;
+	double			fov;
+}					t_camera;
 
 /**
  * @brief Describes a sphere
- * 
+ *
  * @param center The center of the sphere
  * @param radius The radius of the sphere
  * @param color The color of the sphere
  */
 typedef struct s_sphere
 {
-	t_vec3	center;
-	double	radius;
-	t_color	color;
-}	t_sphere;
+	t_vec3			center;
+	double			radius;
+	t_color			color;
+}					t_sphere;
 
 /**
  * @brief Describes an infinite plane
- * 
+ *
  * @param center A point in the plane (not really its center)
  * @param normal The direction the plane is pointing at
  * @param color The color of the plane
  */
 typedef struct s_plane
 {
-	t_vec3	center;
-	t_vec3	normal;
-	t_color	color;
-}	t_plane;
+	t_vec3			center;
+	t_vec3			normal;
+	t_color			color;
+}					t_plane;
 
 /**
  * @brief Describes a cylinder
- * 
+ *
  * @param center The center of a cylinder
  * @param cap1 The cap poin of the plane calculated using:
- * 
+ *
  * 		cap1 = center - height/2 * Normal Vector
- * 
+ *
  * @param cap2 The cap poin of the plane calculated using:
- * 
+ *
  * 		cap2 = center + height/2 * Normal Vector
  * @param normal The direction of the cylinder
  * @param radius The radius of the cylinder
@@ -191,18 +191,18 @@ typedef struct s_plane
  */
 typedef struct s_cylinder
 {
-	t_vec3	center;
-	t_vec3	cap1;
-	t_vec3	cap2;
-	t_vec3	normal;
-	double	radius;
-	double	height;
-	t_color	color;
-}	t_cylinder;
+	t_vec3			center;
+	t_vec3			cap1;
+	t_vec3			cap2;
+	t_vec3			normal;
+	double			radius;
+	double			height;
+	t_color			color;
+}					t_cylinder;
 
 /**
  * @brief Describes a cone
- * 
+ *
  * @param tip The tip of the cone
  * @param base The base of the cone
  * @param normal The direction of the cone
@@ -213,35 +213,35 @@ typedef struct s_cylinder
  */
 typedef struct s_cone
 {
-	t_vec3	tip;
-	t_vec3	base;
-	t_vec3	normal;
-	double 	height;
-	double	radius;
-	double 	angle;
-	t_color	color;
-}	t_cone;
+	t_vec3			tip;
+	t_vec3			base;
+	t_vec3			normal;
+	double			height;
+	double			radius;
+	double			angle;
+	t_color			color;
+}					t_cone;
 
 /**
  * @brief Contains the data of only ONE of the shapes at a time.
- * This means that if the cylinder is used, reading from the plane or 
+ * This means that if the cylinder is used, reading from the plane or
  * sphere will give you random values.
- * 
+ *
  * @param sp The t_sphere struct to work with
  * @param pl The t_plane struct to work with
  * @param cy The t_cylinder struct to work with
  */
 typedef union u_mesh
 {
-	t_sphere	sp;
-	t_plane		pl;
-	t_cylinder	cy;
-	t_cone		co;
-}	t_mesh;
+	t_sphere		sp;
+	t_plane			pl;
+	t_cylinder		cy;
+	t_cone			co;
+}					t_mesh;
 
 /**!
  *! @brief Describes a shape
- * 
+ *
  *! @param data The union containing the shape data
  *! @param type The type of shape
  *! @param id A number between 0 and the number of shapes in the scene
@@ -254,11 +254,11 @@ typedef struct s_shape
 	bool			is_textured;
 	double			ks;
 	double			shininess;
-}	t_shape;
+}					t_shape;
 
 /**
  * @brief Contains mlx related variables
- * 
+ *
  * @param mlx The mlx pointer
  * @param win The mlx window pointer
  * @param img The mlx image frame pointer
@@ -271,22 +271,22 @@ typedef struct s_shape
  */
 typedef struct s_graphics
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	void	*menu;
-	char	*addr;
-	int		height;
-	int		width;
-	int		bpp;
-	int		line_length;
-	int		endian;
-}	t_graphics;
+	void			*mlx;
+	void			*win;
+	void			*img;
+	void			*menu;
+	char			*addr;
+	int				height;
+	int				width;
+	int				bpp;
+	int				line_length;
+	int				endian;
+}					t_graphics;
 
 /**
- * @brief Describes an intersection point in the scene between 
+ * @brief Describes an intersection point in the scene between
  * a ray and a shape.
- * 
+ *
  * @param shape The shape that was hit
  * @param ray The ray that hit the shape
  * @param point The intersection point
@@ -297,31 +297,31 @@ typedef struct s_graphics
  */
 typedef struct s_hit
 {
-	t_shape	*shape;
-	t_ray	ray;
-	t_vec3	point;
-	t_vec3	normal;
-	t_color	color;
-	t_vec3	a;
-	double	t;
-	double	m;
-}	t_hit;
+	t_shape			*shape;
+	t_ray			ray;
+	t_vec3			point;
+	t_vec3			normal;
+	t_color			color;
+	t_vec3			a;
+	double			t;
+	double			m;
+}					t_hit;
 
 typedef struct s_menu
 {
-	int		sp_flag;
-	int		pl_flag;
-	int		cy_flag;
-	int		co_flag;
-	int		iterator;
-	int		id;
-	int		i;
-	int		ids[9];
-}	t_menu;
+	int				sp_flag;
+	int				pl_flag;
+	int				cy_flag;
+	int				co_flag;
+	int				iterator;
+	int				id;
+	int				i;
+	int				ids[9];
+}					t_menu;
 
 /**
  * @brief Describes a working thread
- * 
+ *
  * @param thread The own pthread
  * @param min_y The line to start rendering from
  * @param max_y The line to end rendering on
@@ -333,11 +333,11 @@ typedef struct s_runner
 	int				min_y;
 	int				max_y;
 	struct s_world	*world;
-}	t_runner;
+}					t_runner;
 
 /**
  * @brief The primary struct, contains everything needed to describe a scene
- * 
+ *
  * @param camera The scene's camera
  * @param ambient The scene's ambient light
  * @param lights The scenes' light sources vector
@@ -347,8 +347,8 @@ typedef struct s_runner
  * @param up The viewport up vector
  * @param right The viewport right vector
  * @param map The map read from the given file
- * @param hview The height of the viewport 
- * @param wview The width of the viewport 
+ * @param hview The height of the viewport
+ * @param wview The width of the viewport
  */
 typedef struct s_world
 {
@@ -365,6 +365,6 @@ typedef struct s_world
 	char			**map;
 	double			hview;
 	double			wview;
-}	t_world;
+}					t_world;
 
 #endif

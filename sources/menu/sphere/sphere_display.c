@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_display.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
-/*   Updated: 2023/09/02 21:50:21 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 13:24:43 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	display_sphere(t_world *w, t_vector *l)
 {
 	uint32_t	i;
 	t_shape		*shape;
-	int 		color;
+	int			color;
+	char		*str;
 
 	i = -1;
 	w->menu.i = -1;
@@ -39,12 +40,12 @@ void	display_sphere(t_world *w, t_vector *l)
 		if (shape->type != SPHERE)
 			continue ;
 		color = color_to_int(shape->data.sp.color);
-		display(w, (t_xy){5, 90 + (++w->menu.i * 20)}, \
-			0xFFFF00, nc_itoa(w->menu.iterator + 1));
-		display(w, (t_xy){25, 90 + (w->menu.i * 20)}, \
-			color, "- SPHERE");
+		str = nc_itoa(w->menu.iterator + 1);
+		display(w, (t_xy){5, 90 + (++w->menu.i * 20)}, 0xFFFF00, str);
+		display(w, (t_xy){25, 90 + (w->menu.i * 20)}, color, "- SPHERE");
 		w->menu.ids[w->menu.iterator] = shape->id;
 		w->menu.iterator++;
+		free(str);
 	}
 }
 
@@ -55,14 +56,13 @@ void	display_sphere_choice_menu(t_world *w)
 	display(w, (t_xy){10, 53}, 0xFFFFFF, "SPHERE");
 	display(w, (t_xy){9, 64}, 0xFFA160, "------");
 	display_sphere(w, w->shapes);
-	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 15)}, \
-		0xFFFF00, "FOR MORE INFO");
-	display(w, (t_xy){5, 90 + (w->menu.i * 20 + 35)}, \
-		0xFFFF00, "PRESS A NUMBER");
-	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 50)}, \
-		0xFF0000, "Q");
-	display(w, (t_xy){25, 90 + (w->menu.i * 20 + 50)}, \
-		0xFFFFFF, "- Previous Menu");
+	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 15)}, 0xFFFF00,
+		"FOR MORE INFO");
+	display(w, (t_xy){5, 90 + (w->menu.i * 20 + 35)}, 0xFFFF00,
+		"PRESS A NUMBER");
+	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 50)}, 0xFF0000, "Q");
+	display(w, (t_xy){25, 90 + (w->menu.i * 20 + 50)}, 0xFFFFFF,
+		"- Previous Menu");
 }
 
 void	display_sphere_info_1(t_world *w)
@@ -102,5 +102,5 @@ void	display_sphere_info_2(t_world *w)
 	display(w, (t_xy){20, 350}, 0xFFFFFF, " - Color Blue");
 	display(w, (t_xy){20, 370}, 0xFFFFFF, " - Color Pink");
 	display(w, (t_xy){20, 390}, 0xFFFFFF, " - Color Cyan");
-	display(w, (t_xy){20, 420}, 0xFFFFFF, " - Previous menu");		
+	display(w, (t_xy){20, 420}, 0xFFFFFF, " - Previous menu");
 }

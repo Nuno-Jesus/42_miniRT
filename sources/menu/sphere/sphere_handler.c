@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/09/02 21:50:28 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 10:58:50 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_menu_state	handle_sphere_changes(int keycode, t_world *w)
 	int			id;
 
 	id = w->menu.ids[w->menu.id];
-	sp = &((t_shape*)nc_vector_at(w->shapes, id))->data.sp;
+	sp = &((t_shape *)nc_vector_at(w->shapes, id))->data.sp;
 	if (keycode == W)
 		sp->center.z += MOVE;
 	else if (keycode == S)
@@ -60,7 +60,8 @@ t_menu_state	handle_sphere_size_change(int keycode, t_world *w, t_sphere *sp)
 	return (CHANGE_SPHERE);
 }
 
-t_menu_state	handle_sphere_color_change(int keycode, t_world *w, t_sphere *sp)
+t_menu_state	handle_sphere_color_change(int keycode, t_world *w,
+		t_sphere *sp)
 {
 	if (keycode == ONE)
 		sp->color = WHITE;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   planes_info2.c                                     :+:      :+:    :+:   */
+/*   plane_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 18:01:25 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 10:58:42 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_menu_state	handle_plane_changes(int keycode, t_world *w)
 	int		id;
 
 	id = w->menu.ids[w->menu.id];
-	pl = &((t_shape*)nc_vector_at(w->shapes, id))->data.pl;
+	pl = &((t_shape *)nc_vector_at(w->shapes, id))->data.pl;
 	if (keycode == W)
 		pl->center.z += MOVE;
 	else if (keycode == S)

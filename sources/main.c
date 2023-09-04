@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/02 21:19:15 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 13:31:04 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@ void	init_graphics(t_world *w)
 	w->disp.img = mlx_new_image(w->disp.mlx, WIDTH, HEIGHT);
 	if (!w->disp.img)
 		message(w, ERROR_MALLOC("init_graphics (mlx image)"));
-	w->disp.addr = mlx_get_data_addr(w->disp.img, &w->disp.bpp, \
-		&w->disp.line_length, &w->disp.endian);
+	w->disp.addr = mlx_get_data_addr(w->disp.img, &w->disp.bpp,
+			&w->disp.line_length, &w->disp.endian);
 	if (!w->disp.addr)
 		message(w, ERROR_MALLOC("init_graphics (mlx image address)"));
-	w->disp.menu = mlx_new_image(w->disp.mlx, WIDTH/6, HEIGHT);
+	w->disp.menu = mlx_new_image(w->disp.mlx, WIDTH / 6, HEIGHT);
 	if (!w->disp.img)
 		message(w, ERROR_MALLOC("init_graphics (mlx menu image)"));
-	
 }
 
 int	quit(t_world *world)
@@ -41,7 +40,7 @@ int	quit(t_world *world)
 
 int	on_keypress(int keycode, t_world *w)
 {
-	t_menu_state (*handlers[])(int, t_world*) = 
+	static t_menu_state	(*handlers[])(int, t_world *) = \
 	{
 		handle_closed_menu,
 		handle_opened_menu,
@@ -58,7 +57,7 @@ int	on_keypress(int keycode, t_world *w)
 		handle_cone_choice,
 		handle_cone_changes,
 	};
-	
+
 	if (keycode == ESC)
 		quit(w);
 	w->state = handlers[w->state](keycode, w);
@@ -67,7 +66,7 @@ int	on_keypress(int keycode, t_world *w)
 
 int	main(int argc, char **argv)
 {
-	t_world		*world;
+	t_world	*world;
 
 	if (argc != 2)
 		message(NULL, ERROR_USAGE);

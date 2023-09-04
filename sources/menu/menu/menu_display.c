@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu_display.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:34:07 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 18:04:06 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 10:58:16 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,11 @@ void	display_menu_entites(t_world *w)
 	display(w, (t_xy){25, 105}, 0xFFFFFF, "- AMBIENT LIGHT");
 	display(w, (t_xy){25, 125}, 0xFFFFFF, "- LIGHTS");
 	search_shapes(w);
-	display(w, (t_xy){5, 145 + (++w->menu.i * 20 + 15)}, \
-		0xFFFF00, "FOR MORE INFO");
-	display(w, (t_xy){5, 145 + (w->menu.i * 20 + 35)}, \
-		0xFFFF00, "PRESS A NUMBER");
-	display(w, (t_xy){5, 145 + (++w->menu.i * 20 + 50)}, \
-		0xFF0000, "Q");
-	display(w, (t_xy){25, 145 + (w->menu.i * 20 + 50)}, \
-		0xFFFFFF, "- Quit Menu");
+	display(w, (t_xy){5, 145 + (++w->menu.i * 20 + 15)}, 0xFFFF00,
+		"FOR MORE INFO");
+	display(w, (t_xy){5, 145 + (w->menu.i * 20 + 35)}, 0xFFFF00,
+		"PRESS A NUMBER");
+	display(w, (t_xy){5, 145 + (++w->menu.i * 20 + 50)}, 0xFF0000, "Q");
+	display(w, (t_xy){25, 145 + (w->menu.i * 20 + 50)}, 0xFFFFFF,
+		"- Quit Menu");
 }

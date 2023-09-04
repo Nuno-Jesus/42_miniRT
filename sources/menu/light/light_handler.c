@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lights_info.c                                      :+:      :+:    :+:   */
+/*   light_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 10:58:12 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 17:58:59 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 10:58:01 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_menu_state	handle_light_changes(int keycode, t_world *w)
 {
 	t_light	*l;
 
-	l = (t_light*)nc_vector_at(w->lights, w->menu.id);
+	l = (t_light *)nc_vector_at(w->lights, w->menu.id);
 	if (keycode == W)
 		l->center.z += MOVE;
 	else if (keycode == S)
@@ -75,4 +75,3 @@ t_menu_state	handle_light_color_changes(int keycode, t_world *w, t_light *l)
 	display_light_commands(w, w->menu.id);
 	return (CHANGE_LIGHT);
 }
-

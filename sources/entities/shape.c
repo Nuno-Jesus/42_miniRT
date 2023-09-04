@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   shape.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:41:54 by marvin            #+#    #+#             */
-/*   Updated: 2023/08/22 18:43:34 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/04 11:03:18 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "miniRT.h"
 
-t_shape	*shape_new(void	*data, t_shape_type type, int id, char **tokens)
+t_shape	*shape_new(void *data, t_shape_type type, int id, char **tokens)
 {
 	t_shape	*shape;
 

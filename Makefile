@@ -76,7 +76,7 @@ vpath %.h $(INC_FOLDER)
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-_FILES += debug_1 debug_2
+_FILES += world_debug debug_1 debug_2
 _FILES += world cylinder plane shape sphere lightsource cone
 _FILES += intersects pl_inter sp_inter cy_inter co_inter
 _FILES += read_map parser parse_shapes parse_illumination parse_utils

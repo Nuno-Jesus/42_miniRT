@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone_display.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 18:33:53 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 13:22:26 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@ void	display_cone_choice_menu(t_world *w)
 	display(w, (t_xy){10, 53}, 0xFFFFFF, "CONE");
 	display(w, (t_xy){9, 64}, 0xFFA160, "----");
 	display_cones(w, w->shapes);
-	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 15)}, \
-		0xFFFF00, "FOR MORE INFO");
-	display(w, (t_xy){5, 90 + (w->menu.i * 20 + 35)}, \
-		0xFFFF00, "PRESS A NUMBER");
-	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 50)}, \
-		0xFF0000, "Q");
-	display(w, (t_xy){25, 90 + (w->menu.i * 20 + 50)}, \
-		0xFFFFFF, "- Previous Menu");
+	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 15)}, 0xFFFF00,
+		"FOR MORE INFO");
+	display(w, (t_xy){5, 90 + (w->menu.i * 20 + 35)}, 0xFFFF00,
+		"PRESS A NUMBER");
+	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 50)}, 0xFF0000, "Q");
+	display(w, (t_xy){25, 90 + (w->menu.i * 20 + 50)}, 0xFFFFFF,
+		"- Previous Menu");
 }
 
 void	display_cones(t_world *w, t_vector *l)
 {
 	uint32_t	i;
 	t_shape		*shape;
-	int 		color;
+	int			color;
+	char		*str;
 
 	i = -1;
 	w->menu.i = -1;
@@ -45,11 +45,12 @@ void	display_cones(t_world *w, t_vector *l)
 		if (shape->type != CONE)
 			continue ;
 		color = color_to_int(shape->data.co.color);
-		display(w, (t_xy){5, 90 + (++w->menu.i * 20)}, \
-			0xFFFF00, nc_itoa(w->menu.iterator + 1));
+		str = nc_itoa(w->menu.iterator + 1);
+		display(w, (t_xy){5, 90 + (++w->menu.i * 20)}, 0xFFFF00, str);
 		display(w, (t_xy){25, 90 + (w->menu.i * 20)}, color, "- CONE");
 		w->menu.ids[w->menu.iterator] = shape->id;
 		w->menu.iterator++;
+		free(str);
 	}
 }
 
@@ -105,6 +106,5 @@ void	display_cone_info_2(t_world *w)
 	display(w, (t_xy){20, 400}, 0xFFFFFF, " - Color Blue");
 	display(w, (t_xy){20, 420}, 0xFFFFFF, " - Color Pink");
 	display(w, (t_xy){20, 440}, 0xFFFFFF, " - Color Cyan");
-	display(w, (t_xy){20, 470}, 0xFFFFFF, " - Previous menu");	
+	display(w, (t_xy){20, 470}, 0xFFFFFF, " - Previous menu");
 }
-

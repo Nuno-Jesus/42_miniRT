@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:03:15 by maricard          #+#    #+#             */
-/*   Updated: 2023/09/03 18:14:54 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/04 13:44:35 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ bool	check_sides(t_cone *co, t_hit *inter, double t)
 	t_vec3	oc;
 	t_vec3	tmp;
 	t_vec3	point;
-	double 	angle;
+	double	angle;
 	double	m;
 
 	point = ray_at(&inter->ray, t);
 	oc = vec3_sub(inter->ray.origin, co->tip);
-	m = vec3_dot(inter->ray.direction, co->normal) * t + \
-			vec3_dot(oc, co->normal);
+	m = vec3_dot(inter->ray.direction, co->normal) * t + vec3_dot(oc,
+			co->normal);
 	tmp = vec3_sub(point, co->tip);
 	angle = acos(vec3_cossine(co->normal, tmp)) - 0.001;
-	if (m >= 0 && m <= co->height && angle - EPSILON <= co->angle && \
-			t > EPSILON && t < inter->t)
+	if (m >= 0 && m <= co->height && angle - EPSILON <= co->angle && t > EPSILON
+		&& t < inter->t)
 	{
 		inter->a = vec3_add(co->tip, vec3_scale(co->normal, m));
 		inter->m = m;
@@ -86,17 +86,18 @@ bool	cone_intersect(t_cone *co, t_ray *ray, t_hit *inter)
 {
 	t_vec3		oc;
 	t_equation	equation;
-	double 		t;
-	
+	double		t;
+
 	inter->t = -1.0f;
+	equation = (t_equation){0, 0, 0, 0, 0};
 	oc = vec3_sub(ray->origin, co->tip);
-	equation.a = pow(vec3_dot(ray->direction, co->normal), 2) - \
-					pow(cos(co->angle), 2);
-	equation.b = 2.0f * (vec3_dot(ray->direction, co->normal) * \
-					vec3_dot(oc, co->normal) - vec3_dot(ray->direction, oc) \
-						* pow(cos(co->angle), 2));
-	equation.c = pow(vec3_dot(oc, co->normal), 2) - vec3_dot(oc, oc) * \
-					pow(cos(co->angle), 2);
+	equation.a = pow(vec3_dot(ray->direction, co->normal), 2)
+		- pow(cos(co->angle), 2);
+	equation.b = 2.0f * (vec3_dot(ray->direction, co->normal) * vec3_dot(oc,
+				co->normal) - vec3_dot(ray->direction, oc) * pow(cos(co->angle),
+				2));
+	equation.c = pow(vec3_dot(oc, co->normal), 2) - vec3_dot(oc, oc)
+		* pow(cos(co->angle), 2);
 	inter->ray = *ray;
 	t = verify_intersects(co, &equation, inter);
 	if (t > 0.0f)

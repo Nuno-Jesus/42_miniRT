@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cylinders_info2.c                                  :+:      :+:    :+:   */
+/*   cylinder_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:28:51 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 17:56:36 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 10:57:23 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_menu_state	handle_cylinder_changes(int keycode, t_world *w)
 	int			id;
 
 	id = w->menu.ids[w->menu.id];
-	cy = &((t_shape*)nc_vector_at(w->shapes, id))->data.cy;
+	cy = &((t_shape *)nc_vector_at(w->shapes, id))->data.cy;
 	if (keycode == W)
 		cy->center.z += MOVE;
 	else if (keycode == S)
@@ -47,24 +47,26 @@ t_menu_state	handle_cylinder_changes(int keycode, t_world *w)
 	return (CHANGE_CYLINDER);
 }
 
-t_menu_state	handle_cylinder_size_changes(int keycode, t_world *w, t_cylinder *cy)
+t_menu_state	handle_cylinder_size_changes(int keycode, t_world *w,
+		t_cylinder *cy)
 {
 	if (keycode == LEFT)
 		cy->radius += LEN;
 	else if (keycode == RIGHT)
-		cy->radius -= LEN; 
+		cy->radius -= LEN;
 	else if (keycode == C)
 		cy->height += LEN;
 	else if (keycode == V)
-		cy->height -= LEN; 
+		cy->height -= LEN;
 	else
-		return(handle_cylinder_color_changes(keycode, w, cy));
+		return (handle_cylinder_color_changes(keycode, w, cy));
 	multithread(w);
 	display_cylinder_commands(w, w->menu.id);
 	return (CHANGE_CYLINDER);
 }
 
-t_menu_state	handle_cylinder_color_changes(int keycode, t_world *w, t_cylinder *cy)
+t_menu_state	handle_cylinder_color_changes(int keycode, t_world *w,
+		t_cylinder *cy)
 {
 	if (keycode == ONE)
 		cy->color = WHITE;
@@ -88,4 +90,3 @@ t_menu_state	handle_cylinder_color_changes(int keycode, t_world *w, t_cylinder *
 	display_cylinder_commands(w, w->menu.id);
 	return (CHANGE_CYLINDER);
 }
-

@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 21:32:20 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/29 11:55:53 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/04 13:18:39 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	destroy_world(t_world **world)
 		mlx_destroy_image((*world)->disp.mlx, (*world)->disp.menu);
 	if ((*world)->disp.win)
 		mlx_destroy_window((*world)->disp.mlx, (*world)->disp.win);
-	//if ((*world)->disp.mlx)
-	//	mlx_destroy_display((*world)->disp.mlx);
+	if ((*world)->disp.mlx)
+		mlx_destroy_display((*world)->disp.mlx);
 	nc_free((*world)->disp.mlx);
 	free(*world);
 	*world = NULL;

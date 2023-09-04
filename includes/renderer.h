@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 18:41:38 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 13:40:03 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,9 @@ t_ray	make_ray(t_world *w, t_vec3 factors);
  * @return t_vec3 The point at t
  */
 t_vec3	ray_at(t_ray *ray, double t);
+
+//!
+void	apply_texture(t_hit *closest);
 
 /**
  * @brief The callback used on a relevant keypress. Launches N threads

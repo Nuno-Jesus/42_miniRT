@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_objects.c                                    :+:      :+:    :+:   */
+/*   search_objects.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:52:06 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 18:00:26 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 13:25:32 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,12 @@ void	search_for_spheres(t_world *w)
 	while (++i < w->shapes->size)
 	{
 		shape = nc_vector_at(w->shapes, i);
-		if (shape->type == SPHERE &&w->menu.sp_flag == 0)
+		if (shape->type == SPHERE && w->menu.sp_flag == 0)
 		{
 			w->menu.sp_flag = 1;
-			display(w, (t_xy){5, 125 + (++w->menu.i * 20)}, \
-				0xFFFF00, nc_itoa(4));
-			display(w, (t_xy){25, 125 + (w->menu.i * 20)},\
-				0xFFFFFF, "- SPHERE");
+			display(w, (t_xy){5, 125 + (++w->menu.i * 20)}, 0xFFFF00, "4");
+			display(w, (t_xy){25, 125 + (w->menu.i * 20)}, 0xFFFFFF,
+				"- SPHERE");
 		}
 	}
 }
@@ -45,13 +44,11 @@ void	search_for_planes(t_world *w)
 	while (++i < w->shapes->size)
 	{
 		shape = nc_vector_at(w->shapes, i);
-		if (shape->type == PLANE &&w->menu.sp_flag == 0)
+		if (shape->type == PLANE && w->menu.sp_flag == 0)
 		{
 			w->menu.sp_flag = 1;
-			display(w, (t_xy){5, 125 + (++w->menu.i * 20)}, \
-				0xFFFF00, nc_itoa(5));
-			display(w, (t_xy){25, 125 + (w->menu.i * 20)}, \
-				0xFFFFFF, "- PLANE");
+			display(w, (t_xy){5, 125 + (++w->menu.i * 20)}, 0xFFFF00, "5");
+			display(w, (t_xy){25, 125 + (w->menu.i * 20)}, 0xFFFFFF, "- PLANE");
 		}
 	}
 }
@@ -67,13 +64,12 @@ void	search_for_cylinders(t_world *w)
 	while (++i < w->shapes->size)
 	{
 		shape = nc_vector_at(w->shapes, i);
-		if (shape->type == CYLINDER &&w->menu.sp_flag == 0)
+		if (shape->type == CYLINDER && w->menu.sp_flag == 0)
 		{
 			w->menu.sp_flag = 1;
-			display(w, (t_xy){5, 125 + (++w->menu.i * 20)}, \
-				0xFFFF00, nc_itoa(6));
-			display(w, (t_xy){25, 125 + (w->menu.i * 20)}, \
-				0xFFFFFF, "- CYLINDER");
+			display(w, (t_xy){5, 125 + (++w->menu.i * 20)}, 0xFFFF00, "6");
+			display(w, (t_xy){25, 125 + (w->menu.i * 20)}, 0xFFFFFF,
+				"- CYLINDER");
 		}
 	}
 }
@@ -89,13 +85,11 @@ void	search_for_cones(t_world *w)
 	while (++i < w->shapes->size)
 	{
 		shape = nc_vector_at(w->shapes, i);
-		if (shape->type == CONE &&w->menu.sp_flag == 0)
+		if (shape->type == CONE && w->menu.sp_flag == 0)
 		{
 			w->menu.sp_flag = 1;
-			display(w, (t_xy){5, 125 + (++w->menu.i * 20)}, \
-				0xFFFF00, nc_itoa(7));
-			display(w, (t_xy){25, 125 + (w->menu.i * 20)}, \
-				0xFFFFFF, "- CONE");
+			display(w, (t_xy){5, 125 + (++w->menu.i * 20)}, 0xFFFF00, "7");
+			display(w, (t_xy){25, 125 + (w->menu.i * 20)}, 0xFFFFFF, "- CONE");
 		}
 	}
 }

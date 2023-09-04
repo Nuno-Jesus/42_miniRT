@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entities.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:10:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 18:35:48 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 13:11:06 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,6 @@ bool		check_caps(t_cylinder *cy, t_vec3 cap, t_hit *inter, double t);
 t_vec3		cylinder_normal(t_hit *inter, t_ray *ray);
 
 //! Cone
-
 /**
  * @brief this function will create a cone and store it's information
  * from a string array. 
@@ -195,7 +194,7 @@ t_vec3		cylinder_normal(t_hit *inter, t_ray *ray);
  * @return true If the cone was created correctly
  * @return false Otherwise
  */
-bool	cone_from_strings(t_cone *co, char **tokens);
+bool		cone_from_strings(t_cone *co, char **tokens);
 
 /**
  * @brief asserts if a ray has intersercted a cone. If it has, it stores the
@@ -207,7 +206,7 @@ bool	cone_from_strings(t_cone *co, char **tokens);
  * @return true If it hit
  * @return false Otherwise
  */
-bool	cone_intersect(t_cone *co, t_ray *ray, t_hit *inter);
+bool		cone_intersect(t_cone *co, t_ray *ray, t_hit *inter);
 
 //! Shapes
 /**

@@ -14,9 +14,9 @@
 
 bool	cone_from_strings(t_cone *co, char **tokens)
 {
-	char		**c;
-	char		**n;
-	char		**cl;
+	char	**c;
+	char	**n;
+	char	**cl;
 
 	c = nc_split(tokens[1], ',');
 	n = nc_split(tokens[2], ',');
@@ -32,11 +32,9 @@ bool	cone_from_strings(t_cone *co, char **tokens)
 	nc_matrix_delete(c, &free);
 	nc_matrix_delete(n, &free);
 	nc_matrix_delete(cl, &free);
-	if (vec3_length(co->normal) < 1.0 - EPSILON \
-		|| co->radius < EPSILON || co->height < EPSILON)
+	if (vec3_length(co->normal) < 1.0 - EPSILON || co->radius < EPSILON
+		|| co->height < EPSILON)
 		return (false);
 	co->normal = vec3_normalize(co->normal);
-	co->normal = vec3_add(co->normal, VEC_EPSILON);
 	return (true);
 }
-

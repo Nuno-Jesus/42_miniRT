@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:05:45 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/02 21:49:59 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 13:36:04 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	get_uv(t_mesh *d, t_vec3 point, double *u, double *v)
 {
-	//vec3_print(d->pl.normal);
 	if (d->pl.normal.x != 0 + EPSILON)
 	{
 		*u = point.z;
@@ -40,8 +39,8 @@ void	get_uv(t_mesh *d, t_vec3 point, double *u, double *v)
 void	apply_texture(t_hit *closest)
 {
 	t_vec3	point;
-	double  u;
-	double 	v;
+	double	u;
+	double	v;
 
 	if (!closest->shape->is_textured)
 		return ;
@@ -49,7 +48,7 @@ void	apply_texture(t_hit *closest)
 	get_uv(&closest->shape->data, point, &u, &v);
 	if ((int)(floor(u) + floor(v)) % 2)
 		closest->color = BLACK;
-	else 
+	else
 		closest->color = WHITE;
 }
 
@@ -100,10 +99,7 @@ void	*render(t_runner *worker)
 			factors = pixels_to_viewport(coords.x, coords.y);
 			ray = make_ray(w, factors);
 			if (world_hit(w->shapes, &ray, &closest))
-			{
-				apply_texture(&closest);
 				illuminate(w, &closest);
-			}
 			put_pixel(w, closest.color, coords.x, coords.y);
 		}
 	}

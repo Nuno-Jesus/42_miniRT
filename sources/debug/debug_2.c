@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:34:42 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 18:42:30 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/04 13:31:30 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,4 @@ void	cone_print(t_cone *co)
 	printf("  Radius: %.4lf\n", co->radius);
 	printf("  Height: %.4lf\n", co->height);
 	printf("  Color: (%d, %d, %d)\n", co->color.r, co->color.g, co->color.b);
-}
-
-void	world_print(t_world *world)
-{
-	printf("\n\t================ DEBUG ================\n\n");
-	ambient_print(&world->ambient);
-	camera_print(&world->camera);
-	nc_vector_print(world->lights);
-	nc_vector_print(world->shapes);
-	printf("Right Vector:\n  ");
-	vec3_print(world->right);
-	printf("Up Vector:\n  ");
-	vec3_print(world->up);
-	printf("Viewport:\n");
-	printf("  Height: %lf\n", world->hview);
-	printf("  Width: %lf\n", world->wview);
-	printf("\n\t=======================================\n\n");
 }

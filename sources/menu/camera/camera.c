@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 19:40:42 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 17:52:17 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 10:36:08 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	display_camera_menu(t_world *w)
 {
 	mlx_put_image_to_window(w->disp.mlx, w->disp.win, w->disp.menu, 0, 0);
 	display_menu_title(w);
-	display(w,(t_xy){10, 53}, 0xFFFFFF, "CAMERA");
-	display(w,(t_xy){9, 64}, 0xFFA160, "------");
+	display(w, (t_xy){10, 53}, 0xFFFFFF, "CAMERA");
+	display(w, (t_xy){9, 64}, 0xFFA160, "------");
 	display_camera_info(w);
 }

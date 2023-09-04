@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:53:41 by crypto            #+#    #+#             */
-/*   Updated: 2023/09/01 14:51:56 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/04 11:02:16 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ bool	check_walls(t_cylinder *cy, t_hit *inter, double t)
 
 	point = ray_at(&inter->ray, t);
 	co = vec3_sub(inter->ray.origin, cy->cap1);
-	m = vec3_dot(inter->ray.direction, cy->normal) * t + \
-		vec3_dot(co, cy->normal);
+	m = vec3_dot(inter->ray.direction, cy->normal) * t + vec3_dot(co,
+			cy->normal);
 	a = vec3_add(cy->cap1, vec3_scale(cy->normal, m));
 	len = vec3_length(vec3_sub(point, a));
 	m -= EPSILON;
 	len -= EPSILON;
-	if (m >= 0 && m <= cy->height && len <= cy->radius \
-		&& t > EPSILON && t < inter->t)
+	if (m >= 0 && m <= cy->height && len <= cy->radius && t > EPSILON
+		&& t < inter->t)
 	{
 		inter->a = a;
 		inter->t = t;
@@ -66,8 +66,8 @@ double	cap_intersection(t_cylinder *cy, t_ray *ray, t_vec3 cap)
 	return (-1);
 }
 
-double	verify_intersections(t_cylinder *cy, t_ray *ray, \
-	t_equation *equation, t_hit *inter)
+double	verify_intersections(t_cylinder *cy, t_ray *ray, t_equation *equation,
+		t_hit *inter)
 {
 	double	t3;
 	double	t4;
@@ -93,15 +93,13 @@ bool	cylinder_intersect(t_cylinder *cy, t_ray *ray, t_hit *inter)
 
 	equation.t1 = -1;
 	equation.t2 = -1;
-	// cy->cap1 = vec3_add(cy->center, vec3_scale(cy->normal, -cy->height / 2.0));
-	// cy->cap2 = vec3_add(cy->center, vec3_scale(cy->normal, cy->height / 2.0));
 	co = vec3_sub(ray->origin, cy->cap1);
-	equation.a = vec3_dot(ray->direction, ray->direction) - \
-		pow(vec3_dot(ray->direction, cy->normal), 2);
-	equation.b = 2 * (vec3_dot(ray->direction, co) - \
-		(vec3_dot(ray->direction, cy->normal) * vec3_dot(co, cy->normal)));
-	equation.c = vec3_dot(co, co) - pow(vec3_dot(co, cy->normal), 2) - \
-		pow(cy->radius, 2);
+	equation.a = vec3_dot(ray->direction, ray->direction)
+		- pow(vec3_dot(ray->direction, cy->normal), 2);
+	equation.b = 2 * (vec3_dot(ray->direction, co) - (vec3_dot(ray->direction,
+					cy->normal) * vec3_dot(co, cy->normal)));
+	equation.c = vec3_dot(co, co) - pow(vec3_dot(co, cy->normal), 2)
+		- pow(cy->radius, 2);
 	solve(&equation);
 	if (equation.t1 <= 0 && equation.t2 <= 0)
 		return (false);

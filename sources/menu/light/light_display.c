@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_display.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/31 18:10:58 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 13:23:54 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	display_lights(t_world *w, t_vector *l)
 	uint32_t	i;
 	t_light		*light;
 	int			color;
+	char		*str;
 
 	i = -1;
 	w->menu.i = -1;
@@ -37,11 +38,11 @@ void	display_lights(t_world *w, t_vector *l)
 	{
 		light = nc_vector_at(l, i);
 		color = color_to_int(light->color);
-		display(w, (t_xy){5, 90 + (++w->menu.i * 20)}, \
-			0xFFFF00, nc_itoa(i + 1));
-		display(w, (t_xy){25, 90 + (w->menu.i * 20)}, \
-			color, "- LIGHT");
+		str = nc_itoa(i + 1);
+		display(w, (t_xy){5, 90 + (++w->menu.i * 20)}, 0xFFFF00, str);
+		display(w, (t_xy){25, 90 + (w->menu.i * 20)}, color, "- LIGHT");
 		w->menu.iterator++;
+		free(str);
 	}
 }
 
@@ -52,10 +53,13 @@ void	display_light_choice_menu(t_world *w)
 	display(w, (t_xy){10, 53}, 0xFFFFFF, "LIGHTS");
 	display(w, (t_xy){9, 64}, 0xFFA160, "------");
 	display_lights(w, w->lights);
-	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 15)}, 0xFFFF00, "FOR MORE INFO");
-	display(w, (t_xy){5, 90 + (w->menu.i * 20 + 35)}, 0xFFFF00, "PRESS A NUMBER");
+	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 15)}, 0xFFFF00,
+		"FOR MORE INFO");
+	display(w, (t_xy){5, 90 + (w->menu.i * 20 + 35)}, 0xFFFF00,
+		"PRESS A NUMBER");
 	display(w, (t_xy){5, 90 + (++w->menu.i * 20 + 50)}, 0xFF0000, "Q");
-	display(w, (t_xy){25, 90 + (w->menu.i * 20 + 50)}, 0xFFFFFF, "- Previous Menu");
+	display(w, (t_xy){25, 90 + (w->menu.i * 20 + 50)}, 0xFFFFFF,
+		"- Previous Menu");
 }
 
 void	display_light_info_1(t_world *w)
@@ -95,5 +99,5 @@ void	display_light_info_2(t_world *w)
 	display(w, (t_xy){20, 350}, 0xFFFFFF, " - Color Blue");
 	display(w, (t_xy){20, 370}, 0xFFFFFF, " - Color Pink");
 	display(w, (t_xy){20, 390}, 0xFFFFFF, " - Color Cyan");
-	display(w, (t_xy){20, 420}, 0xFFFFFF, " - Previous menu");	
+	display(w, (t_xy){20, 420}, 0xFFFFFF, " - Previous menu");
 }

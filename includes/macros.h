@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 18:27:32 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 13:17:19 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@
 # ifdef __APPLE__
 #  define WIDTH 1440
 # else
-#  define WIDTH 1920
+#  define WIDTH 800
 # endif
 
 # define RATIO 	(16.0/9.0)

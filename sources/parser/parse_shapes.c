@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_shapes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 18:44:18 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/04 10:33:02 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ bool	parse_cylinder(t_vector *shapes, char **tokens)
 bool	parse_texture(t_vector *shapes, char **tokens)
 {
 	t_shape	*last;
-	
+
 	if (nc_matrix_size(tokens) < 2)
 		return (ERROR_NUM_ARGS("checkerboard", "2"), false);
 	if (!parse_plane(shapes, tokens))
@@ -99,9 +99,9 @@ bool	parse_texture(t_vector *shapes, char **tokens)
 
 bool	parse_cone(t_vector *shapes, char **tokens)
 {
-	bool		ok;
-	t_cone		cone;
-	t_shape		*shape;
+	bool	ok;
+	t_cone	cone;
+	t_shape	*shape;
 
 	if (nc_matrix_size(tokens) != 8)
 		return (ERROR("Wrong number of args in cone (need 8)"), false);
@@ -116,4 +116,3 @@ bool	parse_cone(t_vector *shapes, char **tokens)
 	nc_vector_push(shapes, shape);
 	return (true);
 }
-
