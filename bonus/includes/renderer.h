@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/04 16:25:59 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 17:06:44 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,5 @@ void	multithread(t_world *world);
  * @param threads The threads array to be filled with the portions info
  */
 void	allocate_thread_screen(t_world *world, t_runner threads[NUM_THREADS]);
-
 
 #endif
