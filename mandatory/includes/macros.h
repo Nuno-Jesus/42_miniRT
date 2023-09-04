@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/14 16:19:21 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 17:22:32 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define ERROR_COLOR_A		"Wrong color syntax for ambient lightning."
 # define ERROR_COLOR_L		"Wrong color syntax for light source."
 # define ERROR_SYNTAX		"Syntax: file format misconfiguration."
-# define ERROR_NOT_BER		"File extension is not '.ber'."
+# define ERROR_NOT_RT		"File extension is not '.rt'."
 # define ERROR_OPEN_FILE	"Couldn't open requested file"
 # define ERROR_EMPTY_MAP	"Empty map."
 # define ERROR_NO_CAMERA	"No camera in the map."

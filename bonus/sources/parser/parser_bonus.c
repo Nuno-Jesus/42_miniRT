@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parser_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/22 18:41:17 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/04 17:21:52 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_world	*parse(char *filename)
 
 	nc_bzero(counters, 2 * sizeof(int));
 	if (!is_filename_valid(filename))
-		message(NULL, ERROR_NOT_BER);
+		message(NULL, ERROR_NOT_RT);
 	world = world_new();
 	if (!world)
 		message(NULL, ERROR_MALLOC("t_world struct"));
