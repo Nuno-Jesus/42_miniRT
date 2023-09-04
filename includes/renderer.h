@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/04 15:15:33 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 16:21:51 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,5 +217,17 @@ void	apply_texture(t_hit *closest);
  * @param world The t_world struct
  */
 void	multithread(t_world *world);
+
+/**
+ * @brief Given the runners array, where each t_runner describes each 
+ * thread fields, it allocates a portion of the screen for each thread
+ * to render. The portions are divided in lines, and no portion overlaps 
+ * the other, so that the performance is greater.
+ * 
+ * @param world The t_world struct
+ * @param threads The threads array to be filled with the portions info
+ */
+void	allocate_thread_screen(t_world *world, t_runner threads[NUM_THREADS])
+
 
 #endif

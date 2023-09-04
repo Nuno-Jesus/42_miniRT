@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:29:43 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/18 19:02:58 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:19:43 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-//!
 void	allocate_thread_screen(t_world *world, t_runner threads[NUM_THREADS])
 {
 	uint8_t	i;
