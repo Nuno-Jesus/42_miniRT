@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/04 14:34:54 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 15:11:45 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,28 @@
 # define G 1
 # define B 2
 
+# define HAS_COMMAS '1'
+
+//! Math macros 
+
+# define PI 3.1415926535f
+# define RADIANS(deg) ((deg * PI) / 180.0f)
+# define DEGREES(rad) ((rad * 180.0f) / PI)
+# define EPSILON 0.0001
+
+//! Menu movement macros
+
 # define MOVE 3
 # define LEN 0.5
 # define ROTATE 0.1
 
-# define HAS_COMMAS '1'
+//! Illumination macros
+
+# define KD 0.8
+
+//! Threads rendering macro
+
+# define NUM_THREADS 16
 
 //! Error macros
 
@@ -80,21 +97,6 @@
 # define ERROR_MALLOC(str)  "Failed allocation on "str"."
 # define ERROR_USAGE 		"Usage: ./miniRT <scene>.rt"
 
-//! Math macros 
-
-# define PI 3.1415926535f
-# define RADIANS(deg) ((deg * PI) / 180.0f)
-# define DEGREES(rad) ((rad * 180.0f) / PI)
-# define EPSILON 0.0001
-
-//! Illumination macros
-
-# define KD 0.8
-
-//! Threads rendering macro
-
-# define NUM_THREADS 8
-
 //! Fixed t_color structs
 
 # define WHITE		(t_color){0, 255, 255, 255}
@@ -118,7 +120,7 @@
 # ifdef __APPLE__
 #  define WIDTH 1440
 # else
-#  define WIDTH 800
+#  define WIDTH 1920
 # endif
 
 # define RATIO 	(16.0/9.0)

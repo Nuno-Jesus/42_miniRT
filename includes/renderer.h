@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:23:25 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/04 13:40:03 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:15:33 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,13 @@ t_ray	make_ray(t_world *w, t_vec3 factors);
  */
 t_vec3	ray_at(t_ray *ray, double t);
 
-//!
+/**
+ * @brief If a shape is textured, this function will apply such texture.
+ * In this case, we're only handling checkerboard texture and only
+ * on planes.
+ * 
+ * @param closest The closest structure with info about the intersection point 
+ */
 void	apply_texture(t_hit *closest);
 
 /**

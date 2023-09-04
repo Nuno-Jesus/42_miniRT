@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:20:18 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/04 11:13:13 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:31:07 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef enum s_shape_type
 	SPHERE,
 	CYLINDER,
 	CONE,
-}					t_shape_type;
+}	t_shape_type;
 
 /**
  * @brief Describes how the menu is behaving and what is displaying
@@ -43,7 +43,7 @@ typedef enum s_menu_state
 	CHANGE_CYLINDER,
 	CHOOSE_CONE,
 	CHANGE_CONE
-}					t_menu_state;
+}	t_menu_state;
 
 /**
  * @brief Represents a two dimensional point
@@ -52,9 +52,9 @@ typedef enum s_menu_state
  */
 typedef struct s_xy
 {
-	int				x;
-	int				y;
-}					t_xy;
+	int	x;
+	int	y;
+}		t_xy;
 
 /**
  * @brief Represents a tridimensional vector
@@ -64,10 +64,10 @@ typedef struct s_xy
  */
 typedef struct s_vec3
 {
-	double			x;
-	double			y;
-	double			z;
-}					t_vec3;
+	double	x;
+	double	y;
+	double	z;
+}			t_vec3;
 
 /**
  * @brief Represents a color by its components
@@ -78,11 +78,11 @@ typedef struct s_vec3
  */
 typedef struct s_color
 {
-	int				t;
-	int				r;
-	int				g;
-	int				b;
-}					t_color;
+	int	t;
+	int	r;
+	int	g;
+	int	b;
+}		t_color;
 
 /**
  * @brief Contains the necessary fields to handle both second degree
@@ -96,12 +96,12 @@ typedef struct s_color
  */
 typedef struct s_equation
 {
-	double			a;
-	double			b;
-	double			c;
-	double			t1;
-	double			t2;
-}					t_equation;
+	double	a;
+	double	b;
+	double	c;
+	double	t1;
+	double	t2;
+}			t_equation;
 
 /**
  * @brief A scene's ray
@@ -111,9 +111,9 @@ typedef struct s_equation
  */
 typedef struct s_ray
 {
-	t_vec3			origin;
-	t_vec3			direction;
-}					t_ray;
+	t_vec3	origin;
+	t_vec3	direction;
+}			t_ray;
 
 /**
  * @brief Used to represent both the ambient light and a light source.
@@ -126,10 +126,10 @@ typedef struct s_ray
  */
 typedef struct s_light
 {
-	t_vec3			center;
-	double			ratio;
-	t_color			color;
-}					t_light;
+	t_vec3	center;
+	double	ratio;
+	t_color	color;
+}			t_light;
 
 /**
  * @brief Describes how the camera is positioned in the scene
@@ -140,10 +140,10 @@ typedef struct s_light
  */
 typedef struct s_camera
 {
-	t_vec3			center;
-	t_vec3			normal;
-	double			fov;
-}					t_camera;
+	t_vec3	center;
+	t_vec3	normal;
+	double	fov;
+}			t_camera;
 
 /**
  * @brief Describes a sphere
@@ -154,10 +154,10 @@ typedef struct s_camera
  */
 typedef struct s_sphere
 {
-	t_vec3			center;
-	double			radius;
-	t_color			color;
-}					t_sphere;
+	t_vec3	center;
+	double	radius;
+	t_color	color;
+}			t_sphere;
 
 /**
  * @brief Describes an infinite plane
@@ -168,10 +168,10 @@ typedef struct s_sphere
  */
 typedef struct s_plane
 {
-	t_vec3			center;
-	t_vec3			normal;
-	t_color			color;
-}					t_plane;
+	t_vec3	center;
+	t_vec3	normal;
+	t_color	color;
+}			t_plane;
 
 /**
  * @brief Describes a cylinder
@@ -191,14 +191,14 @@ typedef struct s_plane
  */
 typedef struct s_cylinder
 {
-	t_vec3			center;
-	t_vec3			cap1;
-	t_vec3			cap2;
-	t_vec3			normal;
-	double			radius;
-	double			height;
-	t_color			color;
-}					t_cylinder;
+	t_vec3	center;
+	t_vec3	cap1;
+	t_vec3	cap2;
+	t_vec3	normal;
+	double	radius;
+	double	height;
+	t_color	color;
+}			t_cylinder;
 
 /**
  * @brief Describes a cone
@@ -213,14 +213,14 @@ typedef struct s_cylinder
  */
 typedef struct s_cone
 {
-	t_vec3			tip;
-	t_vec3			base;
-	t_vec3			normal;
-	double			height;
-	double			radius;
-	double			angle;
-	t_color			color;
-}					t_cone;
+	t_vec3	tip;
+	t_vec3	base;
+	t_vec3	normal;
+	double	height;
+	double	radius;
+	double	angle;
+	t_color	color;
+}			t_cone;
 
 /**
  * @brief Contains the data of only ONE of the shapes at a time.
@@ -233,11 +233,11 @@ typedef struct s_cone
  */
 typedef union u_mesh
 {
-	t_sphere		sp;
-	t_plane			pl;
-	t_cylinder		cy;
-	t_cone			co;
-}					t_mesh;
+	t_sphere	sp;
+	t_plane		pl;
+	t_cylinder	cy;
+	t_cone		co;
+}				t_mesh;
 
 /**!
  *! @brief Describes a shape
@@ -271,17 +271,17 @@ typedef struct s_shape
  */
 typedef struct s_graphics
 {
-	void			*mlx;
-	void			*win;
-	void			*img;
-	void			*menu;
-	char			*addr;
-	int				height;
-	int				width;
-	int				bpp;
-	int				line_length;
-	int				endian;
-}					t_graphics;
+	void	*mlx;
+	void	*win;
+	void	*img;
+	void	*menu;
+	char	*addr;
+	int		height;
+	int		width;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}			t_graphics;
 
 /**
  * @brief Describes an intersection point in the scene between
@@ -297,27 +297,32 @@ typedef struct s_graphics
  */
 typedef struct s_hit
 {
-	t_shape			*shape;
-	t_ray			ray;
-	t_vec3			point;
-	t_vec3			normal;
-	t_color			color;
-	t_vec3			a;
-	double			t;
-	double			m;
-}					t_hit;
+	t_shape	*shape;
+	t_ray	ray;
+	t_vec3	point;
+	t_vec3	normal;
+	t_color	color;
+	t_vec3	a;
+	double	t;
+	double	m;
+}			t_hit;
 
+/**
+ * @brief Keeps the menu state information
+ * 
+ * @param iterator  
+ * @param i An iterator used to keep the menu aligned, as some menu fields
+ * might be skipped, which would cause blank spaces
+ * @param ids The possible shapes of the same type to work with
+ * @param id The selected shape id out of the ids array
+ */
 typedef struct s_menu
 {
-	int				sp_flag;
-	int				pl_flag;
-	int				cy_flag;
-	int				co_flag;
-	int				iterator;
-	int				id;
-	int				i;
-	int				ids[9];
-}					t_menu;
+	int	iterator;
+	int	i;
+	int	ids[9];
+	int	id;
+}		t_menu;
 
 /**
  * @brief Describes a working thread

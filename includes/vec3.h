@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:44:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/04 14:28:00 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 15:16:40 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,16 @@ bool	vec3_compare(t_vec3 v1, t_vec3 v2);
  */
 t_vec3	vec3_rotate(t_vec3 vec, int axis, double angle);
 
-//!
+/**
+ * @brief Given a vector to compare with min and max, asserts if the
+ * vec fields (x, y and z) are between min and max fields.
+ * 
+ * @param vec The vector to compare
+ * @param min The min reference
+ * @param max The max reference
+ * @return true If the vector is between min and max
+ * @return false Otherwise
+ */
 bool	vec3_between(t_vec3 vec, t_vec3 min, t_vec3 max);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:29:06 by maricard          #+#    #+#             */
-/*   Updated: 2023/09/04 11:12:57 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:25:41 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,6 @@ void			display_menu_title(t_world *w);
  * @param w The world struct
  */
 void			display_menu_entites(t_world *w);
-
-/**
- * @brief Initializes the flags for the shapes
- *
- * @param w The world struct
- */
-void			init_flags(t_world *w);
 
 /**
  * @brief Searches if there are shapes in the scene

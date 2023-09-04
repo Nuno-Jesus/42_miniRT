@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_display.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 21:56:47 by maricard          #+#    #+#             */
-/*   Updated: 2023/09/04 13:23:54 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:38:30 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	display_lights(t_world *w, t_vector *l)
 	w->menu.i = -1;
 	w->menu.id = 0;
 	w->menu.iterator = 0;
-	while (++i < l->size)
+	while (++i < l->size && w->menu.iterator < 9)
 	{
 		light = nc_vector_at(l, i);
 		color = color_to_int(light->color);
