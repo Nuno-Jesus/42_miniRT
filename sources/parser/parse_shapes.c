@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/04 14:38:35 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 14:51:58 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,14 +108,16 @@ bool	parse_cone(t_vector *shapes, char **tokens)
 	t_shape	*shape;
 
 	if (nc_matrix_size(tokens) != 8)
-		return (ERROR("Wrong number of args in cone (need 8)"), false);
+		return (ERROR_NUM_ARGS("cone", "8"), false);
 	if (!parse_syntax(tokens, "01100100"))
-		return (ERROR("Misconfiguration in commas/numbers in cone"), false);
+		return (ERROR_NUM_COMMAS("cone"), false);
 	if (!parse_rgb(tokens[5]))
-		return (ERROR("Colors misformatting in cone"), false);
+		return (ERROR_MISFORMAT_COLOR("cone"), false);
 	ok = cone_from_strings(&cone, tokens);
 	if (!ok)
-		return (ERROR("Values are too small in cone"), false);
+		return (ERROR_VALUES_TOO_SMALL("cone"), false);
+	if (!vec3_between(cone.normal, VEC_MIN, VEC_MAX))
+		return (ERROR_NORMAL_OUT_OF_BOUNDS("cylinder"), false);
 	shape = shape_new(&cone, CONE, shapes->size, tokens + 6);
 	nc_vector_push(shapes, shape);
 	return (true);
