@@ -6,7 +6,7 @@
 /*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:44:02 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/08/31 18:54:22 by crypto           ###   ########.fr       */
+/*   Updated: 2023/09/04 14:28:00 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,8 @@ bool	vec3_compare(t_vec3 v1, t_vec3 v2);
  * @return t_vec3 The rotated vector
  */
 t_vec3	vec3_rotate(t_vec3 vec, int axis, double angle);
+
+//!
+bool	vec3_between(t_vec3 vec, t_vec3 min, t_vec3 max);
 
 #endif

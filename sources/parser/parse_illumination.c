@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_illumination.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:12:25 by maricard          #+#    #+#             */
-/*   Updated: 2023/08/18 18:28:11 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:31:01 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ bool	parse_camera(t_camera *cam, char **tokens, int *counter)
 	nc_matrix_delete(normal, &free);
 	if (vec3_length(cam->normal) < 1.0 - EPSILON)
 		return (ERROR_VALUES_TOO_SMALL("camera"), false);
+	if (!vec3_between(cam->normal, VEC_MIN, VEC_MAX))
+		return (ERROR_NORMAL_OUT_OF_BOUNDS("camera"), false);
 	cam->normal = vec3_normalize(cam->normal);
 	(*counter)++;
 	return (true);

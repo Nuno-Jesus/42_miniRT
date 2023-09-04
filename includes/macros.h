@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:39:36 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/04 13:17:19 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:34:54 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@
 	ERROR("FOV coefficient out of bounds [0.0,1.0]")
 # define ERROR_LIGHT_BRIGHTNESS_OUT_OF_BOUNDS	\
 	ERROR("Light brightness out of bounds [0.0,1.0]")
+# define ERROR_NORMAL_OUT_OF_BOUNDS(x)	\
+	ERROR("Normal vector fields out of bounds in "x"[-1.0,1.0]")
 # define ERROR_KS_OUT_OF_BOUNDS(x)				\
 	ERROR("Specular coefficient out of bounds in "x" [0.0,1.0]")
 # define ERROR_SHININESS_OUT_OF_BOUNDS(x)		\
@@ -107,6 +109,8 @@
 //! Fixed t_vec3 structs
 
 # define UPGUIDE		(t_vec3){0.0, 1.0, 0.0}
+# define VEC_MIN		(t_vec3){-1.0001, -1.0001, -1.0001}
+# define VEC_MAX		(t_vec3){1.0001, 1.0001, 1.0001}
 # define VEC_EPSILON	(t_vec3){EPSILON, EPSILON, EPSILON}
 
 //! Viewport and window macros

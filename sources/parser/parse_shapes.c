@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_shapes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 15:11:31 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/04 10:33:02 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:38:35 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ bool	parse_plane(t_vector *shapes, char **tokens)
 	ok = plane_from_strings(&plane, tokens);
 	if (!ok)
 		return (ERROR_VALUES_TOO_SMALL("plane"), false);
+	if (!vec3_between(plane.normal, VEC_MIN, VEC_MAX))
+		return (ERROR_NORMAL_OUT_OF_BOUNDS("plane"), false);
 	shape = shape_new(&plane, PLANE, shapes->size, tokens + 4);
 	nc_vector_push(shapes, shape);
 	return (true);
@@ -79,6 +81,8 @@ bool	parse_cylinder(t_vector *shapes, char **tokens)
 	ok = cylinder_from_strings(&cylinder, tokens);
 	if (!ok)
 		return (ERROR_VALUES_TOO_SMALL("plane"), false);
+	if (!vec3_between(cylinder.normal, VEC_MIN, VEC_MAX))
+		return (ERROR_NORMAL_OUT_OF_BOUNDS("cylinder"), false);
 	shape = shape_new(&cylinder, CYLINDER, shapes->size, tokens + 6);
 	nc_vector_push(shapes, shape);
 	return (true);
