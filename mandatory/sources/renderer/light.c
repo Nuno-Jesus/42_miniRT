@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 15:23:25 by crypto            #+#    #+#             */
-/*   Updated: 2023/08/14 20:16:52 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:31:47 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ bool	is_shadowed(t_world *world, t_hit *closest)
 	t_ray	ray;
 	double	light_distance;
 
+	if (!world->lights->size)
+		return (false);
 	light = nc_vector_at(world->lights, 0);
 	light_dir = vec3_sub(light->center, closest->point);
 	light_distance = vec3_length(light_dir);
@@ -54,7 +56,7 @@ void	illuminate(t_world *world, t_hit *closest)
 
 	bulb = nc_vector_at(world->lights, 0); 
 	color = ambient(closest->color, world->ambient.ratio);
-	if (!is_shadowed(world, closest))
+	if (bulb && !is_shadowed(world, closest))
 		color = color_add(color, diffuse(bulb, closest, bulb->ratio));
 	closest->color = color;
 }
