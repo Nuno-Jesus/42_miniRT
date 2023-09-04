@@ -49,7 +49,8 @@ _SUBFOLDERS	= . debug entities intersections parser renderer utils vec3 \
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 CFLAGS		= -Wall -Wextra -Werror -O3
-CPPFLAGS	= -I $(INC_FOLDER) -MMD
+CPPFLAGS	= -I mandatory/$(INC_FOLDER)
+CPPFLAGS_BONUS	= -I bonus/$(INC_FOLDER)
 MAKEFLAGS	= --no-print-directory
 MLXFLAGS	= -L ./$(MLX) -lmlx -lXext -lX11 -lm 
 LIBNCFLAGS	= -L ./$(LIBNC) -lnc
@@ -63,12 +64,12 @@ LDFLAGS		= $(LIBNCFLAGS) $(GNLFLAGS) $(MLXFLAGS) -lm -lpthread
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 # The vpath directive tells the Makefile to look in these folders for missing
-# files. Because the _FILES only contains the name of the files we use and 
+# files. Because the BONUS_FILES only contains the name of the files we use and 
 # not the absolute path of them, the vpath directive helps the make to find
 # the file names on it.
 
-vpath %.c $(foreach subfolder, $(_SUBFOLDERS), $(SRC_FOLDER)/$(subfolder))
-vpath %.h $(INC_FOLDER)
+vpath %.c $(foreach subfolder, $(_SUBFOLDERS), mandatory/$(SRC_FOLDER)/$(subfolder))
+vpath %.c $(foreach subfolder, $(_SUBFOLDERS), bonus/$(SRC_FOLDER)/$(subfolder))
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -76,23 +77,34 @@ vpath %.h $(INC_FOLDER)
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-DEBUG	 += world_debug debug_1 debug_2
-ENTITIES += world cylinder plane shape sphere lightsource cone
-INTER	 += intersects pl_inter sp_inter cy_inter co_inter
-PARSER 	 += read_map parser parse_shapes parse_illumination parse_utils
-RENDER 	 += color light pixel ray normal render shadow threads texture	
-VEC 	 += vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_length vec3_new \
+MANDATORY_FILES += debug_1 debug_2
+MANDATORY_FILES += world cylinder plane shape sphere lightsource
+MANDATORY_FILES += intersections_1 intersections_2
+MANDATORY_FILES += read_map parser parse_shapes parse_illumination parse_utils
+MANDATORY_FILES += pixel render color light ray normal
+MANDATORY_FILES += vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_length vec3_new \
+	vec3_sub vec3_cossine vec3_compare vec3_from_strings
+MANDATORY_FILES += math message
+MANDATORY_FILES += main
+
+OBJS = $(patsubst %, $(OBJ_FOLDER)/%.o, $(MANDATORY_FILES))
+
+BONUS_DEBUG	 += world_debug debug_1 debug_2
+BONUS_ENTITIES += world cylinder plane shape sphere lightsource cone
+BONUS_INTER	 += intersects pl_inter sp_inter cy_inter co_inter
+BONUS_PARSER 	 += read_map parser parse_shapes parse_illumination parse_utils
+BONUS_RENDER 	 += color light pixel ray normal render shadow threads texture	
+BONUS_VEC 	 += vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_length vec3_new \
 	vec3_sub vec3_cossine vec3_compare vec3_from_strings vec3_rotate vec3_between
-UTILS	 += math message
-MENU	 += ambient camera search_objects menu_display menu_handler light_display light_handler \
+BONUS_UTILS	 += math message
+BONUS_MENU	 += ambient camera search_objects menu_display menu_handler light_display light_handler \
 	sphere_display sphere_handler cone_display cone_handler \
 	cylinder_display cylinder_handler plane_display plane_handler
 
-_FILES = $(DEBUG) $(ENTITIES) $(INTER) $(PARSER) $(RENDER) $(VEC) $(UTILS) $(MENU)
-_FILES += main
+BONUS_FILES += $(BONUS_DEBUG) $(BONUS_ENTITIES) $(BONUS_INTER) $(BONUS_PARSER) $(BONUS_RENDER) \
+	$(BONUS_VEC) $(BONUS_UTILS) $(BONUS_MENU) main
 
-DEPFILES = $(patsubst %, $(DEP_FOLDER)/%.d, $(_FILES))
-OBJS	 = $(patsubst %, $(OBJ_FOLDER)/%.o, $(_FILES))
+BONUS_OBJS = $(patsubst %, $(OBJ_FOLDER)/%_bonus.o, $(BONUS_FILES))
 NAME     = miniRT
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
@@ -139,7 +151,7 @@ endif
 all: $(NAME)
 
 #! Remove the echos and replace everything with a loading bar
-$(NAME): $(OBJ_FOLDER) $(DEP_FOLDER) $(OBJS)
+$(NAME): $(OBJ_FOLDER) $(OBJS)
 	echo "[$(CYAN)Compiling$(RESET)] $(GREEN)$(LIBNC)$(RESET)"
 	$(MAKE) -C $(LIBNC)
 
@@ -152,19 +164,46 @@ $(NAME): $(OBJ_FOLDER) $(DEP_FOLDER) $(OBJS)
 	echo "[$(CYAN) Linking $(RESET)] $(GREEN)$(NAME)$(RESET)"
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS) 
 	
-	mv $(OBJS:.o=.d) $(DEP_FOLDER)
 	echo "$(GREEN)Done.$(RESET)"
 	
 $(OBJ_FOLDER)/%.o: %.c
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
--include $(DEPFILES)
+re: fclean
+	$(MAKE) all
+
+bonus: .bonus
+
+.bonus: $(OBJ_FOLDER) $(BONUS_OBJS)
+	touch .bonus
+	
+	echo "[$(CYAN)Compiling$(RESET)] $(GREEN)$(LIBNC)$(RESET)"
+	$(MAKE) -C $(LIBNC)
+
+	echo "[$(CYAN)Compiling$(RESET)] $(GREEN)$(GNL)$(RESET)"
+	$(MAKE) -C $(GNL)
+
+	echo "[$(CYAN)Compiling$(RESET)] $(GREEN)$(MLX)$(RESET)"
+	$(MAKE) -C $(MLX)
+
+	echo "[$(CYAN) Linking $(RESET)] $(GREEN)$(NAME)$(RESET)"
+	$(CC) $(CFLAGS) $(CPPFLAGS_BONUS) $(BONUS_OBJS) -o $(NAME) $(LDFLAGS) 
+	
+	echo "$(GREEN)Done.$(RESET)"
+
+$(OBJ_FOLDER)/%_bonus.o: %_bonus.c
+	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
+	$(CC) $(CFLAGS) $(CPPFLAGS_BONUS) -c $< -o $@
+
+reb: fclean
+	$(MAKE) bonus
 
 clean:	
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(OBJ_FOLDER)$(RESET)"
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(DEP_FOLDER)$(RESET)"
 	$(RM) $(OBJ_FOLDER) $(DEP_FOLDER)
+	$(RM) .bonus
 
 fclean: clean
 	$(MAKE) fclean -C $(LIBNC)
@@ -173,9 +212,6 @@ fclean: clean
 
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(NAME)$(RESET)"
 	$(RM) $(NAME)
-
-re: fclean
-	$(MAKE) all
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 #_                                                                                           _
@@ -187,13 +223,17 @@ re: fclean
 $(OBJ_FOLDER):
 	mkdir -p $(OBJ_FOLDER)
 
-$(DEP_FOLDER):
-	mkdir -p $(DEP_FOLDER)
-
 fast:
 	$(MAKE) re -j
 
+bfast:
+	$(MAKE) reb -j
+
 run: fast
+	clear
+	./$(NAME) $(SCENE)
+
+brun: bfast
 	clear
 	./$(NAME) $(SCENE)
 
