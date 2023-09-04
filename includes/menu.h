@@ -6,7 +6,7 @@
 /*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:29:06 by maricard          #+#    #+#             */
-/*   Updated: 2023/09/04 11:12:57 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:49:10 by maricard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,15 @@ void			search_for_cones(t_world *w);
  * @param w The world struct
  */
 t_menu_state	handle_camera_changes(int keycode, t_world *w);
+
+/**
+ * @brief Handler for changes in the camera position
+ *
+ * @param keycode The clicked key
+ * @param w The world struct
+ * @return t_menu_state The next menu state
+ */
+t_menu_state	handle_camera_direction(int keycode, t_world *w);
 
 /**
  * @brief Displays the camera info
