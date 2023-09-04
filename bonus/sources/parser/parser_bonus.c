@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/04 17:21:52 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:11:00 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 bool	identifying(t_world *world, char **tokens, int count[2])
 {
-	if (!nc_strncmp(tokens[0], "A", nc_strlen(tokens[0])))
+	if (!nc_strcmp(tokens[0], "A"))
 		return (parse_ambient_light(&world->ambient, tokens, &count[0]));
-	if (!nc_strncmp(tokens[0], "C", nc_strlen(tokens[0])))
+	if (!nc_strcmp(tokens[0], "C"))
 		return (parse_camera(&world->camera, tokens, &count[1]));
-	if (!nc_strncmp(tokens[0], "l", nc_strlen(tokens[0])))
+	if (!nc_strcmp(tokens[0], "l"))
 		return (parse_light_source(world->lights, tokens));
-	if (!nc_strncmp(tokens[0], "pl", nc_strlen(tokens[0])))
+	if (!nc_strcmp(tokens[0], "pl"))
 		return (parse_plane(world->shapes, tokens));
-	if (!nc_strncmp(tokens[0], "sp", nc_strlen(tokens[0])))
+	if (!nc_strcmp(tokens[0], "sp"))
 		return (parse_sphere(world->shapes, tokens));
-	if (!nc_strncmp(tokens[0], "cy", nc_strlen(tokens[0])))
+	if (!nc_strcmp(tokens[0], "cy"))
 		return (parse_cylinder(world->shapes, tokens));
-	if (!nc_strncmp(tokens[0], "tt", nc_strlen(tokens[0])))
+	if (!nc_strcmp(tokens[0], "tt"))
 		return (parse_texture(world->shapes, tokens));
-	if (!nc_strncmp(tokens[0], "co", nc_strlen(tokens[0])))
+	if (!nc_strcmp(tokens[0], "co"))
 		return (parse_cone(world->shapes, tokens));
 	return (ERROR("Error parsing entities"), false);
 }

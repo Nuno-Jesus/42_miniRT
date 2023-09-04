@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:18:19 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/09/04 17:21:52 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:11:00 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 bool	identifying(t_world *world, char **tokens, int count[3])
 {
-	if (!nc_strncmp(tokens[0], "A", nc_strlen(tokens[0])))
+	if (!nc_strcmp("A", tokens[0]))
 		return (parse_ambient_light(&world->ambient, tokens, count));
-	else if (!nc_strncmp(tokens[0], "C", nc_strlen(tokens[0])))
+	else if (!nc_strcmp("C", tokens[0]))
 		return (parse_camera(&world->camera, tokens, count));
-	else if (!nc_strncmp(tokens[0], "L", nc_strlen(tokens[0])))
+	else if (!nc_strcmp("L", tokens[0]))
 		return (parse_light_source(world->lights, tokens, count));
-	else if (!nc_strncmp(tokens[0], "pl", nc_strlen(tokens[0])))
+	else if (!nc_strcmp("pl", tokens[0]))
 		return (parse_plane(world->shapes, tokens));
-	else if (!nc_strncmp(tokens[0], "sp", nc_strlen(tokens[0])))
+	else if (!nc_strcmp("sp", tokens[0]))
 		return (parse_sphere(world->shapes, tokens));
-	else if (!nc_strncmp(tokens[0], "cy", nc_strlen(tokens[0])))
+	else if (!nc_strcmp("cy", tokens[0]))
 		return (parse_cylinder(world->shapes, tokens));
 	else
 		return (ERROR("Error parsing entities"), false);
