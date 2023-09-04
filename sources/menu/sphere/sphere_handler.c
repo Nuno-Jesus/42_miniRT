@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:17:21 by maricard          #+#    #+#             */
-/*   Updated: 2023/09/04 10:58:50 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:47:05 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_menu_state	handle_sphere_changes(int keycode, t_world *w)
 	else
 		return (handle_sphere_size_change(keycode, w, sp));
 	multithread(w);
-	display_light_commands(w, w->menu.id);
+	display_sphere_commands(w, w->menu.id);
 	return (CHANGE_SPHERE);
 }
 
@@ -56,7 +56,7 @@ t_menu_state	handle_sphere_size_change(int keycode, t_world *w, t_sphere *sp)
 	else
 		return (handle_sphere_color_change(keycode, w, sp));
 	multithread(w);
-	display_light_commands(w, w->menu.id);
+	display_sphere_commands(w, w->menu.id);
 	return (CHANGE_SPHERE);
 }
 
@@ -82,6 +82,6 @@ t_menu_state	handle_sphere_color_change(int keycode, t_world *w,
 	else
 		return (CHANGE_SPHERE);
 	multithread(w);
-	display_light_commands(w, w->menu.id);
+	display_sphere_commands(w, w->menu.id);
 	return (CHANGE_SPHERE);
 }

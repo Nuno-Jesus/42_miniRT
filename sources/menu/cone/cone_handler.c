@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maricard <maricard@student.porto.com>      +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 18:28:51 by maricard          #+#    #+#             */
-/*   Updated: 2023/09/04 10:57:02 by maricard         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:46:32 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_menu_state	handle_cone_changes(int keycode, t_world *w)
 	else
 		return (handle_cone_size_changes(keycode, w, co));
 	multithread(w);
-	display_cylinder_commands(w, w->menu.id);
+	display_cone_commands(w, w->menu.id);
 	return (CHANGE_CONE);
 }
 
@@ -60,7 +60,7 @@ t_menu_state	handle_cone_size_changes(int keycode, t_world *w, t_cone *co)
 	else
 		return (handle_cone_color_changes(keycode, w, co));
 	multithread(w);
-	display_cylinder_commands(w, w->menu.id);
+	display_cone_commands(w, w->menu.id);
 	return (CHANGE_CONE);
 }
 
@@ -85,6 +85,6 @@ t_menu_state	handle_cone_color_changes(int keycode, t_world *w, t_cone *co)
 	else
 		return (CHANGE_CONE);
 	multithread(w);
-	display_cylinder_commands(w, w->menu.id);
+	display_cone_commands(w, w->menu.id);
 	return (CHANGE_CONE);
 }
