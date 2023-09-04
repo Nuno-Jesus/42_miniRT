@@ -76,17 +76,19 @@ vpath %.h $(INC_FOLDER)
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-_FILES += world_debug debug_1 debug_2
-_FILES += world cylinder plane shape sphere lightsource cone
-_FILES += intersects pl_inter sp_inter cy_inter co_inter
-_FILES += read_map parser parse_shapes parse_illumination parse_utils
-_FILES += color light pixel ray normal render shadow threads texture	
-_FILES += vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_length vec3_new \
+DEBUG	 += world_debug debug_1 debug_2
+ENTITIES += world cylinder plane shape sphere lightsource cone
+INTER	 += intersects pl_inter sp_inter cy_inter co_inter
+PARSER 	 += read_map parser parse_shapes parse_illumination parse_utils
+RENDER 	 += color light pixel ray normal render shadow threads texture	
+VEC 	 += vec3_add vec3_dot vec3_scale vec3_normalize vec3_cross vec3_length vec3_new \
 	vec3_sub vec3_cossine vec3_compare vec3_from_strings vec3_rotate vec3_between
-_FILES += math message
-_FILES += ambient camera search_objects menu_display menu_handler light_display light_handler \
+UTILS	 += math message
+MENU	 += ambient camera search_objects menu_display menu_handler light_display light_handler \
 	sphere_display sphere_handler cone_display cone_handler \
 	cylinder_display cylinder_handler plane_display plane_handler
+
+_FILES = $(DEBUG) $(ENTITIES) $(INTER) $(PARSER) $(RENDER) $(VEC) $(UTILS) $(MENU)
 _FILES += main
 
 DEPFILES = $(patsubst %, $(DEP_FOLDER)/%.d, $(_FILES))
@@ -159,12 +161,6 @@ $(OBJ_FOLDER)/%.o: %.c
 
 -include $(DEPFILES)
 
-$(OBJ_FOLDER):
-	mkdir -p $(OBJ_FOLDER)
-
-$(DEP_FOLDER):
-	mkdir -p $(DEP_FOLDER)
-
 clean:	
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(OBJ_FOLDER)$(RESET)"
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(DEP_FOLDER)$(RESET)"
@@ -186,6 +182,13 @@ re: fclean
 #_                                        CUSTOM RULES                                       _
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+
+
+$(OBJ_FOLDER):
+	mkdir -p $(OBJ_FOLDER)
+
+$(DEP_FOLDER):
+	mkdir -p $(DEP_FOLDER)
 
 fast:
 	$(MAKE) re -j
