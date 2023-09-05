@@ -109,7 +109,7 @@ $ ./miniRT scene_name
 ```
 
 > **Warning**
-> On MACOS, the `mlx_destroy_display` function does not exist, which will cause a compilation error, unless you comment it (world.c and world_bonus.c)
+> On macOS, the `mlx_destroy_display` function does not exist, which will cause a compilation error, unless you comment it (`world.c` and `world_bonus.c`)
 
 Where `scene_name` is the name of a file that represents the world map. The scene must have a `.rt` extension. You can find example scenes in the `scenes` folder.
 
@@ -122,7 +122,7 @@ Mandatory:
 - **D** - increments the camera x coordinate
 
 Bonus:
-- **M** - toggles/untoggles the menu, which has several other commands you can try
+- **M** - toggles/untoggles the menu, which displays several other commands you can try
 
 ## 💫 **Testing**
 
