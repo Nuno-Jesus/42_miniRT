@@ -19,18 +19,20 @@ This project was graded <strong>125/100</strong>.
 	</thead>
 	<tbody>
 		<tr>
-			<td>image 1</td>
-			<td>image 2</td>
+			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/732f9349-d5b9-45a2-8920-a97ad2934c01></td>
+			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/c71155e9-41df-44a5-9a1c-ed1f6aa50df0></td>
 		</tr>
 		<tr>
-			<td>image 3</td>
-			<td>image 4</td>
+			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/90438e64-7050-481a-a096-55fd8353db96></td>
+			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/28501715-e0cf-4456-84c6-ef077b7f78da></td>
 		</tr>
 	</tbody>
 </table>
 
 
 ## **Bonus Part**
+![bonus_texture]()
+![bonus_colored_multi_spot_lights]()
 
 <table align=center>
 	<thead>
@@ -40,12 +42,12 @@ This project was graded <strong>125/100</strong>.
 	</thead>
 	<tbody>
 		<tr>
-			<td>image 1</td>
-			<td>image 2</td>
+			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/b75fe0c8-63fe-410b-b110-dc8c020aae4c></td>
+			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/cf5fcef6-e292-4845-8623-4567ac43cedf></td>
 		</tr>
 		<tr>
-			<td>image 3</td>
-			<td>image 4</td>
+			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/ac27602e-443c-42cb-ab93-874b2de96dc9></td>
+			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/ac7d3304-ce92-4ac5-b580-7a46c6200f54></td>
 		</tr>
 	</tbody>
 </table>
@@ -78,6 +80,7 @@ At 42, the C projects are built following a bunch of rules that enforce good cod
 			<td><strong>srcs/</strong> </td>
 			<td>Contains all the source files</td>
 		</tr>
+
 		<tr>
 			<td><strong>srcs/commands/</strong> </td>
 			<td>Contains all the builtin commands</td>
