@@ -29,12 +29,12 @@ This isn't an advanced Ray Tracer, since it's implemented in C, but it definitel
 	</thead>
 	<tbody>
 		<tr>
-			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/732f9349-d5b9-45a2-8920-a97ad2934c01></td>
-			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/c71155e9-41df-44a5-9a1c-ed1f6aa50df0></td>
+			<td><image src="assets/mandatory_snowman.png"></td>
+			<td><image src="assets/mandatory_temple.png"></td>
 		</tr>
 		<tr>
-			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/90438e64-7050-481a-a096-55fd8353db96></td>
-			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/28501715-e0cf-4456-84c6-ef077b7f78da></td>
+			<td><image src="assets/mandatory_stickman.png"></td>
+			<td><image src="assets/mandatory_losangle.png"></td>
 		</tr>
 	</tbody>
 </table>
@@ -58,12 +58,12 @@ The mandatory part features:
 	</thead>
 	<tbody>
 		<tr>
-			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/b75fe0c8-63fe-410b-b110-dc8c020aae4c></td>
-			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/cf5fcef6-e292-4845-8623-4567ac43cedf></td>
+			<td><image src="assets/bonus_colored_temple.png"></td>
+			<td><image src="assets/bonus_colored_snowman.png"></td>
 		</tr>
 		<tr>
-			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/ac27602e-443c-42cb-ab93-874b2de96dc9></td>
-			<td><image src=https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/ac7d3304-ce92-4ac5-b580-7a46c6200f54></td>
+			<td><image src="assets/bonus_colored_multi_spot_lights.png"></td>
+			<td><image src="assets/bonus_texture.png"></td>
 		</tr>
 	</tbody>
 </table>
