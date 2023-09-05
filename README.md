@@ -77,6 +77,12 @@ The bonus part features the mandatory and also the following:
 	- Multithreaded rendering (our bonus)
 	- Interectable menu (our bonus)
 
+## 🎥 **Demo**
+
+Here's a small demo with one of our maps.
+
+
+
 ## 🚨 **Disclaimer**
 At 42, the C projects are built following a bunch of rules that enforce good coding style, stated in a file called **Norminette**. Some of them are:
 
@@ -87,21 +93,26 @@ At 42, the C projects are built following a bunch of rules that enforce good cod
 	- No more than 4 parameters in 1 function
 	... 
 
-## 🎥 **Demo**
-
 
 ## 📦 **Compilation**
-To compile minishell you should run `make` in the terminal.
+To compile the mandatory part of the ray tracer you should run `make` in the terminal.
 
-This rule will generate a `minishell` file, which is the zipped version of all the object files. To launch the executable you should follow this syntax...
+This rule will generate a `miniRT` file, which is the zipped version of all the object files. Running `make bonus` will compile the bonus part of the ray tracer. 
+
+> **Note**
+> The rules `make fast` and `make bfast` use threads to compile WAAAY faster the mandatory and bonus parts, respectively.
+
+To launch the executable you should follow this syntax...
 
 ```sh
-$ ./minishell
+$ ./miniRT scene_name
 ```
+
+Where `scene_name` is the name of a file that represents the world map. The scene must have a `.rt` extension. You can find example scenes in the `scenes` folder.
 
 ## 💫 **Testing**
 
-This project was tested using self-made tests and other colleagues pressure tests.
+This project was tested using self-made tests.
 
 
 ## 📞 **Contact me**
