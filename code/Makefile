@@ -104,7 +104,7 @@ BONUS_MENU	 += ambient camera search_objects menu_display menu_handler light_dis
 BONUS_FILES += $(BONUS_DEBUG) $(BONUS_ENTITIES) $(BONUS_INTER) $(BONUS_PARSER) $(BONUS_RENDER) \
 	$(BONUS_VEC) $(BONUS_UTILS) $(BONUS_MENU) main
 
-BONUS_OBJS = $(patsubst %, $(OBJ_FOLDER)/%_bonus.o, $(BONUS_FILES))
+BONUS_OBJS = $(patsubst %, $(OBJ_FOLDER)_bonus/%_bonus.o, $(BONUS_FILES))
 NAME     = miniRT
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
@@ -175,7 +175,7 @@ re: fclean
 
 bonus: .bonus
 
-.bonus: $(OBJ_FOLDER) $(BONUS_OBJS)
+.bonus: $(OBJ_FOLDER)_bonus $(BONUS_OBJS)
 	touch .bonus
 	
 	echo "[$(CYAN)Compiling$(RESET)] $(GREEN)$(LIBNC)$(RESET)"
@@ -192,7 +192,7 @@ bonus: .bonus
 	
 	echo "$(GREEN)Done.$(RESET)"
 
-$(OBJ_FOLDER)/%_bonus.o: %_bonus.c
+$(OBJ_FOLDER)_bonus/%_bonus.o: %_bonus.c
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
 	$(CC) $(CFLAGS) $(CPPFLAGS_BONUS) -c $< -o $@
 
@@ -202,7 +202,7 @@ reb: fclean
 clean:	
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(OBJ_FOLDER)$(RESET)"
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)$(DEP_FOLDER)$(RESET)"
-	$(RM) $(OBJ_FOLDER) $(DEP_FOLDER)
+	$(RM) $(OBJ_FOLDER) $(OBJ_FOLDER)_bonus $(DEP_FOLDER)
 	$(RM) .bonus
 
 fclean: clean
@@ -222,6 +222,9 @@ fclean: clean
 
 $(OBJ_FOLDER):
 	mkdir -p $(OBJ_FOLDER)
+
+$(OBJ_FOLDER)_bonus:
+	mkdir -p $(OBJ_FOLDER)_bonus
 
 fast:
 	$(MAKE) re -j
