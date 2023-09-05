@@ -108,7 +108,21 @@ To launch the executable you should follow this syntax...
 $ ./miniRT scene_name
 ```
 
+> **Warning**
+> On MACOS, the `mlx_destroy_display` function does not exist, which will cause a compilation error, unless you comment it (world.c and world_bonus.c)
+
 Where `scene_name` is the name of a file that represents the world map. The scene must have a `.rt` extension. You can find example scenes in the `scenes` folder.
+
+## 🕹️ **Controls**
+
+Mandatory:
+- **W** - increments the camera y coordinate
+- **A** - decrements the camera x coordinate
+- **S** - decrements the camera y coordinate
+- **D** - increments the camera x coordinate
+
+Bonus:
+- **M** - toggles/untoggles the menu, which has several other commands you can try
 
 ## 💫 **Testing**
 
