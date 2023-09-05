@@ -3,7 +3,7 @@ This project was graded <strong>125/100</strong>.
 
 ## 📝 **Authorship**
 
-- [Mario Cardoso](https://github.com/jscaetano) ([**maricard**](https://profile.intra.42.fr/users/maricard))
+- [Mario Henriques](https://github.com/maricard18) ([**maricard**](https://profile.intra.42.fr/users/maricard))
 - [Nuno Jesus](https://github.com/Nuno-Jesus) ([**ncarvalh**](https://profile.intra.42.fr/users/ncarvalh))
 
 ## 🧬 **Cloning**
