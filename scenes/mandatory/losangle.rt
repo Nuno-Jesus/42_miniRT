@@ -1,6 +1,7 @@
-A    0.0                           255,255,255
+A    0.1                           255,255,255
 
 C    0,0,0        0,0,1.0    90
+# C    30,-20,0        -0.2,0,1.0    90
 L    0,0,40                1.0    255,255,255
 
 # Top left
@@ -10,7 +11,9 @@ pl   75,75,0      -1,-1,0          0,255,0
 # Bottom right
 pl   75,-75,0      -1,1,0          0,0,255
 # Bottom left
-pl   -75,-75,0      1,1,0          255,255,255
+pl   -75,-75,0      1,1,0          255,255,0
+# Background
+pl   0,0,800      0,0,-1          255,255,255
 
 # Some spheres inside the losangle with random colors, positions and sizes
 sp   -20,-20,80      10          255,0,0
