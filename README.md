@@ -6,8 +6,18 @@ This project was graded <strong>125/100</strong>.
 - [Mario Cardoso](https://github.com/jscaetano) ([**maricard**](https://profile.intra.42.fr/users/maricard))
 - [Nuno Jesus](https://github.com/Nuno-Jesus) ([**ncarvalh**](https://profile.intra.42.fr/users/ncarvalh))
 
-## 📒 **About**
+## 🧬 **Cloning**
 
+This repository uses a **git submodule**, a git repo nested in this one (the **libnc** folder). By default, cloning this repo will ignore the submodule, which comes out as an empty folder. To successfully clone both, use this command
+
+```shell
+git clone --recurse-submodules https://github.com/Nuno-Jesus/42_miniRT.git 
+```
+
+## 📒 **About**
+Rendering a 3-dimensional images can be done using Ray Tracing, an expensive technique, which is based on casting rays from the camera into the space and illuminate shapes.
+
+This isn't an advanced Ray Tracer, since it's implemented in C, but it definitely is functional and has a bit of our own bonus in it too!
 
 ## **Mandatory Part**
 
@@ -29,10 +39,16 @@ This project was graded <strong>125/100</strong>.
 	</tbody>
 </table>
 
+The mandatory part features:
+	
+	- Map file parser
+	- Ambient and diffuse lighting
+	- Display of planes, spheres and cylinders
+	- Shapes intersections
+	- Hard shadows
+	- Ray tracing (without recursive steps)
 
 ## **Bonus Part**
-![bonus_texture]()
-![bonus_colored_multi_spot_lights]()
 
 <table align=center>
 	<thead>
@@ -52,6 +68,15 @@ This project was graded <strong>125/100</strong>.
 	</tbody>
 </table>
 
+The bonus part features the mandatory and also the following:
+
+	- Phong Illumination Model (ambient + diffuse + specular)
+	- Checkerboarded planes
+	- Multi-spot lights
+	- Colored light sources
+	- Multithreaded rendering (our bonus)
+	- Interectable menu (our bonus)
+
 ## 🚨 **Disclaimer**
 At 42, the C projects are built following a bunch of rules that enforce good coding style, stated in a file called **Norminette**. Some of them are:
 
@@ -62,59 +87,7 @@ At 42, the C projects are built following a bunch of rules that enforce good cod
 	- No more than 4 parameters in 1 function
 	... 
 
-## 🔧 **Implementation**
-
-<table align=center>
-	<thead>
-		<tr>
-			<th>File Name</th>
-			<th>Functionality</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td><strong>libft/</strong> </td>
-			<td>Contains 42 library functions and a few others added in the project</td>
-		</tr>
-		<tr>
-			<td><strong>srcs/</strong> </td>
-			<td>Contains all the source files</td>
-		</tr>
-
-		<tr>
-			<td><strong>srcs/commands/</strong> </td>
-			<td>Contains all the builtin commands</td>
-		</tr>
-		<tr>
-			<td><strong>srcs/debug/</strong> </td>
-			<td>A file with debugging helper functions</td>
-		</tr>
-		<tr>
-			<td><strong>srcs/executor/</strong> </td>
-			<td>Pre and post execution of processes handling</td>
-		</tr>
-		<tr>
-			<td><strong>srcs/parser/</strong> </td>
-			<td>Lexeme list and AST formation when input is received</td>
-		</tr>
-		<tr>
-			<td><strong>srcs/signals/</strong> </td>
-			<td>Has the signal installers and signal handlers</td>
-		</tr>
-		<tr>
-			<td><strong>srcs/utils/</strong> </td>
-			<td>Contains all the utility functions</td>
-		</tr>
-		<tr>
-			<td><strong>input.c</strong> </td>
-			<td>Infinite while loop to read input and where the main stages of input parsing are called</td>
-		</tr>
-		<tr>
-			<td><strong>main.c</strong> </td>
-			<td>Entry point of the program</td>
-		</tr>
-	</tbody>
-</table>
+## 🎥 **Demo**
 
 
 ## 📦 **Compilation**
