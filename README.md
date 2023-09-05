@@ -81,7 +81,7 @@ The bonus part features the mandatory and also the following:
 
 Here's a small demo with one of our maps.
 
-https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/ba59d829-5d08-402f-b527-e04b804afc38
+https://github.com/Nuno-Jesus/42_miniRT/assets/93390807/7ef7cc40-ab9f-4611-bdaf-18cd1a157213
 
 ## 🚨 **Disclaimer**
 At 42, the C projects are built following a bunch of rules that enforce good coding style, stated in a file called **Norminette**. Some of them are:
