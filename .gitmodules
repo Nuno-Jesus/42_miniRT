@@ -1,1 +1,4 @@
 
+[submodule "code/libnc"]
+	path = code/libnc
+	url = https://github.com/Nuno-Jesus/42_libnc
