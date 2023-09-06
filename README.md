@@ -15,7 +15,7 @@ git clone --recurse-submodules https://github.com/Nuno-Jesus/42_miniRT.git
 ```
 
 ## 📒 **About**
-Rendering a 3-dimensional images can be done using Ray Tracing, an expensive technique, which is based on casting rays from the camera into the space and illuminate shapes.
+Rendering a 3-dimensional image can be achieved using Ray Tracing, an expensive technique, which is based on casting rays from the camera into the space. If a ray intersects a shape, it illuminates it, based on both the shape's characteristics and also the environment around it as well.
 
 This isn't an advanced Ray Tracer, since it's implemented in C, but it definitely is functional and has a bit of our own bonus in it too!
 
@@ -95,12 +95,12 @@ At 42, the C projects are built following a bunch of rules that enforce good cod
 
 
 ## 📦 **Compilation**
-To compile the mandatory part of the ray tracer you should run `make` in the terminal.
+To compile the mandatory part of the ray tracer you should run `make`.
 
 This rule will generate a `miniRT` file, which is the zipped version of all the object files. Running `make bonus` will compile the bonus part of the ray tracer. 
 
 > **Note**
-> The rules `make fast` and `make bfast` use threads to compile WAAAY faster the mandatory and bonus parts, respectively.
+> The rules `make fast` and `make bfast` take advantage of parallel compilation to build the mandatory and bonus part, respectively. 
 
 To launch the executable you should follow this syntax...
 
@@ -108,10 +108,10 @@ To launch the executable you should follow this syntax...
 $ ./miniRT scene_name
 ```
 
-> **Warning**
-> On macOS, the `mlx_destroy_display` function does not exist, which will cause a compilation error, unless you comment it (`world.c` and `world_bonus.c`)
-
 Where `scene_name` is the name of a file that represents the world map. The scene must have a `.rt` extension. You can find example scenes in the `scenes` folder.
+
+> **Warning**
+> On the macOS mlx version, the `mlx_destroy_display` function does not exist, which will cause a compilation error, unless you comment it (`world.c` and `world_bonus.c`)
 
 ## 🕹️ **Controls**
 
@@ -127,7 +127,6 @@ Bonus:
 ## 💫 **Testing**
 
 This project was tested using self-made tests.
-
 
 ## 📞 **Contact me**
 
