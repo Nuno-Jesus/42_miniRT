@@ -124,6 +124,13 @@ Mandatory:
 Bonus:
 - **M** - toggles/untoggles the menu, which displays several other commands you can try
 
+## 📚 **Resources**
+
+- [Ray Tracing primitives and their intersections](https://hugi.scene.org/online/hugi24/coding%20graphics%20chris%20dragan%20raytracing%20shapes.htm)
+- [Ray Tracing books](https://raytracing.github.io)
+- [Ray Tracing and global illumination](https://digitalcommons.unf.edu/cgi/viewcontent.cgi?article=1100&context=ojii_volumes)
+- [Cornell University Ray Tracing slides](https://digitalcommons.unf.edu/cgi/viewcontent.cgi?article=1100&context=ojii_volumes)
+
 ## 💫 **Testing**
 
 This project was tested using self-made tests.
